@@ -42,14 +42,6 @@ namespace BusinessLogic.Tests
 		
 		[Test()]
 		[ExpectedException(typeof(ArgumentException))]
-		public void checkLoginEmptyLogin()
-		{
-			Logger logger = new Logger(new List<Login>());
-			logger.checkLogin("", "Buzek");
-		}
-		
-		[Test()]
-		[ExpectedException(typeof(ArgumentException))]
 		public void checkLoginNullPassword()
 		{
 			Logger logger = new Logger(new List<Login>());
