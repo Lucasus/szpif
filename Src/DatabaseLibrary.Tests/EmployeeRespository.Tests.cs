@@ -16,18 +16,15 @@ namespace DatabaseLibrary.Tests
     {
         private IEmployeeRepository repository;
         private Employee e, e2, e3;
-        private Guid g, h, j;
-
+        Guid g;
         [SetUp]
         public void SetupContext()
         {
             repository = new EmployeeRespository();
-            g = System.Guid.NewGuid();
-            h = System.Guid.NewGuid();
-            j = System.Guid.NewGuid();
-            e = new Employee("lucas", "ala123", "Łukasz Wiatrak", "szef", g);
-            e2 = new Employee("losiek", "llll", "Krzychu", "pracownik", h);
-            e3 = new Employee("marta", "abcd", "Marta", "project manager", j);
+            e = new Employee("lucas", "ala123", "Łukasz Wiatrak", "szef");
+            e2 = new Employee("losiek", "llll", "Krzychu", "pracownik");
+            e3 = new Employee("marta", "abcd", "Marta", "project manager");
+            g = e.Id;
         }
 
         [Test()]

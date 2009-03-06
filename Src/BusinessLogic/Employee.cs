@@ -17,13 +17,13 @@ namespace BusinessLogic
 
         Guid id;
 
-        public Employee(string login, string password, string name, string rank, Guid id)
+        public Employee(string login, string password, string name, string rank)
         {
             this.login = login;
             this.password = password;
             this.name = name;
             this.rank = rank;
-            this.id = id;
+            this.id = System.Guid.NewGuid();
         }
 
         public string Rank

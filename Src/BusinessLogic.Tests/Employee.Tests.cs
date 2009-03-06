@@ -12,13 +12,11 @@ namespace BusinessLogic.Tests
         [Test()]
         public void EmployeeConstructorTest()
         {
-            Guid g = System.Guid.NewGuid();
-            Employee e = new Employee("lucas", "ala123", "Łukasz Wiatrak", "szef", g);
+            Employee e = new Employee("lucas", "ala123", "Łukasz Wiatrak", "szef");
             Assert.IsNotNull(e);
             Assert.AreEqual("lucas", e.Login);
             Assert.AreEqual("ala123", e.Password);
             Assert.AreEqual("Łukasz Wiatrak", e.Name);
-            Assert.AreEqual(g, e.Id);
         }
     }
 }
