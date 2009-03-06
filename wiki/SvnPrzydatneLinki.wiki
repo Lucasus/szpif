@@ -1,11 +1,6 @@
 #summary Linki do nauki o Svn
 #labels Featured
-
-= Introduction =
-
 Znalazłem kilka linków, z których uczę się o Svn.
-
-= Details =
 
 [http://internetducttape.com/2007/03/03/howto_google_code_hosting_subversion_tortoisesvn/ Google Code dla początkujących]
 
