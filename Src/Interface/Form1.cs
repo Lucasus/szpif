@@ -18,14 +18,14 @@ namespace Interface
         {
             InitializeComponent();
 
-			List<Login> logins = new List<Login>();
-			logins.Add(new Login("Jozin", "Bazin"));
+			List<Employee> logins = new List<Employee>();
+			logins.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", new Guid()));
 			logger = new Logger(logins);
         }
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			Login current = logger.checkLogin(UserNameTextBox.Text, PassWordTextBox.Text);
+			Employee current = logger.checkLogin(UserNameTextBox.Text, PassWordTextBox.Text);
 			if(current == null)
 			{
 				MessageBox.Show("Zły login");
