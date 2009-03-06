@@ -5,7 +5,10 @@ using System.Text;
 
 namespace BusinessLogic
 {
-    public class Class1
+    public class Employee
     {
+        string name;
+
+        
     }
 }

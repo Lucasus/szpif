@@ -1,0 +1,10 @@
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\bin\Debug\BusinessLogic.Tests.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\bin\Debug\BusinessLogic.Tests.pdb
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\bin\Debug\BusinessLogic.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\bin\Debug\nunit.core.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\bin\Debug\nunit.framework.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\bin\Debug\nunit.core.interfaces.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\bin\Debug\BusinessLogic.pdb
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\obj\Debug\BusinessLogic.Tests.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic.Tests\obj\Debug\BusinessLogic.Tests.pdb

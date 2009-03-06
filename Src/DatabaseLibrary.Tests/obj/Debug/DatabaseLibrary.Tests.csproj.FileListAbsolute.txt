@@ -1,0 +1,5 @@
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary.Tests\bin\Debug\DatabaseLibrary.Tests.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary.Tests\bin\Debug\DatabaseLibrary.Tests.pdb
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary.Tests\obj\Debug\DatabaseLibrary.Tests.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary.Tests\obj\Debug\DatabaseLibrary.Tests.pdb
