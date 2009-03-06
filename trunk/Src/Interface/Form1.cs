@@ -14,6 +14,9 @@ namespace Interface
         public Form1()
         {
             InitializeComponent();
+            TextBox UserName = new TextBox();
+            components.Add(UserName);
+            Update();
         }
     }
 }
