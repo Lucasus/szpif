@@ -1,0 +1,5 @@
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic\bin\Debug\BusinessLogic.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic\bin\Debug\BusinessLogic.pdb
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic\obj\Debug\ResolveAssemblyReference.cache
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic\obj\Debug\BusinessLogic.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\BusinessLogic\obj\Debug\BusinessLogic.pdb
