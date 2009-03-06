@@ -40,9 +40,9 @@ namespace BusinessLogic.Tests
 		public void checkLoginReturnValue()
 		{
 			List<Employee> lista = new List<Employee>();
-			lista.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", new Guid()));
-			lista.Add(new Employee("Józek", "Blabla", "Józek Blabla", new Guid()));
-			lista.Add(new Employee("Czesiek", "Wiesiek", "Czesiek Wiesiek", new Guid()));
+			lista.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz" , new Guid()));
+			lista.Add(new Employee("Józek", "Blabla", "Józek Blabla", "Pomywacz", new Guid()));
+			lista.Add(new Employee("Czesiek", "Wiesiek", "Czesiek Wiesiek", "Pomywacz", new Guid()));
 				
 			Logger logger = new Logger(lista);
 			
