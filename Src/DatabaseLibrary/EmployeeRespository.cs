@@ -20,10 +20,18 @@ namespace DatabaseLibrary
         {
         }
 
+        /// <summary>
+        /// Updates the specified employee.
+        /// </summary>
+        /// <param name="employee">The employee.</param>
         public void Update(Employee employee)
         {
         }
 
+        /// <summary>
+        /// Removes the specified employee.
+        /// </summary>
+        /// <param name="employee">The employee.</param>
         public void Remove(Employee employee)
         {
         }

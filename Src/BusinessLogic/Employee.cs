@@ -5,6 +5,9 @@ using System.Text;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// Klasa reprezentuje pojedynczego pracownika firmy oraz wszystkie jego dane.
+    /// </summary>
     public class Employee
     {
         string login;
