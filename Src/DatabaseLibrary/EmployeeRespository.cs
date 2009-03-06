@@ -6,8 +6,16 @@ using BusinessLogic;
 
 namespace DatabaseLibrary
 {
-    class EmployeeRespository : IEmployeeRepository
+    /// <summary>
+    /// Klasa odpowiedzialna za udostępnianie kolekcji pracowników
+    /// zawartej w bazie danych.
+    /// </summary>
+    public class EmployeeRespository : IEmployeeRepository
     {
+        /// <summary>
+        /// Adds the specified employee to repository.
+        /// </summary>
+        /// <param name="employee">The employee.</param>
         public void Add(Employee employee)
         {
             throw new NotImplementedException();
