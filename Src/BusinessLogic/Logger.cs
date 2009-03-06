@@ -5,9 +5,9 @@ using System.Text;
 
 namespace BusinessLogic
 {
-	/*
-	 *	Jest to klasa przechowująca dane użytkownika, jego nazwe, hasło, uprawnienia, oraz stanowisko.
-	 */
+	/// <summary>
+	///	Jest to klasa przechowująca dane użytkownika, jego nazwe, hasło, uprawnienia, oraz stanowisko.
+	/// </summary>
 	public class Login
 	{
 		/*
@@ -41,9 +41,9 @@ namespace BusinessLogic
 		}
 	}
 
-	/*
-	 *	Klasa Zajmująca się Logicznym logowaniem się klienta do systemu. 
-	 */
+	/// <summary>
+	///	Klasa Zajmująca się Logicznym logowaniem się klienta do systemu. 
+	/// </summary>
 	public class Logger
 	{
 		/*
@@ -69,7 +69,7 @@ namespace BusinessLogic
 		public Login checkLogin(String UserName, String Password)
 		{
 			Login found = null;
-			if(UserName == null || UserName.Length == 0 || Password == null) throw new ArgumentException();
+			if(UserName == null || Password == null) throw new ArgumentException();
 			
 			foreach(Login log in accounts)
 			{
