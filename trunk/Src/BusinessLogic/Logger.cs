@@ -6,42 +6,6 @@ using System.Text;
 namespace BusinessLogic
 {
 	/// <summary>
-	///	Jest to klasa przechowująca dane użytkownika, jego nazwe, hasło, uprawnienia, oraz stanowisko.
-	/// </summary>
-	public class Login
-	{
-		/*
-		 * Atrybuty
-		 */
-		private string userName;
-		public string UserName
-		{
-			get
-			{
-				return userName;
-			}
-		}
-		
-		private string passWord;
-		public string PassWord
-		{
-			get
-			{
-				return passWord;
-			}
-		}
-		
-		/*
-		 *	Metody
-		 */
-		public Login(String UserName, String Password)
-		{
-			this.userName = UserName;
-			this.passWord = Password;
-		}
-	}
-
-	/// <summary>
 	///	Klasa Zajmująca się Logicznym logowaniem się klienta do systemu. 
 	/// </summary>
 	public class Logger
@@ -49,8 +13,8 @@ namespace BusinessLogic
 		/*
 		 * Atrybuty
 		 */
-		private List<Login> accounts;
-		public List<Login> Accounts
+		private List<Employee> accounts;
+		public List<Employee> Accounts
 		{
 			get
 			{
@@ -61,19 +25,19 @@ namespace BusinessLogic
 		/*
 		 *	Metody
 		 */
-		public Logger(List<Login> accounts)
+		public Logger(List<Employee> accounts)
 		{
 			this.accounts = accounts;
 		}
 		
-		public Login checkLogin(String UserName, String Password)
+		public Employee checkLogin(String UserName, String Password)
 		{
-			Login found = null;
+			Employee found = null;
 			if(UserName == null || Password == null) throw new ArgumentException();
 			
-			foreach(Login log in accounts)
+			foreach(Employee log in accounts)
 			{
-				if(log.UserName == UserName && log.PassWord == Password)
+				if(log.Login == UserName.Trim() && log.Password == Password.Trim())
 				{
 					found = log;
 					break;

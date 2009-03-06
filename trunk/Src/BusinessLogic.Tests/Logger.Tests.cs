@@ -7,25 +7,12 @@ using NUnit.Framework;
 namespace BusinessLogic.Tests
 {
 	[TestFixture]
-	public class LoginTest
-	{
-		[Test()]
-		public void constructorTest()
-		{
-			Login login = new Login("Jozin", "Bazin");
-			Assert.IsNotNull(login);
-			Assert.AreEqual(login.UserName, "Jozin");
-			Assert.AreEqual(login.PassWord, "Bazin");
-		}
-	}
-
-	[TestFixture]
 	public class LoggerTest
 	{
 		[Test()]
 		public void constructorTest()
 		{
-			List<Login> lista = new List<Login>();
+			List<Employee> lista = new List<Employee>();
 			Logger logger = new Logger(lista);
 			Assert.IsNotNull(logger, "Object was not created");
 			Assert.AreSame(logger.Accounts, lista);
@@ -35,34 +22,38 @@ namespace BusinessLogic.Tests
 		[ExpectedException(typeof(ArgumentException))]
 		public void checkLoginNullLogin()
 		{
-			Logger logger = new Logger(new List<Login>());
+			Logger logger = new Logger(new List<Employee>());
 			
-			logger.checkLogin(null, "Abla");
+			logger.checkLogin(null, "Bazin");
 		}
 		
 		[Test()]
 		[ExpectedException(typeof(ArgumentException))]
 		public void checkLoginNullPassword()
 		{
-			Logger logger = new Logger(new List<Login>());
+			Logger logger = new Logger(new List<Employee>());
 
-			logger.checkLogin("Józek", null);
+			logger.checkLogin("Jozin", null);
 		}
 		
 		[Test()]
 		public void checkLoginReturnValue()
 		{
-			List<Login> lista = new List<Login>();
-			lista.Add(new Login("Jozin", "Bazin"));
-			lista.Add(new Login("Józek", "Blabla"));
-			lista.Add(new Login("Czesiek", "Wiesiek"));
+			List<Employee> lista = new List<Employee>();
+			lista.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", new Guid()));
+			lista.Add(new Employee("Józek", "Blabla", "Józek Blabla", new Guid()));
+			lista.Add(new Employee("Czesiek", "Wiesiek", "Czesiek Wiesiek", new Guid()));
 				
 			Logger logger = new Logger(lista);
 			
-			Login found = logger.checkLogin("Jozin", "Bazin");
+			Employee found = logger.checkLogin("Jozin", "Bazin");
 			Assert.IsNotNull(found);
 			found = logger.checkLogin("Józek", "Bózek");
 			Assert.IsNull(found);
+			found = logger.checkLogin("Czesiek  ", "Wiesiek");
+			Assert.IsNotNull(found);
+			found = logger.checkLogin("   Czesiek  ", "  Wiesiek  ");
+			Assert.IsNotNull(found);
 		}
 	}
 }
