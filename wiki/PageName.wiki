@@ -1,0 +1,10 @@
+#summary Narzędzia z których korzystamy
+#labels Featured,Phase-Implementation
+
+Proponuję korzystać z następujących narzędzi podczas pisania testów:
+
+NUnit - biblioteka do testów jednostkowych (więcej [http://www.c-sharpcorner.com/UploadFile/Globalking/nunit01192006034629AM/nunit.aspx tutaj])
+
+TestDriven.NET - dodatek do Visuala, usprawnia odpalanie testów jednostkowych (nowe opcje w menu kontekstowych etc), więcej [tu http://www.testdriven.net/]
+
+Ghostdoc - fajne narzędzie do automatycznego tworzenia dokumentacji, przyda się do robienia komentarzy i opisów do funkcji, które będziemy tworzyć ([link http://www.roland-weigelt.de/ghostdoc])
