@@ -19,7 +19,7 @@ namespace Interface
             InitializeComponent();
 
 			List<Employee> logins = new List<Employee>();
-			logins.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz", new Guid()));
+			logins.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz"));
 			logger = new Logger(logins);
         }
 
