@@ -3,3 +3,5 @@ D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\Database
 D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary\obj\Debug\ResolveAssemblyReference.cache
 D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary\obj\Debug\DatabaseLibrary.dll
 D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary\obj\Debug\DatabaseLibrary.pdb
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary\bin\Debug\BusinessLogic.dll
+D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\DatabaseLibrary\bin\Debug\BusinessLogic.pdb
