@@ -1,4 +1,4 @@
-#summary Narzędzia z których korzystamy
+#summary Narzędzia
 #labels Featured,Phase-Implementation
 
 Spis fajnych narzędzi z którymi się spotkałem i z których korzystam w Visualu:
