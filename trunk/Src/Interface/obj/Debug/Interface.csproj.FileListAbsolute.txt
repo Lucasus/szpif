@@ -1,7 +1,0 @@
-D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\Interface\bin\Debug\Interface.exe
-D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\Interface\bin\Debug\Interface.pdb
-D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\Interface\obj\Debug\ResolveAssemblyReference.cache
-D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\Interface\obj\Debug\Interface.Properties.Resources.resources
-D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\Interface\obj\Debug\Interface.csproj.GenerateResource.Cache
-D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\Interface\obj\Debug\Interface.exe
-D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Src\Interface\obj\Debug\Interface.pdb
