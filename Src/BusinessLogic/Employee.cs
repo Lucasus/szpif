@@ -10,14 +10,23 @@ namespace BusinessLogic
         string login;
         string password;
         string name;
+        string rank;
+
         Guid id;
 
-        public Employee(string login, string password, string name, Guid id)
+        public Employee(string login, string password, string name, string rank, Guid id)
         {
             this.login = login;
             this.password = password;
             this.name = name;
+            this.rank = rank;
             this.id = id;
+        }
+
+        public string Rank
+        {
+            get { return rank; }
+            set { rank = value; }
         }
 
         public string Login

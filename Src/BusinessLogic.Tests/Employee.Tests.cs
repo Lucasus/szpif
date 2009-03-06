@@ -13,7 +13,7 @@ namespace BusinessLogic.Tests
         public void EmployeeConstructorTest()
         {
             Guid g = System.Guid.NewGuid();
-            Employee e = new Employee("lucas", "ala123", "Łukasz Wiatrak", g);
+            Employee e = new Employee("lucas", "ala123", "Łukasz Wiatrak", "szef", g);
             Assert.IsNotNull(e);
             Assert.AreEqual("lucas", e.Login);
             Assert.AreEqual("ala123", e.Password);

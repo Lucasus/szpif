@@ -18,32 +18,29 @@ namespace DatabaseLibrary
         /// <param name="employee">The employee.</param>
         public void Add(Employee employee)
         {
-            throw new NotImplementedException();
         }
 
         public void Update(Employee employee)
         {
-            throw new NotImplementedException();
         }
 
         public void Remove(Employee employee)
         {
-            throw new NotImplementedException();
         }
 
         public Employee GetById(Guid productId)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Employee GetByName(string name)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public ICollection<Employee> GetByCategory(string category)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
     }
