@@ -25,8 +25,8 @@ namespace Interface
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			Employee current = logger.checkLogin(UserNameTextBox.Text, PassWordTextBox.Text);
-			if(current == null)
+			bool current = logger.checkLogin(UserNameTextBox.Text, PassWordTextBox.Text);
+			if(current == false)
 			{
 				MessageBox.Show("Zły login");
 			}

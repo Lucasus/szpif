@@ -40,20 +40,49 @@ namespace BusinessLogic.Tests
 		public void checkLoginReturnValue()
 		{
 			List<Employee> lista = new List<Employee>();
-			lista.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz"));
+			lista.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz" ));
 			lista.Add(new Employee("Józek", "Blabla", "Józek Blabla", "Pomywacz"));
 			lista.Add(new Employee("Czesiek", "Wiesiek", "Czesiek Wiesiek", "Pomywacz"));
 				
 			Logger logger = new Logger(lista);
 			
-			Employee found = logger.checkLogin("Jozin", "Bazin");
-			Assert.IsNotNull(found);
+			bool found = logger.checkLogin("Jozin", "Bazin");
+			Assert.IsTrue(found);
 			found = logger.checkLogin("Józek", "Bózek");
-			Assert.IsNull(found);
+			Assert.IsFalse(found);
 			found = logger.checkLogin("Czesiek  ", "Wiesiek");
-			Assert.IsNotNull(found);
+			Assert.IsTrue(found);
 			found = logger.checkLogin("   Czesiek  ", "  Wiesiek  ");
-			Assert.IsNotNull(found);
+			Assert.IsTrue(found);
+		}
+		
+		[Test()]
+		[ExpectedException(typeof(ArgumentException))]
+		public void changePasswordNullPassword()
+		{
+			Logger logger = new Logger(new List<Employee>());
+			logger.changePassword(null);
+		}
+		
+		[Test()]
+		[ExpectedException(typeof(NullReferenceException))]
+		public void changePasswordNooneLoggedOn()
+		{
+			Logger logger = new Logger(new List<Employee>());
+		
+			logger.changePassword("Bolek");
+		}
+		
+		[Test()]
+		public void changePasswordTest()
+		{
+			List<Employee> lista = new List<Employee>();
+			lista.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz"));
+			Logger logger = new Logger(lista);
+		
+			logger.checkLogin("Jozin", "Bazin");
+			logger.changePassword("Józek");
+			Assert.AreEqual(logger.currentlyLoggedOn.Password, "Józek");
 		}
 	}
 }
