@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BusinessLogic;
+using BusinessLogic.Tests;
 using DatabaseLibrary;
 
 namespace Interface
@@ -19,8 +20,7 @@ namespace Interface
         {
             InitializeComponent();
 
-			IEmployeeRepository logins = new EmployeeRespository();
-			//List<Employee> logins = new List<Employee>();
+			IEmployeeRepository logins = new EmployeeRespositoryMock();
 			logins.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz"));
 			logger = new Logger(logins);
         }
