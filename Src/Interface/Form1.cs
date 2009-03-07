@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BusinessLogic;
+using DatabaseLibrary;
 
 namespace Interface
 {
@@ -18,21 +19,22 @@ namespace Interface
         {
             InitializeComponent();
 
-			List<Employee> logins = new List<Employee>();
+			IEmployeeRepository logins = new EmployeeRespository();
+			//List<Employee> logins = new List<Employee>();
 			logins.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz"));
 			logger = new Logger(logins);
         }
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			bool current = logger.checkLogin(UserNameTextBox.Text, PassWordTextBox.Text);
+			bool current = logger.checkLogin(UserNameTextBox.Text, PassWordTextBox.Text, RankTextBox.Text);
 			if(current == false)
 			{
 				MessageBox.Show("Zły login");
 			}
 			else
 			{
-				MessageBox.Show("Jesteś Zalogowany");
+				MessageBox.Show("Witaj \"" + logger.currentlyLoggedOn.Name + "\" Klasy \"" + logger.currentlyLoggedOn.Rank + "\"");
 			}
 		}
     }

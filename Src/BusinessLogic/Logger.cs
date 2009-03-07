@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using DatabaseLibrary;
 
 namespace BusinessLogic
 {	
@@ -20,18 +21,25 @@ namespace BusinessLogic
 			get{return _currentlyLoggedOn;}
 		}
 		
-		private List<Employee> _accounts;
+		private IEmployeeRepository _employeeRep;
+		public IEmployeeRepository employeeRepository
+		{
+			get{return _employeeRep;}
+		}
+		
+		/*private List<Employee> _accounts;
 		public List<Employee> Accounts
 		{
 			get{return _accounts;}
-		}
+		}*/
 
 		/*
 		 *	Metody
 		 */
-		public Logger(List<Employee> accounts)
+		public Logger(IEmployeeRepository accounts)
 		{
-			this._accounts = accounts;
+			this._employeeRep = accounts;
+			//this._accounts = accounts;
 			_currentlyLoggedOn = null;
 		}
 		
@@ -44,14 +52,15 @@ namespace BusinessLogic
 		///		true w przypadku powodzenia
 		///		false w przypadku porażki
 		///	</returns>
-		public bool checkLogin(String UserName, String Password)
+		public bool checkLogin(String UserName, String Password, String Rank)
 		{
+			ICollection<Employee> employees = _employeeRep.GetByCategory("Name");
 			bool found = false;
-			if(UserName == null || Password == null) throw new ArgumentException();
+			if(UserName == null || Password == null || Rank == null) throw new ArgumentException();
 			
-			foreach(Employee log in Accounts)
+			foreach(Employee log in employees)
 			{
-				if(log.Login == UserName.Trim() && log.Password == Password.Trim())
+				if(log.Login == UserName.Trim() && log.Password == Password.Trim() && log.Rank == Rank.Trim())
 				{
 					found = true;
 					_currentlyLoggedOn = log;
@@ -59,7 +68,7 @@ namespace BusinessLogic
 				}
 			}
 			
-			return found;
+			return found;	
 		}
 		
 		/// <summary>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 
-namespace BusinessLogic.Tests
+namespace DatabaseLibrary.Tests
 {
     [TestFixture()]
     public class EmployeeTest
@@ -17,6 +17,7 @@ namespace BusinessLogic.Tests
             Assert.AreEqual("lucas", e.Login);
             Assert.AreEqual("ala123", e.Password);
             Assert.AreEqual("Łukasz Wiatrak", e.Name);
+            Assert.AreEqual("szef", e.Rank);
         }
     }
 }
