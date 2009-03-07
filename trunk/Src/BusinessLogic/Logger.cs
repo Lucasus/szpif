@@ -26,12 +26,6 @@ namespace BusinessLogic
 		{
 			get{return _employeeRep;}
 		}
-		
-		/*private List<Employee> _accounts;
-		public List<Employee> Accounts
-		{
-			get{return _accounts;}
-		}*/
 
 		/*
 		 *	Metody
@@ -79,6 +73,7 @@ namespace BusinessLogic
 		{
 			if(newPassword == null) throw new ArgumentException();
 			_currentlyLoggedOn.Password = newPassword;
+			employeeRepository.Update(currentlyLoggedOn);
 		}
 	}
 }
