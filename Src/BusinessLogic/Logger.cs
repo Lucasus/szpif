@@ -48,18 +48,17 @@ namespace BusinessLogic
 		///	</returns>
 		public bool checkLogin(String UserName, String Password, String Rank)
 		{
-			ICollection<Employee> employees = _employeeRep.GetByCategory("Name");
+
+            Employee employee = _employeeRep.GetByLogin(UserName);
 			bool found = false;
 			if(UserName == null || Password == null || Rank == null) throw new ArgumentException();
 			
-			foreach(Employee log in employees)
+			if(employee.Login == UserName.Trim()
+              && employee.Password == Password.Trim()
+              && employee.Rank == Rank.Trim())
 			{
-				if(log.Login == UserName.Trim() && log.Password == Password.Trim() && log.Rank == Rank.Trim())
-				{
-					found = true;
-					_currentlyLoggedOn = log;
-					break;
-				}
+				found = true;
+                _currentlyLoggedOn = employee;
 			}
 			
 			return found;	

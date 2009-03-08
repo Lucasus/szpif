@@ -20,8 +20,8 @@ namespace Interface
         {
             InitializeComponent();
 
-			IEmployeeRepository logins = new EmployeeRespositoryMock();
-			logins.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz"));
+			IEmployeeRepository logins = new EmployeeRespository();
+			//logins.Add(new Employee("Jozin", "Bazin", "Jozin z Bazin", "Pomywacz"));
 			logger = new Logger(logins);
         }
 

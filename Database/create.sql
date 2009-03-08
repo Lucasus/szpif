@@ -14,5 +14,6 @@ CREATE TABLE [Employees]
 
 DBCC CHECKIDENT (Employees, RESEED, 0);
 INSERT INTO [Employees]  VALUES ('Lucas', 'Master', 'Lukasz Wiatrak', 'Boss');
+INSERT INTO [Employees]  VALUES ('Jan', 'Kowalski', 'Juuuuuurek', 'Pomywacz');
 
 Select * from [Employees] 
