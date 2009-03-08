@@ -14,6 +14,9 @@ namespace DatabaseLibrary
         T GetByName(string name);
         ICollection<T> GetByCategory(string category);
     }
-    public interface IEmployeeRepository : IRepository<Employee> { }
+    public interface IEmployeeRepository : IRepository<Employee> 
+    {
+        Employee GetByLogin(string login);
+    }
 }
 

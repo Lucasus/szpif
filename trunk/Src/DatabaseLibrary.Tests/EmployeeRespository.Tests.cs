@@ -44,6 +44,15 @@ namespace DatabaseLibrary.Tests
         }
 
         [Test]
+        public void getByLoginTest()
+        {
+            Employee emp = repository.GetByLogin("Lucas");
+            Assert.IsNotNull(emp);
+            Assert.AreEqual("Boss", emp.Rank);
+            
+        }
+
+        [Test]
         public void UpdateTest()
         {
             repository.Add(e);

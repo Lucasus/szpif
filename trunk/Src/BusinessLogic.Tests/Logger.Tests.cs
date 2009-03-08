@@ -34,6 +34,10 @@ namespace BusinessLogic.Tests
 		{
 			return employees;
 		}
+        public Employee GetByLogin(string login)
+        {
+            return null;
+        }
 		
 	}
 
