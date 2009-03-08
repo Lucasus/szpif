@@ -79,6 +79,15 @@ namespace BusinessLogic.Tests
 
 			logger.checkLogin("Jozin", null, "Pomywacz");
 		}
+
+        [Test()]
+        public void checkLoginOfExistingUserValue()
+        {
+            IEmployeeRepository lista = new EmployeeRespository();
+            Logger logger = new Logger(lista);
+            bool found = logger.checkLogin("Jan", "Kowalski", "Pomywacz");
+            Assert.IsTrue(found);
+        }
 		
 		[Test()]
 		public void checkLoginReturnValue()

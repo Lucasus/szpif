@@ -79,7 +79,7 @@ namespace DatabaseLibrary
 
                 DbCommand cmd = factory.CreateCommand(); // Command object
                 cmd.CommandText = 
-                    "SELECT * FROM Employees";// WHERE Login = " + "'"+login+"'";
+                    "SELECT * FROM Employees WHERE Login = " + "'"+login+"'";
                 cmd.Connection = conn;
                 DbDataReader dr;
                 dr = cmd.ExecuteReader();
