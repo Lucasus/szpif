@@ -100,6 +100,7 @@ namespace DatabaseLibrary
         /// <param name="employee">The employee.</param>
         public void Update(Employee employee)
         {
+
         }
 
         /// <summary>
