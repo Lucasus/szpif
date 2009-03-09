@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using DatabaseLibrary;
 
 namespace BusinessLogic
 {	
@@ -50,6 +49,7 @@ namespace BusinessLogic
 		{
 
             Employee employee = _employeeRep.GetByLogin(UserName);
+            if (employee == null) return false;
 			bool found = false;
 			if(UserName == null || Password == null || Rank == null) throw new ArgumentException();
 			

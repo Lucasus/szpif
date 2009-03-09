@@ -5,7 +5,11 @@ using System.Text;
 using NUnit.Framework;
 using DatabaseLibrary;
 using BusinessLogic;
-
+using System.IO;
+using System.Data.SqlClient;
+using Microsoft.SqlServer.Server;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlServer.Management.Common;
 namespace DatabaseLibrary.Tests
 {
     /// <summary>
@@ -16,7 +20,30 @@ namespace DatabaseLibrary.Tests
     {
         private IEmployeeRepository repository;
         private Employee e, e2, e3;
-        Guid g;
+        private void clearDatabase()
+        {
+            string sqlConnectionString  = "Data Source=localhost\\SQLEXPRESS;"
+                    + "Initial Catalog=szpifDatabase;"
+                    + "Integrated Security=SSPI;";
+            FileInfo file = new FileInfo("..\\..\\..\\..\\Database\\create.sql");
+            string script = file.OpenText().ReadToEnd();
+            SqlConnection conn = new SqlConnection(sqlConnectionString);
+            Server  server =  new Server(new ServerConnection(conn));
+            server.ConnectionContext.ExecuteNonQuery(script);
+
+        }
+
+        [TestFixtureSetUp]
+        public void setUpAll()
+        {
+            clearDatabase();
+        }
+
+        [TearDown]
+        public void clearAll()
+        {
+            clearDatabase();
+        }
         [SetUp]
         public void SetupContext()
         {
@@ -24,8 +51,6 @@ namespace DatabaseLibrary.Tests
             e = new Employee("lucas", "ala123", "Łukasz Wiatrak", "szef");
             e2 = new Employee("losiek", "llll", "Krzychu", "pracownik");
             e3 = new Employee("marta", "abcd", "Marta", "project manager");
-
-            g = e.Id;
         }
 
         [Test()]
@@ -43,6 +68,13 @@ namespace DatabaseLibrary.Tests
             Assert.IsNotNull(f);
             Assert.AreEqual("lucas", f.Login);
             repository.Remove(e);
+            Employee e4 = new Employee("xxx", "xxxx", "blabla", "bla");
+            Assert.AreEqual(-1, e4.Id);
+            repository.Add(e4);
+            Assert.AreNotEqual(-1, e4.Id);
+            Employee e5 = repository.GetByLogin("xxx");
+            Assert.AreEqual(e5.Id, e4.Id);
+            repository.Remove(e4);
         }
 
         [Test]
@@ -61,7 +93,7 @@ namespace DatabaseLibrary.Tests
             repository.Add(e);
             e.Login = "lucas master";
             repository.Update(e);
-            Employee f = repository.GetById(g);
+            Employee f = repository.GetById(e.Id);
             Assert.AreEqual("lucas master", f.Login);
             e.Login = "lucas";
             repository.Remove(e);
@@ -97,9 +129,16 @@ namespace DatabaseLibrary.Tests
         }
 
         [Test]
-        public void GetByCategoryTest()
+        public void GetAllTest()
         {
-            Assert.AreEqual(1, 0);
+            repository.Add(e);
+            repository.Add(e2);
+            repository.Add(e3);
+            ICollection<Employee> coll = repository.GetAll();
+            Assert.AreEqual(3, coll.Count);
+            repository.Remove(e);
+            repository.Remove(e2);
+            repository.Remove(e3);
         }
 
     }

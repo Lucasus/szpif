@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Common;
+using BusinessLogic;
 
 namespace DatabaseLibrary
 {
@@ -98,7 +99,7 @@ namespace DatabaseLibrary
             executeCommand(command);
         }
 
-        public Employee GetById(Guid productId)
+        public Employee GetById(int productId)
         {
 
             return null;
@@ -144,8 +145,8 @@ namespace DatabaseLibrary
             } 
         }
 
-      
-        public ICollection<Employee> GetByCategory(string category)
+
+        public ICollection<Employee> GetAll()
         {
             return null;
         }
