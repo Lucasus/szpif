@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using DatabaseLibrary;
 using BusinessLogic;
+using DatabaseLibrary;
 
 namespace BusinessLogic.Tests
 {
@@ -22,7 +22,7 @@ namespace BusinessLogic.Tests
 		public void Update(Employee employee)
 		{
 		}
-		public Employee GetById(Guid guid)
+		public Employee GetById(int id)
 		{
 			return null;
 		}
@@ -30,7 +30,7 @@ namespace BusinessLogic.Tests
 		{
 			return null;
 		}
-		public ICollection<Employee> GetByCategory(string abla)
+        public ICollection<Employee> GetAll()
 		{
 			return employees;
 		}
