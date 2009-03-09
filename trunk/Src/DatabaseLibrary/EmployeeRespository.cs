@@ -74,10 +74,24 @@ namespace DatabaseLibrary
         /// 
         public void Add(Employee e)
         {
-            string command = "INSERT INTO [Employees]  VALUES "
-                + "('" + e.Login + "', '" + e.Password + "', '"
-                + e.Name + "', '" + e.Rank + "');";
-            executeCommand(command);
+            try
+            {
+                string command = "INSERT INTO [Employees]  VALUES "
+                    + "('" + e.Login + "', '" + e.Password + "', '"
+                    + e.Name + "', '" + e.Rank + "');" +
+                    "; SELECT SCOPE_IDENTITY() ; ";
+                DbCommand cmd = factory.CreateCommand();
+                cmd.CommandText = command;
+                cmd.Connection = conn;
+                conn.Open();
+                int Employeeid = Int16.Parse(cmd.ExecuteScalar().ToString());
+                conn.Close();
+                e.Id = Employeeid;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         /// <summary>
@@ -99,15 +113,76 @@ namespace DatabaseLibrary
             executeCommand(command);
         }
 
-        public Employee GetById(int productId)
+        public Employee GetById(int id)
         {
+            string command =
+                "SELECT * FROM Employees WHERE Id = " + "'" + id + "'";
+            try
+            {
+                conn.Open();
 
-            return null;
+                DbCommand cmd = factory.CreateCommand(); // Command object
+                cmd.CommandText = command;
+                cmd.Connection = conn;
+                DbDataReader dr;
+                dr = cmd.ExecuteReader();
+                dr.Read();
+                Employee emp = new Employee((string)dr["Login"], (string)dr["Password"],
+                                (string)dr["Name"], (string)dr["Rank"]);
+                emp.Id = (int)dr["Id"];
+                conn.Close();
+                return emp;
+            }
+            catch (DbException ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public Employee GetByName(string name)
         {
-            return null;   
+            string command =
+                "SELECT * FROM Employees WHERE Name = " + "'" + name + "'";
+            try
+            {
+                conn.Open();
+
+                DbCommand cmd = factory.CreateCommand(); // Command object
+                cmd.CommandText = command;
+                cmd.Connection = conn;
+                DbDataReader dr;
+                dr = cmd.ExecuteReader();
+                dr.Read();
+                Employee emp = new Employee((string)dr["Login"], (string)dr["Password"],
+                                (string)dr["Name"], (string)dr["Rank"]);
+                emp.Id = (int)dr["Id"];
+                conn.Close();
+                return emp;
+            }
+            catch (DbException ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public Employee GetByLogin(string login)
@@ -126,6 +201,7 @@ namespace DatabaseLibrary
                 dr.Read();
                 Employee emp = new Employee((string)dr["Login"], (string)dr["Password"],
                                 (string)dr["Name"], (string)dr["Rank"]);
+                emp.Id = (int)dr["Id"];
                 conn.Close();
                 return emp;
             }
