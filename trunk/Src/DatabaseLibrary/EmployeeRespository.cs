@@ -35,13 +35,48 @@ namespace DatabaseLibrary
         {
            // conn.Close();
         }
+
+        private DbDataReader executeCommand(string command)
+        {
+            try
+            {
+                conn.Open();
+
+                DbCommand cmd = factory.CreateCommand(); // Command object
+                cmd.CommandText = command;
+                cmd.Connection = conn;
+                DbDataReader dr;
+                dr = cmd.ExecuteReader();
+                dr.Read();
+                conn.Close();
+                return dr;
+            }
+            catch (DbException ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         /// <summary>
         /// Adds the specified employee to repository.
         /// </summary>
         /// <param name="employee">The employee.</param>
         /// 
-        public void Add(Employee employee)
+        public void Add(Employee e)
         {
+            string command = "INSERT INTO [Employees]  VALUES "
+                + "('" + e.Login + "', '" + e.Password + "', '"
+                + e.Name + "', '" + e.Rank + "');";
+            executeCommand(command);
         }
 
         /// <summary>
@@ -56,12 +91,16 @@ namespace DatabaseLibrary
         /// Removes the specified employee.
         /// </summary>
         /// <param name="employee">The employee.</param>
-        public void Remove(Employee employee)
+        public void Remove(Employee e)
         {
+            string command = 
+                "DELETE FROM Employees WHERE Login = " + "'" + e.Login + "'";
+            executeCommand(command);
         }
 
         public Employee GetById(Guid productId)
         {
+
             return null;
         }
 
@@ -72,20 +111,20 @@ namespace DatabaseLibrary
 
         public Employee GetByLogin(string login)
         {
-            Employee emp = null;
+            string command =
+                "SELECT * FROM Employees WHERE Login = " + "'"+login+"'";
             try
             {
                 conn.Open();
 
                 DbCommand cmd = factory.CreateCommand(); // Command object
-                cmd.CommandText = 
-                    "SELECT * FROM Employees WHERE Login = " + "'"+login+"'";
+                cmd.CommandText = command;
                 cmd.Connection = conn;
                 DbDataReader dr;
                 dr = cmd.ExecuteReader();
                 dr.Read();
-                emp = new Employee((string)dr["Login"], (string)dr["Password"],
-                                    (string)dr["Name"], (string)dr["Rank"]);
+                Employee emp = new Employee((string)dr["Login"], (string)dr["Password"],
+                                (string)dr["Name"], (string)dr["Rank"]);
                 conn.Close();
                 return emp;
             }
@@ -102,7 +141,7 @@ namespace DatabaseLibrary
             finally
             {
                 conn.Close();
-            }
+            } 
         }
 
       
