@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using BussinesLogic;
 
 namespace BusinessLogic
 {	
@@ -11,31 +12,24 @@ namespace BusinessLogic
 	/// </summary>
 	public class Logger
 	{
-		/*
+        private IDatabase database;
+
+        /*
 		 * Atrybuty
 		 */
-		private Employee _currentlyLoggedOn;
-		public Employee currentlyLoggedOn
+		private string currentlyLoggedOnLogin;
+        public string CurrentlyLoggedOnLogin
 		{
-			get{return _currentlyLoggedOn;}
+			get{return currentlyLoggedOnLogin;}
 		}
 		
-		private IEmployeeRepository _employeeRep;
-		public IEmployeeRepository employeeRepository
+		public Logger(IDatabase database)
 		{
-			get{return _employeeRep;}
+			currentlyLoggedOnLogin = null;
+            this.database = database;
 		}
+		
 
-		/*
-		 *	Metody
-		 */
-		public Logger(IEmployeeRepository accounts)
-		{
-			this._employeeRep = accounts;
-			//this._accounts = accounts;
-			_currentlyLoggedOn = null;
-		}
-		
 		/// <summary>
 		///		Funkcja Sprawdza czy logowanie się powiodło.
 		/// </summary>
@@ -45,34 +39,28 @@ namespace BusinessLogic
 		///		true w przypadku powodzenia
 		///		false w przypadku porażki
 		///	</returns>
-		public bool checkLogin(String UserName, String Password, String Rank)
+		public ICollection<string> LogToSystem(String UserName, String Password)
 		{
+            ICollection<string> permissions
+                    = database.CheckLogin(UserName, Password);
 
-            Employee employee = _employeeRep.GetByLogin(UserName);
-            if (employee == null) return false;
-			bool found = false;
-			if(UserName == null || Password == null || Rank == null) throw new ArgumentException();
-			
-			if(employee.Login == UserName.Trim()
-              && employee.Password == Password.Trim()
-              && employee.Rank == Rank.Trim())
-			{
-				found = true;
-                _currentlyLoggedOn = employee;
-			}
-			
-			return found;	
+            if (permissions == null) return null;
+
+            currentlyLoggedOnLogin = UserName;
+
+            return permissions;
+            //            Employee employee = _employeeRep.GetByLogin(UserName);
+//            if (employee == null) return false;
+//			if(UserName == null || Password == null) throw new ArgumentException();
+//			
+//			if(employee.Login == UserName.Trim()
+//              && employee.Password == Password.Trim())
+//			{
+//				found = true;
+ //               _currentlyLoggedOn = employee;
+//			}
+//			
 		}
-		
-		/// <summary>
-		///		Funkcja Pozwala zmienić hasło aktualnie zalogowanego użytkownika
-		/// </summary>
-		/// <param name="newPassword">Nowe hasło które ma zastąpić stare</param>
-		public void changePassword(String newPassword)
-		{
-			if(newPassword == null) throw new ArgumentException();
-			_currentlyLoggedOn.Password = newPassword;
-			employeeRepository.Update(currentlyLoggedOn);
-		}
+
 	}
 }
