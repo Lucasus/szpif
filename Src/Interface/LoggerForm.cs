@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DatabaseLibrary;
-using DatabaseLibrary.Tests;
+using BusinessLogic;
+using BusinessLogic.Tests;
 using DatabaseLibrary;
 
 namespace Interface
@@ -28,7 +28,7 @@ namespace Interface
             string password = PassWordTextBox.Text;
             ICollection<string> permissions 
                 = logger.LogToSystem(userName, password);
-			if(permissions == null)
+			if(permissions.Count == 0)
 			{
                 MessageBox.Show("Podałeś zły login i/lub hasło");
 			}
