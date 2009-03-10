@@ -31,7 +31,40 @@ namespace DatabaseLibrary
 
         public ICollection<string> CheckLogin(string login, string password)
         {
-            return null;
+            string command = "exec checkPermissions @Login='"+
+            login + "',@Password='"+password+"'";
+            ICollection<string> permissions = new List<string>();
+            try
+            {
+                conn.Open();
+                DbCommand cmd = factory.CreateCommand(); // Command object
+                cmd.CommandText = command;
+                cmd.Connection = conn;
+                DbDataReader dr;
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string permission = dr.GetString(dr.GetOrdinal("Permission"));
+                    permissions.Add(permission);
+                }
+
+                conn.Close();
+                return permissions;
+            }
+            catch (DbException ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         //private DbDataReader executeCommand(string command)

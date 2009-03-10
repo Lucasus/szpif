@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using BusinessLogic;
+using DatabaseLibrary;
 using DatabaseLibrary;
 
-namespace BusinessLogic.Tests
+namespace DatabaseLibrary.Tests
 {
 
 	[TestFixture]

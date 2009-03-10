@@ -21,6 +21,9 @@ namespace Interface
             this.password = password;
             this.permissions = permissions;
             InitializeComponent();
+            label1.Text = "";
+            foreach (string s in permissions)
+                label1.Text += s + ", ";
         }
 
         private void UserPanel_FormClosed(object sender, FormClosedEventArgs e)
