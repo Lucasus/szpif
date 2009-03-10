@@ -24,8 +24,10 @@ namespace Interface
 
 		private void button1_Click(object sender, EventArgs e)
 		{
+            string userName = UserNameTextBox.Text;
+            string password = PassWordTextBox.Text;
             ICollection<string> permissions 
-			      = logger.LogToSystem(UserNameTextBox.Text, PassWordTextBox.Text);
+                = logger.LogToSystem(userName, password);
 			if(permissions == null)
 			{
                 MessageBox.Show("Podałeś zły login i/lub hasło");
@@ -33,8 +35,8 @@ namespace Interface
 			else
 			{
                 this.Hide();
-                Program.UserPanelForm = new UserPanel();
-                Program.UserPanelForm.ShowDialog();
+                UserPanelForm uPanelForm = new UserPanelForm(userName,password,permissions);
+                uPanelForm.ShowDialog();
                 this.Dispose(false);
 			}
 		}

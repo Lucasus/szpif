@@ -1,6 +1,6 @@
 ﻿namespace Interface
 {
-    partial class UserPanel
+    partial class UserPanelForm
     {
         /// <summary>
         /// Required designer variable.
