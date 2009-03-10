@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using BusinessLogic;
-using BusinessLogic.Tests;
+using DatabaseLibrary;
+using DatabaseLibrary.Tests;
 using DatabaseLibrary;
 
 namespace Interface

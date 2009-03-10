@@ -5,7 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using BussinesLogic;
 
-namespace BusinessLogic
+namespace DatabaseLibrary
 {	
 	/// <summary>
 	/// Klasa Zajmująca się Logicznym logowaniem się klienta do systemu.
