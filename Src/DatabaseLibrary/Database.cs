@@ -29,10 +29,62 @@ namespace DatabaseLibrary
             conn.ConnectionString = connstr;
         }
 
-        ICollection<string> CheckLogin(string login, string password)
+        public ICollection<string> CheckLogin(string login, string password)
         {
             return null;
         }
 
+        //private DbDataReader executeCommand(string command)
+        //{
+        //    try
+        //    {
+        //        conn.Open();
+
+        //        DbCommand cmd = factory.CreateCommand(); // Command object
+        //        cmd.CommandText = command;
+        //        cmd.Connection = conn;
+        //        DbDataReader dr;
+        //        dr = cmd.ExecuteReader();
+        //        dr.Read();
+        //        conn.Close();
+        //        return dr;
+        //    }
+        //    catch (DbException ex)
+        //    {
+        //        System.Console.WriteLine(ex.ToString());
+        //        return null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Console.WriteLine(ex.ToString());
+        //        return null;
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
+        //}
+
+        //public void Add(Employee e)
+        //{
+        //    try
+        //    {
+        //        string command = "INSERT INTO [Employees]  VALUES "
+        //            + "('" + e.Login + "', '" + e.Password + "', '"
+        //            + e.Name + "', '" + e.Rank + "');" +
+        //            "; SELECT SCOPE_IDENTITY() ; ";
+        //        DbCommand cmd = factory.CreateCommand();
+        //        cmd.CommandText = command;
+        //        cmd.Connection = conn;
+        //        conn.Open();
+        //        int Employeeid = Int16.Parse(cmd.ExecuteScalar().ToString());
+        //        conn.Close();
+        //        e.Id = Employeeid;
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
+        //}
     }
 }

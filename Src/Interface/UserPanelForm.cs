@@ -9,10 +9,17 @@ using System.Windows.Forms;
 
 namespace Interface
 {
-    public partial class UserPanel : Form
+    public partial class UserPanelForm : Form
     {
-        public UserPanel()
+        private string userName;
+        private string password;
+        private ICollection<string> permissions;
+
+        public UserPanelForm(string userName, string password, ICollection<string> permissions)
         {
+            this.userName = userName;
+            this.password = password;
+            this.permissions = permissions;
             InitializeComponent();
         }
 

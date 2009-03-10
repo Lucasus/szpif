@@ -7,10 +7,6 @@ namespace Interface
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        public static UserPanel UserPanelForm;
         [STAThread]
         static void Main()
         {
