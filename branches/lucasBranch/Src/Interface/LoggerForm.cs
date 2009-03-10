@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BusinessLogic;
-using BusinessLogic.Tests;
 using DatabaseLibrary;
 
 namespace Interface
