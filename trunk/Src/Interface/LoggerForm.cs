@@ -33,7 +33,7 @@ namespace Interface
  //               UserPanelForm uPanelForm = new UserPanelForm(userName, password, permissions);
  //               uPanelForm.ShowDialog();
  //               this.Dispose(false);
-//                MessageBox.Show("Podałeś zły login i/lub hasło");
+                MessageBox.Show("Podałeś zły login i/lub hasło");
 			}
 			else
 			{
