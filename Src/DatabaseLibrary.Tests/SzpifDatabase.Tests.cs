@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using BusinessLogic;
 using DatabaseLibrary;
 using System.IO;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Server;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
+using System.Collections;
 
 namespace DatabaseLibrary.Tests
 {
 
     [TestFixture]
-    public class DatabaseTests
+    public class SzpifDatabaseTests
     {
-        private DatabaseLibrary.Database database;
+        private SzpifDatabase database;
         private void clearDatabase()
         {
             string sqlConnectionString  = "Data Source=localhost\\SQLEXPRESS;"
                     + "Initial Catalog=szpifDatabase;"
                     + "Integrated Security=SSPI;";
-            FileInfo file = new FileInfo("..\\..\\..\\..\\Database\\create.sql");
+            FileInfo file = 
+                new FileInfo("..\\..\\..\\..\\Database\\Tests\\generateTestData1.sql");
             string script = file.OpenText().ReadToEnd();
             SqlConnection conn = new SqlConnection(sqlConnectionString);
             Server  server =  new Server(new ServerConnection(conn));
@@ -32,23 +33,34 @@ namespace DatabaseLibrary.Tests
         [TestFixtureSetUp]
         public void makeDatabase()
         {
-            database = new DatabaseLibrary.Database();
+            database = new SzpifDatabase();
+        }
+        [SetUp]
+        public void settinUp()
+        {
+            clearDatabase();
         }
 
         [Test()]
         public void constructorTest()
         {
-            //IEmployeeRepository lista = new EmployeeRespositoryMock();
-            //Logger logger = new Logger(lista);
-            //Assert.IsNotNull(logger, "Object was not created");
-            //Assert.AreSame(logger.employeeRepository, lista);
+            SzpifDatabase d = new SzpifDatabase();
+            Assert.IsNotNull(d);
         }
 
         [Test()]
         public void checkLoginTest()
         {
-            database.CheckLogin("lukasz", "master");
-            Assert.AreEqual(1, 0);
+            ICollection<string> permissions =  
+                database.CheckLogin("lukasz", "master");
+            Assert.IsNotNull(permissions);
+            Assert.Contains("Boss", (ICollection)permissions);
+            Assert.Contains("Administrator", (ICollection)permissions);
+            ICollection<string> permissions2 =
+                database.CheckLogin("lukaszz", "master");
+            Assert.IsNotNull(permissions2);
+            Assert.AreEqual(0, permissions2.Count);
+
         }
 
 

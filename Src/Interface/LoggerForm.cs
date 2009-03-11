@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using BusinessLogic;
 using DatabaseLibrary;
 
 namespace Interface
@@ -18,7 +17,7 @@ namespace Interface
         public LoggerForm()
         {
             InitializeComponent();
-            logger = new Logger(new Database());
+            logger = new Logger(new SzpifDatabase());
         }
 
 		private void button1_Click(object sender, EventArgs e)

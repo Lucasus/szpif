@@ -88,10 +88,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic.Tests\BusinessLogic.Tests.csproj">
-      <Project>{60B4D62B-D565-40C6-A4C7-B2147EB47FFE}</Project>
-      <Name>BusinessLogic.Tests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{12D7DB32-BA73-4588-B336-2270097ED714}</Project>
       <Name>BusinessLogic</Name>

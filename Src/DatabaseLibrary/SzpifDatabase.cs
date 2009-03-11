@@ -7,14 +7,14 @@ using System.Data.Common;
 
 namespace DatabaseLibrary
 {
-    public class Database : IDatabase
+    public class SzpifDatabase : IDatabase
     {
         static DbProviderFactory factory;
         static DbConnection conn;
         static string provider;
         static string connstr;
 
-        static Database()
+        static SzpifDatabase()
         {
             provider = "System.Data.SqlClient";  // data provider
             connstr =   "Data Source=localhost\\SQLEXPRESS;"
