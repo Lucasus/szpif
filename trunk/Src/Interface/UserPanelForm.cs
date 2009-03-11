@@ -31,7 +31,7 @@ namespace Interface
                 {
                     case "Administrator":
                         {
-                            newPage = new TabPage("Administrowanie pracownikami");
+                            newPage = new EmployeeAdministrationPage("Administrowanie pracownikami");
                             break;
                         }
                     case "Boss":

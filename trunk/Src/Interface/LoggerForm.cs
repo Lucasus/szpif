@@ -26,8 +26,13 @@ namespace Interface
             string password = PassWordTextBox.Text;
             ICollection<string> permissions 
                 = logger.LogToSystem(userName, password);
+  //          permissions.Add("Administrator");
 			if(permissions.Count == 0)
 			{
+ //               this.Hide();
+ //               UserPanelForm uPanelForm = new UserPanelForm(userName, password, permissions);
+ //               uPanelForm.ShowDialog();
+ //               this.Dispose(false);
                 MessageBox.Show("Podałeś zły login i/lub hasło");
 			}
 			else
