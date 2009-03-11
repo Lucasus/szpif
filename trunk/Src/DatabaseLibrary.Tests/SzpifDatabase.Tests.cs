@@ -10,6 +10,7 @@ using Microsoft.SqlServer.Server;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
 using System.Collections;
+using System.Data;
 
 namespace DatabaseLibrary.Tests
 {
@@ -78,5 +79,12 @@ namespace DatabaseLibrary.Tests
 			Assert.IsNotNull(permissions4);
 		}
 
+        [Test()]
+        public void getEmployeesAdministrationViewTest()
+        {
+            DataTable dt = database.getEmployeesAdministrationView();
+            Assert.AreEqual(3, dt.Rows.Count);
+            Assert.AreEqual("Losiek Loskowski", dt.Rows[2]["Name"]);
+        }
     }
 }

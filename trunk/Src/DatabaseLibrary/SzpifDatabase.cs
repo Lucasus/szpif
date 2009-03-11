@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using BusinessLogic;
 using System.Data.Common;
+using System.Data;
 
 namespace DatabaseLibrary
 {
@@ -94,6 +95,13 @@ namespace DatabaseLibrary
 			}
         }
 
-
+        public DataTable getEmployeesAdministrationView()
+        {
+            string command = "SELECT * FROM EmployeeAdministrationView";
+            DbDataReader dr = executeQuerryCommand(command);
+            DataTable dt = new DataTable("EmployeeAdministrationView");
+            dt.Load(dr);
+            return dt;
+        }
     }
 }

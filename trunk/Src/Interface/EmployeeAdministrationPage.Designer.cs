@@ -30,6 +30,7 @@
         {
             this.AddEmployeeButton = new System.Windows.Forms.Button();
             this.EmployeesGridView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Permission = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +56,7 @@
             this.EmployeesGridView.AllowUserToResizeRows = false;
             this.EmployeesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.EmployeesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.Login,
             this.Name,
             this.Permission,
@@ -65,6 +67,12 @@
             this.EmployeesGridView.RowHeadersVisible = false;
             this.EmployeesGridView.Size = new System.Drawing.Size(600, 380);
             this.EmployeesGridView.TabIndex = 0;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Width = 20;
             // 
             // Login
             // 
@@ -86,14 +94,16 @@
             // 
             // ChangePermissions
             // 
-            this.ChangePermissions.HeaderText = "Uprawnienia";
+            this.ChangePermissions.HeaderText = "";
             this.ChangePermissions.Name = "ChangePermissions";
+            this.ChangePermissions.UseColumnTextForButtonValue = true;
             this.ChangePermissions.Text = "Zmień";
             this.ChangePermissions.Width = 60;
             // 
             // Delete
             // 
             this.Delete.HeaderText = "Usuń";
+            this.Delete.UseColumnTextForButtonValue = true;
             this.Delete.Name = "Delete";
             this.Delete.Text = "Usuń";
             this.Delete.Width = 50;
@@ -111,6 +121,8 @@
 
         private System.Windows.Forms.Button AddEmployeeButton;
         private System.Windows.Forms.DataGridView EmployeesGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Login;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Permission;
