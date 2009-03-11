@@ -45,7 +45,7 @@ namespace Interface
                         }
                     case "Ogolne":
                         {
-                            newPage = new TabPage("Twoje ustawienia");
+                            newPage = new UserSettingsPage("Twoje ustawienia");
                             break;
                         }
                 };
