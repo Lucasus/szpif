@@ -37,10 +37,22 @@ AS
 		where Login = @Login AND Password = @Password
 GO
 
+DROP PROCEDURE changePassword
+GO
+CREATE PROCEDURE changePassword
+		@Login nvarchar(40),
+		@currentPassword nvarchar(40),
+		@Password nvarchar(40)
+AS
+	update Employees 
+	set Password=@Password
+	where Login=@Login AND Password=@currentPassword
+GO
 
 Select * from Employees 
 Select * from Permissions
 --exec checkPermissions @Login='Lukasz',@Password='Master'
 --exec checkPermissions @Login='Jan',@Password='Kowalski'
+
 
 
