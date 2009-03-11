@@ -47,19 +47,7 @@ namespace DatabaseLibrary
                     string permission = dr.GetString(dr.GetOrdinal("Permission"));
                     permissions.Add(permission);
                 }
-
-                conn.Close();
                 return permissions;
-            }
-            catch (DbException ex)
-            {
-                System.Console.WriteLine(ex.ToString());
-                return null;
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine(ex.ToString());
-                return null;
             }
             finally
             {
