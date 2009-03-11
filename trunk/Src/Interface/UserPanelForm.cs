@@ -38,7 +38,7 @@ namespace Interface
                         {
                             break;
                         }
-                    case "Project Manager":
+                    case "PM":
                         {
                             newPage = new TabPage("Projekty");
                             break;
