@@ -12,6 +12,7 @@ INSERT INTO [Permissions] VALUES (0,'Boss');
 INSERT INTO [Permissions] VALUES (0,'Administrator');
 INSERT INTO [Permissions] VALUES (1,'PM');
 INSERT INTO [Permissions] VALUES (2,'PM');
+INSERT INTO [Permissions] VALUES (2,'Prze³o¿ony');
 
 Select * from Employees 
 Select * from Permissions
