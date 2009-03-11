@@ -23,8 +23,8 @@ namespace DatabaseLibrary.Tests
             string sqlConnectionString  = "Data Source=localhost\\SQLEXPRESS;"
                     + "Initial Catalog=szpifDatabase;"
                     + "Integrated Security=SSPI;";
-            FileInfo file = 
-                new FileInfo("..\\..\\..\\..\\Database\\Tests\\generateTestData1.sql");
+            FileInfo file =
+                new FileInfo("..\\..\\..\\..\\Database\\Tests\\szpifDatabaseTests.sql");
             string script = file.OpenText().ReadToEnd();
             SqlConnection conn = new SqlConnection(sqlConnectionString);
             Server  server =  new Server(new ServerConnection(conn));
@@ -60,7 +60,6 @@ namespace DatabaseLibrary.Tests
                 database.CheckLogin("lukaszz", "master");
             Assert.IsNotNull(permissions2);
             Assert.AreEqual(0, permissions2.Count);
-
         }
 
 

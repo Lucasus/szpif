@@ -21,11 +21,7 @@ namespace DatabaseLibrary
 		
 		public ICollection<string> LogToSystem(String UserName, String Password)
 		{
-            ICollection<string> permissions
-                    = database.CheckLogin(UserName, Password);
-
-            if (permissions == null) return null;
-            return permissions;
+            return database.CheckLogin(UserName, Password);
 		}
 
 	}
