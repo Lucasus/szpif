@@ -43,7 +43,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 485);
+            this.ClientSize = new System.Drawing.Size(652, 484);
             this.Controls.Add(this.mainTabControl);
             this.Name = "UserPanelForm";
             this.Text = "Panel użytkownika";
