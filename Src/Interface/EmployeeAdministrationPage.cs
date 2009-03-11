@@ -9,12 +9,11 @@ using System.Windows.Forms;
 
 namespace Interface
 {
-    public partial class UserSettingsPage : TabPage
+    public partial class EmployeeAdministrationPage : TabPage
     {
-        public UserSettingsPage(string text) : base(text)
+        public EmployeeAdministrationPage(string text) : base(text)
         {
             InitializeComponent();
         }
-
     }
 }
