@@ -21,8 +21,8 @@ CREATE TABLE [Permissions]
 		[Permission] [nvarchar] (40) NOT NULL
 );
 
-DBCC CHECKIDENT (Employees, RESEED, -1);
-DBCC CHECKIDENT (Permissions, RESEED, -1);
+--DBCC CHECKIDENT (Employees, RESEED, -1);
+--DBCC CHECKIDENT (Permissions, RESEED, -1);
 
 
 
