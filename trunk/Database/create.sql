@@ -21,12 +21,10 @@ CREATE TABLE [Permissions]
 		[Permission] [nvarchar] (40) NOT NULL
 );
 
-DBCC CHECKIDENT (Employees, RESEED, 0);
-INSERT INTO [Employees]  VALUES ('lukasz', 'Master', 'Lukasz Wiatrak', 'Boss');
-INSERT INTO [Employees]  VALUES ('Jan', 'Kowalski', 'Juuuuuurek', 'Pomywacz');
-INSERT INTO [Permissions] VALUES (0,'Boss');
-INSERT INTO [Permissions] VALUES (0,'Administrator');
-INSERT INTO [Permissions] VALUES (1,'Project Manager');
+DBCC CHECKIDENT (Employees, RESEED, -1);
+DBCC CHECKIDENT (Permissions, RESEED, -1);
+
+
 
 DROP PROCEDURE checkPermissions
 GO
