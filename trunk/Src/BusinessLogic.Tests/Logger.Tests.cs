@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using DatabaseLibrary;
-using BussinesLogic;
+using BusinessLogic;
 using System.Collections;
 
 namespace DatabaseLibrary.Tests

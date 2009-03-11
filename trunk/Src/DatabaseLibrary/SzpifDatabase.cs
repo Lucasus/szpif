@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BussinesLogic;
+using BusinessLogic;
 using System.Data.Common;
 
 namespace DatabaseLibrary
