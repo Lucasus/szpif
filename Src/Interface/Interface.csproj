@@ -67,6 +67,9 @@
     <EmbeddedResource Include="UserPanelForm.resx">
       <DependentUpon>UserPanelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserSettingsPage.resx">
+      <DependentUpon>UserSettingsPage.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -85,6 +88,12 @@
     </Compile>
     <Compile Include="UserPanelForm.Designer.cs">
       <DependentUpon>UserPanelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserSettingsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserSettingsPage.Designer.cs">
+      <DependentUpon>UserSettingsPage.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
