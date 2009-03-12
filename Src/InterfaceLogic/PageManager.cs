@@ -32,7 +32,7 @@ namespace InterfaceLogic
         {
  			Context c = Context.CurrentContext;
             ICollection<string> pageNames = new List<string>();
-            foreach (string perm in c.CurrentPermissions)
+            foreach (string perm in c.Permissions)
             {
                 switch (perm)
                 {

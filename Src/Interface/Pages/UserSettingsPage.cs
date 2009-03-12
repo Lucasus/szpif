@@ -27,8 +27,8 @@ namespace Interface
 		private void passwordChangeButton_Click(object sender, EventArgs e)
 		{
 			Context c = Context.CurrentContext;
-			SzpifDatabase.DataBase.ChangePassword(c.CurrentUserLogin,c.CurrentUserPassword,passwordChangeBox.Text);
-			c.CurrentUserPassword = passwordChangeBox.Text;
+			SzpifDatabase.DataBase.ChangePassword(c.UserLogin,c.UserPassword,passwordChangeBox.Text);
+			c.UserPassword = passwordChangeBox.Text;
 			passwordChangeBox.Text = "";
 		}
 
