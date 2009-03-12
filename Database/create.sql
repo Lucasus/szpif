@@ -24,31 +24,15 @@ CREATE TABLE [Permissions]
 --DBCC CHECKIDENT (Employees, RESEED, -1);
 --DBCC CHECKIDENT (Permissions, RESEED, -1);
 
-
-
-DROP PROCEDURE checkPermissions
+DROP VIEW dbo.EmployeeAdministrationView
 GO
-CREATE PROCEDURE checkPermissions
-		@Login nvarchar(40),
-		@Password nvarchar(40)
+CREATE VIEW dbo.EmployeeAdministrationView
 AS
-	select Permission from [Employees] em
-		inner join [Permissions]perm on em.Id = perm.EmployeeId
-		where Login = @Login AND Password = @Password
+SELECT DISTINCT em.Id, Login, Name,
+           dbo.agregatePermissionsFunction (em.Id) AS Uprawnienia
+FROM Employees em
+		inner join [Permissions] perm on em.Id = perm.EmployeeId
 GO
-
-DROP PROCEDURE changePassword
-GO
-CREATE PROCEDURE changePassword
-		@Login nvarchar(40),
-		@currentPassword nvarchar(40),
-		@Password nvarchar(40)
-AS
-	update Employees 
-	set Password=@Password
-	where Login=@Login AND Password=@currentPassword
-GO
-
 Select * from Employees 
 Select * from Permissions
 --exec checkPermissions @Login='Lukasz',@Password='Master'
