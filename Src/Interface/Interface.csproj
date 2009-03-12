@@ -48,25 +48,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmployeeAdministrationPage.cs">
+    <Compile Include="Pages\EmployeeAdministrationPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EmployeeAdministrationPage.Designer.cs">
+    <Compile Include="Pages\EmployeeAdministrationPage.Designer.cs">
       <DependentUpon>EmployeeAdministrationPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoggerForm.cs">
+    <Compile Include="Forms\LoggerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoggerForm.Designer.cs">
+    <Compile Include="Forms\LoggerForm.Designer.cs">
       <DependentUpon>LoggerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PageFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="EmployeeAdministrationPage.resx">
+    <EmbeddedResource Include="Pages\EmployeeAdministrationPage.resx">
       <DependentUpon>EmployeeAdministrationPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoggerForm.resx">
+    <EmbeddedResource Include="Forms\LoggerForm.resx">
       <DependentUpon>LoggerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -74,10 +74,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserPanelForm.resx">
+    <EmbeddedResource Include="Forms\UserPanelForm.resx">
       <DependentUpon>UserPanelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsPage.resx">
+    <EmbeddedResource Include="Pages\UserSettingsPage.resx">
       <DependentUpon>UserSettingsPage.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -93,16 +93,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="UserPanelForm.cs">
+    <Compile Include="Forms\UserPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserPanelForm.Designer.cs">
+    <Compile Include="Forms\UserPanelForm.Designer.cs">
       <DependentUpon>UserPanelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserSettingsPage.cs">
+    <Compile Include="Pages\UserSettingsPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UserSettingsPage.Designer.cs">
+    <Compile Include="Pages\UserSettingsPage.Designer.cs">
       <DependentUpon>UserSettingsPage.cs</DependentUpon>
     </Compile>
   </ItemGroup>
