@@ -20,8 +20,8 @@ namespace Interface
             this.Controls.Add(passwordChangeButton);
             
             passwordChangeLabel.Location = new Point(10,20);
-            passwordChangeBox.Location = new Point(passwordChangeLabel.Location.X + passwordChangeLabel.Width + 10, 20);
-            passwordChangeButton.Location = new Point(passwordChangeBox.Location.X + passwordChangeBox.Width + 10, 20);
+            passwordChangeBox.Location = new Point(passwordChangeLabel.Location.X + passwordChangeLabel.Width + 10, passwordChangeLabel.Location.Y);
+			passwordChangeButton.Location = new Point(passwordChangeBox.Location.X + passwordChangeBox.Width + 10, passwordChangeBox.Location.Y);
         }
 
 		private void passwordChangeButton_Click(object sender, EventArgs e)

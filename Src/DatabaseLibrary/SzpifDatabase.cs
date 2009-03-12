@@ -17,6 +17,9 @@ namespace DatabaseLibrary
         static string provider;
         static string connstr;
 
+		/// <summary>
+		/// To się okazuje jest konstruktor statyczny który inicjalizuje zmienne statyczne.
+		/// </summary>
         static SzpifDatabase()
         {
             provider = "System.Data.SqlClient";  // data provider
@@ -33,6 +36,9 @@ namespace DatabaseLibrary
 			dataBase = new SzpifDatabase();
         }
 		
+		/// <summary>
+		/// Funkcja stworzona tylko po to by nie można było tworzyć nowych SzpifDatabase'ów
+		/// </summary>
 		private SzpifDatabase()
 		{
 		
@@ -80,7 +86,14 @@ namespace DatabaseLibrary
 			cmd.Connection = conn;
 			cmd.ExecuteNonQuery();
 		}
-
+	
+		/// <summary>
+		/// Funkcja Odpowiada za wywołanie procedury bazy danych checkPermissions
+		/// oraz stworzeniu listy uprawnień użytkownika
+		/// </summary>
+		/// <param name="login">Login</param>
+		/// <param name="password">Hasło</param>
+		/// <returns>Kolekcje uprawnień</returns>
 		public ICollection<string> CheckLogin(string login, string password)
         {
             string command = "exec checkPermissions @Login='"+
@@ -102,6 +115,14 @@ namespace DatabaseLibrary
 			}
         }
 
+		/// <summary>
+		/// Funkcja Odpowiada za wywołanie procedury bazy danych changePassword.
+		/// W wypadku podania błednego loginu, lub hasła, nie będzie żadnych konsekwencji,
+		/// gdyż baza danych nie znajdzie rekordów spełniających kryterium do aktualizacji.
+		/// </summary>
+		/// <param name="login">Login</param>
+		/// <param name="password">Hasło</param>
+		/// <param name="newPassword">Nowe Hasło</param>
 		public void ChangePassword(string login, string password, string newPassword)
         {
 			string command = "exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'";
@@ -115,6 +136,10 @@ namespace DatabaseLibrary
 			}
         }
 
+		/// <summary>
+		/// Funkcja wyciąga informacje z widoku EmployeeAdministrtionView
+		/// </summary>
+		/// <returns>zwraca obiekt typu DataTable który łatwo włożyć do Gridów</returns>
 		public DataTable getEmployeesAdministrationView()
         {
             string command = "SELECT * FROM EmployeeAdministrationView";
