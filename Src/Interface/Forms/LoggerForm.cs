@@ -13,12 +13,10 @@ namespace Interface
 {
     public partial class LoggerForm : Form
     {
-        Logger logger;
         
         public LoggerForm()
         {
             InitializeComponent();
-            logger = new Logger(new SzpifDatabase());
         }
 
 		private void button1_Click(object sender, EventArgs e)
@@ -26,7 +24,7 @@ namespace Interface
             string userName = UserNameTextBox.Text;
             string password = PassWordTextBox.Text;
             ICollection<string> permissions 
-                = logger.LogToSystem(userName, password);
+                = SzpifDatabase.DataBase.CheckLogin(userName,password);
 			if(permissions.Count == 0)
                 MessageBox.Show("Podałeś zły login i/lub hasło");
 			else

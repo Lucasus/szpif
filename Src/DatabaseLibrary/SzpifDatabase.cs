@@ -11,6 +11,7 @@ namespace DatabaseLibrary
 {
     public class SzpifDatabase : IDatabase
     {
+		static SzpifDatabase dataBase;
         static DbProviderFactory factory;
         static DbConnection conn;
         static string provider;
@@ -29,7 +30,25 @@ namespace DatabaseLibrary
             // Get connection object. using ensures connection is closed.
             conn = factory.CreateConnection();
             conn.ConnectionString = connstr;
+			dataBase = new SzpifDatabase();
         }
+		
+		private SzpifDatabase()
+		{
+		
+		}
+		
+		public static SzpifDatabase DataBase
+		{
+			get
+			{ 
+				if(dataBase == null)
+				{
+					dataBase = new SzpifDatabase();
+				}
+				return dataBase;
+			}
+		}
 		
 		/// <summary>
 		/// Funkcja upraszczająca wykonywanie zapytań zwracających tabele z bazy.
@@ -62,7 +81,7 @@ namespace DatabaseLibrary
 			cmd.ExecuteNonQuery();
 		}
 
-        public ICollection<string> CheckLogin(string login, string password)
+		public ICollection<string> CheckLogin(string login, string password)
         {
             string command = "exec checkPermissions @Login='"+
             login + "',@Password='"+password+"'";
@@ -82,8 +101,8 @@ namespace DatabaseLibrary
 				conn.Close();
 			}
         }
-        
-        public void ChangePassword(string login, string password, string newPassword)
+
+		public void ChangePassword(string login, string password, string newPassword)
         {
 			string command = "exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'";
 			try
@@ -96,7 +115,7 @@ namespace DatabaseLibrary
 			}
         }
 
-        public DataTable getEmployeesAdministrationView()
+		public DataTable getEmployeesAdministrationView()
         {
             string command = "SELECT * FROM EmployeeAdministrationView";
             try

@@ -28,21 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.label1 = new System.Windows.Forms.Label();
+			this.passwordChangeLabel = new System.Windows.Forms.Label();
+			this.passwordChangeButton = new System.Windows.Forms.Button();
+			this.passwordChangeBox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
-			// label1
+			// passwordChangeLabel
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(0, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(49, 13);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "fdsfdsfsd";
+			this.passwordChangeLabel.AutoSize = true;
+			this.passwordChangeLabel.Location = new System.Drawing.Point(0, 0);
+			this.passwordChangeLabel.Name = "passwordChangeLabel";
+			this.passwordChangeLabel.Size = new System.Drawing.Size(71, 13);
+			this.passwordChangeLabel.TabIndex = 0;
+			this.passwordChangeLabel.Text = "Zmień Hasło:";
+			// 
+			// passwordChangeButton
+			// 
+			this.passwordChangeButton.Location = new System.Drawing.Point(0, 0);
+			this.passwordChangeButton.Name = "passwordChangeButton";
+			this.passwordChangeButton.Size = new System.Drawing.Size(75, 20);
+			this.passwordChangeButton.TabIndex = 0;
+			this.passwordChangeButton.Text = "OK";
+			this.passwordChangeButton.UseVisualStyleBackColor = true;
+			this.passwordChangeButton.Click += new System.EventHandler(this.passwordChangeButton_Click);
+			// 
+			// passwordChangeBox
+			// 
+			this.passwordChangeBox.Location = new System.Drawing.Point(0, 0);
+			this.passwordChangeBox.Name = "passwordChangeBox";
+			this.passwordChangeBox.Size = new System.Drawing.Size(100, 20);
+			this.passwordChangeBox.TabIndex = 0;
 			// 
 			// UserSettingsPage
 			// 
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.passwordChangeLabel);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -50,6 +69,8 @@
 
         #endregion
 
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label passwordChangeLabel;
+		private System.Windows.Forms.Button passwordChangeButton;
+		private System.Windows.Forms.TextBox passwordChangeBox;
     }
 }
