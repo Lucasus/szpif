@@ -24,15 +24,15 @@ namespace DatabaseLibrary.Tests
 			ICollection<string> permissions = new List<string>();
 			Context.initialize("Moose","Master",permissions);
 			Assert.IsNotNull(Context.CurrentContext);
-			Assert.AreEqual(Context.CurrentContext.CurrentUserLogin, "Moose");
-			Assert.AreEqual(Context.CurrentContext.CurrentUserPassword, "Master");
-			Assert.AreSame(Context.CurrentContext.CurrentPermissions, permissions);
+			Assert.AreEqual(Context.CurrentContext.UserLogin, "Moose");
+			Assert.AreEqual(Context.CurrentContext.UserPassword, "Master");
+			Assert.AreSame(Context.CurrentContext.Permissions, permissions);
 			
 			ICollection<string> permissions2 = new List<string>();
 			Context.initialize("Lukasz", "luk123", permissions2);
-			Assert.AreEqual(Context.CurrentContext.CurrentUserLogin, "Lukasz");
-			Assert.AreEqual(Context.CurrentContext.CurrentUserPassword, "luk123");
-			Assert.AreSame(Context.CurrentContext.CurrentPermissions, permissions2);
+			Assert.AreEqual(Context.CurrentContext.UserLogin, "Lukasz");
+			Assert.AreEqual(Context.CurrentContext.UserPassword, "luk123");
+			Assert.AreSame(Context.CurrentContext.Permissions, permissions2);
 		}
 	}
 }

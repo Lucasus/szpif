@@ -12,9 +12,9 @@ namespace BusinessLogic
     public class Context
     {
 		private static Context currentContext;
-        private string currentUserLogin;
-        private string currentUserPassword;
-        private ICollection<string> currentPermissions;
+        private string userLogin;
+        private string userPassword;
+        private ICollection<string> permissions;
 		
 		/// <summary>
 		/// Prywatny Konstruktor. Nic dodać nic ująć.
@@ -24,9 +24,9 @@ namespace BusinessLogic
 		/// <param name="perm">Kolekcja uprawnień którą ma dany użytkownik</param>
 		private Context(string login, string password, ICollection<string> perm)
         {
-            this.currentUserLogin = login;
-            this.currentUserPassword = password;
-            this.currentPermissions = perm;
+            this.userLogin = login;
+            this.userPassword = password;
+            this.permissions = perm;
         }
         
         /// <summary>
@@ -44,9 +44,9 @@ namespace BusinessLogic
 			}
 			else
 			{
-				CurrentContext.CurrentUserLogin = login;
-				CurrentContext.CurrentUserPassword = password;
-				CurrentContext.CurrentPermissions = permissions;
+				CurrentContext.UserLogin = login;
+				CurrentContext.UserPassword = password;
+				CurrentContext.Permissions = permissions;
 			}
         }
         
@@ -55,22 +55,22 @@ namespace BusinessLogic
 			get { return currentContext; }
         }
 		
-        public string CurrentUserLogin
+        public string UserLogin
         {
-            get { return currentUserLogin; }
-            set { currentUserLogin = value; }
+            get { return userLogin; }
+            set { userLogin = value; }
         }
 
-        public string CurrentUserPassword
+        public string UserPassword
         {
-            get { return currentUserPassword; }
-            set { currentUserPassword = value; }
+            get { return userPassword; }
+            set { userPassword = value; }
         }
 
-        public ICollection<string> CurrentPermissions
+        public ICollection<string> Permissions
         {
-            get { return currentPermissions; }
-            set { currentPermissions = value; }
+            get { return permissions; }
+            set { permissions = value; }
         }
 
 
