@@ -61,17 +61,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{12D7DB32-BA73-4588-B336-2270097ED714}</Project>
-      <Name>BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DatabaseLibrary\DatabaseLibrary.csproj">
       <Project>{975F5F93-21ED-4C34-9F46-0365A42C26EB}</Project>
       <Name>DatabaseLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InterfaceLogic\InterfaceLogic.csproj">
-      <Project>{E56501AE-5C45-4C31-84EF-6983B835F9D0}</Project>
-      <Name>InterfaceLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

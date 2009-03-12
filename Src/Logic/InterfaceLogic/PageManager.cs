@@ -18,7 +18,7 @@ namespace InterfaceLogic
             this.PageFactory = PageFactory;
         }
 
-        private void setupPage(TabPage t, string name)
+        private void setupPage(TabPage t,  string name)
         {
             t.Location = new System.Drawing.Point(4, 25);
             t.Name = name;
@@ -28,11 +28,10 @@ namespace InterfaceLogic
             t.UseVisualStyleBackColor = true;
         }
 
-        private ICollection<string> getPageNames()
+        private ICollection<string> getPageNames(ICollection<string> Permissions)
         {
- 			Context c = Context.CurrentContext;
             ICollection<string> pageNames = new List<string>();
-            foreach (string perm in c.Permissions)
+            foreach (string perm in Permissions)
             {
                 switch (perm)
                 {
@@ -57,9 +56,9 @@ namespace InterfaceLogic
             return pageNames;
         }
 
-        public List<TabPage> makeTabPages(TabControl tc)
+        public List<TabPage> makeTabPages(TabControl tc, ICollection<string> Permissions)
         {
-            ICollection<string> pageNames = getPageNames();
+            ICollection<string> pageNames = getPageNames(Permissions);
             List<TabPage> pages = new List<TabPage>();
             foreach (string pName in pageNames)
             {
@@ -67,14 +66,8 @@ namespace InterfaceLogic
                 newPage = PageFactory.createTabPage(pName);
                 if (newPage != null)
                 {
-                    newPage.Location = new System.Drawing.Point(4, 25);
-                    newPage.Name = pName;
-                    newPage.Padding = new System.Windows.Forms.Padding(3);
-                    newPage.Size = new System.Drawing.Size(624, 433);
-                    newPage.TabIndex = 0;
-                    newPage.UseVisualStyleBackColor = true;
+                    setupPage(newPage, pName);
                     tc.Controls.Add(newPage);
-                    //  this.mainTabControl.Controls.Add(newPage);
                     pages.Add(newPage);
                 }
             }
