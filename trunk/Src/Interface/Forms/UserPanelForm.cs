@@ -19,7 +19,7 @@ namespace Interface
         {
             InitializeComponent();
             this.PageManager = new PageManager(new PageFactory());
-            PageManager.makeTabPages(this.mainTabControl);
+            PageManager.makeTabPages(this.mainTabControl,Context.CurrentContext.Permissions);
 
         }
 

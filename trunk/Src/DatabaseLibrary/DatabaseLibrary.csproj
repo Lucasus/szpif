@@ -49,9 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{12D7DB32-BA73-4588-B336-2270097ED714}</Project>
-      <Name>BusinessLogic</Name>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{C080D83C-D784-4D3E-B473-C7B58E7F8CAA}</Project>
+      <Name>Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
