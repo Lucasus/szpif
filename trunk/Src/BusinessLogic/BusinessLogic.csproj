@@ -8,7 +8,7 @@
     <ProjectGuid>{12D7DB32-BA73-4588-B336-2270097ED714}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BussinesLogic</RootNamespace>
+    <RootNamespace>BusinessLogic</RootNamespace>
     <AssemblyName>BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
