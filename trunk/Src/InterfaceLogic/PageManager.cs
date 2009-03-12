@@ -28,8 +28,9 @@ namespace InterfaceLogic
             t.UseVisualStyleBackColor = true;
         }
 
-        private ICollection<string> getPageNames(Context c)
+        private ICollection<string> getPageNames()
         {
+ 			Context c = Context.CurrentContext;
             ICollection<string> pageNames = new List<string>();
             foreach (string perm in c.CurrentPermissions)
             {
@@ -56,9 +57,9 @@ namespace InterfaceLogic
             return pageNames;
         }
 
-        public List<TabPage> makeTabPages(Context c, TabControl tc)
+        public List<TabPage> makeTabPages(TabControl tc)
         {
-            ICollection<string> pageNames = getPageNames(c);
+            ICollection<string> pageNames = getPageNames();
             List<TabPage> pages = new List<TabPage>();
             foreach (string pName in pageNames)
             {

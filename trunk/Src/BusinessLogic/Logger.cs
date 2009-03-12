@@ -21,7 +21,8 @@ namespace DatabaseLibrary
 		
 		public ICollection<string> LogToSystem(String UserName, String Password)
 		{
-            return database.CheckLogin(UserName, Password);
+			ICollection<string> returnValue = database.CheckLogin(UserName, Password);
+			return returnValue;
 		}
 
 	}

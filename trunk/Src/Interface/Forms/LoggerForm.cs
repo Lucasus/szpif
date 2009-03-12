@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DatabaseLibrary;
+using BusinessLogic;
 
 namespace Interface
 {
@@ -32,6 +33,7 @@ namespace Interface
 			{
                 this.Hide();
                 permissions.Add("Ogólne");
+                Context.initialize(userName, password, permissions);
                 UserPanelForm uPanelForm = new UserPanelForm(userName,password,permissions);
                 uPanelForm.ShowDialog();
                 this.Dispose(false);

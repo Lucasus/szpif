@@ -14,14 +14,12 @@ namespace Interface
     public partial class UserPanelForm : Form
     {
         private PageManager PageManager; 
-        private Context context;
 
         public UserPanelForm(string userName, string password, ICollection<string> permissions)
         {
             InitializeComponent();
             this.PageManager = new PageManager(new PageFactory());
-            this.context = new Context(userName, password, permissions);
-            PageManager.makeTabPages(context, this.mainTabControl);
+            PageManager.makeTabPages(this.mainTabControl);
 
         }
 
