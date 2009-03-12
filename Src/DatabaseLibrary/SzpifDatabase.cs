@@ -99,10 +99,17 @@ namespace DatabaseLibrary
         public DataTable getEmployeesAdministrationView()
         {
             string command = "SELECT * FROM EmployeeAdministrationView";
-            DbDataReader dr = executeQuerryCommand(command);
-            DataTable dt = new DataTable("EmployeeAdministrationView");
-            dt.Load(dr);
-            return dt;
+            try
+            {
+				DbDataReader dr = executeQuerryCommand(command);
+				DataTable dt = new DataTable("EmployeeAdministrationView");
+				dt.Load(dr);
+				return dt;
+			}
+			finally
+			{
+				conn.Close();
+			}
         }
 
    
