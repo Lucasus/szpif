@@ -34,7 +34,7 @@ namespace DatabaseLibrary.Tests
         [TestFixtureSetUp]
         public void makeDatabase()
         {
-            database = new SzpifDatabase();
+            database = SzpifDatabase.DataBase;
         }
         [SetUp]
         public void settinUp()
@@ -45,7 +45,7 @@ namespace DatabaseLibrary.Tests
         [Test()]
         public void constructorTest()
         {
-            SzpifDatabase d = new SzpifDatabase();
+            SzpifDatabase d = SzpifDatabase.DataBase;
             Assert.IsNotNull(d);
         }
 

@@ -18,7 +18,7 @@ namespace Interface
         DataTable Employees;
         public EmployeeAdministrationPage(string text) : base(text)
         {
-            database = new SzpifDatabase();
+            database = SzpifDatabase.DataBase;
             InitializeComponent();
             Employees = database.getEmployeesAdministrationView();
 

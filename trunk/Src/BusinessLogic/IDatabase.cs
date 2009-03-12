@@ -8,5 +8,6 @@ namespace BusinessLogic
     public interface IDatabase
     {
         ICollection<string> CheckLogin(string login, string password);
+        void ChangePassword(string login, string password, string newPassword);
     }
 }

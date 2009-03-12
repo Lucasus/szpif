@@ -25,6 +25,12 @@ namespace BusinessLogic
 			{
 				currentContext = new Context(login, password, permissions);
 			}
+			else
+			{
+				CurrentContext.CurrentUserLogin = login;
+				CurrentContext.CurrentUserPassword = password;
+				CurrentContext.CurrentPermissions = permissions;
+			}
         }
         
         public static Context CurrentContext
