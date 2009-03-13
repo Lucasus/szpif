@@ -12,7 +12,7 @@ using InterfaceLogic;
 
 namespace Interface
 {
-    class PageFactory : IPageFactory
+    public class PageFactory : IPageFactory
     {
         public TabPage createTabPage(string kind)
         {

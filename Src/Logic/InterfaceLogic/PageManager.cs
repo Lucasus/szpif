@@ -50,6 +50,10 @@ namespace InterfaceLogic
                             pageNames.Add("ProjectsPage");
                             break;
                         }
+                    default:
+                        {
+                            return null;
+                        }
                 };
             }
 
