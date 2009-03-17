@@ -30,7 +30,8 @@ namespace Interface
             EmployeesGridView.Columns[0].DataPropertyName = "Id";
             EmployeesGridView.Columns[1].DataPropertyName = "Login";
             EmployeesGridView.Columns[2].DataPropertyName = "Name";
-            EmployeesGridView.Columns[3].DataPropertyName = "Uprawnienia";
+            EmployeesGridView.Columns[3].DataPropertyName = "EMail";
+            EmployeesGridView.Columns[4].DataPropertyName = "Uprawnienia";
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)

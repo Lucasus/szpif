@@ -24,4 +24,20 @@ AS
 	where Login=@Login AND Password=@currentPassword
 GO
 -------------------------------------------------------------------
---DROP PROCEDURE updateEmployeed
+DROP PROCEDURE changeEmail
+GO
+CREATE PROCEDURE changeEmail
+		@Login nvarchar(40),
+		@Password nvarchar(40),
+		@newEmail nvarchar(40)
+AS
+	DECLARE @Id int
+
+	SELECT @Id = CredentialsId
+	FROM getEmployeeByLoginAndPassword(@Login, @Password)
+	
+	update Credentials
+	set EMail=@newEmail
+	where Id=@Id
+GO
+-------------------------------------------------------------------

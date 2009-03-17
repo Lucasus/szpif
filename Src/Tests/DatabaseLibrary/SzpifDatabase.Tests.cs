@@ -65,7 +65,7 @@ namespace DatabaseLibrary.Tests
         }
 
 		[Test()]
-		public void changePasswordCheck()
+		public void changePasswordCheckTest()
 		{
 			ICollection<string> permissions = database.CheckLogin("lukasz", "master");
 			Assert.IsNotNull(permissions);
@@ -78,6 +78,17 @@ namespace DatabaseLibrary.Tests
 			database.ChangePassword("lukasz", "bublak", "mooster");
 			ICollection<string> permissions4 = database.CheckLogin("lukasz", "master");
 			Assert.IsNotNull(permissions4);
+		}
+
+		[Test()]
+		public void changeEmailTest()
+		{
+			database.ChangeEMail("lukasz", "master", "lukasus@bablak.pl");
+			DataTable dt = database.getEmployeesAdministrationView();
+			Assert.AreEqual("lukasus@bablak.pl", dt.Rows[0]["EMail"]);
+			database.ChangeEMail("lukasz", "mooster", "AblaAbla");
+			dt = database.getEmployeesAdministrationView();
+			Assert.AreNotEqual("AblaAbla", dt.Rows[0]["EMail"]);
 		}
 
         [Test()]

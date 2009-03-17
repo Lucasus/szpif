@@ -135,6 +135,24 @@ namespace DatabaseLibrary
 				conn.Close();
 			}
         }
+        /// <summary>
+		/// Funkcja Odpowiada za wywołanie procedury bazy danych changeEMail.
+        /// </summary>
+        /// <param name="login">Login</param>
+        /// <param name="password">Hasło</param>
+        /// <param name="newMail">Nowy E-Mail</param>
+        public void ChangeEMail(string login, string password, string newMail)
+        {
+			string command = "exec changeEMail @Login='" + login + "',@Password='" + password + "', @newEmail='" + newMail + "'";
+			try
+			{
+				executeNonQuerryCommand(command);
+			}
+			finally
+			{
+				conn.Close();
+			}
+        }
 
 		/// <summary>
 		/// Funkcja wyciąga informacje z widoku EmployeeAdministrtionView
