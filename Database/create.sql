@@ -11,7 +11,6 @@ CREATE TABLE [Employees]
 		[Login] [nvarchar] (40) NOT NULL,
 		[Password] [nvarchar] (40) NOT NULL,
 		[Name] [nvarchar] (40) NOT NULL,
-		[Rank] [nvarchar] (40) NOT NULL
 );
 
 CREATE TABLE [Permissions]

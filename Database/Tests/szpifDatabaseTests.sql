@@ -5,9 +5,9 @@ delete from [Employees];
 DBCC CHECKIDENT (Employees, RESEED, -1);
 DBCC CHECKIDENT (Permissions, RESEED, -1);
 
-INSERT INTO [Employees]  VALUES ('lukasz', 'Master', 'Lukasz Wiatrak', 'Boss');
-INSERT INTO [Employees]  VALUES ('Jan', 'Kowalski', 'Juuuuuurek', 'Project Manager');
-INSERT INTO [Employees]  VALUES ('Moose', 'mus123', 'Losiek Loskowski', 'Prze³o¿ony');
+INSERT INTO [Employees]  VALUES ('lukasz', 'Master', 'Lukasz Wiatrak');
+INSERT INTO [Employees]  VALUES ('Jan', 'Kowalski', 'Juuuuuurek');
+INSERT INTO [Employees]  VALUES ('Moose', 'mus123', 'Losiek Loskowski');
 INSERT INTO [Permissions] VALUES (0,'Boss');
 INSERT INTO [Permissions] VALUES (0,'Administrator');
 INSERT INTO [Permissions] VALUES (1,'PM');

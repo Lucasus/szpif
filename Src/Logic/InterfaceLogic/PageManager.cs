@@ -6,8 +6,6 @@ using System.Windows.Forms;
 using System.Drawing;
 using BusinessLogic;
 
-
-
 namespace InterfaceLogic
 {
     public class PageManager
@@ -52,11 +50,11 @@ namespace InterfaceLogic
                         }
                     default:
                         {
-                            return null;
+                            break;
                         }
                 };
             }
-
+			if(pageNames.Count == 0) return null;
             return pageNames;
         }
 

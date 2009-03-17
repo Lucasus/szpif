@@ -32,7 +32,7 @@ namespace Interface
                 this.Hide();
                 permissions.Add("Ogólne");
                 Context.initialize(userName, password, permissions);
-                UserPanelForm uPanelForm = new UserPanelForm(userName,password,permissions);
+                UserPanelForm uPanelForm = new UserPanelForm();
                 uPanelForm.ShowDialog();
                 this.Dispose(false);
 			}
