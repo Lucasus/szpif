@@ -31,6 +31,7 @@
 			this.passwordChangeLabel = new System.Windows.Forms.Label();
 			this.passwordChangeButton = new System.Windows.Forms.Button();
 			this.passwordChangeBox = new System.Windows.Forms.TextBox();
+			this.passwordStrenght = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// passwordChangeLabel
@@ -58,6 +59,16 @@
 			this.passwordChangeBox.Name = "passwordChangeBox";
 			this.passwordChangeBox.Size = new System.Drawing.Size(100, 20);
 			this.passwordChangeBox.TabIndex = 0;
+			this.passwordChangeBox.UseSystemPasswordChar = true;
+			// 
+			// passwordStrenght
+			// 
+			this.passwordStrenght.AutoSize = true;
+			this.passwordStrenght.Location = new System.Drawing.Point(0, 0);
+			this.passwordStrenght.Name = "passwordStrenght";
+			this.passwordStrenght.Size = new System.Drawing.Size(100, 23);
+			this.passwordStrenght.TabIndex = 0;
+			this.passwordStrenght.Text = "label1";
 			// 
 			// UserSettingsPage
 			// 
@@ -72,5 +83,6 @@
 		private System.Windows.Forms.Label passwordChangeLabel;
 		private System.Windows.Forms.Button passwordChangeButton;
 		private System.Windows.Forms.TextBox passwordChangeBox;
+		private System.Windows.Forms.Label passwordStrenght;
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using BusinessLogic;
 using System.IO;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Server;
@@ -11,6 +10,7 @@ using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
 using System.Collections;
 using System.Data;
+using BusinessLogic;
 
 namespace DatabaseLibrary.Tests
 {

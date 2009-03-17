@@ -15,12 +15,11 @@ namespace Interface
     {
         private PageManager PageManager; 
 
-        public UserPanelForm(string userName, string password, ICollection<string> permissions)
+        public UserPanelForm()
         {
             InitializeComponent();
             this.PageManager = new PageManager(new PageFactory());
             PageManager.makeTabPages(this.mainTabControl,Context.CurrentContext.Permissions);
-
         }
 
         private void UserPanel_FormClosed(object sender, FormClosedEventArgs e)

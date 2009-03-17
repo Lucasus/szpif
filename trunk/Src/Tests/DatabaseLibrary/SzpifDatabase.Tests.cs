@@ -30,6 +30,7 @@ namespace DatabaseLibrary.Tests
             SqlConnection conn = new SqlConnection(sqlConnectionString);
             Server  server =  new Server(new ServerConnection(conn));
             server.ConnectionContext.ExecuteNonQuery(script);
+            
         }
         [TestFixtureSetUp]
         public void makeDatabase()

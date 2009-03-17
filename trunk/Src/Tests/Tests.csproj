@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\Context.Tests.cs" />
+    <Compile Include="BusinessLogic\PasswordChecker.Tests.cs" />
     <Compile Include="InterfaceLogic\PageManager.Tests.cs" />
     <Compile Include="DatabaseLibrary\SzpifDatabase.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

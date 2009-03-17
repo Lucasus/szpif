@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\Context.cs" />
     <Compile Include="BusinessLogic\IDatabase.cs" />
+    <Compile Include="BusinessLogic\PasswordChecker.cs" />
     <Compile Include="InterfaceLogic\IPageFactory.cs" />
     <Compile Include="InterfaceLogic\PageManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
