@@ -35,15 +35,33 @@ CREATE TABLE [Permissions]
 		[Permission] [nvarchar] (40) NOT NULL
 );
 
+GO
+EXEC sp_droprolemember 'ProjectManager', 'Moose'
+DROP ROLE ProjectManager;
+CREATE ROLE ProjectManager;
+GRANT EXECUTE ON OBJECT::changePassword TO ProjectManager;
+GO
+DROP ROLE Employee;
+CREATE ROLE Employee;
+GO
+
+DROP USER Moose;
+CREATE USER Moose WITHOUT LOGIN;
+EXEC sp_addrolemember 'ProjectManager', 'Moose' 
+GO
+
+DROP USER Lucas;
+CREATE USER Lucas WITHOUT LOGIN;
+GO
 --DBCC CHECKIDENT (Employees, RESEED, -1);
 --DBCC CHECKIDENT (Permissions, RESEED, -1);
 
 Select * from Employees 
 Select * from Permissions
 Select * from Credentials
+GO
 
---exec checkPermissions @Login='Lukasz',@Password='Master'
---exec checkPermissions @Login='Jan',@Password='Kowalski'
-
-
+EXECUTE AS USER = 'Moose';
+EXECUTE changePassword 'lucas', 'master', 'blaster';
+REVERT;
 
