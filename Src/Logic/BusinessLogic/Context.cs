@@ -38,21 +38,17 @@ namespace BusinessLogic
 		/// <param name="permissions">Kolekcja uprawnień którą ma dany użytkownik</param>
         public static void initialize(string login, string password, ICollection<string> permissions)
         {
-			if(currentContext == null)
-			{
-				currentContext = new Context(login, password, permissions);
-			}
-			else
-			{
-				CurrentContext.UserLogin = login;
-				CurrentContext.UserPassword = password;
-				CurrentContext.Permissions = permissions;
-			}
+			CurrentContext.UserLogin = login;
+			CurrentContext.UserPassword = password;
+			CurrentContext.Permissions = permissions;
         }
         
         public static Context CurrentContext
         {
-			get { return currentContext; }
+			get { 
+					if(currentContext == null) currentContext = new Context("","",new List<string>());
+					return currentContext; 
+				}
         }
 		
         public string UserLogin

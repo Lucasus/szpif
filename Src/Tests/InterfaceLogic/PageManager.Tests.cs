@@ -32,7 +32,13 @@ namespace InterfaceLogic.Tests
         [Test()]
         public void getPageNamesTest()
         {
-            List<string> permissions = new List<string>();
+            List<string> permissions2 = new List<string>();
+			TabControl tabControlNull = new TabControl();
+			permissions2.Add("Super Moose");
+			List<TabPage> tabPagesNull = pageManager.makeTabPages(tabControlNull, permissions2);
+			Assert.AreEqual(0, tabPagesNull.Count);
+			
+			List<string> permissions = new List<string>();
             permissions.Add("Administrator");
             permissions.Add("Ogólne");
             permissions.Add("PM");

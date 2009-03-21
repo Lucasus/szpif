@@ -25,7 +25,7 @@ namespace BusinessLogic
 		
 		public PasswordChecker(string login)
 		{
-			this.login = login;
+			this.Login = login;
 		}
 		
 		/// <summary>
