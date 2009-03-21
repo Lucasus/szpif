@@ -21,6 +21,12 @@ namespace DatabaseLibrary.Tests
 		[Test()]
 		public void initializationTest()
 		{
+			Context temp = Context.CurrentContext;
+			Assert.IsNotNull(temp);
+			Assert.AreEqual("", temp.UserLogin);
+			Assert.AreEqual("", temp.UserPassword);
+			Assert.AreEqual(0, temp.Permissions.Count);
+			
 			ICollection<string> permissions = new List<string>();
 			Context.initialize("Moose","Master",permissions);
 			Assert.IsNotNull(Context.CurrentContext);

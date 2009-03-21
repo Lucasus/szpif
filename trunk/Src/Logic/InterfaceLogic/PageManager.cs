@@ -54,7 +54,6 @@ namespace InterfaceLogic
                         }
                 };
             }
-			if(pageNames.Count == 0) return null;
             return pageNames;
         }
 
