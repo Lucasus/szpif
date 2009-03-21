@@ -8,9 +8,24 @@ using System.Data;
 using System.Data.SqlClient;
 
 namespace DatabaseLibrary
-{
+{	
     public class SzpifDatabase : IDatabase
     {
+		private enum EmployeeColumns
+		{
+			Id,
+			CredentialsId,
+			Login,
+			Password
+		}
+    
+		private enum DatabaseTable
+		{
+			Employees,
+			Credentials,
+			Permissions
+		}
+    
 		static SzpifDatabase dataBase;
         static DbProviderFactory factory;
         static DbConnection conn;
@@ -86,6 +101,52 @@ namespace DatabaseLibrary
 			cmd.Connection = conn;
 			cmd.ExecuteNonQuery();
 		}
+		
+		/// <summary>
+		/// Funkcja wywołuje procedure składowaną z bazy danych do zmiany dowlnego wpisu w dowolnej kolumnie z dowolnej tabeli.
+		/// Proponuje wogóle ograniczyć możliwość wywoływania tego przez użytkownika i wszystkie funkcjonalności opakować nad wywołaniem tej funkcji.
+		/// NOTE: Zakładam póki co, że wszystkie tabele będą miały columne Id. To nie jest konieczne założenie, ale póki co się dobrze sprawdza.
+		/// </summary>
+		/// <param name="Table">Z której tabeli</param>
+		/// <param name="column">Którą kolumne</param>
+		/// <param name="value">zamienić na co</param>
+		/// <param name="id">dla jakiego Id</param>
+		private void changeColumnInTable(DatabaseTable Table, EmployeeColumns column, string value, EmployeeColumns conditionColumn, string conditionValue)
+		{
+			string command = "exec changeAtributeFromTable '" + Table.ToString() + "', '" + column.ToString() + "', '" + value + "', '" + conditionColumn.ToString() + "', '" + conditionValue + "'";
+			try
+			{
+				executeNonQuerryCommand(command);
+			}
+			finally
+			{
+				conn.Close();
+			}
+		}
+		
+		private DbDataReader getColumnFromTable(DatabaseTable Table, EmployeeColumns column, EmployeeColumns conditionColumn, string conditionValue)
+		{
+		
+		}
+		
+		private string getEmployeeIdFromLoginPassword(string login, string password)
+		{
+			string command = "exec getEmployeeIdByLoginAndPassword '" + login + "', '" + password + "'";
+			try
+			{
+				DbDataReader dr = executeQuerryCommand(command);
+				Int32 id = -1;
+				if(dr.Read())
+				{
+					id = dr.GetInt32(dr.GetOrdinal("Id"));
+				}
+				return id.ToString();
+			}
+			finally
+			{
+				conn.Close();
+			}
+		}
 	
 		/// <summary>
 		/// Funkcja Odpowiada za wywołanie procedury bazy danych checkPermissions
@@ -125,16 +186,10 @@ namespace DatabaseLibrary
 		/// <param name="newPassword">Nowe Hasło</param>
 		public void ChangePassword(string login, string password, string newPassword)
         {
-			string command = "exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'";
-			try
-			{
-				executeNonQuerryCommand(command);
-			}
-			finally
-			{
-				conn.Close();
-			}
+			string id = getEmployeeIdFromLoginPassword(login, password);
+			changeColumnInTable(DatabaseTable.Employees, EmployeeColumns.Password, newPassword, EmployeeColumns.Id, id);
         }
+        
         /// <summary>
 		/// Funkcja Odpowiada za wywołanie procedury bazy danych changeEMail.
         /// </summary>

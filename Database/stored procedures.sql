@@ -12,7 +12,7 @@ AS
 		where Login = @Login AND Password = @Password
 GO
 -------------------------------------------------------------------
-/*DROP PROCEDURE changePassword
+DROP PROCEDURE changePassword
 GO
 CREATE PROCEDURE changePassword
 		@Login nvarchar(40),
@@ -22,7 +22,18 @@ AS
 	update Employees 
 	set Password=@Password
 	where Login=@Login AND Password=@currentPassword
-GO*/
+GO
+-------------------------------------------------------------------
+DROP PROCEDURE getEmployeeIdByLoginAndPassword
+GO
+CREATE PROCEDURE getEmployeeIdByLoginAndPassword
+		@Login nvarchar(40),
+		@Password nvarchar(40) 
+AS
+	SELECT Id
+	FROM Employees
+	WHERE Login=@Login AND Password=@Password
+GO
 -------------------------------------------------------------------
 DROP PROCEDURE changeEmail
 GO
@@ -41,17 +52,32 @@ AS
 	where Id=@Id
 GO
 -------------------------------------------------------------------
-DROP PROCEDURE changeAtributeFromTable
+/*
+DROP PROCEDURE getAttributeFromTable
+GO
+CREATE PROCEDURE getAttributeFromTable
+		@what nvarchar(40),
+		@from nvarchar(40),
+		@where nvarchar(400)
+AS
+	DECLARE @SQL nvarchar(4000)
+	SET @SQL = 'select ' + @what + ' from ' + @from + ' where ' + @where
+	EXEC (@SQL)
+GO*/
+-------------------------------------------------------------------
+/*DROP PROCEDURE changeAtributeFromTable
 GO
 CREATE PROCEDURE changeAtributeFromTable
-		@TableName nvarchar(40),
-		@TableAttribute nvarchar(40),
+		@tableName nvarchar(40),
+		@tableAttribute nvarchar(40),
 		@value nvarchar(40),
-		@ChangeRowId nvarchar(10)
+		@conditionColumn nvarchar(40),
+		@conditionValue nvarchar(10)
 AS
-	declare @SQL nvarchar(4000)
-	set @SQL = 'update ' + @TableName + ' set ' + @TableAttribute + '=''' + @value + ''' where Id=' + @ChangeRowId
+	DECLARE @SQL nvarchar(4000)
+	SET @SQL = 'update ' + @tableName + ' set ' + @tableAttribute + '=''' + @value + ''' where ' + @conditionColumn + '=' + @conditionValue
 	EXEC (@SQL)
-GO
+GO*/
 
---EXEC changeAtributeFromTable 'Employees', 'Login', 'MooseMaster', '1'
+--EXEC changeAtributeFromTable 'Employees', 'Login', 'MooseMaster', 'Id', '1'
+--EXEC getAttributeFromTable 'Employees', 'Login', 'Id', '1'

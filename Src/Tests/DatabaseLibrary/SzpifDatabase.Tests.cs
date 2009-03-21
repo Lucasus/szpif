@@ -64,7 +64,7 @@ namespace DatabaseLibrary.Tests
             Assert.AreEqual(0, permissions2.Count);
         }
 
-		[Test()]
+		/*[Test()]
 		public void changePasswordCheckTest()
 		{
 			ICollection<string> permissions = database.CheckLogin("lukasz", "master");
@@ -78,8 +78,18 @@ namespace DatabaseLibrary.Tests
 			database.ChangePassword("lukasz", "bublak", "mooster");
 			ICollection<string> permissions4 = database.CheckLogin("lukasz", "master");
 			Assert.IsNotNull(permissions4);
-		}
+		}*/
 
+		[Test()]
+		public void changeEmployeeColumn()
+		{
+			ICollection<string> permissions = database.CheckLogin("lukasz", "master");
+			Assert.IsNotNull(permissions);
+			database.ChangePassword("lukasz", "master", "Bublak");
+			ICollection<string> permissions2 = database.CheckLogin("lukasz", "Bublak");
+			Assert.IsNotNull(permissions2);
+		}
+	
 		[Test()]
 		public void changeEmailTest()
 		{

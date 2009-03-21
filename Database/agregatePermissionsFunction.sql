@@ -23,22 +23,3 @@ RETURN @PermissionList                --value will look something like 'Hdbk, Pb
 END
 
 GO
-
--------------------------------------------------------------------
-DROP FUNCTION getEmployeeByLoginAndPassword
-GO
-CREATE FUNCTION getEmployeeByLoginAndPassword
-		(
-		@Login nvarchar(40),
-		@Password nvarchar(40) 
-		)
-RETURNS TABLE
-AS
-RETURN 
-	(	
-		SELECT *
-		FROM Employees
-		WHERE Login=@Login AND Password=@Password
-	)
-GO
-
