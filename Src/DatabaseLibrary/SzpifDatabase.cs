@@ -87,6 +87,13 @@ namespace DatabaseLibrary
 			cmd.ExecuteNonQuery();
 		}
 	
+		private string addPriviligesRestriction(string priviliges, string command)
+		{
+			string wynik = "EXECUTE AS USER = '" + priviliges + "';";
+			wynik += command;
+			wynik += "REVERT;";
+			return wynik;
+		}
 		/// <summary>
 		/// Funkcja Odpowiada za wywołanie procedury bazy danych checkPermissions
 		/// oraz stworzeniu listy uprawnień użytkownika
@@ -94,10 +101,9 @@ namespace DatabaseLibrary
 		/// <param name="login">Login</param>
 		/// <param name="password">Hasło</param>
 		/// <returns>Kolekcje uprawnień</returns>
-		public ICollection<string> CheckLogin(string login, string password)
+		public ICollection<string> CheckLogin(string login, string password, string priviliges)
         {
-            string command = "exec checkPermissions @Login='"+
-            login + "',@Password='"+password+"'";
+            string command = addPriviligesRestriction(priviliges,"exec checkPermissions @Login='" + login + "',@Password='" + password + "'");
             ICollection<string> permissions = new List<string>();
             try
             {
@@ -123,9 +129,9 @@ namespace DatabaseLibrary
 		/// <param name="login">Login</param>
 		/// <param name="password">Hasło</param>
 		/// <param name="newPassword">Nowe Hasło</param>
-		public void ChangePassword(string login, string password, string newPassword)
+		public void ChangePassword(string login, string password, string newPassword, string priviliges)
         {
-			string command = "exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'";
+			string command = addPriviligesRestriction(priviliges,"exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'");
 			try
 			{
 				executeNonQuerryCommand(command);
@@ -141,9 +147,9 @@ namespace DatabaseLibrary
         /// <param name="login">Login</param>
         /// <param name="password">Hasło</param>
         /// <param name="newMail">Nowy E-Mail</param>
-        public void ChangeEMail(string login, string password, string newMail)
+        public void ChangeEMail(string login, string password, string newMail, string priviliges)
         {
-			string command = "exec changeEMail @Login='" + login + "',@Password='" + password + "', @newEmail='" + newMail + "'";
+			string command = addPriviligesRestriction(priviliges,"exec changeEMail @Login='" + login + "',@Password='" + password + "', @newEmail='" + newMail + "'");
 			try
 			{
 				executeNonQuerryCommand(command);
@@ -158,9 +164,9 @@ namespace DatabaseLibrary
 		/// Funkcja wyciąga informacje z widoku EmployeeAdministrtionView
 		/// </summary>
 		/// <returns>zwraca obiekt typu DataTable który łatwo włożyć do Gridów</returns>
-		public DataTable getEmployeesAdministrationView()
+		public DataTable getEmployeesAdministrationView(string priviliges)
         {
-            string command = "SELECT * FROM EmployeeAdministrationView";
+            string command = addPriviligesRestriction(priviliges, "SELECT * FROM EmployeeAdministrationView;"); 
             try
             {
 				DbDataReader dr = executeQuerryCommand(command);

@@ -1,16 +1,20 @@
 Use szpifDatabase
 
-delete from [Permissions];
-GO
-delete from [Employees];
-GO
-delete from [Credentials];
-GO
-DROP TABLE [Permissions];
-GO
-DROP TABLE [Employees];
-GO
-DROP TABLE [Credentials];
+IF Object_ID('Permissions','U') IS NOT NULL 
+BEGIN
+	delete from [Permissions];
+	DROP TABLE [Permissions];
+END
+IF Object_ID('Employees','U') IS NOT NULL 
+BEGIN
+	delete from [Employees];
+	DROP TABLE [Employees];
+END
+IF Object_ID('Credentials','U') IS NOT NULL 
+BEGIN
+	delete from [Credentials];
+	DROP TABLE [Credentials];
+END
 
 GO
 CREATE TABLE [Credentials]
@@ -34,34 +38,51 @@ CREATE TABLE [Permissions]
 		[EmployeeId] [int] NOT NULL REFERENCES [Employees] ([Id]), 
 		[Permission] [nvarchar] (40) NOT NULL
 );
+/*
+--Fragment Kodu odpowiedzialny za przyznawanie uprawnieñ
+--Mój pomys³ jest taki: Tworzymy u¿ytkowników o bardzo œciœle wyznaczonych mo¿liwoœciach, Do ka¿dej zak³adki dopisujemy
+--stringa który okreœla dla którego profilu przeznaczony jest dany element interface'u.
+--Przy wywo³ywaniu metody z gui podawany jest ten string, jako argument i on jest u¿ywany jako u¿ytkownik wywo³uj¹cy
+--zapytanie z bazy.
+*/
 
 GO
-EXEC sp_droprolemember 'ProjectManager', 'Moose'
-DROP ROLE ProjectManager;
-CREATE ROLE ProjectManager;
-GRANT EXECUTE ON OBJECT::changePassword TO ProjectManager;
+-- Tutaj mamy ka¿dego u¿ytkownika.
+EXEC sp_droprolemember 'EveryUser', 'GenericEveryUser'
+DROP ROLE EveryUser;
+CREATE ROLE EveryUser;
+GRANT EXECUTE ON checkPermissions TO EveryUser;
+GRANT EXECUTE ON changePassword TO EveryUser;
+GRANT EXECUTE ON changeEmail TO EveryUser;
+
+DROP USER GenericEveryUser;
+CREATE USER GenericEveryUser WITHOUT LOGIN;
+EXEC sp_addrolemember 'EveryUser', 'GenericEveryUser'
+
 GO
+--Tutaj mamy W³aœciciela
+EXEC sp_droprolemember 'Employer', 'GenericEmployer'
+DROP ROLE Employer;
+CREATE ROLE Employer;
+GRANT EXECUTE ON changePassword TO Employer;
+GRANT SELECT ON EmployeeAdministrationView TO Employer;
+
+DROP USER GenericEmployer;
+CREATE USER GenericEmployer WITHOUT LOGIN;
+EXEC sp_addrolemember 'Employer', 'GenericEmployer' 
+
+GO
+--Tutaj mamy szeregowego Pracownika
+EXEC sp_droprolemember 'Employee', 'GenericEmployee'
 DROP ROLE Employee;
 CREATE ROLE Employee;
-GO
 
-DROP USER Moose;
-CREATE USER Moose WITHOUT LOGIN;
-EXEC sp_addrolemember 'ProjectManager', 'Moose' 
+DROP USER GenericEmployee;
+CREATE USER GenericEmployee WITHOUT LOGIN;
+EXEC sp_addrolemember 'Employee', 'GenericEmployee'
 GO
-
-DROP USER Lucas;
-CREATE USER Lucas WITHOUT LOGIN;
-GO
---DBCC CHECKIDENT (Employees, RESEED, -1);
---DBCC CHECKIDENT (Permissions, RESEED, -1);
 
 Select * from Employees 
 Select * from Permissions
 Select * from Credentials
 GO
-
-EXECUTE AS USER = 'Moose';
-EXECUTE changePassword 'lucas', 'master', 'blaster';
-REVERT;
-

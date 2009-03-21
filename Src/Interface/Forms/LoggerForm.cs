@@ -13,7 +13,7 @@ namespace Interface
 {
     public partial class LoggerForm : Form
     {
-        
+        private string priviliges = "GenericEveryUser";
         public LoggerForm()
         {
             InitializeComponent();
@@ -21,20 +21,27 @@ namespace Interface
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-            string userName = UserNameTextBox.Text;
-            string password = PassWordTextBox.Text;
-            ICollection<string> permissions 
-                = SzpifDatabase.DataBase.CheckLogin(userName,password);
-			if(permissions.Count == 0)
-                MessageBox.Show("Podałeś zły login i/lub hasło");
-			else
+			try
 			{
-                this.Hide();
-                permissions.Add("Ogólne");
-                Context.initialize(userName, password, permissions);
-                UserPanelForm uPanelForm = new UserPanelForm();
-                uPanelForm.ShowDialog();
-                this.Dispose(false);
+				string userName = UserNameTextBox.Text;
+				string password = PassWordTextBox.Text;
+				ICollection<string> permissions 
+					= SzpifDatabase.DataBase.CheckLogin(userName, password, priviliges);
+				if(permissions.Count == 0)
+					MessageBox.Show("Podałeś zły login i/lub hasło");
+				else
+				{
+					this.Hide();
+					permissions.Add("Ogólne");
+					Context.initialize(userName, password, permissions);
+					UserPanelForm uPanelForm = new UserPanelForm();
+					uPanelForm.ShowDialog();
+					this.Dispose(false);
+				}
+			}
+			catch(Exception except)
+			{
+				MessageBox.Show("Nie masz uprawnień");
 			}
 		}
     }

@@ -13,6 +13,7 @@ namespace Interface
 {
     public partial class UserSettingsPage : TabPage
     {
+		private string priviliges = "GenericEveryUser";
         public UserSettingsPage(string text) : base(text)
         {
             InitializeComponent();
@@ -65,7 +66,7 @@ namespace Interface
 			{
 				PasswordChecker pc = new PasswordChecker(c.UserLogin);
 				passwordStrenght.Text = pc.getPasswordStrenght(passwordChangeBox.Text).ToString();
-				SzpifDatabase.DataBase.ChangePassword(c.UserLogin,passwordOldPassword.Text,passwordChangeBox.Text);
+				SzpifDatabase.DataBase.ChangePassword(c.UserLogin,passwordOldPassword.Text,passwordChangeBox.Text,priviliges);
 				c.UserPassword = passwordChangeBox.Text;
 				MessageBox.Show("Zmiana hasła zakończona pomyślnie");
 			}
@@ -80,7 +81,7 @@ namespace Interface
 		private void eMailChangeButton_Click(object sender, EventArgs e)
 		{
 			Context c = Context.CurrentContext;
-			SzpifDatabase.DataBase.ChangeEMail(c.UserLogin, c.UserPassword, eMailChangeBox.Text);
+			SzpifDatabase.DataBase.ChangeEMail(c.UserLogin, c.UserPassword, eMailChangeBox.Text,priviliges);
 			eMailChangeBox.Text = "";
 		}
 
