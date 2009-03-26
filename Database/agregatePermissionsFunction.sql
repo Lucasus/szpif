@@ -23,7 +23,6 @@ RETURN @PermissionList                --value will look something like 'Hdbk, Pb
 END
 
 GO
-
 -------------------------------------------------------------------
 DROP FUNCTION getEmployeeByLoginAndPassword
 GO

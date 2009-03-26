@@ -48,7 +48,8 @@ CREATE TABLE [Permissions]
 
 GO
 -- Tutaj mamy ka¿dego u¿ytkownika.
-EXEC sp_droprolemember 'EveryUser', 'GenericEveryUser'
+EXEC sp_droprolemember 'EveryUser', 'GenericEmployer'
+EXEC sp_droprolemember 'EveryUser', 'GenericEmployee'
 DROP ROLE EveryUser;
 CREATE ROLE EveryUser;
 GRANT EXECUTE ON checkPermissions TO EveryUser;
@@ -57,7 +58,6 @@ GRANT EXECUTE ON changeEmail TO EveryUser;
 
 DROP USER GenericEveryUser;
 CREATE USER GenericEveryUser WITHOUT LOGIN;
-EXEC sp_addrolemember 'EveryUser', 'GenericEveryUser'
 
 GO
 --Tutaj mamy W³aœciciela
@@ -66,10 +66,12 @@ DROP ROLE Employer;
 CREATE ROLE Employer;
 GRANT EXECUTE ON changePassword TO Employer;
 GRANT SELECT ON EmployeeAdministrationView TO Employer;
+GRANT SELECT (Login, Id) ON Employees TO Employer; 
 
 DROP USER GenericEmployer;
 CREATE USER GenericEmployer WITHOUT LOGIN;
-EXEC sp_addrolemember 'Employer', 'GenericEmployer' 
+EXEC sp_addrolemember 'Employer', 'GenericEmployer'
+EXEC sp_addrolemember 'EveryUser', 'GenericEmployer' 
 
 GO
 --Tutaj mamy szeregowego Pracownika
@@ -80,6 +82,7 @@ CREATE ROLE Employee;
 DROP USER GenericEmployee;
 CREATE USER GenericEmployee WITHOUT LOGIN;
 EXEC sp_addrolemember 'Employee', 'GenericEmployee'
+EXEC sp_addrolemember 'EveryUser', 'GenericEmployee' 
 GO
 
 Select * from Employees 
