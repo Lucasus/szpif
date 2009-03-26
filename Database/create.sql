@@ -48,6 +48,7 @@ CREATE TABLE [Permissions]
 
 GO
 -- Tutaj mamy ka¿dego u¿ytkownika.
+EXEC sp_droprolemember 'EveryUser', 'GenericEveryUser'
 EXEC sp_droprolemember 'EveryUser', 'GenericEmployer'
 EXEC sp_droprolemember 'EveryUser', 'GenericEmployee'
 DROP ROLE EveryUser;
@@ -58,6 +59,7 @@ GRANT EXECUTE ON changeEmail TO EveryUser;
 
 DROP USER GenericEveryUser;
 CREATE USER GenericEveryUser WITHOUT LOGIN;
+EXEC sp_addrolemember 'EveryUser', 'GenericEveryUser'
 
 GO
 --Tutaj mamy W³aœciciela
