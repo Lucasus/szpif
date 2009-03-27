@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes" ?>
 <DBMODEL Version="4.0">
 <SETTINGS>
-<GLOBALSETTINGS ModelName="baza" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="75.00" XPos="0" YPos="479" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="doPDF v6" HPageCount="4.0" PageAspectRatio="1.414279951593384" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="0" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
+<GLOBALSETTINGS ModelName="baza" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="75.00" XPos="405" YPos="0" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="doPDF v6" HPageCount="4.0" PageAspectRatio="1.414279951593384" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="0" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
 <DATATYPEGROUPS>
 <DATATYPEGROUP Name="Numeric Types" Icon="1" />
 <DATATYPEGROUP Name="Date and Time Types" Icon="2" />
@@ -270,6 +270,18 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
+<COLUMN ID="1488" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1490" ColName="daneOsoboweID_2" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
 <COLUMN ID="1005" ColName="login" PrevColName="" Pos="0" idDatatype="20" DatatypeParams="(25)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
@@ -320,30 +332,43 @@
 <RELATION_START ID="1406" />
 <RELATION_START ID="1409" />
 <RELATION_START ID="1412" />
-<RELATION_START ID="1428" />
 <RELATION_START ID="1438" />
 <RELATION_START ID="1445" />
 <RELATION_START ID="1448" />
 </RELATIONS_START>
 <RELATIONS_END>
 <RELATION_END ID="1397" />
+<RELATION_END ID="1487" />
 </RELATIONS_END>
 <INDICES>
 <INDEX ID="1006" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1029" LengthParam="0" />
+<INDEXCOLUMN idColumn="1488" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1399" IndexName="Pracownik_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1397">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1019" LengthParam="0" />
+<INDEXCOLUMN idColumn="1490" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1489" IndexName="Pracownik_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1487">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="1488" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1020" Tablename="Zadanie" PrevTableName="Table_02" XPos="1442" YPos="686" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="3" >
+<TABLE ID="1020" Tablename="Zadanie" PrevTableName="Table_02" XPos="1441" YPos="645" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="3" >
 <COLUMNS>
 <COLUMN ID="1022" ColName="zadanieID" PrevColName="idZadania" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1491" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -405,6 +430,7 @@
 <INDEX ID="1285" IndexName="Zadanie_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1283">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1284" LengthParam="0" />
+<INDEXCOLUMN idColumn="1491" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1367" IndexName="Zadanie_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1365">
@@ -414,7 +440,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1036" Tablename="ZadanieStatus" PrevTableName="Table_03" XPos="1844" YPos="586" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="4" >
+<TABLE ID="1036" Tablename="ZadanieStatus" PrevTableName="Table_03" XPos="1844" YPos="619" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="4" >
 <COLUMNS>
 <COLUMN ID="1040" ColName="dataRozpoczecia" PrevColName="" Pos="1" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -509,6 +535,12 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
+<COLUMN ID="1492" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
 <COLUMN ID="1059" ColName="projektNazwa" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(30)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
@@ -563,6 +595,7 @@
 <INDEX ID="1315" IndexName="Projekt_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1314">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1060" LengthParam="0" />
+<INDEXCOLUMN idColumn="1492" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
@@ -633,7 +666,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1076" Tablename="ZakonczenieProjektu" PrevTableName="Table_07" XPos="1652" YPos="893" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="8" >
+<TABLE ID="1076" Tablename="ZakonczenieProjektu" PrevTableName="Table_07" XPos="1665" YPos="981" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="8" >
 <COLUMNS>
 <COLUMN ID="1078" ColName="projektStatusID" PrevColName="statusProjektuID" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -665,7 +698,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1088" ColName="daneOsoboweID" PrevColName="imie" Pos="2" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="1088" ColName="daneOsoboweID" PrevColName="imie" Pos="2" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -679,31 +712,27 @@
 </COLUMNS>
 <RELATIONS_START>
 <RELATION_START ID="1418" />
-<RELATION_START ID="1425" />
 </RELATIONS_START>
+<RELATIONS_END>
+<RELATION_END ID="1466" />
+</RELATIONS_END>
 <INDICES>
 <INDEX ID="1110" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1087" LengthParam="0" />
+<INDEXCOLUMN idColumn="1088" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="1470" IndexName="Klient_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1466">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="1088" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1089" Tablename="DaneOsobowe" PrevTableName="Table_09" XPos="260" YPos="125" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="10" >
+<TABLE ID="1089" Tablename="DaneOsobowe" PrevTableName="Table_09" XPos="293" YPos="129" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="10" >
 <COLUMNS>
 <COLUMN ID="1091" ColName="daneOsoboweID" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1429" ColName="pracownikID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1426" ColName="klientID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -765,31 +794,27 @@
 </OPTIONSELECTED>
 </COLUMN>
 </COLUMNS>
-<RELATIONS_END>
-<RELATION_END ID="1425" />
-<RELATION_END ID="1428" />
-</RELATIONS_END>
+<RELATIONS_START>
+<RELATION_START ID="1466" />
+<RELATION_START ID="1487" />
+</RELATIONS_START>
 <INDICES>
 <INDEX ID="1092" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1091" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1427" IndexName="DaneOsobowe_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1425">
-<INDEXCOLUMNS>
-<INDEXCOLUMN idColumn="1426" LengthParam="0" />
-</INDEXCOLUMNS>
-</INDEX>
-<INDEX ID="1430" IndexName="DaneOsobowe_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1428">
-<INDEXCOLUMNS>
-<INDEXCOLUMN idColumn="1429" LengthParam="0" />
-</INDEXCOLUMNS>
-</INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1113" Tablename="Zlecenie" PrevTableName="Table_10" XPos="11" YPos="608" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="11" >
+<TABLE ID="1113" Tablename="Zlecenie" PrevTableName="Table_10" XPos="24" YPos="608" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="11" >
 <COLUMNS>
 <COLUMN ID="1115" ColName="zlecenieID" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1471" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -870,16 +895,19 @@
 <INDEX ID="1419" IndexName="Zlecenie_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1418">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1117" LengthParam="0" />
+<INDEXCOLUMN idColumn="1471" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1440" IndexName="Zlecenie_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1438">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1201" LengthParam="0" />
+<INDEXCOLUMN idColumn="1471" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1447" IndexName="Zlecenie_FKIndex3" IndexKind="1" FKRefDef_Obj_id="1445">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1200" LengthParam="0" />
+<INDEXCOLUMN idColumn="1471" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
@@ -993,6 +1021,12 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
+<COLUMN ID="1493" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
 <COLUMN ID="1149" ColName="poczatekRozliczenia" PrevColName="" Pos="2" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
@@ -1029,11 +1063,13 @@
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1146" LengthParam="0" />
 <INDEXCOLUMN idColumn="1148" LengthParam="0" />
+<INDEXCOLUMN idColumn="1493" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1391" IndexName="Rozliczenie_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1390">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1148" LengthParam="0" />
+<INDEXCOLUMN idColumn="1493" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
@@ -1053,6 +1089,12 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="1454" ColName="pracownikID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1501" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -1080,12 +1122,14 @@
 <INDEXCOLUMN idColumn="1158" LengthParam="0" />
 <INDEXCOLUMN idColumn="1160" LengthParam="0" />
 <INDEXCOLUMN idColumn="1454" LengthParam="0" />
+<INDEXCOLUMN idColumn="1501" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1393" IndexName="ListaRozliczen_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1392">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1158" LengthParam="0" />
 <INDEXCOLUMN idColumn="1454" LengthParam="0" />
+<INDEXCOLUMN idColumn="1501" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1395" IndexName="ListaRozliczen_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1394">
@@ -1133,6 +1177,12 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
+<COLUMN ID="1494" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
 </COLUMNS>
 <RELATIONS_END>
 <RELATION_END ID="1277" />
@@ -1143,11 +1193,13 @@
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1170" LengthParam="0" />
 <INDEXCOLUMN idColumn="1272" LengthParam="0" />
+<INDEXCOLUMN idColumn="1494" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1278" IndexName="ListaUprawnien_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1277">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1272" LengthParam="0" />
+<INDEXCOLUMN idColumn="1494" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1280" IndexName="ListaUprawnien_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1279">
@@ -1172,6 +1224,12 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="1178" ColName="zadanieID" PrevColName="" Pos="2" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1495" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -1207,11 +1265,13 @@
 <INDEXCOLUMN idColumn="1175" LengthParam="0" />
 <INDEXCOLUMN idColumn="1177" LengthParam="0" />
 <INDEXCOLUMN idColumn="1178" LengthParam="0" />
+<INDEXCOLUMN idColumn="1495" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1449" IndexName="WniosekPrzydzialPracownika_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1448">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1177" LengthParam="0" />
+<INDEXCOLUMN idColumn="1495" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1451" IndexName="WniosekPrzydzialPracownika_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1450">
@@ -1221,7 +1281,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1190" Tablename="WniosekModyfikacjaPuliZadania" PrevTableName="Table_19" XPos="1104" YPos="128" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="19" >
+<TABLE ID="1190" Tablename="WniosekModyfikacjaPuliZadania" PrevTableName="Table_19" XPos="1101" YPos="12" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="19" >
 <COLUMNS>
 <COLUMN ID="1192" ColName="wniosekID" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1230,6 +1290,12 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="1380" ColName="pracownikID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1496" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -1277,6 +1343,7 @@
 <INDEX ID="1381" IndexName="WniosekModyfikacjaPuliZadania_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1379">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1380" LengthParam="0" />
+<INDEXCOLUMN idColumn="1496" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1385" IndexName="WniosekModyfikacjaPuliZadania_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1384">
@@ -1286,7 +1353,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1213" Tablename="WniosekModyfikacjaDatyZadania" PrevTableName="Table_21" XPos="1428" YPos="10" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="20" >
+<TABLE ID="1213" Tablename="WniosekModyfikacjaDatyZadania" PrevTableName="Table_21" XPos="1428" YPos="76" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="20" >
 <COLUMNS>
 <COLUMN ID="1215" ColName="wniosekID" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1295,6 +1362,12 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="1377" ColName="pracownikID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1497" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -1340,6 +1413,7 @@
 <INDEX ID="1378" IndexName="WniosekModyfikacjaDatyZadania_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1376">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1377" LengthParam="0" />
+<INDEXCOLUMN idColumn="1497" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1383" IndexName="WniosekModyfikacjaDatyZadania_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1382">
@@ -1352,6 +1426,12 @@
 <TABLE ID="1224" Tablename="WniosekModyfikacjaPuliProjektu" PrevTableName="Table_22" XPos="448" YPos="867" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="21" >
 <COLUMNS>
 <COLUMN ID="1226" ColName="wniosekID" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1498" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -1397,6 +1477,7 @@
 <INDEX ID="1411" IndexName="WniosekModyfikacjaPuliProjektu_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1409">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1410" LengthParam="0" />
+<INDEXCOLUMN idColumn="1498" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
@@ -1416,6 +1497,12 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="1236" ColName="projektID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1499" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -1451,6 +1538,7 @@
 <INDEXCOLUMN idColumn="1234" LengthParam="0" />
 <INDEXCOLUMN idColumn="1413" LengthParam="0" />
 <INDEXCOLUMN idColumn="1236" LengthParam="0" />
+<INDEXCOLUMN idColumn="1499" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 <INDEX ID="1405" IndexName="WniosekModyfikacjaDatyProjektu_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1404">
@@ -1461,11 +1549,12 @@
 <INDEX ID="1414" IndexName="WniosekModyfikacjaDatyProjektu_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1412">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1413" LengthParam="0" />
+<INDEXCOLUMN idColumn="1499" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1247" Tablename="wniosekModyfikacjaBudzetuProjektu" PrevTableName="Table_24" XPos="600" YPos="573" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="23" >
+<TABLE ID="1247" Tablename="wniosekModyfikacjaBudzetuProjektu" PrevTableName="Table_24" XPos="597" YPos="595" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="23" >
 <COLUMNS>
 <COLUMN ID="1249" ColName="wniosekID" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1474,6 +1563,12 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="1407" ColName="pracownikID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1500" ColName="daneOsoboweID" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -1526,43 +1621,44 @@
 <INDEX ID="1408" IndexName="wniosekModyfikacjaBudzetuProjektu_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1406">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1407" LengthParam="0" />
+<INDEXCOLUMN idColumn="1500" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
 </TABLE>
 </TABLES>
 <RELATIONS>
-<RELATION ID="1277" RelationName="ma uprawnienia" Kind="1" SrcTable="1000" DestTable="1168" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1278" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="24" />
+<RELATION ID="1277" RelationName="ma uprawnienia" Kind="1" SrcTable="1000" DestTable="1168" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1278" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="24" />
 <RELATION ID="1279" RelationName="maja typ" Kind="1" SrcTable="1163" DestTable="1168" FKFields="uprawnienieID=uprawnienieID\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1280" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="25" />
-<RELATION ID="1283" RelationName="wykonuje" Kind="2" SrcTable="1000" DestTable="1020" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="2" MidOffset="268" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1285" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="26" />
+<RELATION ID="1283" RelationName="wykonuje" Kind="2" SrcTable="1000" DestTable="1020" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="2" MidOffset="256" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1285" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="26" />
 <RELATION ID="1286" RelationName="ma status" Kind="0" SrcTable="1020" DestTable="1036" FKFields="zadanieID=zadanieID\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1287" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="27" />
 <RELATION ID="1295" RelationName="moze byc zakonczone" Kind="0" SrcTable="1047" DestTable="1036" FKFields="zadanieStatusID=zadanieStatusID\n" FKFieldsComments="\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1296" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="28" />
-<RELATION ID="1314" RelationName="jest Project Managerem" Kind="5" SrcTable="1000" DestTable="1055" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="3" MidOffset="-222" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-75" CaptionOffsetY="-181" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1315" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="29" />
+<RELATION ID="1314" RelationName="jest Project Managerem" Kind="5" SrcTable="1000" DestTable="1055" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="3" MidOffset="-222" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-75" CaptionOffsetY="-181" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1315" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="29" />
 <RELATION ID="1346" RelationName="moze byc zakonczone" Kind="0" SrcTable="1076" DestTable="1066" FKFields="projektStatusID=projektStatusID\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1348" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="30" />
 <RELATION ID="1349" RelationName="ma status" Kind="0" SrcTable="1055" DestTable="1066" FKFields="projektID=projektID\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-31" CaptionOffsetY="5" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1351" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="31" />
 <RELATION ID="1365" RelationName="naleza do" Kind="2" SrcTable="1055" DestTable="1020" FKFields="projektID=projektID\n" FKFieldsComments="\n" relDirection="2" MidOffset="-119" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1367" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="32" />
-<RELATION ID="1376" RelationName="wypelnia" Kind="2" SrcTable="1000" DestTable="1213" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="2" MidOffset="-197" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="2" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1378" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="34" />
-<RELATION ID="1379" RelationName="wypelnia" Kind="2" SrcTable="1000" DestTable="1190" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="2" MidOffset="2" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1381" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="34" />
+<RELATION ID="1376" RelationName="wypelnia" Kind="2" SrcTable="1000" DestTable="1213" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="2" MidOffset="-197" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="2" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1378" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="34" />
+<RELATION ID="1379" RelationName="wypelnia" Kind="2" SrcTable="1000" DestTable="1190" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="2" MidOffset="2" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1381" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="34" />
 <RELATION ID="1382" RelationName="dotyczy" Kind="1" SrcTable="1020" DestTable="1213" FKFields="zadanieID=zadanieID\n" FKFieldsComments="\n" relDirection="1" MidOffset="-108" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1383" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="35" />
-<RELATION ID="1384" RelationName="dotyczy" Kind="1" SrcTable="1020" DestTable="1190" FKFields="zadanieID=zadanieID\n" FKFieldsComments="\n" relDirection="1" MidOffset="-132" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-43" CaptionOffsetY="-34" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1385" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="36" />
-<RELATION ID="1390" RelationName="rozlicza sie" Kind="0" SrcTable="1000" DestTable="1144" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="2" MidOffset="9" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1391" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="37" />
-<RELATION ID="1392" RelationName="dotyczy" Kind="1" SrcTable="1144" DestTable="1156" FKFields="rozliczenieID=rozliczenieID\npracownikID=pracownikID\n" FKFieldsComments="\n\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-80" CaptionOffsetY="-12" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1393" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="38" />
+<RELATION ID="1384" RelationName="dotyczy" Kind="1" SrcTable="1020" DestTable="1190" FKFields="zadanieID=zadanieID\n" FKFieldsComments="\n" relDirection="1" MidOffset="-114" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-43" CaptionOffsetY="-34" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1385" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="36" />
+<RELATION ID="1390" RelationName="rozlicza sie" Kind="0" SrcTable="1000" DestTable="1144" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="2" MidOffset="9" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1391" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="37" />
+<RELATION ID="1392" RelationName="dotyczy" Kind="1" SrcTable="1144" DestTable="1156" FKFields="rozliczenieID=rozliczenieID\npracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-80" CaptionOffsetY="-12" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1393" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="38" />
 <RELATION ID="1394" RelationName="dotyczy" Kind="1" SrcTable="1020" DestTable="1156" FKFields="zadanieID=zadanieID\n" FKFieldsComments="\n" relDirection="4" MidOffset="-20" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1395" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="39" />
-<RELATION ID="1397" RelationName="ma przelozonego" Kind="5" SrcTable="1000" DestTable="1000" FKFields="pracownikID=przelozonyID\n" FKFieldsComments="\n" relDirection="2" MidOffset="22" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-68" CaptionOffsetY="-21" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1399" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="40" />
+<RELATION ID="1397" RelationName="ma przelozonego" Kind="5" SrcTable="1000" DestTable="1000" FKFields="pracownikID=przelozonyID\ndaneOsoboweID=daneOsoboweID_2\n" FKFieldsComments="\n\n" relDirection="2" MidOffset="22" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-68" CaptionOffsetY="-21" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1399" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="40" />
 <RELATION ID="1400" RelationName="dotyczy" Kind="1" SrcTable="1055" DestTable="1247" FKFields="projektID=projektID\n" FKFieldsComments="\n" relDirection="1" MidOffset="-91" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1401" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="41" />
 <RELATION ID="1404" RelationName="dotyczy" Kind="1" SrcTable="1055" DestTable="1232" FKFields="projektID=projektID\n" FKFieldsComments="\n" relDirection="4" MidOffset="-97" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1405" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" />
-<RELATION ID="1406" RelationName="wypelnia" Kind="2" SrcTable="1000" DestTable="1247" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="3" MidOffset="27" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1408" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
-<RELATION ID="1409" RelationName="wypelnia" Kind="2" SrcTable="1000" DestTable="1224" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="3" MidOffset="-144" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1411" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="45" />
-<RELATION ID="1412" RelationName="wypelnia" Kind="1" SrcTable="1000" DestTable="1232" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="3" MidOffset="-311" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-2" CaptionOffsetY="2" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1414" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="46" />
-<RELATION ID="1418" RelationName="zleca" Kind="5" SrcTable="1083" DestTable="1113" FKFields="klientID=klientID\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1419" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="47" />
-<RELATION ID="1425" RelationName="ma dane" Kind="5" SrcTable="1083" DestTable="1089" FKFields="klientID=klientID\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1427" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="48" />
-<RELATION ID="1428" RelationName="ma dane" Kind="5" SrcTable="1000" DestTable="1089" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="4" MidOffset="-39" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1430" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="49" />
+<RELATION ID="1406" RelationName="wypelnia" Kind="2" SrcTable="1000" DestTable="1247" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="3" MidOffset="22" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1408" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
+<RELATION ID="1409" RelationName="wypelnia" Kind="2" SrcTable="1000" DestTable="1224" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="3" MidOffset="-144" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1411" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="45" />
+<RELATION ID="1412" RelationName="wypelnia" Kind="1" SrcTable="1000" DestTable="1232" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="3" MidOffset="-284" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-2" CaptionOffsetY="2" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1414" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="46" />
+<RELATION ID="1418" RelationName="zleca" Kind="5" SrcTable="1083" DestTable="1113" FKFields="klientID=klientID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1419" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="47" />
 <RELATION ID="1431" RelationName="ma status" Kind="0" SrcTable="1113" DestTable="1126" FKFields="zlecenieID=zlecenieID\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="-2" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1432" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="50" />
 <RELATION ID="1433" RelationName="moze sie zakonczyc" Kind="0" SrcTable="1137" DestTable="1126" FKFields="zlecenieStatusID=zlecenieStatusID\n" FKFieldsComments="\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1434" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="51" />
-<RELATION ID="1438" RelationName="jest nadzorca" Kind="5" SrcTable="1000" DestTable="1113" FKFields="pracownikID=nadzorcaZleceniaID\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1440" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="52" />
-<RELATION ID="1445" RelationName="jest opiekunem" Kind="5" SrcTable="1000" DestTable="1113" FKFields="pracownikID=opiekunHandlowyID\n" FKFieldsComments="\n" relDirection="4" MidOffset="29" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1447" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="53" />
-<RELATION ID="1448" RelationName="wypelnia" Kind="1" SrcTable="1000" DestTable="1173" FKFields="pracownikID=pracownikID\n" FKFieldsComments="\n" relDirection="2" MidOffset="340" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="2" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1449" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" />
+<RELATION ID="1438" RelationName="jest nadzorca" Kind="5" SrcTable="1000" DestTable="1113" FKFields="pracownikID=nadzorcaZleceniaID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1440" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="52" />
+<RELATION ID="1445" RelationName="jest opiekunem" Kind="5" SrcTable="1000" DestTable="1113" FKFields="pracownikID=opiekunHandlowyID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="4" MidOffset="29" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1447" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="53" />
+<RELATION ID="1448" RelationName="wypelnia" Kind="1" SrcTable="1000" DestTable="1173" FKFields="pracownikID=pracownikID\ndaneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n\n" relDirection="2" MidOffset="340" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="2" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1449" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" />
 <RELATION ID="1450" RelationName="dotyczy" Kind="1" SrcTable="1020" DestTable="1173" FKFields="zadanieID=zadanieID\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1451" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="55" />
+<RELATION ID="1466" RelationName="ma dane" Kind="0" SrcTable="1089" DestTable="1083" FKFields="daneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1470" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" />
+<RELATION ID="1487" RelationName="ma dane" Kind="0" SrcTable="1089" DestTable="1000" FKFields="daneOsoboweID=daneOsoboweID\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="1489" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" />
 </RELATIONS>
 <NOTES>
 </NOTES>
