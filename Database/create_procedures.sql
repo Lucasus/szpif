@@ -1,8 +1,22 @@
-use szpifDatabase;
-
--------------------------------------------------------------------
-DROP PROCEDURE checkPermissions
+PRINT 'CREATING PROCEDURES...'
 GO
+-------------------------------------------------------------------
+IF OBJECT_ID('checkPermissions') IS NOT NULL
+   DROP PROCEDURE DBO.checkPermissions
+GO
+IF OBJECT_ID('changePassword') IS NOT NULL
+	DROP PROCEDURE changePassword
+GO
+IF OBJECT_ID('changeEmail') IS NOT NULL
+	DROP PROCEDURE changeEmail
+GO
+IF OBJECT_ID('getTablePriviliges') IS NOT NULL
+	DROP PROCEDURE getTablePriviliges
+GO
+IF OBJECT_ID('mySelectAll') IS NOT NULL
+	DROP PROCEDURE mySelectAll
+GO
+-- -----------------------------------------------------------------
 CREATE PROCEDURE checkPermissions
 		@Login nvarchar(40),
 		@Password nvarchar(40)
@@ -12,8 +26,6 @@ AS
 		where Login = @Login AND Password = @Password
 GO
 -------------------------------------------------------------------
-DROP PROCEDURE changePassword
-GO
 CREATE PROCEDURE changePassword
 		@Login nvarchar(40),
 		@currentPassword nvarchar(40),
@@ -24,8 +36,6 @@ AS
 	where Login=@Login AND Password=@currentPassword
 GO
 -------------------------------------------------------------------
-DROP PROCEDURE changeEmail
-GO
 CREATE PROCEDURE changeEmail
 		@Login nvarchar(40),
 		@Password nvarchar(40),
@@ -41,8 +51,6 @@ AS
 	where Id=@Id
 GO
 -------------------------------------------------------------------
-DROP PROCEDURE getTablePriviliges
-GO
 CREATE PROCEDURE getTablePriviliges
 		@table nvarchar(40),
 		@role nvarchar(40),
@@ -59,8 +67,6 @@ AS
 	IF (LEN(@wynik) > 1) SET @wynik = LEFT (@wynik, LEN(@wynik)-1) 
 GO
 -------------------------------------------------------------------
-DROP PROCEDURE mySelectAll
-GO
 CREATE PROCEDURE mySelectAll
 		@table nvarchar(40),
 		@role nvarchar(40),
@@ -77,5 +83,3 @@ AS
 		EXECUTE (@sql)
 	END
 GO
-
-EXECUTE mySelectAll 'Employees', 'Employer'
