@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using BusinessLogic;
+using Logic;
 
-namespace InterfaceLogic
+namespace Logic
 {
     public class PageManager
     {
@@ -38,7 +38,7 @@ namespace InterfaceLogic
                             pageNames.Add("AdministrationPage");
                             break;
                         }
-                    case "Ogólne":
+                    case "Og�lne":
                         {
                             pageNames.Add("SettingsPage");
                             break;

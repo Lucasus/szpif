@@ -20,6 +20,6 @@ GO
 :r create_roles.sql
 PRINT 'DATABASE CREATE IS COMPLETE'
 :r generate_data.sql
-PRINT 'GENERATING DATA IS COMPLETE'
 :r show_db.sql
+PRINT 'GENERATING DATA IS COMPLETE'
 GO

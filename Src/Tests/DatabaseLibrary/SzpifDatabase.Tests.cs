@@ -53,13 +53,13 @@ namespace DatabaseLibrary.Tests
         [Test()]
         public void checkLoginTest()
         {
-            ICollection<string> permissions =  
-                database.CheckLogin("lukasz", "master", "GenericEveryUser");
+            ICollection<string> permissions = null;
+//                database.CheckLogin("lukasz", "master");
             Assert.IsNotNull(permissions);
             Assert.Contains("Boss", (ICollection)permissions);
             Assert.Contains("Administrator", (ICollection)permissions);
-            ICollection<string> permissions2 =
-				database.CheckLogin("lukaszz", "master", "GenericEveryUser");
+            ICollection<string> permissions2 = null;
+//				database.CheckLogin("lukaszz", "master");
             Assert.IsNotNull(permissions2);
             Assert.AreEqual(0, permissions2.Count);
         }
@@ -67,23 +67,23 @@ namespace DatabaseLibrary.Tests
 		[Test()]
 		public void changePasswordCheckTest()
 		{
-			ICollection<string> permissions = database.CheckLogin("lukasz", "master", "GenericEveryUser");
+            ICollection<string> permissions = null;// database.CheckLogin("lukasz", "master");
 			Assert.IsNotNull(permissions);
-			database.ChangePassword("lukasz", "master", "mooster", "GenericEveryUser");
-			ICollection<string> permissions2 = database.CheckLogin("lukasz", "mooster", "GenericEveryUser");
+			database.ChangePassword("lukasz", "master", "mooster");
+            ICollection<string> permissions2 = null;// database.CheckLogin("lukasz", "mooster");
 			Assert.IsNotNull(permissions2);
-			database.ChangePassword("lukasz", "mooster", "master", "GenericEveryUser");
-			ICollection<string> permissions3 = database.CheckLogin("lukasz", "master", "GenericEveryUser");
+			database.ChangePassword("lukasz", "mooster", "master");
+            ICollection<string> permissions3 = null;// database.CheckLogin("lukasz", "master");
 			Assert.IsNotNull(permissions3);
-			database.ChangePassword("lukasz", "bublak", "mooster", "GenericEveryUser");
-			ICollection<string> permissions4 = database.CheckLogin("lukasz", "master", "GenericEveryUser");
+			database.ChangePassword("lukasz", "bublak", "mooster");
+            ICollection<string> permissions4 = null;// database.CheckLogin("lukasz", "master");
 			Assert.IsNotNull(permissions4);
 		}
 
 		[Test()]
 		public void changeEmailTest()
 		{
-			database.ChangeEMail("lukasz", "master", "lukasus@bablak.pl", "GenericEveryUser");
+//			database.ChangeEMail("lukasz", "master", "lukasus@bablak.pl");
 			DataTable dt = database.getEmployeesAdministrationView("GenericEmployer");
 			Assert.AreEqual("lukasus@bablak.pl", dt.Rows[0]["EMail"]);
 			database.ChangeEMail("lukasz", "mooster", "AblaAbla", "GenericEveryUser");

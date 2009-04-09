@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using BusinessLogic;
-using InterfaceLogic;
+using Logic;
 using Interface;
 using System.IO;
 using System.Data.SqlClient;
@@ -15,7 +14,7 @@ using System.Collections;
 using System.Data;
 using System.Windows.Forms;
 
-namespace InterfaceLogic.Tests
+namespace Logic.Tests
 {
 
     [TestFixture]
