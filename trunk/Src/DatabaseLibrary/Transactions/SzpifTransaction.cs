@@ -6,7 +6,7 @@ using Logic;
 
 namespace DatabaseLibrary
 {
-    abstract class ITransaction
+    class SzpifTransaction
     {
         private bool failed;
 
@@ -15,7 +15,9 @@ namespace DatabaseLibrary
             get { return failed; }
             set { failed = value; }
         }
-        abstract  protected void execute();
+        virtual protected void execute()
+        {
+        }
         public void tryExecute()
         {
             try

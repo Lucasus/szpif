@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="DataManager.cs" />
     <Compile Include="InterfaceLogic\FormManager.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="InterfaceLogic\IFormFactory.cs" />

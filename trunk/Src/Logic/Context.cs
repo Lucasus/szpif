@@ -13,9 +13,16 @@ namespace Logic
     {
         private string userLogin;
         private string userPassword;
-        private ICollection<string> permissions;
+        private ICollection<string> roles;
         private static IDatabase database;
         private FormManager formManager;
+        private DataManager dataManager;
+
+        public DataManager DataManager
+        {
+            get { return dataManager; }
+            set { dataManager = value; }
+        }
 
         public FormManager FormManager
         {
@@ -36,7 +43,7 @@ namespace Logic
         {
             this.userLogin = null;
             this.userPassword = null;
-            this.permissions = null;
+            this.roles = null;
         }
 
         public string UserLogin
@@ -51,10 +58,10 @@ namespace Logic
             set { userPassword = value; }
         }
 
-        public ICollection<string> UserPermissions
+        public ICollection<string> UserRoles
         {
-            get { return permissions; }
-            set { permissions = value; }
+            get { return roles; }
+            set { roles = value; }
         }
 
 

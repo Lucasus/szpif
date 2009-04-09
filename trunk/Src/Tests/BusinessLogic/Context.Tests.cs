@@ -22,7 +22,7 @@ namespace DatabaseLibrary.Tests
         {
             c.UserLogin = login;
             c.UserPassword = password;
-            c.UserPermissions = perm;
+            c.UserRoles = perm;
         }
 		[Test()]
 		public void initializationTest()
@@ -31,20 +31,20 @@ namespace DatabaseLibrary.Tests
 			Assert.IsNotNull(temp);
 			Assert.AreEqual("", temp.UserLogin);
 			Assert.AreEqual("", temp.UserPassword);
-			Assert.AreEqual(0, temp.UserPermissions.Count);
+			Assert.AreEqual(0, temp.UserRoles.Count);
 			
 			ICollection<string> permissions = new List<string>();
 			initializeContext("Moose","Master",permissions,temp);
 			Assert.IsNotNull(temp);
 			Assert.AreEqual(temp.UserLogin, "Moose");
 			Assert.AreEqual(temp.UserPassword, "Master");
-			Assert.AreSame(temp.UserPermissions, permissions);
+			Assert.AreSame(temp.UserRoles, permissions);
 			
 			ICollection<string> permissions2 = new List<string>();
 			initializeContext("Lukasz", "luk123", permissions2,temp);
 			Assert.AreEqual(temp.UserLogin, "Lukasz");
 			Assert.AreEqual(temp.UserPassword, "luk123");
-			Assert.AreSame(temp.UserPermissions, permissions2);
+			Assert.AreSame(temp.UserRoles, permissions2);
 		}
 	}
 }

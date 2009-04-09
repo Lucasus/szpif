@@ -6,7 +6,7 @@ using System.Data.Common;
 
 namespace DatabaseLibrary
 {
-    class NonQueryTransaction : ITransaction
+    class NonQueryTransaction : SzpifTransaction
     {
         DbCommand cmd;
 

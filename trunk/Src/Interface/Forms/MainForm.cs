@@ -18,7 +18,7 @@ namespace Interface
         {
             InitializeComponent();
             this.PageManager = new PageManager(new PageFactory());
-            PageManager.makeTabPages(this.mainTabControl,Program.Context.UserPermissions);
+            PageManager.makeTabPages(this.mainTabControl,Program.Context.UserRoles);
         }
 
         private void UserPanel_FormClosed(object sender, FormClosedEventArgs e)

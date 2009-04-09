@@ -11,22 +11,31 @@ namespace DatabaseLibrary
 {
     public class SzpifDatabase : IDatabase
     {
-		static SzpifDatabase dataBase;
+		private static SzpifDatabase dataBase;
+        private static DbProviderFactory factory;
+        private static DbConnection connection;
+        private string provider;
 
-        static DbProviderFactory factory;
-
+        public static DbConnection Connection
+        {
+            get { return connection; }
+            set { connection = value; }
+        }
         public static DbProviderFactory Factory
         {
             get { return SzpifDatabase.factory; }
             set { SzpifDatabase.factory = value; }
         }
-        static DbConnection connection;
-        string provider;
-
-        static public DbConnection Connection
+        public static SzpifDatabase DataBase
         {
-            get { return connection; }
-            set { connection = value; }
+            get
+            {
+                if (dataBase == null)
+                {
+                    dataBase = new SzpifDatabase();
+                }
+                return dataBase;
+            }
         }
 		
 		/// <summary>
@@ -37,18 +46,6 @@ namespace DatabaseLibrary
             provider = "System.Data.SqlClient";
             factory = DbProviderFactories.GetFactory(provider);
             connection = factory.CreateConnection();		
-		}
-		
-		public static SzpifDatabase DataBase
-		{
-			get
-			{ 
-				if(dataBase == null)
-				{
-					dataBase = new SzpifDatabase();
-				}
-				return dataBase;
-			}
 		}
 
         public void setupConnectionParameters(string username, string password)
@@ -63,7 +60,7 @@ namespace DatabaseLibrary
         {
             string oldConnectionString = connection.ConnectionString;
             setupConnectionParameters(login, password);
-            ITransaction checkLogin = new EmptyTransaction();
+            SzpifTransaction checkLogin = new SzpifTransaction();
             checkLogin.tryExecute();
             connection.ConnectionString = oldConnectionString;
             return checkLogin.Failed == false;
@@ -81,8 +78,7 @@ namespace DatabaseLibrary
 		public void ChangePassword(string login, string password, string newPassword)
         {
             string command = "";// addPriviligesRestriction(priviliges, "exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'");
-            NonQueryTransaction t = new NonQueryTransaction(command);
-            t.tryExecute();
+            (new NonQueryTransaction(command)).tryExecute();
         }
         /// <summary>
 		/// Funkcja Odpowiada za wywołanie procedury bazy danych changeEMail.
@@ -93,38 +89,41 @@ namespace DatabaseLibrary
         public void ChangeEMail(string login, string password, string newMail, string priviliges)
         {
 			string command = "exec changeEMail @Login='" + login + "',@Password='" + password + "', @newEmail='" + newMail + "'";
-            NonQueryTransaction t = new NonQueryTransaction(command);
-            t.tryExecute();
+            (new NonQueryTransaction(command)).tryExecute();
         }
 
 		/// <summary>
 		/// Funkcja wyciąga informacje z widoku EmployeeAdministrtionView
 		/// </summary>
 		/// <returns>zwraca obiekt typu DataTable który łatwo włożyć do Gridów</returns>
-		public DataTable getEmployeesAdministrationView(string priviliges)
+		public DataTable getEmployeesAdministrationView()
         {
-            string command = "SELECT * FROM EmployeeAdministrationView;";
-            QueryTransaction t = new QueryTransaction(command);
+            GetViewTransaction t = new GetViewTransaction("EmployeeViewForAdministration");
             t.tryExecute();
-		    DataTable dt = new DataTable("EmployeeAdministrationView");
-			dt.Load(t.Table);
-			return dt;
+			return t.View;
         }
 
-        public ICollection<string> getUserPermissions()
+        public ICollection<string> getUserRoles()
         {
             string login = "";
             string password = "";
             string command = "exec checkPermissions @Login='" + login + "',@Password='" + password + "'";
-            QueryTransaction t = new QueryTransaction(command);
+            GetViewTransaction t = new GetViewTransaction(command);
             ICollection<string> permissions = new List<string>();
             t.tryExecute();
-            while (t.Table.Read())
-            {
-                string permission = t.Table.GetString(t.Table.GetOrdinal("Permission"));
-                permissions.Add(permission);
-            }
+//            while (t.View.Read())
+//            {
+//                string permission = t.View.GetString(t.View.GetOrdinal("Permission"));
+//                permissions.Add(permission);
+//            }
             return permissions;
+        }
+
+        public DataTable getView(string viewName)
+        {
+            GetViewTransaction t = new GetViewTransaction(viewName);
+            t.tryExecute();
+            return t.View;
         }
     }
 }
