@@ -16,13 +16,11 @@ namespace Interface
     {
         private SzpifDatabase database;
         DataTable Employees;
-        string priviliges;
         public EmployeeAdministrationPage(string text) : base(text)
         {
-			priviliges = "GenericEmployer";
             database = SzpifDatabase.DataBase;
             InitializeComponent();
-            Employees = database.getEmployeesAdministrationView();
+            Employees = database.getView("EmployeesAdministrationView");
 
             // Turn this off so column names do not come from data source
             EmployeesGridView.AutoGenerateColumns = false;

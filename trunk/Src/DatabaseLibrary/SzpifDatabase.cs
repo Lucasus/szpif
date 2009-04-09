@@ -65,7 +65,6 @@ namespace DatabaseLibrary
             connection.ConnectionString = oldConnectionString;
             return checkLogin.Failed == false;
         }
-	
 
 		/// <summary>
 		/// Funkcja Odpowiada za wywołanie procedury bazy danych changePassword.
@@ -77,7 +76,7 @@ namespace DatabaseLibrary
 		/// <param name="newPassword">Nowe Hasło</param>
 		public void ChangePassword(string login, string password, string newPassword)
         {
-            string command = "";// addPriviligesRestriction(priviliges, "exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'");
+            string command = "exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'";
             (new NonQueryTransaction(command)).tryExecute();
         }
         /// <summary>
@@ -90,33 +89,6 @@ namespace DatabaseLibrary
         {
 			string command = "exec changeEMail @Login='" + login + "',@Password='" + password + "', @newEmail='" + newMail + "'";
             (new NonQueryTransaction(command)).tryExecute();
-        }
-
-		/// <summary>
-		/// Funkcja wyciąga informacje z widoku EmployeeAdministrtionView
-		/// </summary>
-		/// <returns>zwraca obiekt typu DataTable który łatwo włożyć do Gridów</returns>
-		public DataTable getEmployeesAdministrationView()
-        {
-            GetViewTransaction t = new GetViewTransaction("EmployeeViewForAdministration");
-            t.tryExecute();
-			return t.View;
-        }
-
-        public ICollection<string> getUserRoles()
-        {
-            string login = "";
-            string password = "";
-            string command = "exec checkPermissions @Login='" + login + "',@Password='" + password + "'";
-            GetViewTransaction t = new GetViewTransaction(command);
-            ICollection<string> permissions = new List<string>();
-            t.tryExecute();
-//            while (t.View.Read())
-//            {
-//                string permission = t.View.GetString(t.View.GetOrdinal("Permission"));
-//                permissions.Add(permission);
-//            }
-            return permissions;
         }
 
         public DataTable getView(string viewName)

@@ -13,7 +13,6 @@ namespace Interface
 {
     public partial class UserSettingsPage : TabPage
     {
-		private string priviliges = "GenericEveryUser";
         public UserSettingsPage(string text) : base(text)
         {
             InitializeComponent();
