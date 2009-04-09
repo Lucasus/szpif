@@ -6,20 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using BusinessLogic;
-using InterfaceLogic;
+using Logic;
 
 namespace Interface
 {
-    public partial class UserPanelForm : Form
+    public partial class MainForm : Form
     {
         private PageManager PageManager; 
 
-        public UserPanelForm()
+        public MainForm()
         {
             InitializeComponent();
             this.PageManager = new PageManager(new PageFactory());
-            PageManager.makeTabPages(this.mainTabControl,Context.CurrentContext.Permissions);
+            PageManager.makeTabPages(this.mainTabControl,Program.Context.UserPermissions);
         }
 
         private void UserPanel_FormClosed(object sender, FormClosedEventArgs e)
