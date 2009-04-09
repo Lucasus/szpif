@@ -22,7 +22,7 @@ namespace Interface
 			priviliges = "GenericEmployer";
             database = SzpifDatabase.DataBase;
             InitializeComponent();
-            Employees = database.getEmployeesAdministrationView(priviliges);
+            Employees = database.getEmployeesAdministrationView();
 
             // Turn this off so column names do not come from data source
             EmployeesGridView.AutoGenerateColumns = false;

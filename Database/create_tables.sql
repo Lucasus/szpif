@@ -1,10 +1,10 @@
 Use szpifDatabase
 PRINT 'CREATING TABLES...'
 
-IF Object_ID('Permissions','U') IS NOT NULL 
+IF Object_ID('Roles','U') IS NOT NULL 
 BEGIN
-	delete from [Permissions];
-	DROP TABLE [Permissions];
+	delete from [Roles];
+	DROP TABLE [Roles];
 END
 IF Object_ID('Employees','U') IS NOT NULL 
 BEGIN
@@ -33,10 +33,10 @@ CREATE TABLE [Employees]
 		[Password] [nvarchar] (40) NOT NULL,
 );
 
-CREATE TABLE [Permissions]
+CREATE TABLE [Roles]
 (
 		[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 		[EmployeeId] [int] NOT NULL REFERENCES [Employees] ([Id]), 
-		[Permission] [nvarchar] (40) NOT NULL
+		[Role] [nvarchar] (40) NOT NULL
 );
 GO

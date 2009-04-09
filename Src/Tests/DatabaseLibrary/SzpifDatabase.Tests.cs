@@ -84,17 +84,17 @@ namespace DatabaseLibrary.Tests
 		public void changeEmailTest()
 		{
 //			database.ChangeEMail("lukasz", "master", "lukasus@bablak.pl");
-			DataTable dt = database.getEmployeesAdministrationView("GenericEmployer");
+			DataTable dt = database.getEmployeesAdministrationView();
 			Assert.AreEqual("lukasus@bablak.pl", dt.Rows[0]["EMail"]);
 			database.ChangeEMail("lukasz", "mooster", "AblaAbla", "GenericEveryUser");
-			dt = database.getEmployeesAdministrationView("GenericEmployer");
+			dt = database.getEmployeesAdministrationView();
 			Assert.AreNotEqual("AblaAbla", dt.Rows[0]["EMail"]);
 		}
 
         [Test()]
         public void getEmployeesAdministrationViewTest()
         {
-			DataTable dt = database.getEmployeesAdministrationView("GenericEmployer");
+			DataTable dt = database.getEmployeesAdministrationView();
             Assert.AreEqual(3, dt.Rows.Count);
             Assert.AreEqual("Losiek Loskowski", dt.Rows[2]["Name"]);
         }

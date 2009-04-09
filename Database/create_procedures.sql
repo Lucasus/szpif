@@ -1,6 +1,6 @@
 PRINT 'CREATING PROCEDURES...'
 GO
--------------------------------------------------------------------
+----------Kasowanie poprzednich wersji--------------------------------
 IF OBJECT_ID('checkPermissions') IS NOT NULL
    DROP PROCEDURE DBO.checkPermissions
 GO
@@ -16,14 +16,27 @@ GO
 IF OBJECT_ID('mySelectAll') IS NOT NULL
 	DROP PROCEDURE mySelectAll
 GO
--- -----------------------------------------------------------------
-CREATE PROCEDURE checkPermissions
-		@Login nvarchar(40),
-		@Password nvarchar(40)
+IF OBJECT_ID('getEmployeeViewForAdministration') IS NOT NULL
+	DROP PROCEDURE getEmployeeViewForAdministration
+GO
+IF OBJECT_ID('getRolesViewForCurrentUser') IS NOT NULL
+	DROP PROCEDURE getRolesViewForCurrentUser
+GO
+
+----------Procedury zwracaj¹ce widoki------------------------------
+CREATE PROCEDURE getEmployeeViewForAdministration
 AS
-	select Permission from [Employees] em
-		inner join [Permissions]perm on em.Id = perm.EmployeeId
-		where Login = @Login AND Password = @Password
+	select * from EmployeeAdministrationView
+GO
+
+CREATE PROCEDURE getRolesViewForCurrentUser
+AS
+	--SET NOCOUNT ON
+   -- declare @login varchar(40);
+   -- select @login = SYSTEM_USER
+	select Role from [Employees] em
+		inner join [Roles] perm on em.Id = perm.EmployeeId
+		where Login = 'Lukasz'
 GO
 -------------------------------------------------------------------
 CREATE PROCEDURE changePassword

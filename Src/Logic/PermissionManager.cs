@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace Logic
 {
@@ -20,7 +21,9 @@ namespace Logic
                 Context.Database.setupConnectionParameters(username, password);
                 Context.UserLogin = username;
                 Context.UserPassword = password;
-                Context.UserPermissions = Context.Database.getUserPermissions();
+                Context.UserRoles = 
+                    Context.DataManager.getColumnValuesFromView("RolesViewForCurrentUser", "Role");
+                Context.UserRoles.Add("Ogólne");
                 Context.FormManager.switchForm("LoginForm","MainForm");
             }
             else

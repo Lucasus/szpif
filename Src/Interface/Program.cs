@@ -12,6 +12,7 @@ namespace Interface
         public static Context Context;
         public static FormManager FormManager;
         public static PermissionManager PermissionManager;
+        public static DataManager DataManager;
 
         static Program()
         {
@@ -20,6 +21,8 @@ namespace Interface
             PermissionManager = new PermissionManager(Context);
             Context.Database = SzpifDatabase.DataBase;
             Context.FormManager = FormManager;
+            DataManager = new DataManager(Context);
+            Context.DataManager = DataManager;
         }
 
         [STAThread]
