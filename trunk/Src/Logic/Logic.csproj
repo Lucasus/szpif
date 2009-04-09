@@ -47,11 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\Context.cs" />
-    <Compile Include="BusinessLogic\IDatabase.cs" />
-    <Compile Include="BusinessLogic\PasswordChecker.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="InterfaceLogic\FormManager.cs" />
+    <Compile Include="IDatabase.cs" />
+    <Compile Include="InterfaceLogic\IFormFactory.cs" />
+    <Compile Include="PasswordChecker.cs" />
     <Compile Include="InterfaceLogic\IPageFactory.cs" />
     <Compile Include="InterfaceLogic\PageManager.cs" />
+    <Compile Include="PermissionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

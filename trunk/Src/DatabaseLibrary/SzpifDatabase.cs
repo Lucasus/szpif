@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BusinessLogic;
+using Logic;
 using System.Data.Common;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,28 +12,21 @@ namespace DatabaseLibrary
     public class SzpifDatabase : IDatabase
     {
 		static SzpifDatabase dataBase;
+
         static DbProviderFactory factory;
-        static DbConnection conn;
-        static string provider;
-        static string connstr;
 
-		/// <summary>
-		/// To się okazuje jest konstruktor statyczny który inicjalizuje zmienne statyczne.
-		/// </summary>
-        static SzpifDatabase()
+        public static DbProviderFactory Factory
         {
-            provider = "System.Data.SqlClient";  // data provider
-            connstr =   "Data Source=localhost\\SQLEXPRESS;"
-                    +   "Initial Catalog=szpifDatabase;"
-                    +   "Integrated Security=SSPI;";
+            get { return SzpifDatabase.factory; }
+            set { SzpifDatabase.factory = value; }
+        }
+        static DbConnection connection;
+        string provider;
 
-            // Get factory object for SQL Server
-            factory = DbProviderFactories.GetFactory(provider);
-
-            // Get connection object. using ensures connection is closed.
-            conn = factory.CreateConnection();
-            conn.ConnectionString = connstr;
-			dataBase = new SzpifDatabase();
+        static public DbConnection Connection
+        {
+            get { return connection; }
+            set { connection = value; }
         }
 		
 		/// <summary>
@@ -41,7 +34,9 @@ namespace DatabaseLibrary
 		/// </summary>
 		private SzpifDatabase()
 		{
-		
+            provider = "System.Data.SqlClient";
+            factory = DbProviderFactories.GetFactory(provider);
+            connection = factory.CreateConnection();		
 		}
 		
 		public static SzpifDatabase DataBase
@@ -55,71 +50,25 @@ namespace DatabaseLibrary
 				return dataBase;
 			}
 		}
-		
-		/// <summary>
-		/// Funkcja upraszczająca wykonywanie zapytań zwracających tabele z bazy.
-		/// Funkcja jest prywatna więc tylko ta klasa może z niego korzystać.
-		/// </summary>
-		/// <param name="command">Rozkaz który ma zostać wywołany przez baze danych</param>
-		/// <returns>Zwraca Obiekt pozwalający w łatwy sposób czytać zwróconą tabele.</returns>
-		private DbDataReader executeQuerryCommand(string command)
-		{
-			conn.Open();
-			DbCommand cmd = factory.CreateCommand(); // Command object
-			cmd.CommandText = command;
-			cmd.Connection = conn;
-			DbDataReader dr;
-			dr = cmd.ExecuteReader();
-			return dr;
-		}
-		
-		/// <summary>
-		/// Funkcja upraszczająca wykonywanie zapytań nie zwracajacych tabel z bazy.
-		/// Funkcja jest prywatna więc tylko ta klasa może z niego korzystać.
-		/// </summary>
-		/// <param name="command">Rozkaz który ma zostać wywołany przez baze danych</param>
-		private void executeNonQuerryCommand(string command)
-		{
-			conn.Open();
-			DbCommand cmd = factory.CreateCommand(); // Command object
-			cmd.CommandText = command;
-			cmd.Connection = conn;
-			cmd.ExecuteNonQuery();
-		}
-	
-		private string addPriviligesRestriction(string priviliges, string command)
-		{
-			string wynik = "EXECUTE AS USER = '" + priviliges + "';";
-			wynik += command;
-			wynik += "REVERT;";
-			return wynik;
-		}
-		/// <summary>
-		/// Funkcja Odpowiada za wywołanie procedury bazy danych checkPermissions
-		/// oraz stworzeniu listy uprawnień użytkownika
-		/// </summary>
-		/// <param name="login">Login</param>
-		/// <param name="password">Hasło</param>
-		/// <returns>Kolekcje uprawnień</returns>
-		public ICollection<string> CheckLogin(string login, string password, string priviliges)
+
+        public void setupConnectionParameters(string username, string password)
         {
-            string command = addPriviligesRestriction(priviliges,"exec checkPermissions @Login='" + login + "',@Password='" + password + "'");
-            ICollection<string> permissions = new List<string>();
-            try
-            {
-				DbDataReader dr = executeQuerryCommand(command);
-				while (dr.Read())
-				{
-					string permission = dr.GetString(dr.GetOrdinal("Permission"));
-					permissions.Add(permission);
-				}
-				return permissions;
-			}
-			finally
-			{
-				conn.Close();
-			}
+            connection.ConnectionString =
+               "Data Source=localhost\\SQLEXPRESS;"
+             + "Initial Catalog=szpifDatabase;"
+             + "User=" + username + ";Password=" + password;
         }
+
+        public bool CheckLogin(string login, string password)
+        {
+            string oldConnectionString = connection.ConnectionString;
+            setupConnectionParameters(login, password);
+            ITransaction checkLogin = new EmptyTransaction();
+            checkLogin.tryExecute();
+            connection.ConnectionString = oldConnectionString;
+            return checkLogin.Failed == false;
+        }
+	
 
 		/// <summary>
 		/// Funkcja Odpowiada za wywołanie procedury bazy danych changePassword.
@@ -129,17 +78,11 @@ namespace DatabaseLibrary
 		/// <param name="login">Login</param>
 		/// <param name="password">Hasło</param>
 		/// <param name="newPassword">Nowe Hasło</param>
-		public void ChangePassword(string login, string password, string newPassword, string priviliges)
+		public void ChangePassword(string login, string password, string newPassword)
         {
-			string command = addPriviligesRestriction(priviliges,"exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'");
-			try
-			{
-				executeNonQuerryCommand(command);
-			}
-			finally
-			{
-				conn.Close();
-			}
+            string command = "";// addPriviligesRestriction(priviliges, "exec changePassword @Login='" + login + "',@currentPassword='" + password + "', @Password='" + newPassword + "'");
+            NonQueryTransaction t = new NonQueryTransaction(command);
+            t.tryExecute();
         }
         /// <summary>
 		/// Funkcja Odpowiada za wywołanie procedury bazy danych changeEMail.
@@ -149,15 +92,9 @@ namespace DatabaseLibrary
         /// <param name="newMail">Nowy E-Mail</param>
         public void ChangeEMail(string login, string password, string newMail, string priviliges)
         {
-			string command = addPriviligesRestriction(priviliges,"exec changeEMail @Login='" + login + "',@Password='" + password + "', @newEmail='" + newMail + "'");
-			try
-			{
-				executeNonQuerryCommand(command);
-			}
-			finally
-			{
-				conn.Close();
-			}
+			string command = "exec changeEMail @Login='" + login + "',@Password='" + password + "', @newEmail='" + newMail + "'";
+            NonQueryTransaction t = new NonQueryTransaction(command);
+            t.tryExecute();
         }
 
 		/// <summary>
@@ -166,20 +103,28 @@ namespace DatabaseLibrary
 		/// <returns>zwraca obiekt typu DataTable który łatwo włożyć do Gridów</returns>
 		public DataTable getEmployeesAdministrationView(string priviliges)
         {
-            string command = addPriviligesRestriction(priviliges, "SELECT * FROM EmployeeAdministrationView;"); 
-            try
-            {
-				DbDataReader dr = executeQuerryCommand(command);
-				DataTable dt = new DataTable("EmployeeAdministrationView");
-				dt.Load(dr);
-				return dt;
-			}
-			finally
-			{
-				conn.Close();
-			}
+            string command = "SELECT * FROM EmployeeAdministrationView;";
+            QueryTransaction t = new QueryTransaction(command);
+            t.tryExecute();
+		    DataTable dt = new DataTable("EmployeeAdministrationView");
+			dt.Load(t.Table);
+			return dt;
         }
 
-   
+        public ICollection<string> getUserPermissions()
+        {
+            string login = "";
+            string password = "";
+            string command = "exec checkPermissions @Login='" + login + "',@Password='" + password + "'";
+            QueryTransaction t = new QueryTransaction(command);
+            ICollection<string> permissions = new List<string>();
+            t.tryExecute();
+            while (t.Table.Read())
+            {
+                string permission = t.Table.GetString(t.Table.GetOrdinal("Permission"));
+                permissions.Add(permission);
+            }
+            return permissions;
+        }
     }
 }

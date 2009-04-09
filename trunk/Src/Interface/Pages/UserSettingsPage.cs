@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DatabaseLibrary;
-using BusinessLogic;
+using Logic;
 
 namespace Interface
 {
@@ -37,9 +37,8 @@ namespace Interface
 			
 			passwordStrenghtText.Location = new Point(10, passwordChangeLabel.Location.Y + 30);
 			passwordStrenght.Location = new Point(passwordStrenghtText.Location.X + passwordStrenghtText.Width + 10, passwordStrenghtText.Location.Y);
-			Context c = Context.CurrentContext;
-			PasswordChecker pc = new PasswordChecker(c.UserLogin);
-			Strenght str = pc.getPasswordStrenght(c.UserPassword);
+			PasswordChecker pc = new PasswordChecker(Program.Context.UserLogin);
+            Strenght str = pc.getPasswordStrenght(Program.Context.UserPassword);
 			passwordStrenght.Text = str.ToString();
 			#endregion
 			
@@ -60,14 +59,12 @@ namespace Interface
 
 		private void passwordChangeButton_Click(object sender, EventArgs e)
 		{
-			Context c = Context.CurrentContext;
-			
-			if(c.UserPassword == passwordOldPassword.Text)
+           /* if (Program.Context.UserPassword == passwordOldPassword.Text)
 			{
-				PasswordChecker pc = new PasswordChecker(c.UserLogin);
+                PasswordChecker pc = new PasswordChecker(Program.Context.UserLogin);
 				passwordStrenght.Text = pc.getPasswordStrenght(passwordChangeBox.Text).ToString();
-				SzpifDatabase.DataBase.ChangePassword(c.UserLogin,passwordOldPassword.Text,passwordChangeBox.Text,priviliges);
-				c.UserPassword = passwordChangeBox.Text;
+                SzpifDatabase.DataBase.ChangePassword(Program.Context.UserLogin, passwordOldPassword.Text, passwordChangeBox.Text, priviliges);
+                Program.Context.UserPassword = passwordChangeBox.Text;
 				MessageBox.Show("Zmiana hasła zakończona pomyślnie");
 			}
 			else
@@ -75,14 +72,14 @@ namespace Interface
 				MessageBox.Show("Zmiana hasła zakończona niepomyślnie");
 			}
 			passwordChangeBox.Text = "";
-			passwordOldPassword.Text = "";
+			passwordOldPassword.Text = "";*/
 		}
 
 		private void eMailChangeButton_Click(object sender, EventArgs e)
 		{
-			Context c = Context.CurrentContext;
+/*            Context c = Program.Context;
 			SzpifDatabase.DataBase.ChangeEMail(c.UserLogin, c.UserPassword, eMailChangeBox.Text,priviliges);
-			eMailChangeBox.Text = "";
+			eMailChangeBox.Text = "";*/
 		}
 
     }

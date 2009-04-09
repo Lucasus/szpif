@@ -10,9 +10,9 @@ using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
 using System.Collections;
 using System.Data;
-using BusinessLogic;
+using Logic;
 
-namespace BusinessLogic.Tests
+namespace Logic.Tests
 {
 
 	[TestFixture]
