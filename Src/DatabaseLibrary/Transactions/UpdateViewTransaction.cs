@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace DatabaseLibrary
 {
-    class UpdateViewTransaction : SzpifTransaction
+    public class UpdateViewTransaction : SzpifTransaction
     {
         string viewName;
         DataTable viewTable;
