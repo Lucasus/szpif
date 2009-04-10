@@ -15,7 +15,7 @@ namespace Logic
         {
             switch (gridName)
             {
-                case "EmployeesForAdministrationGrid":
+                case "EmployeesForAdministrationGridView":
                     return "EmployeeViewForAdministration";
             };
             return null;

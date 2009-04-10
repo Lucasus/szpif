@@ -18,6 +18,8 @@ namespace Interface
                     return new LoginForm();
                 case "MainForm":
                     return new MainForm();
+                case "ChangeEmployeeForm":
+                    return new ChangeEmployeeForm();
             }
             return null;
         }

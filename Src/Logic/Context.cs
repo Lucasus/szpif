@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Logic
 {
@@ -17,6 +18,20 @@ namespace Logic
         private static IDatabase database;
         private FormManager formManager;
         private DataManager dataManager;
+        private DataGridViewCellEventArgs actualGridArguments;
+        private DataGridView actualGridView;
+
+        public DataGridView ActualGridView
+        {
+            get { return actualGridView; }
+            set { actualGridView = value; }
+        }
+
+        public DataGridViewCellEventArgs ActualGridArguments
+        {
+            get { return actualGridArguments; }
+            set { actualGridArguments = value; }
+        }
 
         public DataManager DataManager
         {
