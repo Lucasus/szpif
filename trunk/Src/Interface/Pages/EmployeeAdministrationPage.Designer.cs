@@ -30,67 +30,70 @@ namespace Interface
         private void InitializeComponent()
         {
             this.AddEmployeeButton = new System.Windows.Forms.Button();
-            this.EmployeesGridView = new System.Windows.Forms.DataGridView();
+            this.EmployeesForAdministrationGridView = new System.Windows.Forms.DataGridView();
             this.SaveChangesButton = new System.Windows.Forms.Button();
-            this.ChangePermissions = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.EmployeesGridView)).BeginInit();
+            this.Edytuj = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.RefreshButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.EmployeesForAdministrationGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // AddEmployeeButton
             // 
             this.AddEmployeeButton.Location = new System.Drawing.Point(10, 400);
             this.AddEmployeeButton.Name = "AddEmployeeButton";
-            this.AddEmployeeButton.Size = new System.Drawing.Size(75, 23);
+            this.AddEmployeeButton.Size = new System.Drawing.Size(160, 23);
             this.AddEmployeeButton.TabIndex = 0;
-            this.AddEmployeeButton.Text = "Nowy pracownik";
+            this.AddEmployeeButton.Text = "Dodaj pracownika";
             this.AddEmployeeButton.UseVisualStyleBackColor = true;
             // 
-            // EmployeesGridView
+            // EmployeesForAdministrationGridView
             // 
-            this.EmployeesGridView.AllowUserToAddRows = false;
-            this.EmployeesGridView.AllowUserToDeleteRows = false;
-            this.EmployeesGridView.AllowUserToResizeColumns = false;
-            this.EmployeesGridView.AllowUserToResizeRows = false;
-            this.EmployeesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.EmployeesGridView.Location = new System.Drawing.Point(10, 10);
-            this.EmployeesGridView.Name = "EmployeesForAdministrationGrid";
-            this.EmployeesGridView.RowHeadersVisible = false;
-            this.EmployeesGridView.Size = new System.Drawing.Size(600, 380);
-            this.EmployeesGridView.TabIndex = 0;
+            this.EmployeesForAdministrationGridView.AllowUserToAddRows = false;
+            this.EmployeesForAdministrationGridView.AllowUserToDeleteRows = false;
+            this.EmployeesForAdministrationGridView.AllowUserToResizeColumns = false;
+            this.EmployeesForAdministrationGridView.AllowUserToResizeRows = false;
+            this.EmployeesForAdministrationGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.EmployeesForAdministrationGridView.Location = new System.Drawing.Point(10, 10);
+            this.EmployeesForAdministrationGridView.Name = "EmployeesForAdministrationGridView";
+            this.EmployeesForAdministrationGridView.RowHeadersVisible = false;
+            this.EmployeesForAdministrationGridView.Size = new System.Drawing.Size(600, 380);
+            this.EmployeesForAdministrationGridView.TabIndex = 0;
+            this.EmployeesForAdministrationGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeesGridView_CellContentClick);
             // 
             // SaveChangesButton
             // 
-            this.SaveChangesButton.Location = new System.Drawing.Point(200, 400);
+            this.SaveChangesButton.Location = new System.Drawing.Point(180, 400);
             this.SaveChangesButton.Name = "SaveChangesButton";
-            this.SaveChangesButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveChangesButton.Size = new System.Drawing.Size(160, 23);
             this.SaveChangesButton.TabIndex = 0;
             this.SaveChangesButton.Text = "Zapisz zmiany";
             this.SaveChangesButton.UseVisualStyleBackColor = true;
             this.SaveChangesButton.Click += new System.EventHandler(this.SaveChangesButton_Click);
             // 
-            // ChangePermissions
+            // Edytuj
             // 
-            this.ChangePermissions.HeaderText = "";
-            this.ChangePermissions.Name = "ChangePermissions";
-            this.ChangePermissions.Text = "Zmień";
-            this.ChangePermissions.UseColumnTextForButtonValue = true;
-            this.ChangePermissions.Width = 60;
+            this.Edytuj.HeaderText = "";
+            this.Edytuj.Name = "Edytuj";
+            this.Edytuj.Text = "Edytuj...";
+            this.Edytuj.UseColumnTextForButtonValue = true;
+            this.Edytuj.Width = 60;
             // 
-            // Delete
+            // RefreshButton
             // 
-            this.Delete.HeaderText = "Usuń";
-            this.Delete.Name = "Delete";
-            this.Delete.Text = "Usuń";
-            this.Delete.UseColumnTextForButtonValue = true;
-            this.Delete.Width = 50;
+            this.RefreshButton.Location = new System.Drawing.Point(350, 400);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(160, 23);
+            this.RefreshButton.TabIndex = 0;
+            this.RefreshButton.Text = "Odśwież";
+            this.RefreshButton.UseVisualStyleBackColor = true;
             // 
             // EmployeeAdministrationPage
             // 
             this.Controls.Add(this.AddEmployeeButton);
+            this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.SaveChangesButton);
-            this.Controls.Add(this.EmployeesGridView);
-            ((System.ComponentModel.ISupportInitialize)(this.EmployeesGridView)).EndInit();
+            this.Controls.Add(this.EmployeesForAdministrationGridView);
+            ((System.ComponentModel.ISupportInitialize)(this.EmployeesForAdministrationGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -98,10 +101,10 @@ namespace Interface
         #endregion
 
         private System.Windows.Forms.Button AddEmployeeButton;
-		private System.Windows.Forms.DataGridView EmployeesGridView;
+		private System.Windows.Forms.DataGridView EmployeesForAdministrationGridView;
         private System.Windows.Forms.Button SaveChangesButton;
-        private System.Windows.Forms.DataGridViewButtonColumn ChangePermissions;
-        private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.DataGridViewButtonColumn Edytuj;
+        private Button RefreshButton;
 
 
     }

@@ -51,9 +51,17 @@ CREATE PROCEDURE updateEmployeeViewForAdministration
   @EMail		nvarchar(40),
   @Uprawnienia  nvarchar(100)
 AS
+ -- Id oraz Uprawnieñ nie update'ujê
     update Employees
-    set Login = @Login
+    set Login = @Login 
     where Id = @Id
+    
+    declare @cr_id int;
+    select @cr_id = (select CredentialsId from Employees where Id = @Id)
+    
+    update Credentials
+    set Name = @Name, EMail = @EMail
+    where Id = @cr_id
 GO
 -------------------------------------------------------------------
 CREATE PROCEDURE changePassword

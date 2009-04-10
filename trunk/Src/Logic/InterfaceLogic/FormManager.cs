@@ -39,5 +39,11 @@ namespace Logic
             forms[prevForm].Dispose();
             forms[prevForm] = null;
         }
+
+        public void showForm(string formName)
+        {
+            Form toShow = getForm(formName);
+            toShow.ShowDialog();
+        }
     }
 }

@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormFactory.cs" />
+    <Compile Include="Forms\ChangeEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChangeEmployeeForm.Designer.cs">
+      <DependentUpon>ChangeEmployeeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EmployeeAdministrationPage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="PageFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\ChangeEmployeeForm.resx">
+      <DependentUpon>ChangeEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\EmployeeAdministrationPage.resx">
       <DependentUpon>EmployeeAdministrationPage.cs</DependentUpon>
     </EmbeddedResource>
