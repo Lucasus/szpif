@@ -17,6 +17,7 @@ CREATE ROLE OwnerRole
 
 GRANT EXECUTE ON getEmployeeViewForAdministration TO OwnerRole
 GRANT EXECUTE ON getRolesViewForCurrentUser TO BasicRole
+GRANT EXECUTE ON updateEmployeeViewForAdministration TO OwnerRole
 EXEC sp_addrolemember 'OwnerRole', 'Lukasz'
 EXEC sp_addrolemember 'BasicRole', 'Lukasz'
 -- Tutaj mamy ka¿dego u¿ytkownika.

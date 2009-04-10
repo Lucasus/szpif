@@ -50,6 +50,7 @@
     <Compile Include="SzpifDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transactions\SzpifTransaction.cs" />
+    <Compile Include="Transactions\UpdateViewTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj">

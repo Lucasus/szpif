@@ -13,5 +13,7 @@ namespace Logic
         void      setupConnectionParameters(string username, string password);
 
         DataTable getView(string viewName);
+
+        void updateView(string viewName, DataTable viewTable);
     }
 }
