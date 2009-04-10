@@ -25,6 +25,7 @@ namespace Interface
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
+            Program.Context.DataManager.updateView(EmployeesGridView);
         }
     }
 }

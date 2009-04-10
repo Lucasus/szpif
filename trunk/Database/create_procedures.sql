@@ -22,6 +22,9 @@ GO
 IF OBJECT_ID('getRolesViewForCurrentUser') IS NOT NULL
 	DROP PROCEDURE getRolesViewForCurrentUser
 GO
+IF OBJECT_ID('updateEmployeeViewForAdministration') IS NOT NULL
+	DROP PROCEDURE updateEmployeeViewForAdministration
+GO
 
 ----------Procedury zwracaj¹ce widoki------------------------------
 CREATE PROCEDURE getEmployeeViewForAdministration
@@ -32,11 +35,25 @@ GO
 CREATE PROCEDURE getRolesViewForCurrentUser
 AS
 	--SET NOCOUNT ON
-   -- declare @login varchar(40);
-   -- select @login = SYSTEM_USER
+    declare @login varchar(40);
+    select @login = SYSTEM_USER
 	select Role from [Employees] em
 		inner join [Roles] perm on em.Id = perm.EmployeeId
-		where Login = 'Lukasz'
+		where Login = @login
+GO
+
+
+----------Procedury update'uj¹ce rekordy z widoków-----------------
+CREATE PROCEDURE updateEmployeeViewForAdministration
+  @Id			int,
+  @Login		nvarchar(40),
+  @Name			nvarchar(40),
+  @EMail		nvarchar(40),
+  @Uprawnienia  nvarchar(100)
+AS
+    update Employees
+    set Login = @Login
+    where Id = @Id
 GO
 -------------------------------------------------------------------
 CREATE PROCEDURE changePassword

@@ -14,7 +14,8 @@ namespace DatabaseLibrary
 		private static SzpifDatabase dataBase;
         private static DbProviderFactory factory;
         private static DbConnection connection;
-        private string provider;
+        private static string provider;
+        private static string connString;
 
         public static DbConnection Connection
         {
@@ -37,7 +38,15 @@ namespace DatabaseLibrary
                 return dataBase;
             }
         }
-		
+
+        public static DbConnection getEmptyConnection()
+        {
+            DbConnection newConnection =  factory.CreateConnection();
+            newConnection.ConnectionString = connString;
+            return newConnection;
+        }
+
+
 		/// <summary>
 		/// Funkcja stworzona tylko po to by nie można było tworzyć nowych SzpifDatabase'ów
 		/// </summary>
@@ -50,6 +59,7 @@ namespace DatabaseLibrary
 
         public void setupConnectionParameters(string username, string password)
         {
+            SzpifDatabase.connString = 
             connection.ConnectionString =
                "Data Source=localhost\\SQLEXPRESS;"
              + "Initial Catalog=szpifDatabase;"
@@ -96,6 +106,12 @@ namespace DatabaseLibrary
             GetViewTransaction t = new GetViewTransaction(viewName);
             t.tryExecute();
             return t.View;
+        }
+
+        public void updateView(string viewName, DataTable view)
+        {
+            UpdateViewTransaction t = new UpdateViewTransaction(viewName, view);
+            t.tryExecute();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Logic
     public class DataManager
     {
         Context Context;
-        List<DataTable> views;
+        Dictionary<string, DataTable> views;
 
         private string gridNameToViewName(string gridName)
         {
@@ -32,7 +32,7 @@ namespace Logic
         public DataManager(Context c)
         {
             this.Context = c;
-            views = new List<DataTable>();
+            views = new Dictionary<string,DataTable>();
         }
 
         public ICollection<string> getColumnValuesFromView(string viewName, string columnName)
@@ -54,6 +54,13 @@ namespace Logic
                 column.DataPropertyName = viewTable.Columns[i].ColumnName;
                 dataGrid.Columns.Add(column);
             }
+            views.Add(viewName, viewTable);
+        }
+
+        public void updateView(DataGridView dataGrid)
+        {
+            string viewName = gridNameToViewName(dataGrid.Name);
+            Context.Database.updateView(viewName,views[viewName]);
         }
     }
 }

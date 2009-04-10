@@ -26,8 +26,9 @@ namespace DatabaseLibrary
                 execute();
                 Failed = false;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                e.ToString();
                 Failed = true;
             }
             finally
