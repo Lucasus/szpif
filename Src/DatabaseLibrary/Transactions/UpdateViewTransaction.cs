@@ -22,20 +22,16 @@ namespace DatabaseLibrary
             cmd.Connection = (SqlConnection)SzpifDatabase.Connection;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "update" + viewName;
-            cmd.Parameters.Add("@Id", SqlDbType.Int, 1, "Id");
-            cmd.Parameters.Add("@Login", SqlDbType.NVarChar, 40, "Login");
-            cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 40, "Name");
-            cmd.Parameters.Add("@EMail", SqlDbType.NVarChar, 40, "EMail");
-            cmd.Parameters.Add("@Uprawnienia", SqlDbType.NVarChar, 40, "Uprawnienia");
             adapter = new SqlDataAdapter();
             adapter.UpdateCommand = cmd;
         }
 
         protected override void execute()
         {
+            SqlCommandBuilder.DeriveParameters(cmd);
+            foreach (SqlParameter param in cmd.Parameters)
+                param.SourceColumn = param.ParameterName.Substring(1);
             adapter.Update(viewTable);
-            //DbConnection connection = SzpifDatabase.getEmptyConnection();
-
         }
     }
 }
