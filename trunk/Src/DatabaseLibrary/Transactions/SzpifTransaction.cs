@@ -6,7 +6,7 @@ using Logic;
 
 namespace DatabaseLibrary
 {
-    class SzpifTransaction
+    public class SzpifTransaction
     {
         private bool failed;
 

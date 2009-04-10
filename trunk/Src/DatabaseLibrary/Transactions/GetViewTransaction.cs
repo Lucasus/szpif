@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace DatabaseLibrary
 {
-    class GetViewTransaction : SzpifTransaction
+    public class GetViewTransaction : SzpifTransaction
     {
         string viewName;
         List<string> columnNames;
