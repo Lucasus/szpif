@@ -48,8 +48,7 @@ CREATE PROCEDURE updateEmployeeViewForAdministration
   @Id			int,
   @Login		nvarchar(40),
   @Name			nvarchar(40),
-  @EMail		nvarchar(40),
-  @Uprawnienia  nvarchar(100)
+  @EMail		nvarchar(40)
 AS
  -- Id oraz Uprawnieñ nie update'ujê
     update Employees

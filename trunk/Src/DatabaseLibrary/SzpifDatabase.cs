@@ -113,5 +113,12 @@ namespace DatabaseLibrary
             UpdateViewTransaction t = new UpdateViewTransaction(viewName, view);
             t.tryExecute();
         }
+        public List<string> getWriteableAttributes(string viewName)
+        {
+            GetParametersTransaction t = new GetParametersTransaction(viewName);
+            t.tryExecute();
+            return t.Parameters;
+        }
+
     }
 }

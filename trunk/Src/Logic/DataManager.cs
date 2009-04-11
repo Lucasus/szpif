@@ -41,17 +41,32 @@ namespace Logic
             return DataManager.getValues(view, columnName);
         }
 
+
+        /// <summary>
+        /// Uwaga: jeżeli kolumna nazywa się "Id", to ustawią ją
+        /// jako readonly
+        /// </summary>
+        /// <param name="dataGrid">The data grid.</param>
         public void bindToView(DataGridView dataGrid)
         {
             string viewName = gridNameToViewName(dataGrid.Name);
             DataTable viewTable = Context.Database.getView(viewName);
             dataGrid.AutoGenerateColumns = false;
             dataGrid.DataSource = viewTable;
+            List<string> writeableParameters = Context.Database.getWriteableAttributes(viewName);
             for (int i = 0; i < viewTable.Columns.Count; ++i)
             {
                 DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
                 column.Name = viewTable.Columns[i].ColumnName;
                 column.DataPropertyName = viewTable.Columns[i].ColumnName;
+                if (column.DataPropertyName == "Id"
+                    || !writeableParameters.Contains(column.Name))
+                {
+                    DataGridViewCellStyle helpStyle = new DataGridViewCellStyle();
+                    helpStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+                    column.DefaultCellStyle =helpStyle;
+                    column.ReadOnly = true;
+                }
                 dataGrid.Columns.Add(column);
             }
             views.Add(viewName, viewTable);
