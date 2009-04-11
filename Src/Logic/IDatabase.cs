@@ -15,5 +15,6 @@ namespace Logic
         DataTable getView(string viewName);
 
         void updateView(string viewName, DataTable viewTable);
+        List<string> getWriteableAttributes(string viewName);
     }
 }

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Transactions\GetParametersTransaction.cs" />
     <Compile Include="Transactions\NonQueryTransaction.cs" />
     <Compile Include="Transactions\GetViewTransaction.cs" />
     <Compile Include="SzpifDatabase.cs" />
