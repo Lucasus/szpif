@@ -13,20 +13,23 @@ namespace Interface
     {
         int row;
         DataGridView gridView;
-        public ChangeEmployeeForm()
+        void updateGrid()
         {
-            InitializeComponent();
             row = Program.Context.ActualGridArguments.RowIndex;
             gridView = Program.Context.ActualGridView;
             this.LoginTextBox.Text = gridView.Rows[row].Cells["Login"].Value.ToString();
-
+            this.EMailTextBox.Text = gridView.Rows[row].Cells["EMail"].Value.ToString();
+            this.NazwaTextBox.Text = gridView.Rows[row].Cells["Name"].Value.ToString();
+        }
+        public ChangeEmployeeForm()
+        {
+            InitializeComponent();
+            updateGrid();
         }
 
         protected void MainForm_Activated(object sender, System.EventArgs e)
         {
-            row = Program.Context.ActualGridArguments.RowIndex;
-            gridView = Program.Context.ActualGridView;
-            this.LoginTextBox.Text = gridView.Rows[row].Cells["Login"].Value.ToString();
+            updateGrid();
         }
 
         protected void MainForm_Closed(object sender, System.EventArgs e)
@@ -35,7 +38,9 @@ namespace Interface
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            gridView.Rows[row].Cells["Login"].Value = LoginTextBox.Text;
+            gridView.Rows[row].Cells["Login"].Value = this.LoginTextBox.Text;
+            gridView.Rows[row].Cells["EMail"].Value = this.EMailTextBox.Text;
+            gridView.Rows[row].Cells["Name"].Value = this.NazwaTextBox.Text;
         }
     }
 }
