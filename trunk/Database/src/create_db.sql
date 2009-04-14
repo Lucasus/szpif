@@ -14,14 +14,15 @@ Use szpifDatabase
 GO
 :On Error exit
 
-:r create_tables.sql
-:r create_functions.sql
-:r create_views.sql
-:r create_procedures.sql
-:r create_triggers.sql
-:r create_roles.sql
+:r src\create_tables.sql
+:r src\create_functions.sql
+:r src\create_views.sql
+:r src\create_procedures.sql
+:r src\create_triggers.sql
+:r src\create_roles.sql
+:r src\IntegratedViews\create_EmployeeViewForAdministration.sql
 PRINT 'DATABASE CREATE IS COMPLETE'
-:r generate_data.sql
-:r show_db.sql
+:r src\generate_data.sql
+:r src\show_db.sql
 PRINT 'GENERATING DATA IS COMPLETE'
 GO

@@ -16,9 +16,7 @@ GO
 CREATE ROLE BasicRole
 CREATE ROLE OwnerRole
 
-GRANT EXECUTE ON getEmployeeViewForAdministration TO OwnerRole
 GRANT EXECUTE ON getRolesViewForCurrentUser TO BasicRole
-GRANT EXECUTE ON updateEmployeeViewForAdministration TO OwnerRole
 GO
 --EXEC sp_addrolemember 'OwnerRole', 'lukasz'
 --EXEC sp_addrolemember 'BasicRole', 'lukasz'

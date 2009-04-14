@@ -16,21 +16,10 @@ GO
 IF OBJECT_ID('mySelectAll') IS NOT NULL
 	DROP PROCEDURE mySelectAll
 GO
-IF OBJECT_ID('getEmployeeViewForAdministration') IS NOT NULL
-	DROP PROCEDURE getEmployeeViewForAdministration
-GO
 IF OBJECT_ID('getRolesViewForCurrentUser') IS NOT NULL
 	DROP PROCEDURE getRolesViewForCurrentUser
 GO
-IF OBJECT_ID('updateEmployeeViewForAdministration') IS NOT NULL
-	DROP PROCEDURE updateEmployeeViewForAdministration
-GO
 
-----------Procedury zwracaj¹ce widoki------------------------------
-CREATE PROCEDURE getEmployeeViewForAdministration
-AS
-	select * from EmployeeAdministrationView
-GO
 
 CREATE PROCEDURE getRolesViewForCurrentUser
 AS
@@ -42,19 +31,6 @@ AS
 		where Login = @login
 GO
 
-
-----------Procedury update'uj¹ce rekordy z widoków-----------------
-CREATE PROCEDURE updateEmployeeViewForAdministration
-  @Id			int,
-  @Login		nvarchar(40),
-  @Name			nvarchar(40),
-  @EMail		nvarchar(40)
-AS
- -- Id oraz Uprawnieñ nie update'ujê
-    update Employees set Login = @Login  where Id = @Id    
-    update Credentials set Name = @Name, EMail = @EMail where Id = 
-    (select CredentialsId from Employees where Id = @Id)
-GO
 -------------------------------------------------------------------
 CREATE PROCEDURE changePassword
 		@Login nvarchar(40),

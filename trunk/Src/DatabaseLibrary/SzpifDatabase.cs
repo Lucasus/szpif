@@ -59,11 +59,12 @@ namespace DatabaseLibrary
 
         public void setupConnectionParameters(string username, string password)
         {
-            SzpifDatabase.connString = 
+            SzpifDatabase.connString =
             connection.ConnectionString =
-               "Data Source=localhost\\SQLEXPRESS;"
-             + "Initial Catalog=szpifDatabase;"
-             + "User=" + username + ";Password=" + password;
+               "Data Source="     + System.Configuration.ConfigurationSettings.AppSettings["Data Source"] + ";"
+             + "Initial Catalog=" + System.Configuration.ConfigurationSettings.AppSettings["Initial Catalog"]+";"
+             + "User=" + username + ";"
+             + "Password=" + password;
         }
 
         public bool CheckLogin(string login, string password)
