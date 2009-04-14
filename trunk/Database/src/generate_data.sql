@@ -1,9 +1,9 @@
 Use szpifDatabase
 PRINT 'GENERATING DATA...'
 GO
---delete from [Roles];
---delete from [Employees];
---delete from [Credentials];
+delete from [Roles];
+delete from [Employees];
+delete from [Credentials];
 DBCC CHECKIDENT (Employees, RESEED, 0);
 DBCC CHECKIDENT (Roles, RESEED, 0);
 DBCC CHECKIDENT (Credentials, RESEED, 0);
