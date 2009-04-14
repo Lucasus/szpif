@@ -8,55 +8,12 @@
 PRINT 'CREATING ROLES...'
 GO
 
---EXEC sp_droprolemember 'OwnerRole', 'lukasz'
---EXEC sp_droprolemember 'BasicRole', 'lukasz'
-DROP ROLE BasicRole
-DROP ROLE OwnerRole
+IF NOT EXISTS(SELECT name FROM sysusers WHERE name = 'BasicRole')
+	CREATE ROLE BasicRole
 GO
-CREATE ROLE BasicRole
-CREATE ROLE OwnerRole
+IF NOT EXISTS(SELECT name FROM sysusers WHERE name = 'OwnerRole')
+	CREATE ROLE OwnerRole
+GO
 
 GRANT EXECUTE ON getRolesViewForCurrentUser TO BasicRole
 GO
---EXEC sp_addrolemember 'OwnerRole', 'lukasz'
---EXEC sp_addrolemember 'BasicRole', 'lukasz'
--- Tutaj mamy ka¿dego u¿ytkownika.
---EXEC sp_droprolemember 'EveryUser', 'GenericEveryUser'
---EXEC sp_droprolemember 'EveryUser', 'GenericEmployer'
---EXEC sp_droprolemember 'EveryUser', 'GenericEmployee'
---DROP ROLE EveryUser;
---CREATE ROLE EveryUser;
---GRANT EXECUTE ON checkPermissions TO EveryUser;
---GRANT EXECUTE ON changePassword TO EveryUser;
---GRANT EXECUTE ON changeEmail TO EveryUser;
-
---DROP USER GenericEveryUser;
---CREATE USER GenericEveryUser WITHOUT LOGIN;
---EXEC sp_addrolemember 'EveryUser', 'GenericEveryUser'
-
---GO
---Tutaj mamy W³aœciciela
---EXEC sp_droprolemember 'Employer', 'GenericEmployer'
---DROP ROLE Employer;
---CREATE ROLE Employer;
---GRANT EXECUTE ON changePassword TO Employer;
---GRANT SELECT ON EmployeeAdministrationView TO Employer;
---GRANT SELECT (Login, Id) ON Employees TO Employer; 
-
---DROP USER GenericEmployer;
---CREATE USER GenericEmployer WITHOUT LOGIN;
---EXEC sp_addrolemember 'Employer', 'GenericEmployer'
---EXEC sp_addrolemember 'EveryUser', 'GenericEmployer' 
-
---GO
---Tutaj mamy szeregowego Pracownika
---EXEC sp_droprolemember 'Employee', 'GenericEmployee'
---DROP ROLE Employee;
---CREATE ROLE Employee;
-
---DROP USER GenericEmployee;
---CREATE USER GenericEmployee WITHOUT LOGIN;
---EXEC sp_addrolemember 'Employee', 'GenericEmployee'
---EXEC sp_addrolemember 'EveryUser', 'GenericEmployee' 
---GO
-
