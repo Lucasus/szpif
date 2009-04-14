@@ -1,2 +1,2 @@
-SQLCMD -E -S.\SQLEXPRESS -icreate_db.sql
+SQLCMD -E -S.\SQLEXPRESS -isrc\create_db.sql
 PAUSE
