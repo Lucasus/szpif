@@ -1,3 +1,9 @@
+use szpifDatabase
+PRINT 'DELETE DATA...'
+
+
+
+
 SET NOCOUNT ON
 DECLARE @ObjectTypes TABLE
 (

@@ -13,6 +13,7 @@ GO
 Use szpifDatabase
 GO
 :On Error exit
+:r src\remove_all.sql
 
 :r src\create_tables.sql
 :r src\create_functions.sql
