@@ -11,7 +11,10 @@ namespace SzpifbaseBuilder
     {
         static void Main(string[] args)
         {
-
+            ViewPermissions permissions = null;
+            List<ViewColumn> columns = new List<ViewColumn>();
+            IntegratedView employeesView = new IntegratedView(
+                "employeesForAdministrationView", columns, permissions); 
             Console.WriteLine("Press Enter to Continue");
             Console.ReadKey();
         }
