@@ -18,6 +18,7 @@ GO
 :r create_functions.sql
 :r create_views.sql
 :r create_procedures.sql
+:r create_triggers.sql
 :r create_roles.sql
 PRINT 'DATABASE CREATE IS COMPLETE'
 :r generate_data.sql

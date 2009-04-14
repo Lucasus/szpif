@@ -8,18 +8,20 @@
 PRINT 'CREATING ROLES...'
 GO
 
-EXEC sp_droprolemember 'OwnerRole', 'Lukasz'
-EXEC sp_droprolemember 'BasicRole', 'Lukasz'
+--EXEC sp_droprolemember 'OwnerRole', 'lukasz'
+--EXEC sp_droprolemember 'BasicRole', 'lukasz'
 DROP ROLE BasicRole
 DROP ROLE OwnerRole
+GO
 CREATE ROLE BasicRole
 CREATE ROLE OwnerRole
 
 GRANT EXECUTE ON getEmployeeViewForAdministration TO OwnerRole
 GRANT EXECUTE ON getRolesViewForCurrentUser TO BasicRole
 GRANT EXECUTE ON updateEmployeeViewForAdministration TO OwnerRole
-EXEC sp_addrolemember 'OwnerRole', 'Lukasz'
-EXEC sp_addrolemember 'BasicRole', 'Lukasz'
+GO
+--EXEC sp_addrolemember 'OwnerRole', 'lukasz'
+--EXEC sp_addrolemember 'BasicRole', 'lukasz'
 -- Tutaj mamy ka¿dego u¿ytkownika.
 --EXEC sp_droprolemember 'EveryUser', 'GenericEveryUser'
 --EXEC sp_droprolemember 'EveryUser', 'GenericEmployer'
