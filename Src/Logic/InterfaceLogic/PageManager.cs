@@ -33,7 +33,7 @@ namespace Logic
             {
                 switch (perm)
                 {
-                    case "Administrator":
+                    case "W³aœciciel":
                         {
                             pageNames.Add("AdministrationPage");
                             break;
