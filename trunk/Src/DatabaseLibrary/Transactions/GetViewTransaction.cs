@@ -34,6 +34,7 @@ namespace DatabaseLibrary
         {
             view = new DataTable();
             SqlDataAdapter oDA = new SqlDataAdapter(cmd.CommandText, (SqlConnection)cmd.Connection);
+            oDA.ReturnProviderSpecificTypes = true;  //UseProviderSpecificType = true;
             oDA.Fill(view); 
         }
     }

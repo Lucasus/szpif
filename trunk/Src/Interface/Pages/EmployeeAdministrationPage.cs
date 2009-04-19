@@ -56,5 +56,17 @@ namespace Interface
            // }
 
         }
+
+        private void EmployeesForAdministrationGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.EmployeesForAdministrationGridView.Columns[e.ColumnIndex].Name == "Roles")
+            {
+                if (e.Value != null)
+                {
+                    e.Value = ((System.Data.SqlTypes.SqlXml)e.Value).Value;
+                }
+            }
+
+        }
     }
 }

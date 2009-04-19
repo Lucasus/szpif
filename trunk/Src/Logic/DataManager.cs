@@ -51,14 +51,26 @@ namespace Logic
         {
             string viewName = gridNameToViewName(dataGrid.Name);
             DataTable viewTable = Context.Database.getView(viewName);
+//            viewTable.ReadXml
             dataGrid.AutoGenerateColumns = false;
             dataGrid.DataSource = viewTable;
+//            dataGrid.databi
             List<string> writeableParameters = Context.Database.getWriteableAttributes(viewName);
             for (int i = 0; i < viewTable.Columns.Count; ++i)
             {
                 DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
                 column.Name = viewTable.Columns[i].ColumnName;
                 column.DataPropertyName = viewTable.Columns[i].ColumnName;
+
+
+                if (viewTable.Columns[i].DataType.FullName == "System.Data.SqlTypes.SqlXml")
+                {
+                    column.DataPropertyName = "Roles";
+//                    column.
+//                    column.DataPropertyName.
+                    column.ReadOnly = true;
+//                    column.
+                }
                 if (column.DataPropertyName == "Id"
                     || !writeableParameters.Contains(column.Name))
                 {
