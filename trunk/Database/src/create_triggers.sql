@@ -16,11 +16,11 @@ IF (SELECT COUNT(*) FROM Inserted) > 1
     select @login = (select Login from Inserted)
     select @password = (select Password from Inserted)
     
-	   if USER_ID(@login) is not null
-	   BEGIN
+	if USER_ID(@login) is not null
+	BEGIN
          PRINT 'Usuwam ' + @login;
 	     EXEC('DROP USER ' + @login)
-	   END     
+	END     
     
 	if not exists(select * from sys.server_principals
 		where type IN ('S', 'U', 'G') and name = @login)
@@ -73,20 +73,30 @@ GO
 CREATE TRIGGER Roles_Insert ON Roles
 FOR INSERT
 AS
-IF (SELECT COUNT(*) FROM Inserted) > 1
-	BEGIN
-		RAISERROR('Maksymalnie na raz mo¿na dodaæ jedno po³¹czenie', 16, 1)
-		ROLLBACK TRANSACTION
-    END
     declare @role varchar(40);
     declare @login varchar(40);
-    select @role = (SELECT Role from Inserted)
+   -- select @role = (SELECT Role from Inserted)
     select @login = (SELECT Login from Employees where Id = 
-			(select EmployeeId from Inserted))
-    IF @role = 'Boss'
-    BEGIN
-		EXEC sp_addrolemember 'OwnerRole', @login
-    END
+			(select DISTINCT EmployeeId from Inserted))
+
+     DECLARE @ICURSOR CURSOR;  
+     SET @ICURSOR = CURSOR FOR SELECT Role FROM Inserted;   
+     OPEN @ICURSOR  
+     FETCH NEXT FROM @ICURSOR INTO @role
+     WHILE (@@FETCH_STATUS = 0)  
+     BEGIN  
+       IF @role = 'W³aœciciel'
+       BEGIN
+		 EXEC sp_addrolemember 'OwnerRole', @login
+       END
+     FETCH NEXT FROM @ICURSOR INTO @role
+
+	 END
+--IF (SELECT COUNT(*) FROM Inserted) > 1
+--	BEGIN
+--		RAISERROR('Maksymalnie na raz mo¿na dodaæ jedno po³¹czenie', 16, 1)
+--		ROLLBACK TRANSACTION
+--    END
 GO
 
 CREATE TRIGGER Roles_Delete ON Roles
@@ -103,7 +113,7 @@ AS
      WHILE (@@FETCH_STATUS = 0)  
      BEGIN  
 		select @login = (select Login from Employees where Id = @Id)
-		IF @role = 'Boss'
+		IF @role = 'W³aœciciel'
 		BEGIN			
 			PRINT 'Usuwam role Owner dla ' + @login;
 			EXEC sp_droprolemember 'OwnerRole', @login     

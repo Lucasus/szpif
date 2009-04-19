@@ -13,7 +13,7 @@ namespace Interface
     {
         int row;
         DataGridView gridView;
-        void updateGrid()
+        void getDataFromGrid()
         {
             row = Program.Context.ActualGridArguments.RowIndex;
             gridView = Program.Context.ActualGridView;
@@ -24,12 +24,12 @@ namespace Interface
         public ChangeEmployeeForm()
         {
             InitializeComponent();
-            updateGrid();
+            getDataFromGrid();
         }
 
         protected void MainForm_Activated(object sender, System.EventArgs e)
         {
-            updateGrid();
+            getDataFromGrid();
         }
 
         protected void MainForm_Closed(object sender, System.EventArgs e)

@@ -39,4 +39,11 @@ CREATE TABLE [Roles]
 		[EmployeeId] [int] NOT NULL REFERENCES [Employees] ([Id]), 
 		[Role] [nvarchar] (40) NOT NULL
 );
+
+CREATE TABLE [RoleNames]
+(
+		[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+		[RoleName] [nvarchar] (40) NOT NULL
+);
+
 GO
