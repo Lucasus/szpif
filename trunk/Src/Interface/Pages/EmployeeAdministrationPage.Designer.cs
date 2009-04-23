@@ -58,6 +58,7 @@ namespace Interface
             this.EmployeesForAdministrationGridView.RowHeadersVisible = false;
             this.EmployeesForAdministrationGridView.Size = new System.Drawing.Size(600, 380);
             this.EmployeesForAdministrationGridView.TabIndex = 0;
+            this.EmployeesForAdministrationGridView.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.EmployeesForAdministrationGridView_CellParsing);
             this.EmployeesForAdministrationGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.EmployeesForAdministrationGridView_CellFormatting);
             this.EmployeesForAdministrationGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeesGridView_CellContentClick);
             // 

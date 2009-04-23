@@ -23,8 +23,9 @@ INSERT INTO [RoleNames] VALUES ('Pracownik');
 INSERT INTO [RoleNames] VALUES ('Opiekun handlowy');
 INSERT INTO [Roles] VALUES (0,'W³aœciciel');
 INSERT INTO [Roles] VALUES (0,'Opiekun handlowy');
-INSERT INTO [Roles] VALUES (1,'PM');
-INSERT INTO [Roles] VALUES (2,'PM');
+INSERT INTO [Roles] VALUES (1,'Project Manager');
+INSERT INTO [Roles] VALUES (2,'Project Manager');
 INSERT INTO [Roles] VALUES (2,'Prze³o¿ony');
+INSERT INTO [Roles] VALUES (3,'Pracownik');
 
 GO
