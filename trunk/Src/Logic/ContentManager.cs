@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data;
 using System.Drawing;
+using System.Xml;
 
 namespace Logic
 {
@@ -95,7 +96,43 @@ namespace Logic
         public void addRowToView(List<Control> valueBoxes, DataGridView gridView, DataTable schema)
         {
             DataTable dt = (DataTable)gridView.DataSource;
-            DataRow dr = dt.NewRow() ;
+            DataRow dr = dt.NewRow();
+            foreach (Control control in valueBoxes)
+            {
+                switch (schema.Columns[control.Name].DataType.Name)
+                {
+                    case "SqlXml":
+                        {
+                            CheckedListBox box = (CheckedListBox)control;
+                            XmlDocument xmlDoc = new XmlDocument();
+                            XmlElement rootNode = xmlDoc.CreateElement("CheckedListBox");
+                            rootNode.SetAttribute("Name", control.Name);
+                            xmlDoc.AppendChild(rootNode);
+
+                            for (int i = 0; i < box.Items.Count; ++i)
+                            {
+                                XmlElement itemNode = xmlDoc.CreateElement("Item");
+                                itemNode.SetAttribute("Name", box.GetItemText(box.Items[i]));
+                                string itemValue;
+                                if (box.GetItemChecked(i))
+                                    itemValue = "1";
+                                else
+                                    itemValue = "0";
+                                itemNode.SetAttribute("Value", itemValue);
+                                rootNode.AppendChild(itemNode);
+                            }
+
+                            dr[control.Name] = xmlDoc.OuterXml;
+                            break;
+                        }
+                    default:
+                        {
+                            dr[control.Name] = control.Text;
+                            break;
+                        }
+                }
+
+            }
             dt.Rows.Add(dr);
         }
     }

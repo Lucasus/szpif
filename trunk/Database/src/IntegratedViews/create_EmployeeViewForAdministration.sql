@@ -26,19 +26,6 @@ IF OBJECT_ID('deleteEmployeeViewForAdministration') IS NOT NULL
 GO
 
 ----------Procedura zwracaj¹ca widok------------------------------
---CREATE PROCEDURE getEmployeeViewForAdministration
---AS
---	SELECT DISTINCT 
---		em.Id, 
---		em.Login, 
---		creds.Name, 
---		creds.EMail,
---	    dbo.aggregateRolesFunction (em.Id) AS Uprawnienia
---	FROM Employees em
---		inner join [Roles] roles on em.Id = roles.EmployeeId
---		inner join [Credentials] creds on em.CredentialsId = creds.Id
---GO
-
 CREATE PROCEDURE getEmployeeViewForAdministration
 AS
 	SELECT 
@@ -76,12 +63,23 @@ WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertEmployeeViewForAdministration
-  @Id			int,
   @Login		nvarchar(40),
   @Name			nvarchar(40),
+  @Roles		xml,
   @EMail		nvarchar(40)
---WITH EXECUTE AS OWNER
+WITH EXECUTE AS 'szpifadmin'
 AS
+INSERT INTO [Credentials] VALUES (@Name,@EMail);
+declare @newId int;
+SELECT @newId = SCOPE_IDENTITY() 
+INSERT INTO [Employees]  VALUES (@newId,@EMail, 'haslo');
+--SELECT @newId = SCOPE_IDENTITY() 
+
+--INSERT INTO Roles
+--SELECT @newId, nref.value('@Name[1]', 'nvarchar(50)') Role
+--FROM   @Roles.nodes('//Item') AS R(nref)
+--WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
+
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteEmployeeViewForAdministration
@@ -93,5 +91,6 @@ GO
 ---------Nadawanie uprawnieñ-------------------------------------
 GRANT EXECUTE ON    getEmployeeViewForAdministration TO OwnerRole
 GRANT EXECUTE ON updateEmployeeViewForAdministration TO OwnerRole
+GRANT EXECUTE ON insertEmployeeViewForAdministration TO OwnerRole
 use szpifDatabase
 
