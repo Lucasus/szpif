@@ -18,7 +18,7 @@ namespace Logic
         private ICollection<string> roles;
         private static IDatabase database;
         private FormManager formManager;
-        private DataManager dataManager;
+        private ViewToGridManager viewToGridManager;
         private DataGridViewCellEventArgs actualGridArguments;
         private DataGridView actualGridView;
         private DataTable actualSchema;
@@ -41,10 +41,10 @@ namespace Logic
             set { actualGridArguments = value; }
         }
 
-        public DataManager DataManager
+        public ViewToGridManager ViewToGridManager
         {
-            get { return dataManager; }
-            set { dataManager = value; }
+            get { return viewToGridManager; }
+            set { viewToGridManager = value; }
         }
 
         public FormManager FormManager
@@ -66,7 +66,7 @@ namespace Logic
         {
 			this.Database = dataBase;
 			this.FormManager = formManager;
-			this.DataManager = new DataManager(this);
+			this.ViewToGridManager = new ViewToGridManager(dataBase);
             this.userLogin = null;
             this.userPassword = null;
             this.roles = null;

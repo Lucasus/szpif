@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\Context.Tests.cs" />
+    <Compile Include="BusinessLogic\DataManager.Tests.cs" />
     <Compile Include="BusinessLogic\PasswordChecker.Tests.cs" />
     <Compile Include="BusinessLogic\PermissionManager.Tests.cs" />
     <Compile Include="InterfaceLogic\PageManager.Tests.cs" />
@@ -78,6 +79,9 @@
       <Project>{C080D83C-D784-4D3E-B473-C7B58E7F8CAA}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BusinessLogic\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

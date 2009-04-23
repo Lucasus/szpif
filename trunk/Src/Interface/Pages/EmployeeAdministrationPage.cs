@@ -26,12 +26,12 @@ namespace Interface
             this.EmployeesForAdministrationGridView.Width = this.Width - 10;
             this.EmployeesForAdministrationGridView.Columns.AddRange(new DataGridViewColumn[] {
             this.Edytuj});
-            schema = Program.Context.DataManager.bindToView(EmployeesForAdministrationGridView);
+            schema = Program.Context.ViewToGridManager.bindToView(EmployeesForAdministrationGridView);
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            Program.Context.DataManager.updateView(EmployeesForAdministrationGridView);
+            Program.Context.ViewToGridManager.updateView(EmployeesForAdministrationGridView);
         }
 
         private void EmployeesGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -78,10 +78,6 @@ namespace Interface
 
         private void EmployeesForAdministrationGridView_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
         {
-//            object ob = e.Value;
-            e.Value = new SqlString((string)e.Value);
-//            e.DesiredType = "SqlString";
-//            e.
         }
 
         private void EmployeeAdministrationPage_ControlAdded(object sender, ControlEventArgs e)

@@ -30,23 +30,26 @@ namespace Logic.Tests
 		[Test()]
 		public void constructorTest()
 		{
-			PermissionManager pm = new PermissionManager(context);
+			PermissionManager pm = new PermissionManager(context.Database);
 			Assert.IsNotNull(pm);
 		}
 		
 		[Test()]
-		public void tryLoginTest()
+		public void getPermissionsTest()
 		{
-			PermissionManager pm = new PermissionManager(context);
+			PermissionManager pm = new PermissionManager(context.Database);
+
+			ICollection<string> permissions = pm.getUserPermissions("Lorem", "Ipsum");
+			Assert.IsNull(permissions);
+
+			permissions = pm.getUserPermissions("lukasz", "Ipsum");
+			Assert.IsNull(permissions);
 			
-			//pm.tryLogin("Lorem","Ipsum");
-			//Assert.AreNotEqual("Lorem", context.UserLogin);
-			//Assert.AreNotEqual("Ipsum", context.UserPassword);
+			permissions = pm.getUserPermissions("Lorem", "Maaster");
+			Assert.IsNull(permissions);
 			
-			pm.tryLogin("lukasz", "Master");
-			Assert.AreEqual("lukasz", context.UserLogin);
-			Assert.AreEqual("Master", context.UserPassword);
-			Assert.Greater(context.UserRoles.Count, 0);
+			permissions = pm.getUserPermissions("lukasz", "Master");
+			Assert.IsNotNull(permissions);
 		}
 	}
 }
