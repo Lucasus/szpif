@@ -22,7 +22,19 @@ namespace Interface
 		{
 			string username = UserNameTextBox.Text;
 			string password = PassWordTextBox.Text;
-            Program.PermissionManager.tryLogin(username, password);
+            PermissionManager pm = new PermissionManager(Program.Context.Database);
+            ICollection<string> permissions = pm.getUserPermissions(username, password);
+            if(permissions != null)
+            {
+				Program.Context.UserLogin = username;
+				Program.Context.UserPassword = password;
+				Program.Context.UserRoles = permissions;
+				Program.Context.FormManager.switchForm("LoginForm", "MainForm");
+            }
+            else
+            {
+				Program.Context.FormManager.showMessageBox("Podałeś zły login i/lub hasło");
+            }
 		}
 
         private void anulujButton_Click(object sender, EventArgs e)

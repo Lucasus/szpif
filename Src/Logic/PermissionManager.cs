@@ -7,14 +7,33 @@ using System.Data;
 namespace Logic
 {
     public class PermissionManager
-    {
-        private Context Context;
-        public PermissionManager(Context c)
-        {
-            Context = c;
-        }
+    {    
+        private IDatabase database;
+       // private DataManager dataManager;
 
-        public void tryLogin(string username, string password)
+		public PermissionManager(IDatabase database)
+		{
+			this.database = database;
+			//this.dataManager = dataManager;
+		}
+
+		public ICollection<string> getUserPermissions(string username, string password)
+		{
+		    if (database.CheckLogin(username, password) == true)
+            {
+				database.setupConnectionParameters(username, password);
+				DataManager dataManager = new DataManager(database);
+				ICollection<string> temp = dataManager.getColumnValuesFromView("RolesViewForCurrentUser", "Role");
+				temp.Add("Ogólne");
+				return temp;
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+        /*public void tryLogin(string username, string password)
         {
             if (Context.Database.CheckLogin(username, password) == true)
             {
@@ -30,6 +49,6 @@ namespace Logic
             {
                 Context.FormManager.showMessageBox("Podałeś zły login i/lub hasło");
             }
-        }
+        }*/
     }
 }

@@ -11,13 +11,13 @@ namespace Interface
     {
         public static Context Context;
         //public static FormManager FormManager;
-        public static PermissionManager PermissionManager;
+        //public static PermissionManager PermissionManager;
         //public static DataManager DataManager;
 
         static Program()
         {
 			Context = new Context(SzpifDatabase.DataBase, new FormManager(new FormFactory()));
-            PermissionManager = new PermissionManager(Context);
+            //PermissionManager = new PermissionManager(Context);
         }
 
         [STAThread]
