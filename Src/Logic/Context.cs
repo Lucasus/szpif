@@ -62,8 +62,11 @@ namespace Logic
 		/// <summary>
 		/// Konstruktor. 
 		/// </summary>
-		public Context()
+		public Context(IDatabase dataBase ,FormManager formManager)
         {
+			this.Database = dataBase;
+			this.FormManager = formManager;
+			this.DataManager = new DataManager(this);
             this.userLogin = null;
             this.userPassword = null;
             this.roles = null;

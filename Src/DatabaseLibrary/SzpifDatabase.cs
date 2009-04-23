@@ -116,12 +116,12 @@ namespace DatabaseLibrary
             return t.View;
         }
 
-
         public void updateView(string viewName, DataTable view)
         {
             UpdateViewTransaction t = new UpdateViewTransaction(viewName, view);
             t.tryExecute();
         }
+        
         public List<string> getWriteableAttributes(string viewName)
         {
             GetParametersTransaction t = new GetParametersTransaction(viewName);
