@@ -91,7 +91,9 @@ namespace Interface
 
         private void AddEmployeeButton_Click(object sender, EventArgs e)
         {
-
+            Program.Context.ActualSchema = schema;
+            Program.Context.ActualGridView = EmployeesForAdministrationGridView;
+            Program.Context.FormManager.showForm("AddEmployeeForm");
         }
     }
 }
