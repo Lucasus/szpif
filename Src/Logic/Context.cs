@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Logic
 {
@@ -20,6 +21,13 @@ namespace Logic
         private DataManager dataManager;
         private DataGridViewCellEventArgs actualGridArguments;
         private DataGridView actualGridView;
+        private DataTable actualSchema;
+
+        public DataTable ActualSchema
+        {
+            get { return actualSchema; }
+            set { actualSchema = value; }
+        }
 
         public DataGridView ActualGridView
         {

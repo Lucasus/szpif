@@ -109,6 +109,14 @@ namespace DatabaseLibrary
             return t.View;
         }
 
+        public DataTable getView(string viewName, DataTable schema)
+        {
+            GetViewTransaction t = new GetViewTransaction(viewName,schema);
+            t.tryExecute();
+            return t.View;
+        }
+
+
         public void updateView(string viewName, DataTable view)
         {
             UpdateViewTransaction t = new UpdateViewTransaction(viewName, view);

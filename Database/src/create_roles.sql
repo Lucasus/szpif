@@ -14,6 +14,15 @@ GO
 IF NOT EXISTS(SELECT name FROM sysusers WHERE name = 'OwnerRole')
 	CREATE ROLE OwnerRole
 GO
+use master
+
+IF NOT EXISTS(SELECT name FROM sysusers WHERE name = 'BasicRole')
+	CREATE ROLE BasicRole
+GO
+IF NOT EXISTS(SELECT name FROM sysusers WHERE name = 'OwnerRole')
+	CREATE ROLE OwnerRole
+GO
+use szpifDatabase
 
 GRANT EXECUTE ON getRolesViewForCurrentUser TO BasicRole
 GO

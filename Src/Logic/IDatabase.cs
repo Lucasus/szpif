@@ -13,6 +13,7 @@ namespace Logic
         void      setupConnectionParameters(string username, string password);
 
         DataTable getView(string viewName);
+        DataTable getView(string viewName, DataTable schema);
 
         void updateView(string viewName, DataTable viewTable);
         List<string> getWriteableAttributes(string viewName);

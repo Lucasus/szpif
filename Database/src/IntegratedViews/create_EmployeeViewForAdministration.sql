@@ -1,6 +1,13 @@
 use szpifDatabase
 PRINT 'CREATING EMPLOYEE VIEW FOR ADMINISTRATION...'
 GO
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+SET ANSI_NULLS ON
+
+GO
 -----------------Usuwamy poprzednie wersje---------------------
 IF OBJECT_ID('getEmployeeViewForAdministration') IS NOT NULL
 	DROP PROCEDURE getEmployeeViewForAdministration
@@ -51,17 +58,18 @@ CREATE PROCEDURE updateEmployeeViewForAdministration
   @Name			nvarchar(40),
   @Roles		xml,
   @EMail		nvarchar(40)
+WITH EXECUTE AS 'szpifadmin'
 AS
     update Employees set Login = @Login  where Id = @Id    
     update Credentials set Name = @Name, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
     
     DELETE FROM Roles
-WHERE EmployeeId = 0
+WHERE EmployeeId = @Id
 
 INSERT INTO Roles
-SELECT 0, nref.value('@Name[1]', 'nvarchar(50)') Role
-FROM   @roles.nodes('//Item') AS R(nref)
+SELECT @Id, nref.value('@Name[1]', 'nvarchar(50)') Role
+FROM   @Roles.nodes('//Item') AS R(nref)
 WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
 
     
@@ -72,14 +80,18 @@ CREATE PROCEDURE insertEmployeeViewForAdministration
   @Login		nvarchar(40),
   @Name			nvarchar(40),
   @EMail		nvarchar(40)
+--WITH EXECUTE AS OWNER
 AS
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteEmployeeViewForAdministration
 	@Id			int
+--WITH EXECUTE AS OWNER
 AS
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
 GRANT EXECUTE ON    getEmployeeViewForAdministration TO OwnerRole
 GRANT EXECUTE ON updateEmployeeViewForAdministration TO OwnerRole
+use szpifDatabase
+

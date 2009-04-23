@@ -4,12 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Windows.Forms;
+using System.Data.SqlTypes;
 namespace Logic
 {
+    public class SchemedDataTable
+    {
+        DataTable schema;
+        DataTable table;
+
+        public DataTable Table
+        {
+            get { return table; }
+            set { table = value; }
+        }
+
+        public DataTable Schema
+        {
+            get { return schema; }
+            set { schema = value; }
+        }
+
+        public SchemedDataTable(DataTable t, DataTable s)
+        {
+            this.table = t;
+            this.schema = s;
+        }
+
+
+    }
     public class DataManager
     {
         Context Context;
-        Dictionary<string, DataTable> views;
+        Dictionary<string, SchemedDataTable> views;
 
         private string gridNameToViewName(string gridName)
         {
@@ -32,7 +58,7 @@ namespace Logic
         public DataManager(Context c)
         {
             this.Context = c;
-            views = new Dictionary<string,DataTable>();
+            views = new Dictionary<string,SchemedDataTable>();
         }
 
         public ICollection<string> getColumnValuesFromView(string viewName, string columnName)
@@ -43,18 +69,17 @@ namespace Logic
 
 
         /// <summary>
-        /// Uwaga: jeżeli kolumna nazywa się "Id", to ustawią ją
+        /// Uwaga: jeżeli kolumna nazywa się "Id", to ustaw ją
         /// jako readonly
         /// </summary>
         /// <param name="dataGrid">The data grid.</param>
-        public void bindToView(DataGridView dataGrid)
+        public DataTable bindToView(DataGridView dataGrid)
         {
             string viewName = gridNameToViewName(dataGrid.Name);
-            DataTable viewTable = Context.Database.getView(viewName);
-//            viewTable.ReadXml
+            DataTable schema = new DataTable();
+            DataTable viewTable = Context.Database.getView(viewName,schema);
             dataGrid.AutoGenerateColumns = false;
             dataGrid.DataSource = viewTable;
-//            dataGrid.databi
             List<string> writeableParameters = Context.Database.getWriteableAttributes(viewName);
             for (int i = 0; i < viewTable.Columns.Count; ++i)
             {
@@ -62,14 +87,18 @@ namespace Logic
                 column.Name = viewTable.Columns[i].ColumnName;
                 column.DataPropertyName = viewTable.Columns[i].ColumnName;
 
-
-                if (viewTable.Columns[i].DataType.FullName == "System.Data.SqlTypes.SqlXml")
+                if (schema.Columns[i].DataType.Name == "SqlXml")
                 {
-                    column.DataPropertyName = "Roles";
-//                    column.
-//                    column.DataPropertyName.
+                    //                    SqlXml type = viewTable.Columns[i].
                     column.ReadOnly = true;
 //                    column.
+                    column.ValueType = typeof(SqlXml);
+                }
+                else
+                {
+                    //viewTable.Columns[i].DataType = typeof(string);
+                   // int t = 12;
+                  //  column.ValueType = typeof(SqlString);
                 }
                 if (column.DataPropertyName == "Id"
                     || !writeableParameters.Contains(column.Name))
@@ -81,13 +110,14 @@ namespace Logic
                 }
                 dataGrid.Columns.Add(column);
             }
-            views.Add(viewName, viewTable);
+            views.Add(viewName, new SchemedDataTable(viewTable,schema));
+            return schema;
         }
 
         public void updateView(DataGridView dataGrid)
         {
             string viewName = gridNameToViewName(dataGrid.Name);
-            Context.Database.updateView(viewName,views[viewName]);
+            Context.Database.updateView(viewName,views[viewName].Table);
         }
     }
 }

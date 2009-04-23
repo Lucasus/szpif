@@ -46,4 +46,10 @@ CREATE TABLE [RoleNames]
 		[RoleName] [nvarchar] (40) NOT NULL
 );
 
+CREATE TABLE [Help]
+(
+		[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+		[Message] [nvarchar] (40) NOT NULL
+);
+
 GO

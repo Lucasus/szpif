@@ -77,7 +77,7 @@ AS
 	BEGIN
 	DECLARE @RoleList XML
 	select @RoleList = (select 'Roles' as '@Name', (select  RoleName as Name, dbo.stringToBit(Role) as Value from RoleNames Item
-		left join (SELECT Role FROM Roles  WHERE Roles.EmployeeId = 0) roles 
+		left join (SELECT Role FROM Roles  WHERE Roles.EmployeeId = @EmployeeID) roles 
 		on roles.Role = Item.RoleName FOR XML AUTO, TYPE)
  for xml path('CheckedListBox')
 ) 
