@@ -12,8 +12,9 @@ using System.Collections;
 using System.Data;
 using Logic;
 using Interface;
+using DatabaseLibrary;
 
-namespace DatabaseLibrary.Tests
+namespace Logic.Tests
 {
 
 	[TestFixture]
@@ -42,17 +43,12 @@ namespace DatabaseLibrary.Tests
 		}
 		
 		[Test()]
-		public void getValuesTest()
-		{
-			Assert.Fail();
-		}
-		
-		[Test()]
 		public void getColumnValuesFromViewTest()
 		{
-			ICollection<string> wynik = dm.getColumnValuesFromView("EmployeeViewForAdministration", "Login");
+			SzpifDatabase.DataBase.setupConnectionParameters("lukasz", "Master");
+			ICollection<string> wynik = dm.getColumnValuesFromView("RolesViewForCurrentUser", "Role");
 			Assert.IsNotNull(wynik);
-			Assert.AreEqual(5, wynik.Count);
+			Assert.AreEqual(2, wynik.Count);
 		}
 	}
 }
