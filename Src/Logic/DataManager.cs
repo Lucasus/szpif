@@ -86,20 +86,24 @@ namespace Logic
                 DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
                 column.Name = viewTable.Columns[i].ColumnName;
                 column.DataPropertyName = viewTable.Columns[i].ColumnName;
-
                 if (schema.Columns[i].DataType.Name == "SqlXml")
                 {
                     //                    SqlXml type = viewTable.Columns[i].
                     column.ReadOnly = true;
-//                    column.
+                    //                    column.
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     column.ValueType = typeof(SqlXml);
                 }
-                else
+                else if (column.DataPropertyName != "Id")
                 {
+                    
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     //viewTable.Columns[i].DataType = typeof(string);
-                   // int t = 12;
-                  //  column.ValueType = typeof(SqlString);
+                    // int t = 12;
+                    //  column.ValueType = typeof(SqlString);
                 }
+                else
+                    column.Width = 20;
                 if (column.DataPropertyName == "Id"
                     || !writeableParameters.Contains(column.Name))
                 {

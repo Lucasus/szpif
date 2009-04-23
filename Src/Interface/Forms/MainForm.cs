@@ -18,6 +18,7 @@ namespace Interface
         {
             InitializeComponent();
             this.PageManager = new PageManager(new PageFactory());
+            this.mainTabControl.Width = this.Width - 30;
             PageManager.makeTabPages(this.mainTabControl,Program.Context.UserRoles);
         }
 
