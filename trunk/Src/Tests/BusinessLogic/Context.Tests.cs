@@ -11,6 +11,7 @@ using Microsoft.SqlServer.Management.Common;
 using System.Collections;
 using System.Data;
 using Logic;
+using Interface;
 
 namespace DatabaseLibrary.Tests
 {
@@ -18,22 +19,17 @@ namespace DatabaseLibrary.Tests
 	[TestFixture]
 	public class ContextTests
 	{
-        void initializeContext(string login, string password, ICollection<string> perm, Context c)
-        {
-            c.UserLogin = login;
-            c.UserPassword = password;
-            c.UserRoles = perm;
-        }
 		[Test()]
 		public void initializationTest()
 		{
-			Context temp = new Context();
+			FormManager manager = new FormManager(new FormFactory());
+			Context temp = new Context(SzpifDatabase.DataBase, manager);
 			Assert.IsNotNull(temp);
-			Assert.AreEqual("", temp.UserLogin);
-			Assert.AreEqual("", temp.UserPassword);
-			Assert.AreEqual(0, temp.UserRoles.Count);
+			Assert.IsNull(temp.UserLogin);
+			Assert.IsNull(temp.UserPassword);
+			Assert.IsNull(temp.UserRoles);
 			
-			ICollection<string> permissions = new List<string>();
+			/*ICollection<string> permissions = new List<string>();
 			initializeContext("Moose","Master",permissions,temp);
 			Assert.IsNotNull(temp);
 			Assert.AreEqual(temp.UserLogin, "Moose");
@@ -44,7 +40,7 @@ namespace DatabaseLibrary.Tests
 			initializeContext("Lukasz", "luk123", permissions2,temp);
 			Assert.AreEqual(temp.UserLogin, "Lukasz");
 			Assert.AreEqual(temp.UserPassword, "luk123");
-			Assert.AreSame(temp.UserRoles, permissions2);
+			Assert.AreSame(temp.UserRoles, permissions2);*/
 		}
 	}
 }

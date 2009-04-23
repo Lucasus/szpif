@@ -38,7 +38,7 @@ namespace Logic.Tests
 			Assert.AreEqual(0, tabPagesNull.Count);
 			
 			List<string> permissions = new List<string>();
-            permissions.Add("Administrator");
+            permissions.Add("Właściciel");
             permissions.Add("Ogólne");
             permissions.Add("PM");
             TabControl tabControl =  new TabControl();
@@ -47,7 +47,6 @@ namespace Logic.Tests
             Assert.AreEqual(3, tabPages.Count);
             foreach (TabPage t in tabPages)
                 Assert.Contains(t, tabControl.Controls);
-
         }
     }
 }
