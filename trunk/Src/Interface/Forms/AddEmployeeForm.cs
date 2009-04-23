@@ -19,7 +19,13 @@ namespace Interface
             InitializeComponent();
             gridView = Program.Context.ActualGridView;
             schema = Program.Context.ActualSchema;
-            Program.Context.ContentManager.generateContent(this, gridView,schema);
+            valueBoxes = Program.Context.ContentManager.generateContent(this, gridView,schema);
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            Program.Context.ContentManager.addRowToView(valueBoxes, gridView, schema);
+            this.Close();
         }
     }
 }
