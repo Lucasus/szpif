@@ -39,13 +39,13 @@
             this.mainTabControl.Size = new System.Drawing.Size(632, 462);
             this.mainTabControl.TabIndex = 0;
             // 
-            // UserPanelForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 484);
+            this.ClientSize = new System.Drawing.Size(857, 485);
             this.Controls.Add(this.mainTabControl);
-            this.Name = "UserPanelForm";
+            this.Name = "MainForm";
             this.Text = "Panel użytkownika";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserPanel_FormClosed);
             this.ResumeLayout(false);

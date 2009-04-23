@@ -95,6 +95,9 @@ namespace Interface
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.EmployeesForAdministrationGridView);
+            this.Size = new System.Drawing.Size(300, 100);
+            this.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.EmployeeAdministrationPage_ControlAdded);
+            this.Resize += new System.EventHandler(this.EmployeeAdministrationPage_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.EmployeesForAdministrationGridView)).EndInit();
             this.ResumeLayout(false);
 

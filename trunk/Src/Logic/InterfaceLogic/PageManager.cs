@@ -21,7 +21,7 @@ namespace Logic
             t.Location = new System.Drawing.Point(4, 25);
             t.Name = name;
             t.Padding = new System.Windows.Forms.Padding(3);
-            t.Size = new System.Drawing.Size(624, 433);
+           // t.Size = new System.Drawing.Size(624, 433);
             t.TabIndex = 0;
             t.UseVisualStyleBackColor = true;
         }
@@ -67,9 +67,11 @@ namespace Logic
                 newPage = PageFactory.createTabPage(pName);
                 if (newPage != null)
                 {
+//                    newPage.Width = tc.Width;
                     setupPage(newPage, pName);
                     tc.Controls.Add(newPage);
                     pages.Add(newPage);
+                    newPage.Width = tc.Width - 50;
                 }
             }
             return pages;

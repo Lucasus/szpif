@@ -22,9 +22,11 @@ namespace Interface
         public EmployeeAdministrationPage(string text) : base(text)
         {
             InitializeComponent();
-            schema = Program.Context.DataManager.bindToView(EmployeesForAdministrationGridView);
+            //this.Width = this.Parent.Width;
+            this.EmployeesForAdministrationGridView.Width = this.Width - 10;
             this.EmployeesForAdministrationGridView.Columns.AddRange(new DataGridViewColumn[] {
             this.Edytuj});
+            schema = Program.Context.DataManager.bindToView(EmployeesForAdministrationGridView);
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
@@ -80,6 +82,15 @@ namespace Interface
             e.Value = new SqlString((string)e.Value);
 //            e.DesiredType = "SqlString";
 //            e.
+        }
+
+        private void EmployeeAdministrationPage_ControlAdded(object sender, ControlEventArgs e)
+        {
+        }
+
+        private void EmployeeAdministrationPage_Resize(object sender, EventArgs e)
+        {
+            this.EmployeesForAdministrationGridView.Width = this.Width - 20;
         }
     }
 }
