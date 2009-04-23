@@ -20,25 +20,22 @@ namespace Logic.Tests
 	[TestFixture]
 	public class PermissionManagerTests
 	{
-		private Context context;
+		PermissionManager pm;
 		[TestFixtureSetUp]
 		public void setUpAll()
 		{
-			context = new Context(SzpifDatabase.DataBase, new FormManager(new FormFactory()));
+			pm = new PermissionManager(SzpifDatabase.DataBase);
 		}
 		
 		[Test()]
 		public void constructorTest()
 		{
-			PermissionManager pm = new PermissionManager(context.Database);
 			Assert.IsNotNull(pm);
 		}
 		
 		[Test()]
 		public void getPermissionsTest()
 		{
-			PermissionManager pm = new PermissionManager(context.Database);
-
 			ICollection<string> permissions = pm.getUserPermissions("Lorem", "Ipsum");
 			Assert.IsNull(permissions);
 
