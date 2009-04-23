@@ -40,7 +40,7 @@ namespace DatabaseLibrary.Tests
         [SetUp]
         public void settinUp()
         {
-            clearDatabase();
+            //clearDatabase();
         }
 
         [Test()]
@@ -53,31 +53,31 @@ namespace DatabaseLibrary.Tests
         [Test()]
         public void checkLoginTest()
         {
-            ICollection<string> permissions = null;
-//                database.CheckLogin("lukasz", "master");
-            Assert.IsNotNull(permissions);
-            Assert.Contains("Boss", (ICollection)permissions);
-            Assert.Contains("Administrator", (ICollection)permissions);
-            ICollection<string> permissions2 = null;
-//				database.CheckLogin("lukaszz", "master");
-            Assert.IsNotNull(permissions2);
-            Assert.AreEqual(0, permissions2.Count);
+            bool wynik = database.CheckLogin("lukasz", "Master");
+			Assert.IsTrue(wynik);
+			wynik = database.CheckLogin("","");
+			Assert.IsFalse(wynik);
+			wynik = database.CheckLogin("lukasz", "abla");
+			Assert.IsFalse(wynik);
+			wynik = database.CheckLogin("abla", "Master");
+			Assert.IsFalse(wynik);
         }
 
-		[Test()]
+		/*[Test()]
 		public void changePasswordCheckTest()
 		{
-            ICollection<string> permissions = null;// database.CheckLogin("lukasz", "master");
-			Assert.IsNotNull(permissions);
-			database.ChangePassword("lukasz", "master", "mooster");
-            ICollection<string> permissions2 = null;// database.CheckLogin("lukasz", "mooster");
-			Assert.IsNotNull(permissions2);
-			database.ChangePassword("lukasz", "mooster", "master");
-            ICollection<string> permissions3 = null;// database.CheckLogin("lukasz", "master");
-			Assert.IsNotNull(permissions3);
-			database.ChangePassword("lukasz", "bublak", "mooster");
-            ICollection<string> permissions4 = null;// database.CheckLogin("lukasz", "master");
-			Assert.IsNotNull(permissions4);
+			database.ChangePassword("lukasz", "Master", "Abla");
+			bool wynik = database.CheckLogin("lukasz", "Abla");
+            Assert.IsTrue(wynik);
+            database.ChangePassword("luka", "Abla", "Master");
+            wynik = database.CheckLogin("lukasz", "Master");
+            Assert.IsFalse(wynik);
+            database.ChangePassword("lukasz", "Abl", "Master");
+            wynik = database.CheckLogin("lukasz", "Master");
+            Assert.IsFalse(wynik);
+            database.ChangePassword("lukasz", "Abla", "Master");
+            wynik = database.CheckLogin("lukasz", "Master");
+            Assert.IsTrue(wynik);
 		}
 
 		[Test()]
@@ -97,6 +97,6 @@ namespace DatabaseLibrary.Tests
             DataTable dt = database.getView("EmployeesAdministrationView");
             Assert.AreEqual(3, dt.Rows.Count);
             Assert.AreEqual("Losiek Loskowski", dt.Rows[2]["Name"]);
-        }
+        }*/
     }
 }

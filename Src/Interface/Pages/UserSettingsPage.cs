@@ -76,7 +76,7 @@ namespace Interface
 
 		private void eMailChangeButton_Click(object sender, EventArgs e)
 		{
-/*            Context c = Program.Context;
+			/*Context c = Program.Context;
 			SzpifDatabase.DataBase.ChangeEMail(c.UserLogin, c.UserPassword, eMailChangeBox.Text,priviliges);
 			eMailChangeBox.Text = "";*/
 		}
