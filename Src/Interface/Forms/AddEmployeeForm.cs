@@ -14,8 +14,8 @@ namespace Interface
         public AddEmployeeForm()
         {
             InitializeComponent();
-//            Program.Context. . DataManager.generateContentForInsert(this, 
-  //              Program.Context.ActualGridView, Program.Context.ActualSchema);
+            Program.Context.ContentManager.generateContentForInsert(this, 
+                Program.Context.ActualGridView, Program.Context.ActualSchema);
         }
     }
 }

@@ -65,12 +65,5 @@ namespace Logic
             return DataManager.getValues(view, columnName);
         }
 
-        public void generateContentForInsert(Form InsertForm, DataGridView grid, DataTable schema)
-        {
-        }
-
-        public void generateContentForUpdate(Form UpdateForm)
-        {
-        }
     }
 }
