@@ -75,59 +75,10 @@ namespace Interface
         public ChangeEmployeeForm()
         {
             InitializeComponent();
-            valueBoxes = new List<Control>();
             gridView = Program.Context.ActualGridView;
-            // współrzędne lewego górnego rogu.
-            int x = 17;
-            int y = 15;
-            int height = 13;
-            int width = 50;
-            int space = 9;
-            int counter = 0;
             DataTable schema = Program.Context.ActualSchema;
-            int aktY = y;
-            foreach(DataGridViewColumn column in gridView.Columns)
-            {
-                if (column.Name != "Edytuj" && column.Name != "Id")
-                {
-                    Label label = new Label();
-                    label.Location = new Point(x, aktY); 
-                    label.Name = column.Name + "Label";
-                    label.Size = new Size(width, height);
-                    label.TabIndex = counter + 1;
-                    label.Text = column.Name;
-                    this.Controls.Add(label);
-
-                    if (schema.Columns.Contains(column.Name) &&
-                        schema.Columns[column.Name].DataType.Name == "SqlXml")
-         //               if (column.ValueType.Name == "SqlXml")
-                    {
-                        CheckedListBox listBoxValue = new CheckedListBox();
-                        listBoxValue.Location = new Point(x + label.Width + 5, aktY);
-                        listBoxValue.Name = column.Name;
-                        listBoxValue.CheckOnClick = true;
-                        listBoxValue.Size = new Size(width * 4, 120);
-
-                        this.Controls.Add(listBoxValue);
-                        valueBoxes.Add(listBoxValue);
-
-                    }
-                    else
-                    {
-
-                        TextBox valueBox = new TextBox();
-                        valueBox.Location = new Point(x + label.Width + 5, aktY);
-                        valueBox.Name = column.Name;
-                        valueBox.Size = new Size(width * 4, height - 3);
-
-                        this.Controls.Add(valueBox);
-                        valueBoxes.Add(valueBox);
-                        aktY += space + height;
-                    }
-                    ++counter;
-                }
-            }
-            
+            valueBoxes = Program.Context.ContentManager.generateContent(this, gridView, schema);
+            // współrzędne lewego górnego rogu.
             getDataFromGrid();
         }
 

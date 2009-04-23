@@ -11,11 +11,15 @@ namespace Interface
 {
     public partial class AddEmployeeForm : Form
     {
+        DataGridView gridView;
+        DataTable schema;
+        List<Control> valueBoxes;
         public AddEmployeeForm()
         {
             InitializeComponent();
-            Program.Context.ContentManager.generateContentForInsert(this, 
-                Program.Context.ActualGridView, Program.Context.ActualSchema);
+            gridView = Program.Context.ActualGridView;
+            schema = Program.Context.ActualSchema;
+            Program.Context.ContentManager.generateContent(this, gridView,schema);
         }
     }
 }
