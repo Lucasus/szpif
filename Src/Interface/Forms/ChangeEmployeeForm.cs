@@ -26,9 +26,7 @@ namespace Interface
                 if (valueBox is CheckedListBox)
                 {
                     CheckedListBox box = (CheckedListBox)valueBox;
-
                     string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
-
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.Load(new StringReader(help));
                     XElement xml = XElement.Load(new StringReader(help));
@@ -38,20 +36,11 @@ namespace Interface
                                 select x;
 
                     for (int i = 0; i < box.Items.Count; ++i)
-                    {
                         box.SetItemChecked(i, false);
-                    }
-
                     foreach (var record in query)
-                    {
                         for (int i = 0; i < box.Items.Count; ++i)
-                        {
                             if (box.GetItemText(box.Items[i]) == record.Attribute("Name").Value)
-                            {
                                 box.SetItemChecked(i, true);
-                            }
-                        }
-                    }
                 }
                 else
                 {
@@ -65,7 +54,6 @@ namespace Interface
             gridView = Program.Context.ActualGridView;
             DataTable schema = Program.Context.ActualSchema;
             valueBoxes = Program.Context.ContentManager.generateContent(this, gridView, schema);
-            // współrzędne lewego górnego rogu.
             getDataFromGrid();
         }
 
@@ -90,8 +78,6 @@ namespace Interface
 
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.Load(new StringReader(help));
-                    //XElement xml = XElement.Load(new StringReader(help.Value));
-//                    XmlNodeList xnList = xml.SelectNodes("/Names/Name[@type='M']");
                     for (int i = 0; i < box.Items.Count; ++i)
                     {
                         string path = "/CheckedListBox/Item[@Name='" + box.GetItemText(box.Items[i]) + "']";
