@@ -90,17 +90,16 @@ namespace Logic
                 {
                     //                    SqlXml type = viewTable.Columns[i].
                     column.ReadOnly = true;
+                    DataGridViewCellStyle helpStyle = new DataGridViewCellStyle();
+                    helpStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+                    column.DefaultCellStyle = helpStyle;
                     //                    column.
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     column.ValueType = typeof(SqlXml);
                 }
                 else if (column.DataPropertyName != "Id")
                 {
-                    
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    //viewTable.Columns[i].DataType = typeof(string);
-                    // int t = 12;
-                    //  column.ValueType = typeof(SqlString);
                 }
                 else
                     column.Width = 20;

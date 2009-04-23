@@ -45,6 +45,7 @@ namespace Interface
             this.AddEmployeeButton.TabIndex = 0;
             this.AddEmployeeButton.Text = "Dodaj pracownika";
             this.AddEmployeeButton.UseVisualStyleBackColor = true;
+            this.AddEmployeeButton.Click += new System.EventHandler(this.AddEmployeeButton_Click);
             // 
             // EmployeesForAdministrationGridView
             // 

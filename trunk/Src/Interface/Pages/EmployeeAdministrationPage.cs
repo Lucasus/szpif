@@ -92,5 +92,10 @@ namespace Interface
         {
             this.EmployeesForAdministrationGridView.Width = this.Width - 20;
         }
+
+        private void AddEmployeeButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
