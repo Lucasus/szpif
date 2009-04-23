@@ -20,6 +20,8 @@ namespace Interface
                     return new MainForm();
                 case "ChangeEmployeeForm":
                     return new ChangeEmployeeForm();
+                case "AddEmployeeForm":
+                    return new AddEmployeeForm();
             }
             return null;
         }
