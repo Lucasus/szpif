@@ -37,34 +37,21 @@ namespace Interface
                                 where (int)x.Attribute("Value") == 1
                                 select x;
 
-                    if (box.Items.Count == 0)
-                    {
-                        box.Items.AddRange(new object[] {
-                            "Właściciel",
-                            "Project Manager",
-                            "Przełożony",
-                            "Pracownik",
-                            "Opiekun handlowy"});
-                        box.Height = 20 * box.Items.Count;
-                    }
-
                     for (int i = 0; i < box.Items.Count; ++i)
                     {
                         box.SetItemChecked(i, false);
                     }
-                    
+
                     foreach (var record in query)
                     {
-                        for(int i = 0 ; i < box.Items.Count ; ++i)
+                        for (int i = 0; i < box.Items.Count; ++i)
                         {
                             if (box.GetItemText(box.Items[i]) == record.Attribute("Name").Value)
                             {
-                                box.SetItemChecked(i,true);
+                                box.SetItemChecked(i, true);
                             }
                         }
                     }
-
-
                 }
                 else
                 {

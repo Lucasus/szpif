@@ -65,6 +65,17 @@ namespace Logic
                         listBoxValue.CheckOnClick = true;
                         listBoxValue.Size = new Size(label.Width * 4, 120);
                         control = listBoxValue;
+                        if (column.Name == "Roles")
+                        {
+                            listBoxValue.Items.AddRange(new object[] {
+                            "Właściciel",
+                            "Project Manager",
+                            "Przełożony",
+                            "Pracownik",
+                            "Opiekun handlowy"});
+                            listBoxValue.Height = 20 * listBoxValue.Items.Count;
+
+                        }
                         break;
                     }
                 default:
@@ -80,5 +91,12 @@ namespace Logic
             return control;
         }
 
+
+        public void addRowToView(List<Control> valueBoxes, DataGridView gridView, DataTable schema)
+        {
+            DataTable dt = (DataTable)gridView.DataSource;
+            DataRow dr = dt.NewRow() ;
+            dt.Rows.Add(dr);
+        }
     }
 }

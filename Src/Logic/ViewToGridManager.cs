@@ -40,9 +40,10 @@ namespace Logic
 				column.DataPropertyName = viewTable.Columns[i].ColumnName;
 				if (schema.Columns[i].DataType.Name == "SqlXml")
 				{
-					//                    SqlXml type = viewTable.Columns[i].
-					column.ReadOnly = true;
-					//                    column.
+                    DataGridViewCellStyle helpStyle = new DataGridViewCellStyle();
+                    helpStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+                    column.DefaultCellStyle = helpStyle;
+                    column.ReadOnly = true;
 					column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 					column.ValueType = typeof(SqlXml);
 				}
@@ -50,9 +51,6 @@ namespace Logic
 				{
 
 					column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-					//viewTable.Columns[i].DataType = typeof(string);
-					// int t = 12;
-					//  column.ValueType = typeof(SqlString);
 				}
 				else
 					column.Width = 20;
