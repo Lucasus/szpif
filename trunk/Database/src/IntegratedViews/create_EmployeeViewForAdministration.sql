@@ -45,8 +45,8 @@ CREATE PROCEDURE updateEmployeeViewForAdministration
   @Name			nvarchar(40),
   @Roles		xml,
   @EMail		nvarchar(40)
-WITH EXECUTE AS 'szpifadmin'
 AS
+	EXECUTE AS LOGIN = 'szpifadmin'
     update Employees set Login = @Login  where Id = @Id    
     update Credentials set Name = @Name, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
@@ -67,12 +67,12 @@ CREATE PROCEDURE insertEmployeeViewForAdministration
   @Name			nvarchar(40),
   @Roles		xml,
   @EMail		nvarchar(40)
-WITH EXECUTE AS 'szpifadmin'
+WITH EXECUTE AS  'szpifadmin'
 AS
-INSERT INTO [Credentials] VALUES (@Name,@EMail);
-declare @newId int;
-SELECT @newId = SCOPE_IDENTITY() 
-INSERT INTO [Employees]  VALUES (@newId,@EMail, 'haslo');
+--INSERT INTO [Credentials] VALUES (@Name,@EMail);
+--declare @newId int;
+--SELECT @newId = SCOPE_IDENTITY() 
+--INSERT INTO [Employees]  VALUES (@newId,@EMail, 'haslo');
 --SELECT @newId = SCOPE_IDENTITY() 
 
 --INSERT INTO Roles
