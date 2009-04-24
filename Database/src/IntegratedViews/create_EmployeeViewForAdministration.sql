@@ -45,8 +45,8 @@ CREATE PROCEDURE updateEmployeeViewForAdministration
   @Name			nvarchar(40),
   @Roles		xml,
   @EMail		nvarchar(40)
+WITH EXECUTE AS 'szpifadmin'
 AS
-	EXECUTE AS LOGIN = 'szpifadmin'
     update Employees set Login = @Login  where Id = @Id    
     update Credentials set Name = @Name, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
