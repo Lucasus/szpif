@@ -53,3 +53,7 @@ CREATE TABLE [Help]
 );
 
 GO
+
+alter database szpifDatabase set trustworthy on 
+
+GO
