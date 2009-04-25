@@ -42,6 +42,7 @@ namespace Interface
             this.deleteEmployeeButton.TabIndex = 6;
             this.deleteEmployeeButton.Text = "Usuń pracownika";
             this.deleteEmployeeButton.UseVisualStyleBackColor = true;
+            this.deleteEmployeeButton.Click += new System.EventHandler(this.deleteEmployeeButton_Click);
             // 
             // SaveChangesButton
             // 
@@ -67,7 +68,7 @@ namespace Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 259);
+            this.ClientSize = new System.Drawing.Size(312, 258);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.deleteEmployeeButton);
