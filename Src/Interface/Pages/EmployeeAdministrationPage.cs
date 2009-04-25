@@ -95,5 +95,11 @@ namespace Interface
             Program.Context.ActualGridView = EmployeesForAdministrationGridView;
             Program.Context.FormManager.showForm("AddEmployeeForm");
         }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            schema = Program.Context.ViewToGridManager.reconnect(EmployeesForAdministrationGridView);
+
+        }
     }
 }

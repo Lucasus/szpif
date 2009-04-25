@@ -69,7 +69,6 @@ CREATE PROCEDURE insertEmployeeViewForAdministration
   @EMail		nvarchar(40)
 WITH EXECUTE AS  'szpifadmin'
 AS
---EXECUTE AS USER = 'szpifadmin'
 INSERT INTO [Credentials] VALUES (@Name,@EMail);
 declare @newId int;
 SELECT @newId = SCOPE_IDENTITY() 
@@ -85,13 +84,18 @@ GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteEmployeeViewForAdministration
 	@Id			int
---WITH EXECUTE AS OWNER
+WITH EXECUTE AS  'szpifadmin'
 AS
-
+	DELETE FROM Roles where EmployeeId = @Id
+	declare @CredentialsId int;
+	select @CredentialsId = (SELECT CredentialsId from Employees where Id = @Id)
+	DELETE FROM Employees where Id = @Id
+	DELETE FROM Credentials where Id = @CredentialsId 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
 GRANT EXECUTE ON    getEmployeeViewForAdministration TO OwnerRole
 GRANT EXECUTE ON updateEmployeeViewForAdministration TO OwnerRole
 GRANT EXECUTE ON insertEmployeeViewForAdministration TO OwnerRole
+GRANT EXECUTE ON deleteEmployeeViewForAdministration TO OwnerRole
 use szpifDatabase
 

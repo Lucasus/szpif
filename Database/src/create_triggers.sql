@@ -35,7 +35,7 @@ GO
 
 
 CREATE TRIGGER Employees_Delete ON Employees
-FOR DELETE
+INSTEAD OF DELETE
 AS
      DECLARE @login nvarchar(40);  
      DECLARE @Id int;  
@@ -58,6 +58,15 @@ AS
      END  
      CLOSE @ICURSOR  
      DEALLOCATE @ICURSOR;  
+     
+     select @Id = (select Id from Deleted)
+	DELETE FROM Roles where EmployeeId = @Id
+	declare @CredentialsId int;
+	select @CredentialsId = (SELECT CredentialsId from Employees where Id = @Id)
+	DELETE FROM Employees where Id = @Id
+	DELETE FROM Credentials where Id = @CredentialsId 
+
+     
 GO
 
 CREATE TRIGGER Roles_Insert ON Roles

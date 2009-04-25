@@ -89,6 +89,7 @@ namespace Interface
             this.RefreshButton.TabIndex = 0;
             this.RefreshButton.Text = "Odśwież";
             this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // EmployeeAdministrationPage
             // 

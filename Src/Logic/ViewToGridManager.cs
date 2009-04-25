@@ -24,6 +24,16 @@ namespace Logic
 		/// jako readonly
 		/// </summary>
 		/// <param name="dataGrid">The data grid.</param>
+        public DataTable reconnect(DataGridView dataGrid)
+        {
+            DataManager dm = new DataManager(database);
+            string viewName = dm.gridNameToViewName(dataGrid.Name);
+            DataTable schema = new DataTable();
+            DataTable viewTable = database.getView(viewName, schema);
+            dataGrid.AutoGenerateColumns = false;
+            dataGrid.DataSource = viewTable;
+            return schema;
+        }
 		public DataTable bindToView(DataGridView dataGrid)
 		{
 			DataManager dm = new DataManager(database);
@@ -64,6 +74,7 @@ namespace Logic
 				}
 				dataGrid.Columns.Add(column);
 			}
+            if (views.ContainsKey(viewName)) views.Remove(viewName);
 			views.Add(viewName, new SchemedDataTable(viewTable, schema));
 			return schema;
 		}
