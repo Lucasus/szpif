@@ -69,16 +69,17 @@ CREATE PROCEDURE insertEmployeeViewForAdministration
   @EMail		nvarchar(40)
 WITH EXECUTE AS  'szpifadmin'
 AS
---INSERT INTO [Credentials] VALUES (@Name,@EMail);
---declare @newId int;
---SELECT @newId = SCOPE_IDENTITY() 
---INSERT INTO [Employees]  VALUES (@newId,@EMail, 'haslo');
---SELECT @newId = SCOPE_IDENTITY() 
+--EXECUTE AS USER = 'szpifadmin'
+INSERT INTO [Credentials] VALUES (@Name,@EMail);
+declare @newId int;
+SELECT @newId = SCOPE_IDENTITY() 
+INSERT INTO [Employees]  VALUES (@newId,@EMail, 'haslo');
+SELECT @newId = SCOPE_IDENTITY() 
 
---INSERT INTO Roles
---SELECT @newId, nref.value('@Name[1]', 'nvarchar(50)') Role
---FROM   @Roles.nodes('//Item') AS R(nref)
---WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
+INSERT INTO Roles
+SELECT @newId, nref.value('@Name[1]', 'nvarchar(50)') Role
+FROM   @Roles.nodes('//Item') AS R(nref)
+WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
 
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 

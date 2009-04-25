@@ -1,10 +1,23 @@
 use szpifDatabase
 PRINT 'DELETE DATA...'
 
-
-
-
 SET NOCOUNT ON
+
+Declare @login varchar(100)
+DECLARE @ICURSOR CURSOR;  
+SET @ICURSOR = CURSOR FOR select name from sys.server_principals where type IN ('S') and is_disabled = 0
+				and name != 'szpifadmin';   
+     OPEN @ICURSOR  
+     FETCH NEXT FROM @ICURSOR INTO @login
+     WHILE (@@FETCH_STATUS = 0)  
+     BEGIN  
+		Exec('DROP LOGIN ' + @login)
+
+      FETCH NEXT FROM @ICURSOR INTO @login;  
+     END  
+     CLOSE @ICURSOR  
+     DEALLOCATE @ICURSOR;  
+
 DECLARE @ObjectTypes TABLE
 (
 vType char(2)

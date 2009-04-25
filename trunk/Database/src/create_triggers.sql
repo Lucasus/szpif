@@ -22,11 +22,7 @@ IF (SELECT COUNT(*) FROM Inserted) > 1
 	     EXEC('DROP USER ' + @login)
 	END     
     
-	if not exists(select * from sys.server_principals
-		where type IN ('S', 'U', 'G') and name = @login)
-		begin
-		EXEC('CREATE LOGIN ' + @login + ' WITH PASSWORD = "' + @password + '"')
-	end
+	EXEC('CREATE LOGIN ' + @login + ' WITH PASSWORD = "' + @password + '"')
 
 	if USER_ID(@login) is  null
 	BEGIN
@@ -49,19 +45,13 @@ AS
      FETCH NEXT FROM @ICURSOR INTO @Id, @login
      WHILE (@@FETCH_STATUS = 0)  
      BEGIN  
-		if exists(select * from sys.server_principals
-		where type IN ('S', 'U', 'G') and name = @login)
-		begin
---			set @name = quotename('somelogin')
-			exec('drop login ' + @login)
-		end
+		exec('drop login ' + @login)
 
 	   if USER_ID(@login) is not null
 	   BEGIN
          PRINT 'Usuwam ' + @login;
 	     EXEC sp_droprolemember 'BasicRole', @login
 	     EXEC('DROP USER ' + @login)
---	     EXEC('DROP LOGIN ' + @login)
 	   END     
 	   DELETE FROM Roles where EmployeeId = @Id	       
        FETCH NEXT FROM @ICURSOR INTO @Id, @login;  
@@ -92,11 +82,6 @@ AS
      FETCH NEXT FROM @ICURSOR INTO @role
 
 	 END
---IF (SELECT COUNT(*) FROM Inserted) > 1
---	BEGIN
---		RAISERROR('Maksymalnie na raz mo¿na dodaæ jedno po³¹czenie', 16, 1)
---		ROLLBACK TRANSACTION
---    END
 GO
 
 CREATE TRIGGER Roles_Delete ON Roles
