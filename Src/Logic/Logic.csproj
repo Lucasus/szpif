@@ -49,6 +49,9 @@
   <ItemGroup>
     <Compile Include="ContentManager.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Controls\LinkedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DataManager.cs" />
     <Compile Include="IntegratedView.cs" />
     <Compile Include="InterfaceLogic\FormManager.cs" />

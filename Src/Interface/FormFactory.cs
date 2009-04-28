@@ -22,6 +22,8 @@ namespace Interface
                     return new ChangeEmployeeForm();
                 case "AddEmployeeForm":
                     return new AddEmployeeForm();
+                case "SelectPrzelozonyForm":
+                    return new SelectPrzelozonyForm();
             }
             return null;
         }

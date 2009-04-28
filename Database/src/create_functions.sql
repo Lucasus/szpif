@@ -39,6 +39,17 @@ GO
 IF EXISTS 
 (
 	SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'przelozonyToXmlLink'
+	AND ROUTINE_SCHEMA = 'dbo'
+	AND ROUTINE_TYPE = 'FUNCTION'
+)
+BEGIN
+	DROP FUNCTION dbo.przelozonyToXmlLink
+END
+GO
+IF EXISTS 
+(
+	SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'stringToBit'
 	AND ROUTINE_SCHEMA = 'dbo'
 	AND ROUTINE_TYPE = 'FUNCTION'
@@ -76,20 +87,36 @@ RETURNS XML
 AS
 	BEGIN
 	DECLARE @RoleList XML
-	select @RoleList = (select 'Roles' as '@Name', (select  RoleName as Name, dbo.stringToBit(Role) as Value from RoleNames Item
-		left join (SELECT Role FROM Roles  WHERE Roles.EmployeeId = @EmployeeID) roles 
-		on roles.Role = Item.RoleName FOR XML AUTO, TYPE)
- for xml path('CheckedListBox')
-) 
-
-	
---	SET @RoleList = ''
---	SELECT @RoleList = @RoleList + ' ' + Role + ', '
---		FROM Roles
---		WHERE Roles.EmployeeId = @EmployeeID
-	RETURN @RoleList
+	select @RoleList = 
+		(
+		  select 'Roles' as '@Name', (select  RoleName as Name, dbo.stringToBit(Role) as Value from RoleNames Item
+			left join (SELECT Role FROM Roles  WHERE Roles.EmployeeId = @EmployeeID) roles 
+			on roles.Role = Item.RoleName FOR XML AUTO, TYPE)
+			for xml path('CheckedListBox')
+		) 	
+RETURN @RoleList
 END
 
+GO
+/*------------------------------------------------------------------- */
+CREATE FUNCTION dbo.przelozonyToXmlLink
+( 
+	@PrzelozonyID int 
+) 
+RETURNS XML
+AS
+	BEGIN
+	DECLARE @Link XML
+	declare @credId int;
+	select @credId = (select CredentialsId from Employees where Id = @PrzelozonyID)
+	select @Link = 
+		(
+			select 'Przelozony' as Name, Id, (select Name from Credentials where Id = @credId) as Text
+			from Employees Link where Id = @PrzelozonyID
+			FOR XML AUTO, TYPE
+		) 	
+RETURN @Link
+END
 -------------------------------------------------------------------
 GO
 CREATE FUNCTION dbo.getEmployeeByLoginAndPassword

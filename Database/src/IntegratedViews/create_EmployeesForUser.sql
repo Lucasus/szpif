@@ -30,6 +30,7 @@ AS
 		em.Login, 
 		creds.Name, 
 		creds.EMail,
+		em.Przelozony,
 	    dbo.xmlRoles (em.Id) AS Roles
 	FROM Employees em
 		inner join [Credentials] creds on em.CredentialsId = creds.Id
@@ -41,18 +42,20 @@ CREATE PROCEDURE updateEmployeesForUser
   @Id			int,
   @Login		nvarchar(40),
   @Name			nvarchar(40),
+  @EMail		nvarchar(40),
   @Password		nvarchar(40),
-  @EMail		nvarchar(40)
+  @Przelozony	int
 WITH EXECUTE AS 'szpifadmin'
 AS
-    update Employees set Login = @Login  where Id = @Id    
+    update Employees set Login = @Login, Przelozony = @Przelozony  where Id = @Id    
     IF @Password != '' and @Password is not null
     BEGIN
 		update Employees set Password = @Password  where Id = @Id    
     END
-
+    
     update Credentials set Name = @Name, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
+
     
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
