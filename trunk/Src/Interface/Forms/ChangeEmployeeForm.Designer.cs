@@ -36,7 +36,7 @@ namespace Interface
             // 
             // deleteEmployeeButton
             // 
-            this.deleteEmployeeButton.Location = new System.Drawing.Point(105, 225);
+            this.deleteEmployeeButton.Location = new System.Drawing.Point(143, 225);
             this.deleteEmployeeButton.Name = "deleteEmployeeButton";
             this.deleteEmployeeButton.Size = new System.Drawing.Size(99, 23);
             this.deleteEmployeeButton.TabIndex = 6;
@@ -56,7 +56,7 @@ namespace Interface
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(210, 225);
+            this.button1.Location = new System.Drawing.Point(286, 225);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 23);
             this.button1.TabIndex = 12;
@@ -68,7 +68,7 @@ namespace Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(312, 258);
+            this.ClientSize = new System.Drawing.Size(392, 257);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.deleteEmployeeButton);

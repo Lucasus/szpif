@@ -102,16 +102,9 @@ namespace DatabaseLibrary
             (new NonQueryTransaction(command)).tryExecute();
         }
 
-        public DataTable getView(string viewName)
+        public IntegratedView getView(string viewName)
         {
             GetViewTransaction t = new GetViewTransaction(viewName);
-            t.tryExecute();
-            return t.View;
-        }
-
-        public DataTable getView(string viewName, DataTable schema)
-        {
-            GetViewTransaction t = new GetViewTransaction(viewName,schema);
             t.tryExecute();
             return t.View;
         }
@@ -124,7 +117,7 @@ namespace DatabaseLibrary
         
         public List<string> getWriteableAttributes(string viewName)
         {
-            GetParametersTransaction t = new GetParametersTransaction(viewName);
+            GetParametersTransaction t = new GetParametersTransaction(viewName, "update");
             t.tryExecute();
             return t.Parameters;
         }

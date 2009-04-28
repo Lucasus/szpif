@@ -10,56 +10,31 @@ using System.Data.SqlTypes;
 using System.Xml;
 using System.IO;
 using System.Xml.Linq;
+using Logic;
 
 namespace Interface
 {
     public partial class ChangeEmployeeForm : Form
     {
         int row;
+        ContentManager contentManager;
         DataGridView gridView;
         List<Control> valueBoxes;
-        void getDataFromGrid()
-        {
-            row = Program.Context.ActualGridArguments.RowIndex;
-            foreach (Control valueBox in valueBoxes)
-            {
-                if (valueBox is CheckedListBox)
-                {
-                    CheckedListBox box = (CheckedListBox)valueBox;
-                    string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
-                    XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.Load(new StringReader(help));
-                    XElement xml = XElement.Load(new StringReader(help));
-                    
-                    var query = from x in xml.Elements("Item")
-                                where (int)x.Attribute("Value") == 1
-                                select x;
 
-                    for (int i = 0; i < box.Items.Count; ++i)
-                        box.SetItemChecked(i, false);
-                    foreach (var record in query)
-                        for (int i = 0; i < box.Items.Count; ++i)
-                            if (box.GetItemText(box.Items[i]) == record.Attribute("Name").Value)
-                                box.SetItemChecked(i, true);
-                }
-                else
-                {
-                    valueBox.Text = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
-                }
-            }
-        }
         public ChangeEmployeeForm()
         {
+            row = Program.Context.ActualGridArguments.RowIndex;
+            contentManager = Program.Context.ContentManager;
             InitializeComponent();
             gridView = Program.Context.ActualGridView;
-            DataTable schema = Program.Context.ActualSchema;
-            valueBoxes = Program.Context.ContentManager.generateContent(this, gridView, schema);
-            getDataFromGrid();
+            valueBoxes = contentManager.generateContent(this, gridView, Program.Context.ActualIntegratedView);
+            contentManager.getDataFromGrid(valueBoxes, gridView, Program.Context.ActualIntegratedView, row);
         }
 
         protected void MainForm_Activated(object sender, System.EventArgs e)
         {
-            getDataFromGrid();
+            row = Program.Context.ActualGridArguments.RowIndex;
+            contentManager.getDataFromGrid(valueBoxes, gridView, Program.Context.ActualIntegratedView, row);
         }
 
         protected void MainForm_Closed(object sender, System.EventArgs e)
@@ -70,30 +45,34 @@ namespace Interface
         {
             foreach (Control valueBox in valueBoxes)
             {
-                if (valueBox is CheckedListBox)
+                if (gridView.Columns.Contains(valueBox.Name))
                 {
-                    CheckedListBox box = (CheckedListBox)valueBox;
 
-                    string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
-
-                    XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.Load(new StringReader(help));
-                    for (int i = 0; i < box.Items.Count; ++i)
+                    if (valueBox is CheckedListBox)
                     {
-                        string path = "/CheckedListBox/Item[@Name='" + box.GetItemText(box.Items[i]) + "']";
-                        xmlDoc.SelectNodes(path);
-                        XmlNodeList node = xmlDoc.SelectNodes(path);
-                        if(box.GetItemChecked(i))
-                          node[0].Attributes["Value"].Value = "1";
-                        else
-                            node[0].Attributes["Value"].Value = "0";
+                        CheckedListBox box = (CheckedListBox)valueBox;
+
+                        string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
+
+                        XmlDocument xmlDoc = new XmlDocument();
+                        xmlDoc.Load(new StringReader(help));
+                        for (int i = 0; i < box.Items.Count; ++i)
+                        {
+                            string path = "/CheckedListBox/Item[@Name='" + box.GetItemText(box.Items[i]) + "']";
+                            xmlDoc.SelectNodes(path);
+                            XmlNodeList node = xmlDoc.SelectNodes(path);
+                            if (box.GetItemChecked(i))
+                                node[0].Attributes["Value"].Value = "1";
+                            else
+                                node[0].Attributes["Value"].Value = "0";
+                        }
+                        SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml))); //  StringReader(xmlDoc.OuterXml));
+                        gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;// xmlDoc.  new SqlXml(  xmlDoc.OuterXml;
                     }
-                    SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml))); //  StringReader(xmlDoc.OuterXml));
-                    gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;// xmlDoc.  new SqlXml(  xmlDoc.OuterXml;
+                    else
+                        gridView.Rows[row].Cells[valueBox.Name].Value = valueBox.Text;
+                    this.Close();
                 }
-                else
-                    gridView.Rows[row].Cells[valueBox.Name].Value = valueBox.Text;
-                this.Close();
             }
         }
 

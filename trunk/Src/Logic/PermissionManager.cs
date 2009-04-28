@@ -23,9 +23,9 @@ namespace Logic
             {
 				database.setupConnectionParameters(username, password);
 				DataManager dataManager = new DataManager(database);
-				ICollection<string> temp = dataManager.getColumnValuesFromView("RolesViewForCurrentUser", "Role");
-				temp.Add("Ogólne");
-				return temp;
+				ICollection<string> roles = dataManager.getCurrentUserRoles();
+				roles.Add("Ogólne");
+				return roles;
 			}
 			else
 			{

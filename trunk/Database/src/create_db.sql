@@ -21,7 +21,8 @@ GO
 :r src\create_procedures.sql
 :r src\create_triggers.sql
 :r src\create_roles.sql
-:r src\IntegratedViews\create_EmployeeViewForAdministration.sql
+:r src\IntegratedViews\create_Employees.sql
+:r src\IntegratedViews\create_EmployeesForUser.sql
 PRINT 'DATABASE CREATE IS COMPLETE'
 :r src\generate_data.sql
 :r src\show_db.sql

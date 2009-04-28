@@ -50,6 +50,7 @@
     <Compile Include="ContentManager.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="DataManager.cs" />
+    <Compile Include="IntegratedView.cs" />
     <Compile Include="InterfaceLogic\FormManager.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="InterfaceLogic\IFormFactory.cs" />
@@ -58,7 +59,7 @@
     <Compile Include="InterfaceLogic\PageManager.cs" />
     <Compile Include="PermissionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewToGridManager.cs" />
+    <Compile Include="BindManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,15 +19,15 @@ namespace Logic
         private static IDatabase database;
         private FormManager formManager;
         private ContentManager contentManager;
-        private ViewToGridManager viewToGridManager;
+        private BindManager viewToGridManager;
         private DataGridViewCellEventArgs actualGridArguments;
         private DataGridView actualGridView;
-        private DataTable actualSchema;
+        private IntegratedView actualIntegratedView;
 
-        public DataTable ActualSchema
+        public IntegratedView ActualIntegratedView
         {
-            get { return actualSchema; }
-            set { actualSchema = value; }
+            get { return actualIntegratedView; }
+            set { actualIntegratedView = value; }
         }
 
         public DataGridView ActualGridView
@@ -48,7 +48,7 @@ namespace Logic
             set { contentManager = value; }
         }
 
-        public ViewToGridManager ViewToGridManager
+        public BindManager ViewToGridManager
         {
             get { return viewToGridManager; }
             set { viewToGridManager = value; }
@@ -74,7 +74,7 @@ namespace Logic
 			this.Database = dataBase;
 			this.FormManager = formManager;
             this.contentManager = new ContentManager();
-			this.ViewToGridManager = new ViewToGridManager(dataBase);
+			this.ViewToGridManager = new BindManager(dataBase);
             this.userLogin = null;
             this.userPassword = null;
             this.roles = null;

@@ -8,15 +8,15 @@ using System.Data.SqlTypes;
 
 namespace Logic
 {
-	public class ViewToGridManager
+	public class BindManager
 	{
 		IDatabase database;
-		Dictionary<string, SchemedDataTable> views;
+		Dictionary<string, IntegratedView> views;
 
-		public ViewToGridManager(IDatabase database)
+		public BindManager(IDatabase database)
 		{
 			this.database = database;
-			views = new Dictionary<string, SchemedDataTable>();
+			views = new Dictionary<string, IntegratedView>();
 		}
 
 		/// <summary>
@@ -24,33 +24,37 @@ namespace Logic
 		/// jako readonly
 		/// </summary>
 		/// <param name="dataGrid">The data grid.</param>
-        public DataTable reconnect(DataGridView dataGrid)
-        {
+        public IntegratedView reconnect(DataGridView dataGrid)
+        {           
             DataManager dm = new DataManager(database);
             string viewName = dm.gridNameToViewName(dataGrid.Name);
-            DataTable schema = new DataTable();
-            DataTable viewTable = database.getView(viewName, schema);
+            IntegratedView view = database.getView(viewName);
             dataGrid.AutoGenerateColumns = false;
-            dataGrid.DataSource = viewTable;
+            dataGrid.DataSource = view.Table;
             if (views.ContainsKey(viewName)) views.Remove(viewName);
-                views.Add(viewName, new SchemedDataTable(viewTable, schema));
-            return schema;
+                views.Add(viewName, view);
+            return view;
         }
-		public DataTable bindToView(DataGridView dataGrid)
+		public IntegratedView bindToView(DataGridView dataGrid)
 		{
-			DataManager dm = new DataManager(database);
-			string viewName = dm.gridNameToViewName(dataGrid.Name);
-			DataTable schema = new DataTable();
-			DataTable viewTable = database.getView(viewName, schema);
-			dataGrid.AutoGenerateColumns = false;
-			dataGrid.DataSource = viewTable;
+            DataManager dm = new DataManager(database);
+            string viewName = dm.gridNameToViewName(dataGrid.Name);
+            IntegratedView view = database.getView(viewName);
+            dataGrid.AutoGenerateColumns = false;
+            dataGrid.DataSource = view.Table;
+//			DataManager dm = new DataManager(database);
+//			string viewName = dm.gridNameToViewName(dataGrid.Name);
+//			DataTable schema = new DataTable();
+//			DataTable viewTable = database.getView(viewName, schema);
+//			dataGrid.AutoGenerateColumns = false;
+//			dataGrid.DataSource = viewTable;
 			List<string> writeableParameters = database.getWriteableAttributes(viewName);
-			for (int i = 0; i < viewTable.Columns.Count; ++i)
+			for (int i = 0; i < view.Table.Columns.Count; ++i)
 			{
 				DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
-				column.Name = viewTable.Columns[i].ColumnName;
-				column.DataPropertyName = viewTable.Columns[i].ColumnName;
-				if (schema.Columns[i].DataType.Name == "SqlXml")
+                column.Name = view.Table.Columns[i].ColumnName;
+                column.DataPropertyName = view.Table.Columns[i].ColumnName;
+				if (view.VisibleColumns[i].DataType.Name == "SqlXml")
 				{
                     DataGridViewCellStyle helpStyle = new DataGridViewCellStyle();
                     helpStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -77,9 +81,9 @@ namespace Logic
 				dataGrid.Columns.Add(column);
 			}
             if (views.ContainsKey(viewName)) views.Remove(viewName);
-			views.Add(viewName, new SchemedDataTable(viewTable, schema));
+			views.Add(viewName, view);
           //  viewTable.PrimaryKey = new DataColumn[] { viewTable.Columns["Id"] };
-			return schema;
+			return view;
 		}
 
 		public void updateView(DataGridView dataGrid)
