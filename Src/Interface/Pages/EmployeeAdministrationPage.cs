@@ -11,6 +11,7 @@ using System.Data.SqlTypes;
 using System.Xml;
 using System.IO;
 using System.Xml.Linq;
+using Logic;
 
 namespace Interface
 {
@@ -18,7 +19,7 @@ namespace Interface
     [ToolboxBitmap(typeof(TabPage))]
     public partial class EmployeeAdministrationPage : TabPage
     {
-        DataTable schema;
+        IntegratedView view;
         public EmployeeAdministrationPage(string text) : base(text)
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace Interface
             this.EmployeesForAdministrationGridView.Width = this.Width - 10;
             this.EmployeesForAdministrationGridView.Columns.AddRange(new DataGridViewColumn[] {
             this.Edytuj});
-            schema = Program.Context.ViewToGridManager.bindToView(EmployeesForAdministrationGridView);
+            view = Program.Context.ViewToGridManager.bindToView(EmployeesForAdministrationGridView);
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
@@ -42,7 +43,7 @@ namespace Interface
 
             //MessageBox.Show("Login: " + EmployeesGridView.Rows[e.RowIndex].Cells["Login"].Value);
             Program.Context.ActualGridArguments = e;
-            Program.Context.ActualSchema = schema;
+            Program.Context.ActualIntegratedView = view;
             Program.Context.ActualGridView = EmployeesForAdministrationGridView;
             Program.Context.FormManager.showForm("ChangeEmployeeForm");
             // Retrieve the task ID.
@@ -52,8 +53,8 @@ namespace Interface
         private void EmployeesForAdministrationGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DataGridViewColumn column = this.EmployeesForAdministrationGridView.Columns[e.ColumnIndex];
-            if( schema.Columns.Contains(column.Name) &&
-                schema.Columns[column.Name].DataType.Name == "SqlXml")
+            if( view.VisibleColumns.Contains(column.Name) &&
+                view.VisibleColumns[column.Name].DataType.Name == "SqlXml")
             {
                 if (e.Value != null)
                 {
@@ -91,14 +92,14 @@ namespace Interface
 
         private void AddEmployeeButton_Click(object sender, EventArgs e)
         {
-            Program.Context.ActualSchema = schema;
+            Program.Context.ActualIntegratedView = view;
             Program.Context.ActualGridView = EmployeesForAdministrationGridView;
             Program.Context.FormManager.showForm("AddEmployeeForm");
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
-            schema = Program.Context.ViewToGridManager.reconnect(EmployeesForAdministrationGridView);
+            view = Program.Context.ViewToGridManager.reconnect(EmployeesForAdministrationGridView);
 
         }
     }

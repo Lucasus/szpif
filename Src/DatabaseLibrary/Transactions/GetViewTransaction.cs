@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Common;
 using System.Data;
 using System.Data.SqlClient;
+using Logic;
 
 namespace DatabaseLibrary
 {
@@ -12,43 +13,54 @@ namespace DatabaseLibrary
     {
         string viewName;
         List<string> columnNames;
-        DbCommand cmd;
-        DataTable view;
-        DataTable schema;
+        DbCommand selectCommand;
+        SqlCommand updateCommand;
+        SqlCommand insertCommand;
+        IntegratedView view;
 
-        public DataTable View
+        public IntegratedView View
         {
             get { return view; }
         }
         
         public GetViewTransaction(string viewName)
         {
-            this.view = new DataTable();
-            this.schema = null;
+            this.view = new IntegratedView();
+            this.view.Table = new DataTable();
             this.columnNames = new List<string>();
             this.viewName = viewName;
-            string command = "exec get" + viewName + ";";
-            cmd = SzpifDatabase.Factory.CreateCommand();
-            cmd.CommandText = command;
-            cmd.Connection = SzpifDatabase.Connection;
-        }
+            string selectCommandString = "exec get" + viewName + ";";
+            selectCommand = SzpifDatabase.Factory.CreateCommand();
+            selectCommand.CommandText = selectCommandString;
+            selectCommand.Connection = SzpifDatabase.Connection;
 
-        public GetViewTransaction(string viewName, DataTable schema) :
-            this(viewName)
-        {
-            this.schema = schema;
+            updateCommand = new SqlCommand();
+            updateCommand.Connection = (SqlConnection)SzpifDatabase.Connection;
+            updateCommand.CommandType = CommandType.StoredProcedure;
+            updateCommand.CommandText = "update" + viewName;
+
+            insertCommand = new SqlCommand();
+            insertCommand.Connection = (SqlConnection)SzpifDatabase.Connection;
+            insertCommand.CommandType = CommandType.StoredProcedure;
+            insertCommand.CommandText = "insert" + viewName;
         }
 
         protected override void execute()
         {
-            SqlDataAdapter oDA = new SqlDataAdapter(cmd.CommandText, (SqlConnection)cmd.Connection);
-            if (schema != null)
-            {
-                oDA.ReturnProviderSpecificTypes = true;  //UseProviderSpecificType = true;
-                oDA.FillSchema(schema, SchemaType.Mapped);
-            }
+            DataTable help = new DataTable();
+            SqlDataAdapter oDA = new SqlDataAdapter(selectCommand.CommandText, (SqlConnection)selectCommand.Connection);
+            oDA.ReturnProviderSpecificTypes = true;  
+            oDA.FillSchema(help, SchemaType.Mapped);
+            view.VisibleColumns = help.Columns;
+
+            SqlCommandBuilder.DeriveParameters(updateCommand);
+            SqlCommandBuilder.DeriveParameters(insertCommand);
+
+            view.CanInsert = insertCommand.Parameters;
+            view.CanUpdate = updateCommand.Parameters;
+
             oDA.ReturnProviderSpecificTypes = false;            
-            oDA.Fill(view); 
+            oDA.Fill(view.Table); 
         }
     }
 }

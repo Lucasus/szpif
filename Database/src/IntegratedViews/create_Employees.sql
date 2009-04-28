@@ -1,32 +1,26 @@
 use szpifDatabase
-PRINT 'CREATING EMPLOYEE VIEW FOR ADMINISTRATION...'
+PRINT 'CREATING EMPLOYEE VIEW...'
 GO
 SET QUOTED_IDENTIFIER ON
-
 GO
-
 SET ANSI_NULLS ON
-
 GO
 -----------------Usuwamy poprzednie wersje---------------------
-IF OBJECT_ID('getEmployeeViewForAdministration') IS NOT NULL
-	DROP PROCEDURE getEmployeeViewForAdministration
+IF OBJECT_ID('getEmployees') IS NOT NULL
+	DROP PROCEDURE getEmployees
 GO
-IF OBJECT_ID('getEmployeeViewForAdministration2') IS NOT NULL
-	DROP PROCEDURE getEmployeeViewForAdministration2
+IF OBJECT_ID('updateEmployees') IS NOT NULL
+	DROP PROCEDURE updateEmployees
 GO
-IF OBJECT_ID('updateEmployeeViewForAdministration') IS NOT NULL
-	DROP PROCEDURE updateEmployeeViewForAdministration
+IF OBJECT_ID('insertEmployees') IS NOT NULL
+	DROP PROCEDURE insertEmployees
 GO
-IF OBJECT_ID('insertEmployeeViewForAdministration') IS NOT NULL
-	DROP PROCEDURE insertEmployeeViewForAdministration
-GO
-IF OBJECT_ID('deleteEmployeeViewForAdministration') IS NOT NULL
-	DROP PROCEDURE deleteEmployeeViewForAdministration
+IF OBJECT_ID('deleteEmployees') IS NOT NULL
+	DROP PROCEDURE deleteEmployees
 GO
 
 ----------Procedura zwracaj¹ca widok------------------------------
-CREATE PROCEDURE getEmployeeViewForAdministration
+CREATE PROCEDURE getEmployees
 AS
 	SELECT 
 		em.Id, 
@@ -39,15 +33,21 @@ AS
 GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
-CREATE PROCEDURE updateEmployeeViewForAdministration
+CREATE PROCEDURE updateEmployees
   @Id			int,
   @Login		nvarchar(40),
   @Name			nvarchar(40),
-  @Roles		xml,
-  @EMail		nvarchar(40)
+  @EMail		nvarchar(40),
+  @Password		nvarchar(40),
+  @Roles		xml
 WITH EXECUTE AS 'szpifadmin'
 AS
     update Employees set Login = @Login  where Id = @Id    
+    IF @Password != '' and @Password is not null
+    BEGIN
+		update Employees set Password = @Password  where Id = @Id    
+    END
+    
     update Credentials set Name = @Name, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
     
@@ -62,17 +62,18 @@ WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
     
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
-CREATE PROCEDURE insertEmployeeViewForAdministration
+CREATE PROCEDURE insertEmployees
   @Login		nvarchar(40),
   @Name			nvarchar(40),
-  @Roles		xml,
-  @EMail		nvarchar(40)
+  @EMail		nvarchar(40),
+  @Password		nvarchar(40),
+  @Roles		xml
 WITH EXECUTE AS  'szpifadmin'
 AS
 INSERT INTO [Credentials] VALUES (@Name,@EMail);
 declare @newId int;
 SELECT @newId = SCOPE_IDENTITY() 
-INSERT INTO [Employees]  VALUES (@newId,@Login, 'haslo');
+INSERT INTO [Employees]  VALUES (@newId,@Login,@Password);
 SELECT @newId = SCOPE_IDENTITY() 
 
 INSERT INTO Roles
@@ -82,7 +83,7 @@ WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
 
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
-CREATE PROCEDURE deleteEmployeeViewForAdministration
+CREATE PROCEDURE deleteEmployees
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
@@ -90,9 +91,9 @@ AS
   DELETE FROM Employees where Id = @Id
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
-GRANT EXECUTE ON    getEmployeeViewForAdministration TO OwnerRole
-GRANT EXECUTE ON updateEmployeeViewForAdministration TO OwnerRole
-GRANT EXECUTE ON insertEmployeeViewForAdministration TO OwnerRole
-GRANT EXECUTE ON deleteEmployeeViewForAdministration TO OwnerRole
+GRANT EXECUTE ON    getEmployees TO OwnerRole
+GRANT EXECUTE ON updateEmployees TO OwnerRole
+GRANT EXECUTE ON insertEmployees TO OwnerRole
+GRANT EXECUTE ON deleteEmployees TO OwnerRole
 use szpifDatabase
 

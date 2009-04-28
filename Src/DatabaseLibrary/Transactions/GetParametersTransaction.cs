@@ -16,14 +16,14 @@ namespace DatabaseLibrary
         {
             get { return parameters; }
         }
-        public GetParametersTransaction(string viewName)
+        public GetParametersTransaction(string viewName, string functionType)
         {
             this.parameters = new List<string>();
             this.viewName = viewName;
             cmd = new SqlCommand();
             cmd.Connection = (SqlConnection)SzpifDatabase.Connection;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "update" + viewName;
+            cmd.CommandText = functionType + viewName;
         }
 
         protected override void execute()

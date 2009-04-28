@@ -5,33 +5,11 @@ using System.Text;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlTypes;
+using System.Xml;
+using System.Xml.Linq;
+using System.IO;
 namespace Logic
 {
-    public class SchemedDataTable
-    {
-        DataTable schema;
-        DataTable table;
-
-        public DataTable Table
-        {
-            get { return table; }
-            set { table = value; }
-        }
-
-        public DataTable Schema
-        {
-            get { return schema; }
-            set { schema = value; }
-        }
-
-        public SchemedDataTable(DataTable t, DataTable s)
-        {
-            this.table = t;
-            this.schema = s;
-        }
-
-
-    }
     public class DataManager
     {
         IDatabase database;
@@ -46,7 +24,9 @@ namespace Logic
             switch (gridName)
             {
                 case "EmployeesForAdministrationGridView":
-                    return "EmployeeViewForAdministration";
+                    return "Employees";
+                case "EmployeesForUser":
+                    return "EmployeesForUser";
             };
             return null;
         }
@@ -61,9 +41,33 @@ namespace Logic
 
         public ICollection<string> getColumnValuesFromView(string viewName, string columnName)
         {
-            DataTable view = database.getView(viewName);
-            return DataManager.getValues(view, columnName);
+            IntegratedView view = database.getView(viewName);
+            return DataManager.getValues(view.Table, columnName);
         }
+
+        public ICollection<string> getCurrentUserRoles()
+        {
+            ICollection<string> roles = new List<string>();
+            IntegratedView view = database.getView("EmployeesForUser");
+            string help = view.Table.Rows[0]["Roles"].ToString();
+
+            //string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(new StringReader(help));
+            XElement xml = XElement.Load(new StringReader(help));
+
+            var query = from x in xml.Elements("Item")
+                        where (int)x.Attribute("Value") == 1
+                        select x;
+
+            foreach (var record in query)
+            {
+                roles.Add(record.Attribute("Name").Value);
+            }
+            return roles;
+            //return DataManager.getValues(view.Table, columnName);
+        }
+
 
     }
 }
