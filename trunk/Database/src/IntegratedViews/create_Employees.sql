@@ -27,6 +27,7 @@ AS
 		em.Login, 
 		creds.Name, 
 		creds.EMail,
+		dbo.przelozonyToXmlLink(em.Przelozony) AS  Przelozony,
 	    dbo.xmlRoles (em.Id) AS Roles
 	FROM Employees em
 		inner join [Credentials] creds on em.CredentialsId = creds.Id
@@ -39,10 +40,15 @@ CREATE PROCEDURE updateEmployees
   @Name			nvarchar(40),
   @EMail		nvarchar(40),
   @Password		nvarchar(40),
+  @Przelozony	xml,
   @Roles		xml
 WITH EXECUTE AS 'szpifadmin'
 AS
-    update Employees set Login = @Login  where Id = @Id    
+	declare @przelId int;
+	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @Przelozony.nodes('//Link') AS R(nref))
+
+    update Employees set Login = @Login, Przelozony = @przelId  where Id = @Id    
     IF @Password != '' and @Password is not null
     BEGIN
 		update Employees set Password = @Password  where Id = @Id    
@@ -67,13 +73,14 @@ CREATE PROCEDURE insertEmployees
   @Name			nvarchar(40),
   @EMail		nvarchar(40),
   @Password		nvarchar(40),
+  @Przelozony	int,
   @Roles		xml
 WITH EXECUTE AS  'szpifadmin'
 AS
 INSERT INTO [Credentials] VALUES (@Name,@EMail);
 declare @newId int;
 SELECT @newId = SCOPE_IDENTITY() 
-INSERT INTO [Employees]  VALUES (@newId,@Login,@Password);
+INSERT INTO [Employees]  VALUES (@newId,@Login,@Password,@Przelozony);
 SELECT @newId = SCOPE_IDENTITY() 
 
 INSERT INTO Roles

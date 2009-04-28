@@ -56,22 +56,29 @@ namespace Interface
             if( view.VisibleColumns.Contains(column.Name) &&
                 view.VisibleColumns[column.Name].DataType.Name == "SqlXml")
             {
-                if (e.Value != null)
+                if (e.Value != null && e.Value.ToString() != "")
                 {
-
+                    StringReader reader = new StringReader(e.Value.ToString());
                     XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.Load(new StringReader(e.Value.ToString()));
-
-                    XElement xml = XElement.Load(new StringReader(e.Value.ToString()));
-                    var query = from x in xml.Elements("Item")
-                                where (int)x.Attribute("Value") == 1
-                                select x;
-                    string value = "";
-                    foreach (var record in query)
+                    xmlDoc.Load(reader);
+                    if (xmlDoc.DocumentElement.Name == "CheckedListBox")
                     {
-                        value += record.Attribute("Name").Value + ", ";
+                        XElement xml = XElement.Load(new StringReader(e.Value.ToString()));
+
+                        var query = from x in xml.Elements("Item")
+                                    where (int)x.Attribute("Value") == 1
+                                    select x;
+                        string value = "";
+                        foreach (var record in query)
+                        {
+                            value += record.Attribute("Name").Value + ", ";
+                        }
+                        e.Value = value;
                     }
-                    e.Value = value;
+                    else if (xmlDoc.DocumentElement.Name == "Link")
+                    {
+                        e.Value = xmlDoc.DocumentElement.GetAttribute("Text");
+                    }
                 }
             }
 

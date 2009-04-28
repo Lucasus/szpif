@@ -9,6 +9,7 @@ using System.Xml;
 using System.IO;
 using System.Xml.Linq;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Logic
 {
@@ -47,8 +48,7 @@ namespace Logic
                     label.TabIndex = counter + 1;
                     label.Text = name;
                     InsertForm.Controls.Add(label);
-                    Control control = generateValueField(column, label, view);
-                    InsertForm.Controls.Add(control);
+                    Control control = generateValueField(InsertForm, column, label, view);
                     valueBoxes.Add(control);
                     aktY += space + height;
                     ++counter;
@@ -57,7 +57,7 @@ namespace Logic
             return valueBoxes;        
         }
 
-        private Control generateValueField(SqlParameter column, Label label, IntegratedView view)
+        private Control generateValueField(Control parent, SqlParameter column, Label label, IntegratedView view)
         {
             string name = column.ParameterName.Substring(1);
             Control control = null;
@@ -65,22 +65,39 @@ namespace Logic
             {
                 case "Xml":
                     {
-                        CheckedListBox listBoxValue = new CheckedListBox();
-                        listBoxValue.Location = new Point(label.Location.X + label.Width + 5, label.Location.Y);
-                        listBoxValue.Name = name;
-                        listBoxValue.CheckOnClick = true;
-                        listBoxValue.Size = new Size(label.Width * 4, 120);
-                        control = listBoxValue;
                         if (name == "Roles")
                         {
-                            listBoxValue.Items.AddRange(new object[] {
+                            CheckedListBox listBoxValue = new CheckedListBox();
+                            listBoxValue.Location = new Point(label.Location.X + label.Width + 5, label.Location.Y);
+                            listBoxValue.Name = name;
+                            listBoxValue.CheckOnClick = true;
+                            listBoxValue.Size = new Size(label.Width * 4, 120);
+                            control = listBoxValue;
+                                listBoxValue.Items.AddRange(new object[] {
                             "Właściciel",
                             "Project Manager",
                             "Przełożony",
                             "Pracownik",
                             "Opiekun handlowy"});
-                            listBoxValue.Height = 20 * listBoxValue.Items.Count;
+                                listBoxValue.Height = 20 * listBoxValue.Items.Count;
+                                parent.Controls.Add(control);
 
+
+                        }
+                        else if (name == "Przelozony")
+                        {
+                            LinkedTextBox ltextBox = new LinkedTextBox();
+                            ltextBox.Location = new Point(label.Location.X + label.Width + 5, label.Location.Y);
+                            ltextBox.Name = name;
+                            ltextBox.Size = new Size(label.Width * 4 - 30 , 120);
+                            control = ltextBox;
+                            parent.Controls.Add(control);
+                            Button searchButton = new Button();
+                            searchButton.Text = "...";
+                            searchButton.Name = "searchButton";
+                            searchButton.Location = new Point(ltextBox.Location.X + label.Width * 4 - 30, ltextBox.Location.Y);
+                            searchButton.Size = new Size(30, 20);
+                            parent.Controls.Add(searchButton);
                         }
                         break;
                     }
@@ -91,6 +108,7 @@ namespace Logic
                         valueBox.Name = name;
                         valueBox.Size = new Size(label.Width * 4, 120);
                         control = valueBox;
+                        parent.Controls.Add(control);
                         break;
                     }
             }
@@ -143,12 +161,45 @@ namespace Logic
             dt.Rows.Add(dr);
         }
 
+        public void setDataInGrid(List<Control> valueBoxes, DataGridView gridView, IntegratedView view, int row)
+        {
+            foreach (Control valueBox in valueBoxes)
+            {
+                if (gridView.Columns.Contains(valueBox.Name))
+                {
+
+                    if (valueBox is CheckedListBox)
+                    {
+                        CheckedListBox box = (CheckedListBox)valueBox;
+
+                        string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
+
+                        XmlDocument xmlDoc = new XmlDocument();
+                        xmlDoc.Load(new StringReader(help));
+                        for (int i = 0; i < box.Items.Count; ++i)
+                        {
+                            string path = "/CheckedListBox/Item[@Name='" + box.GetItemText(box.Items[i]) + "']";
+                            xmlDoc.SelectNodes(path);
+                            XmlNodeList node = xmlDoc.SelectNodes(path);
+                            if (box.GetItemChecked(i))
+                                node[0].Attributes["Value"].Value = "1";
+                            else
+                                node[0].Attributes["Value"].Value = "0";
+                        }
+                        SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml))); //  StringReader(xmlDoc.OuterXml));
+                        gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;// xmlDoc.  new SqlXml(  xmlDoc.OuterXml;
+                    }
+                    else
+                        gridView.Rows[row].Cells[valueBox.Name].Value = valueBox.Text;
+                }
+            }
+        }
         public void getDataFromGrid(List<Control> valueBoxes, DataGridView gridView, IntegratedView view, int row)
         {
 
             foreach (Control valueBox in valueBoxes)
             {
-                if(gridView.Columns.Contains(valueBox.Name))
+                if(gridView.Columns.Contains(valueBox.Name) && gridView.Columns[valueBox.Name].Visible == true)
                 {
                     if (valueBox is CheckedListBox)
                     {
@@ -168,6 +219,17 @@ namespace Logic
                             for (int i = 0; i < box.Items.Count; ++i)
                                 if (box.GetItemText(box.Items[i]) == record.Attribute("Name").Value)
                                     box.SetItemChecked(i, true);
+                    }
+                    else if (valueBox is LinkedTextBox)
+                    {
+                        LinkedTextBox box = (LinkedTextBox)valueBox;
+                        string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
+                        XmlDocument xmlDoc = new XmlDocument();
+                        xmlDoc.Load(new StringReader(help));
+                        XElement xml = XElement.Load(new StringReader(help));
+
+                        box.Text = xmlDoc.DocumentElement.GetAttribute("Text");
+                        box.RowId = Int32.Parse(xmlDoc.DocumentElement.GetAttribute("Id"));
                     }
                     else
                     {

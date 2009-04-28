@@ -29,6 +29,8 @@ namespace Interface
             gridView = Program.Context.ActualGridView;
             valueBoxes = contentManager.generateContent(this, gridView, Program.Context.ActualIntegratedView);
             contentManager.getDataFromGrid(valueBoxes, gridView, Program.Context.ActualIntegratedView, row);
+            Control searchButton = this.Controls["searchButton"];
+            searchButton.Click += new System.EventHandler(this.searchButton_Click);
         }
 
         protected void MainForm_Activated(object sender, System.EventArgs e)
@@ -43,37 +45,8 @@ namespace Interface
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            foreach (Control valueBox in valueBoxes)
-            {
-                if (gridView.Columns.Contains(valueBox.Name))
-                {
-
-                    if (valueBox is CheckedListBox)
-                    {
-                        CheckedListBox box = (CheckedListBox)valueBox;
-
-                        string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
-
-                        XmlDocument xmlDoc = new XmlDocument();
-                        xmlDoc.Load(new StringReader(help));
-                        for (int i = 0; i < box.Items.Count; ++i)
-                        {
-                            string path = "/CheckedListBox/Item[@Name='" + box.GetItemText(box.Items[i]) + "']";
-                            xmlDoc.SelectNodes(path);
-                            XmlNodeList node = xmlDoc.SelectNodes(path);
-                            if (box.GetItemChecked(i))
-                                node[0].Attributes["Value"].Value = "1";
-                            else
-                                node[0].Attributes["Value"].Value = "0";
-                        }
-                        SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml))); //  StringReader(xmlDoc.OuterXml));
-                        gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;// xmlDoc.  new SqlXml(  xmlDoc.OuterXml;
-                    }
-                    else
-                        gridView.Rows[row].Cells[valueBox.Name].Value = valueBox.Text;
-                    this.Close();
-                }
-            }
+            contentManager.setDataInGrid(valueBoxes, gridView, Program.Context.ActualIntegratedView, row);
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,5 +63,12 @@ namespace Interface
             dr[0].Delete();
             this.Close();
         }
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            Program.Context.FormManager.showForm("SelectPrzelozonyForm");
+
+//            this.Close();
+        }
+
     }
 }

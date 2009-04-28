@@ -31,6 +31,7 @@ CREATE TABLE [Employees]
 		[CredentialsId] [int] NOT NULL REFERENCES [Credentials] ([Id]),
 		[Login] [nvarchar] (40) NOT NULL,
 		[Password] [nvarchar] (40) NOT NULL,
+		[Przelozony] [int] REFERENCES [Employees] ([Id]),
 );
 
 CREATE TABLE [Roles]
