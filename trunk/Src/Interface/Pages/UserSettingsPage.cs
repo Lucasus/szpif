@@ -20,71 +20,20 @@ namespace Interface
         ContentManager contManager;
         public UserSettingsPage(string text) : base(text)
         {
-            InitializeComponent();
-            employeesForUser = new DataGridView();
-            employeesForUser.Name = "EmployeesForUser";
-            employeesForUser.AllowUserToAddRows = false;
-            employeesForUser.AllowUserToDeleteRows = false;
-            employeesForUser.AllowUserToResizeColumns = false;
-            employeesForUser.AllowUserToResizeRows = false;
-            employeesForUser.RowHeadersVisible = false;
-            ((System.ComponentModel.ISupportInitialize)(employeesForUser)).EndInit();
-
-
-
             contManager = Program.Context.ContentManager;
             bindManager = Program.Context.ViewToGridManager;
-            
-            view            = bindManager.bindToView(employeesForUser);
-            employeesForUser.Update();
-            employeesForUser.Refresh();
-            this.Controls.Add(employeesForUser);
-            employeesForUser.Visible = false;
-            valueBoxes      = contManager.generateContent(this, employeesForUser, view);
 
-          //  
+            InitializeComponent();
+
+            // initializing dataGridView
+            employeesForUser = new DataGridView();
+            employeesForUser.Name = "EmployeesForUser";
+            employeesForUser.Visible = false;
+            this.Controls.Add(employeesForUser);
             
-            
-            
-            /*  this.Controls.Remove(passwordChangeLabel);
-			
-              #region passwordGroup
-              this.Controls.Add(passwordGroup);
-              passwordGroup.Size = new Size(620,100);
-            
-              passwordGroup.Controls.Add(passwordChangeLabel);
-              passwordGroup.Controls.Add(passwordChangeBox);
-              passwordGroup.Controls.Add(passwordOldPassword);
-              passwordGroup.Controls.Add(passwordChangeButton);
-              passwordGroup.Controls.Add(passwordStrenghtText);
-              passwordGroup.Controls.Add(passwordStrenght);
-            
-              passwordChangeLabel.Location = new Point(10,30);
-              passwordOldPassword.Location = new Point(passwordChangeLabel.Location.X + passwordChangeLabel.Width + 10, passwordChangeLabel.Location.Y);
-              passwordChangeBox.Location = new Point(passwordOldPassword.Location.X + passwordOldPassword.Width + 10, passwordOldPassword.Location.Y);
-              passwordChangeButton.Location = new Point(passwordChangeBox.Location.X + passwordChangeBox.Width + 10, passwordChangeBox.Location.Y);
-			
-              passwordStrenghtText.Location = new Point(10, passwordChangeLabel.Location.Y + 30);
-              passwordStrenght.Location = new Point(passwordStrenghtText.Location.X + passwordStrenghtText.Width + 10, passwordStrenghtText.Location.Y);
-              PasswordChecker pc = new PasswordChecker(Program.Context.UserLogin);
-              Strenght str = pc.getPasswordStrenght(Program.Context.UserPassword);
-              passwordStrenght.Text = str.ToString();
-              #endregion
-			
-              #region eMailGroup
-              this.Controls.Add(eMailGroup);
-              eMailGroup.Size = new Size(620,100);
-              eMailGroup.Location = new Point(0,passwordGroup.Location.Y + passwordGroup.Height + 10);
-			
-              eMailGroup.Controls.Add(eMailChangeLabel);
-              eMailGroup.Controls.Add(eMailChangeBox);
-              eMailGroup.Controls.Add(eMailChangeButton);
-			
-              eMailChangeLabel.Location = new Point(10, 30);
-              eMailChangeBox.Location = new Point(eMailChangeLabel.Location.X + eMailChangeLabel.Width + 10, eMailChangeLabel.Location.Y);
-              eMailChangeButton.Location = new Point(eMailChangeBox.Location.X + eMailChangeBox.Width + 10, eMailChangeBox.Location.Y);
-              #endregion
-             */
+            // binding
+            view = bindManager.bindToView(employeesForUser);
+            valueBoxes = contManager.generateContent(this, employeesForUser, view);
         }
 
 		private void passwordChangeButton_Click(object sender, EventArgs e)
