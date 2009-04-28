@@ -72,7 +72,7 @@ AS
 INSERT INTO [Credentials] VALUES (@Name,@EMail);
 declare @newId int;
 SELECT @newId = SCOPE_IDENTITY() 
-INSERT INTO [Employees]  VALUES (@newId,@EMail, 'haslo');
+INSERT INTO [Employees]  VALUES (@newId,@Login, 'haslo');
 SELECT @newId = SCOPE_IDENTITY() 
 
 INSERT INTO Roles
@@ -83,14 +83,11 @@ WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteEmployeeViewForAdministration
-	@Id			int
+	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
-	DELETE FROM Roles where EmployeeId = @Id
-	declare @CredentialsId int;
-	select @CredentialsId = (SELECT CredentialsId from Employees where Id = @Id)
-	DELETE FROM Employees where Id = @Id
-	DELETE FROM Credentials where Id = @CredentialsId 
+  INSERT INTO Help values ('dupa')
+  DELETE FROM Employees where Id = @Id
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
 GRANT EXECUTE ON    getEmployeeViewForAdministration TO OwnerRole

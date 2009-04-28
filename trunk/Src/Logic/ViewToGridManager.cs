@@ -32,6 +32,8 @@ namespace Logic
             DataTable viewTable = database.getView(viewName, schema);
             dataGrid.AutoGenerateColumns = false;
             dataGrid.DataSource = viewTable;
+            if (views.ContainsKey(viewName)) views.Remove(viewName);
+                views.Add(viewName, new SchemedDataTable(viewTable, schema));
             return schema;
         }
 		public DataTable bindToView(DataGridView dataGrid)
@@ -76,6 +78,7 @@ namespace Logic
 			}
             if (views.ContainsKey(viewName)) views.Remove(viewName);
 			views.Add(viewName, new SchemedDataTable(viewTable, schema));
+          //  viewTable.PrimaryKey = new DataColumn[] { viewTable.Columns["Id"] };
 			return schema;
 		}
 
@@ -83,7 +86,7 @@ namespace Logic
 		{
 			DataManager dm = new DataManager(database);
 			string viewName = dm.gridNameToViewName(dataGrid.Name);
-			database.updateView(viewName, views[viewName].Table);
+			database.updateView(viewName, (DataTable)dataGrid.DataSource);//  views[viewName].Table);
 		}
 	}
 }

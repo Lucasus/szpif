@@ -36,7 +36,10 @@ namespace DatabaseLibrary
             cmd3 = new SqlCommand();
             cmd3.Connection = (SqlConnection)SzpifDatabase.Connection;
             cmd3.CommandType = CommandType.StoredProcedure;
-            cmd3.CommandText = "delete" + viewName;
+            cmd3.CommandText = "delete" + viewName;//"delete from Employees where Id = @original_id";//"delete" + viewName;
+            SqlParameter param = cmd3.Parameters.Add("@Id", SqlDbType.Int, 4, "Id");
+            param.SourceVersion = DataRowVersion.Original;
+            param.Direction = ParameterDirection.Input;
             adapter.DeleteCommand = cmd3;
 
         }
@@ -45,13 +48,20 @@ namespace DatabaseLibrary
         {
             SqlCommandBuilder.DeriveParameters(cmd);
             SqlCommandBuilder.DeriveParameters(cmd2);
-            SqlCommandBuilder.DeriveParameters(cmd3);
+            //SqlCommandBuilder.DeriveParameters(cmd3);
             foreach (SqlParameter param in cmd.Parameters)
                 param.SourceColumn = param.ParameterName.Substring(1);
             foreach (SqlParameter param in cmd2.Parameters)
                 param.SourceColumn = param.ParameterName.Substring(1);
-            foreach (SqlParameter param in cmd3.Parameters)
-                param.SourceColumn = param.ParameterName.Substring(1);
+            //foreach (SqlParameter param in cmd3.Parameters)
+           // {
+           //     param.SourceColumn = param.ParameterName.Substring(1);
+           //     param.SourceVersion = DataRowVersion.Original;
+           // }
+           // cmd3.Parameters[1].ParameterName = "@original_id";
+           // cmd3.Parameters[1].SourceColumn = "Id";
+
+           // viewTable
             adapter.Update(viewTable);
         }
     }

@@ -133,6 +133,8 @@ namespace Logic
                 }
 
             }
+            int last = (int)dt.Rows[dt.Rows.Count - 1]["Id"] + 1;
+            dr["Id"] = last;
             dt.Rows.Add(dr);
         }
     }
