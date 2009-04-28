@@ -85,7 +85,6 @@ namespace Interface
         private void deleteEmployeeButton_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)gridView.DataSource;
-            //gridView.Rows.Remove(gridView.Rows[row]);
             int id = (int)gridView.Rows[row].Cells["Id"].Value;
             DataRow[] dr = dt.Select("Id = " + id);
             dr[0].Delete();
