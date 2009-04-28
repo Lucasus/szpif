@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlTypes;
+using System.Data.SqlClient;
 
 namespace Logic
 {
@@ -42,12 +43,6 @@ namespace Logic
             IntegratedView view = database.getView(viewName);
             dataGrid.AutoGenerateColumns = false;
             dataGrid.DataSource = view.Table;
-//			DataManager dm = new DataManager(database);
-//			string viewName = dm.gridNameToViewName(dataGrid.Name);
-//			DataTable schema = new DataTable();
-//			DataTable viewTable = database.getView(viewName, schema);
-//			dataGrid.AutoGenerateColumns = false;
-//			dataGrid.DataSource = viewTable;
 			List<string> writeableParameters = database.getWriteableAttributes(viewName);
 			for (int i = 0; i < view.Table.Columns.Count; ++i)
 			{
@@ -80,6 +75,19 @@ namespace Logic
 				}
 				dataGrid.Columns.Add(column);
 			}
+            foreach (SqlParameter column in view.CanUpdate)
+            {
+                string name = column.ParameterName.Substring(1);
+                if (dataGrid.Columns.Contains(name) == false)
+                {
+                    view.Table.Columns.Add(new DataColumn(name));
+                    DataGridViewTextBoxColumn newColumn= new DataGridViewTextBoxColumn();
+                    newColumn.Name = name;
+                    newColumn.DataPropertyName = name;
+                    newColumn.Visible = false;
+                    dataGrid.Columns.Add(newColumn);
+                }
+            }
             if (views.ContainsKey(viewName)) views.Remove(viewName);
 			views.Add(viewName, view);
           //  viewTable.PrimaryKey = new DataColumn[] { viewTable.Columns["Id"] };
