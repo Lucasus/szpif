@@ -27,6 +27,8 @@ namespace Logic
                     return "Employees";
                 case "EmployeesForUser":
                     return "EmployeesForUser";
+                case "PrzelozeniForSelect":
+                    return "PrzelozeniForSelect";
             };
             return null;
         }

@@ -60,7 +60,7 @@ namespace DatabaseLibrary
            // }
            // cmd3.Parameters[1].ParameterName = "@original_id";
            // cmd3.Parameters[1].SourceColumn = "Id";
-
+//            adapter.
            // viewTable
             adapter.Update(viewTable);
         }

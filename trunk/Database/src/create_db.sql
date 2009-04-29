@@ -23,6 +23,7 @@ GO
 :r src\create_roles.sql
 :r src\IntegratedViews\create_Employees.sql
 :r src\IntegratedViews\create_EmployeesForUser.sql
+:r src\IntegratedViews\create_PrzelozeniForSelect.sql
 PRINT 'DATABASE CREATE IS COMPLETE'
 :r src\generate_data.sql
 :r src\show_db.sql

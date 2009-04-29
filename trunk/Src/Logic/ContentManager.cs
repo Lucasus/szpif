@@ -189,6 +189,21 @@ namespace Logic
                         SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml))); //  StringReader(xmlDoc.OuterXml));
                         gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;// xmlDoc.  new SqlXml(  xmlDoc.OuterXml;
                     }
+                    else if (valueBox is LinkedTextBox)
+                    {
+                        LinkedTextBox box = (LinkedTextBox)valueBox;
+
+                        string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
+                        XmlDocument xmlDoc = new XmlDocument();
+                        xmlDoc.Load(new StringReader(help));
+
+                        xmlDoc.DocumentElement.SetAttribute("Text", box.Text);
+                        xmlDoc.DocumentElement.SetAttribute("Id", box.RowId.ToString());
+
+                        SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml))); 
+                        gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;
+
+                    }
                     else
                         gridView.Rows[row].Cells[valueBox.Name].Value = valueBox.Text;
                 }
