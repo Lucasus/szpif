@@ -122,37 +122,55 @@ namespace Logic
             DataRow dr = dt.NewRow();
             foreach (Control control in valueBoxes)
             {
-                switch (view.VisibleColumns[control.Name].DataType.Name)
+                if (view.VisibleColumns.Contains(control.Name))
                 {
-                    case "SqlXml":
-                        {
-                            CheckedListBox box = (CheckedListBox)control;
-                            XmlDocument xmlDoc = new XmlDocument();
-                            XmlElement rootNode = xmlDoc.CreateElement("CheckedListBox");
-                            rootNode.SetAttribute("Name", control.Name);
-                            xmlDoc.AppendChild(rootNode);
 
-                            for (int i = 0; i < box.Items.Count; ++i)
+                    switch (view.VisibleColumns[control.Name].DataType.Name)
+                    {
+                        case "SqlXml":
                             {
-                                XmlElement itemNode = xmlDoc.CreateElement("Item");
-                                itemNode.SetAttribute("Name", box.GetItemText(box.Items[i]));
-                                string itemValue;
-                                if (box.GetItemChecked(i))
-                                    itemValue = "1";
-                                else
-                                    itemValue = "0";
-                                itemNode.SetAttribute("Value", itemValue);
-                                rootNode.AppendChild(itemNode);
-                            }
+                                if (control.Name == "Roles")
+                                {
+                                    CheckedListBox box = (CheckedListBox)control;
+                                    XmlDocument xmlDoc = new XmlDocument();
+                                    XmlElement rootNode = xmlDoc.CreateElement("CheckedListBox");
+                                    rootNode.SetAttribute("Name", control.Name);
+                                    xmlDoc.AppendChild(rootNode);
 
-                            dr[control.Name] = xmlDoc.OuterXml;
-                            break;
-                        }
-                    default:
-                        {
-                            dr[control.Name] = control.Text;
-                            break;
-                        }
+                                    for (int i = 0; i < box.Items.Count; ++i)
+                                    {
+                                        XmlElement itemNode = xmlDoc.CreateElement("Item");
+                                        itemNode.SetAttribute("Name", box.GetItemText(box.Items[i]));
+                                        string itemValue;
+                                        if (box.GetItemChecked(i))
+                                            itemValue = "1";
+                                        else
+                                            itemValue = "0";
+                                        itemNode.SetAttribute("Value", itemValue);
+                                        rootNode.AppendChild(itemNode);
+                                    }
+
+                                    dr[control.Name] = xmlDoc.OuterXml;
+                                }
+                                else if (control.Name == "Przelozony")
+                                {
+                                    LinkedTextBox box = (LinkedTextBox)control;
+                                    XmlDocument xmlDoc = new XmlDocument();
+                                    XmlElement rootNode = xmlDoc.CreateElement("Link");
+                                    rootNode.SetAttribute("Text", box.Text);
+                                    rootNode.SetAttribute("Id", box.RowId.ToString());
+                                    xmlDoc.AppendChild(rootNode);
+                                    dr[control.Name] = xmlDoc.OuterXml;
+                                }
+
+                                break;
+                            }
+                        default:
+                            {
+                                dr[control.Name] = control.Text;
+                                break;
+                            }
+                    }
                 }
 
             }
