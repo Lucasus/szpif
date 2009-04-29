@@ -66,8 +66,18 @@ namespace Interface
         private void searchButton_Click(object sender, EventArgs e)
         {
             Program.Context.FormManager.showForm("SelectPrzelozonyForm");
-
-//            this.Close();
+            SelectPrzelozonyForm form = (SelectPrzelozonyForm)Program.Context.FormManager.getForm("SelectPrzelozonyForm");
+            DataGridViewRow row = form.SelectedRow;
+            foreach (Control c in valueBoxes)
+            {
+                if (c.Name == "Przelozony")
+                {
+                    LinkedTextBox box = (LinkedTextBox)c;
+                    box.Text = row.Cells["Name"].Value.ToString();
+                    box.RowId = Int32.Parse(row.Cells["Id"].Value.ToString());
+                }
+            }
+            //            this.Close();
         }
 
     }

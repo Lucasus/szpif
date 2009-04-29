@@ -23,8 +23,8 @@ namespace Logic
 
         public SqlParameterCollection CanUpdate
         {
-            get { return canInsert; }
-            set { canInsert = value; }
+            get { return canUpdate; }
+            set { canUpdate = value; }
         }
         public SqlParameterCollection CanInsert
         {

@@ -51,6 +51,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "OK";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // selectPrzelozonyGridView
             // 
@@ -60,12 +61,13 @@
             this.selectPrzelozonyGridView.Name = "selectPrzelozonyGridView";
             this.selectPrzelozonyGridView.Size = new System.Drawing.Size(196, 218);
             this.selectPrzelozonyGridView.TabIndex = 2;
+            this.selectPrzelozonyGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.selectPrzelozonyGridView_CellClick);
             // 
             // SelectPrzelozonyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(218, 270);
+            this.ClientSize = new System.Drawing.Size(214, 268);
             this.Controls.Add(this.selectPrzelozonyGridView);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

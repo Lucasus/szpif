@@ -34,6 +34,17 @@ namespace Logic
             dataGrid.DataSource = view.Table;
             if (views.ContainsKey(viewName)) views.Remove(viewName);
                 views.Add(viewName, view);
+
+            if (view.CanUpdate != null)
+            foreach (SqlParameter column in view.CanUpdate)
+            {
+                string name = column.ParameterName.Substring(1);
+                if(view.Table.Columns.Contains(name) == false)
+                {
+                    view.Table.Columns.Add(new DataColumn(name));
+                }
+            }
+
             return view;
         }
 		public IntegratedView bindToView(DataGridView dataGrid)
@@ -75,6 +86,8 @@ namespace Logic
 				}
 				dataGrid.Columns.Add(column);
 			}
+            dataGrid.Columns[dataGrid.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            if (view.CanUpdate != null)
             foreach (SqlParameter column in view.CanUpdate)
             {
                 string name = column.ParameterName.Substring(1);
@@ -99,6 +112,7 @@ namespace Logic
 			DataManager dm = new DataManager(database);
 			string viewName = dm.gridNameToViewName(dataGrid.Name);
 			database.updateView(viewName, (DataTable)dataGrid.DataSource);//  views[viewName].Table);
-		}
+       //     database.updateView(viewName, views[viewName].Table);
+        }
 	}
 }
