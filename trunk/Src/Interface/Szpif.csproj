@@ -136,7 +136,7 @@
     <Compile Include="Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IntegratedView.cs" />
+    <Compile Include="Database\IntegratedView.cs" />
     <Compile Include="Managers\FormManager.cs" />
     <Compile Include="Managers\PageManager.cs" />
     <Compile Include="Managers\BindManager.cs" />
@@ -219,13 +219,13 @@
       <DependentUpon>UserSettingsPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Columns\SzpifColumn.cs" />
-    <Compile Include="SzpifDatabase.cs" />
-    <Compile Include="SzpifType.cs" />
-    <Compile Include="Transactions\GetParametersTransaction.cs" />
-    <Compile Include="Transactions\GetViewTransaction.cs" />
-    <Compile Include="Transactions\NonQueryTransaction.cs" />
-    <Compile Include="Transactions\SzpifTransaction.cs" />
-    <Compile Include="Transactions\UpdateViewTransaction.cs" />
+    <Compile Include="Database\SzpifDatabase.cs" />
+    <Compile Include="Database\SzpifType.cs" />
+    <Compile Include="Database\Transactions\GetParametersTransaction.cs" />
+    <Compile Include="Database\Transactions\GetViewTransaction.cs" />
+    <Compile Include="Database\Transactions\NonQueryTransaction.cs" />
+    <Compile Include="Database\Transactions\SzpifTransaction.cs" />
+    <Compile Include="Database\Transactions\UpdateViewTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
