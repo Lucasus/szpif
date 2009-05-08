@@ -15,23 +15,45 @@ namespace Szpif
     public partial class LinkControl : SzpifControl
     {
         int linkedRowId;
+
+        public int LinkedRowId
+        {
+            get { return linkedRowId; }
+            set { linkedRowId = value; }
+        }
+
+        public string LabelText
+        {
+            get { return this.ColumnValue.Text; }
+            set { ColumnValue.Text = value; }
+        }
+
+        SzpifType linkType;
+
+        public SzpifType LinkType
+        {
+            get { return linkType; }
+            set { linkType = value; }
+        }
         string searchViewName;
         SelectForm selectForm;
         public LinkControl(string columnName, SzpifType type) : base(columnName)
         {
             InitializeComponent();
             this.Name = columnName;
+            this.linkType = type;
             this.searchViewName = type.Additional;
             this.ColumnNameLabel.Text = columnName;
+            this.ColumnValue.ReadOnly = true;
+            this.ColumnValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
         }
 
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            selectForm = (SelectForm)Program.Context.FormManager.getForm(searchViewName + "Form");
+            selectForm = FormFactory.createSelectForm(this);
+//            selectForm = (SelectForm)Program.Context.FormManager.getForm(searchViewName + "Form");
             selectForm.ShowDialog();
-            this.ColumnValue.Text = selectForm.getSelectedValue();
-            this.linkedRowId = selectForm.getSelectedRowId();
 /*            Program.Context.FormManager.showForm("SelectPrzelozonyForm");
             SelectPrzelozonyForm form = (SelectPrzelozonyForm)Program.Context.FormManager.getForm("SelectPrzelozonyForm");
             DataGridViewRow row = form.SelectedRow;

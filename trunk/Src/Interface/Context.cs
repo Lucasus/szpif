@@ -21,27 +21,6 @@ namespace Szpif
         private FormManager formManager;
         private ContentManager contentManager;
         private BindManager viewToGridManager;
-        private DataGridViewCellEventArgs actualGridArguments;
-        private DataGridView actualGridView;
-        private IntegratedView actualIntegratedView;
-
-        public IntegratedView ActualIntegratedView
-        {
-            get { return actualIntegratedView; }
-            set { actualIntegratedView = value; }
-        }
-
-        public DataGridView ActualGridView
-        {
-            get { return actualGridView; }
-            set { actualGridView = value; }
-        }
-
-        public DataGridViewCellEventArgs ActualGridArguments
-        {
-            get { return actualGridArguments; }
-            set { actualGridArguments = value; }
-        }
 
         public ContentManager ContentManager
         {

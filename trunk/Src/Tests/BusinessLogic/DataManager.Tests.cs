@@ -31,14 +31,6 @@ namespace Szpif.Tests
 			Assert.IsNotNull(dm);
 		}
 		
-		[Test()]
-		public void gridNameToViewNameTest()
-		{
-			string wynik = dm.gridNameToViewName("abla");
-			Assert.IsNull(wynik);
-			wynik = dm.gridNameToViewName("EmployeesForAdministrationGridView");
-			Assert.AreEqual("EmployeeViewForAdministration", wynik);
-		}
 		
 		[Test()]
 		public void getColumnValuesFromViewTest()

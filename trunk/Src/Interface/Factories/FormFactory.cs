@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Szpif;
 using System.Windows.Forms;
+using Szpif.Controls.ContentControls;
+using Szpif.Forms;
 
 namespace Szpif
 {
@@ -18,15 +20,32 @@ namespace Szpif
                     return new LoginForm();
                 case "MainForm":
                     return new MainForm();
-                case "ChangeEmployeeForm":
-                    return new ChangeEmployeeForm();
-                case "AddEmployeeForm":
-                    return new AddEmployeeForm();
-                case "SelectPrzelozonyForm":
-                    return new SelectPrzelozonyForm();
             }
             return null;
         }
 
+        public static Form createViewForm(string viewName, ViewControl viewControl)
+        {
+            Form viewForm = new Form();
+            ViewControl control = new ViewControl(viewName);
+            viewForm.Controls.Add(control);
+            viewForm.Size = control.Size;
+            return viewForm;
+        }
+
+        public static AddForm createAddForm(string viewName, ViewControl viewControl)
+        {
+            return new AddForm(viewName, viewControl);
+        }
+
+        public static UpdateForm createUpdateForm(string viewName, ViewControl viewControl)
+        {
+            return new UpdateForm(viewName, viewControl);
+        }
+
+        public static SelectForm createSelectForm(LinkControl linkedControl)
+        {
+            return new SelectForm(linkedControl);
+        }
     }
 }

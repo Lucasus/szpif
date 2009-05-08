@@ -20,20 +20,6 @@ namespace Szpif
 			this.database = database;
 		}
 
-        public string gridNameToViewName(string gridName)
-        {
-            switch (gridName)
-            {
-                case "EmployeesForAdministrationGridView":
-                    return "Employees";
-                case "EmployeesForUser":
-                    return "EmployeesForUser";
-                case "PrzelozeniForSelect":
-                    return "PrzelozeniForSelect";
-            };
-            return null;
-        }
-
         public static List<string> getValues(DataTable dt, string columnName)
         {
             List<string> values = new List<string>();

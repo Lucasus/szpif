@@ -46,5 +46,16 @@ namespace Szpif
             Form toShow = getForm(formName);
             toShow.ShowDialog();
         }
+
+        internal void showAddForm(DataGridView gridView, IntegratedView view)
+        {
+
+            throw new NotImplementedException();
+        }
+
+        internal void showEditForm(DataGridView gridView, IntegratedView view, int p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

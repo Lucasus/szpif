@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Szpif;
+using Szpif.Controls.ContentControls;
 
 
 namespace Szpif
@@ -17,8 +18,6 @@ namespace Szpif
         {
             switch (kind)
             {
-                case "AdministrationPage":
-                   return new EmployeeAdministrationPage("Administrowanie pracownikami");
                 case "SettingsPage":
                    return new UserSettingsPage("Twoje ustawienia");
                 case "ProjectsPage":
@@ -27,5 +26,11 @@ namespace Szpif
             return null;
         }
 
+        public static TabPage createViewPage(string viewName)
+        {
+            TabPage page = new TabPage();
+            page.Controls.Add(new ViewControl(viewName));
+            return page;
+        }
     }
 }
