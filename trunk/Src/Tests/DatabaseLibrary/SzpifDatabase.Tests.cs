@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using DatabaseLibrary;
+using Szpif;
 using System.IO;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Server;
@@ -12,7 +12,7 @@ using Microsoft.SqlServer.Management.Common;
 using System.Collections;
 using System.Data;
 
-namespace DatabaseLibrary.Tests
+namespace Szpif.Tests
 {
 
     [TestFixture]

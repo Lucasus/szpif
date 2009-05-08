@@ -10,11 +10,10 @@ using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
 using System.Collections;
 using System.Data;
-using Logic;
-using DatabaseLibrary;
+using Szpif;
 using Interface;
 
-namespace Logic.Tests
+namespace Szpif.Tests
 {
 
 	[TestFixture]

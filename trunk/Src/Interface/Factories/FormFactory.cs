@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Logic;
+using Szpif;
 using System.Windows.Forms;
 
 namespace Interface
 {
-    public class FormFactory : IFormFactory
+    public class FormFactory
     {
 
         public Form createNewForm(string kind)

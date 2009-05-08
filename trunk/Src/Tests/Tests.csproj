@@ -67,17 +67,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseLibrary\DatabaseLibrary.csproj">
-      <Project>{975F5F93-21ED-4C34-9F46-0365A42C26EB}</Project>
-      <Name>DatabaseLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Interface\Interface.csproj">
+    <ProjectReference Include="..\Interface\Szpif.csproj">
       <Project>{0E654E65-84C5-43E6-8642-C10692D5B498}</Project>
-      <Name>Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logic\Logic.csproj">
-      <Project>{C080D83C-D784-4D3E-B473-C7B58E7F8CAA}</Project>
-      <Name>Logic</Name>
+      <Name>Szpif</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

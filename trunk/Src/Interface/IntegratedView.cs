@@ -6,7 +6,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlTypes;
 using System.Data.SqlClient;
-namespace Logic
+namespace Szpif
 {
     public class IntegratedView
     {
@@ -14,6 +14,13 @@ namespace Logic
         SqlParameterCollection canInsert;
         DataColumnCollection visibleColumns;
         DataTable table;
+        Dictionary<string, SzpifColumn> columns;
+
+        public Dictionary<string, SzpifColumn> Columns
+        {
+            get { return columns; }
+            set { columns = value; }
+        }
 
         public DataTable Table
         {
@@ -43,6 +50,7 @@ namespace Logic
             this.table = null;
             this.visibleColumns = null;
             this.canInsert = null;
+            this.columns = new Dictionary<string, SzpifColumn>();
         }
 
 

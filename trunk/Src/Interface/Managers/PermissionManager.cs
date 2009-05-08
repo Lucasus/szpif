@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using Szpif;
 
-namespace Logic
+namespace Szpif
 {
     public class PermissionManager
     {    
-        private IDatabase database;
+        private SzpifDatabase database;
        // private DataManager dataManager;
 
-		public PermissionManager(IDatabase database)
+        public PermissionManager(SzpifDatabase database)
 		{
 			this.database = database;
 			//this.dataManager = dataManager;

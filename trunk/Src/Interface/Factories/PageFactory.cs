@@ -6,13 +6,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DatabaseLibrary;
-using Logic;
+using Szpif;
 
 
 namespace Interface
 {
-    public class PageFactory : IPageFactory
+    public class PageFactory
     {
         public TabPage createTabPage(string kind)
         {

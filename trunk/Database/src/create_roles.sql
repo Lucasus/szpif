@@ -25,4 +25,5 @@ GO
 use szpifDatabase
 
 GRANT EXECUTE ON getRolesViewForCurrentUser TO BasicRole
+GRANT EXECUTE ON getTypeSchema TO BasicRole
 GO
