@@ -36,6 +36,7 @@ namespace Szpif
                     case "W³aœciciel":
                         {
                             pageNames.Add("Pracownicy","Employees");
+                            pageNames.Add("Projekty", "Projects");
                             break;
                         }
                     case "Ogólne":
