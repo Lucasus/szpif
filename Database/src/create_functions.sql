@@ -39,12 +39,12 @@ GO
 IF EXISTS 
 (
 	SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES
-	WHERE ROUTINE_NAME = 'przelozonyToXmlLink'
+	WHERE ROUTINE_NAME = 'EmployeeToXmlLink'
 	AND ROUTINE_SCHEMA = 'dbo'
 	AND ROUTINE_TYPE = 'FUNCTION'
 )
 BEGIN
-	DROP FUNCTION dbo.przelozonyToXmlLink
+	DROP FUNCTION dbo.EmployeeToXmlLink
 END
 GO
 IF EXISTS 
@@ -99,7 +99,7 @@ END
 
 GO
 /*------------------------------------------------------------------- */
-CREATE FUNCTION dbo.przelozonyToXmlLink
+CREATE FUNCTION dbo.EmployeeToXmlLink
 ( 
 	@PrzelozonyID int 
 ) 

@@ -25,6 +25,7 @@ GO
 :r src\IntegratedViews\create_Projects.sql
 :r src\IntegratedViews\create_EmployeesForUser.sql
 :r src\IntegratedViews\create_PrzelozeniForSelect.sql
+:r src\IntegratedViews\create_PMForSelect.sql
 PRINT 'DATABASE CREATE IS COMPLETE'
 :r src\generate_data.sql
 :r src\show_db.sql

@@ -27,7 +27,7 @@ AS
 		em.Login, 
 		creds.Name, 
 		creds.EMail,
-		dbo.przelozonyToXmlLink(em.Przelozony) AS  Przelozony,
+		dbo.EmployeeToXmlLink(em.Przelozony) AS  Przelozony,
 	    dbo.xmlRoles (em.Id) AS Roles
 	FROM Employees em
 		inner join [Credentials] creds on em.CredentialsId = creds.Id

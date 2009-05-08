@@ -51,7 +51,8 @@ CREATE TABLE [RoleNames]
 CREATE TABLE [Projects]
 (
 		[Id] [int] IDENTITY (1,1) NOT NULL PRIMARY KEY,
-		[Name] [nvarchar] (40) NOT NULL
+		[Name] [nvarchar] (40) NOT NULL,
+		[PM] [int] REFERENCES [Employees] ([Id]),
 );
 
 --pomocnicze tabele techniczne zawierajace metadane-------

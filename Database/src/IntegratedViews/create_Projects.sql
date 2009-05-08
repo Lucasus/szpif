@@ -24,22 +24,33 @@ CREATE PROCEDURE getProjects
 AS
 	SELECT 
 		Id, 
-		Name
-	FROM Projects 
+		Name,
+		dbo.EmployeeToXmlLink(pr.PM) AS  'PM'
+	FROM Projects pr
 GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateProjects
   @Id			int,
-  @Name			nvarchar(40)
+  @Name			nvarchar(40),
+  @PM			xml
 AS
-    update Projects set Name = @Name where Id = @Id        
+	declare @przelId int;
+	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @PM.nodes('//Link') AS R(nref))
+
+    update Projects set Name = @Name, PM = @przelId where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertProjects
-  @Name			nvarchar(40)
+  @Name			nvarchar(40),
+  @PM			xml
 AS
-INSERT INTO [Projects] VALUES (@Name);
+	declare @przelId int;
+	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @PM.nodes('//Link') AS R(nref))
+	
+	INSERT INTO [Projects] VALUES (@Name, @przelId);
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteProjects
@@ -49,6 +60,7 @@ AS
   DELETE FROM Projects where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
+INSERT INTO [ColumnsToTypes] VALUES ('Projects','PM', 'Link', 'PMForSelect');
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
