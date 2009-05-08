@@ -8,7 +8,7 @@
     <ProjectGuid>{0E654E65-84C5-43E6-8642-C10692D5B498}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Interface</RootNamespace>
+    <RootNamespace>Szpif</RootNamespace>
     <AssemblyName>Szpif</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -63,12 +63,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\ColumnFactory.cs" />
-    <Compile Include="Columns\CheckedListBoxSzpifColumn.cs" />
-    <Compile Include="Context.cs" />
-    <Compile Include="Controls\LinkedTextBox.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Columns\DefaultSzpifColumn.cs" />
+    <Compile Include="Columns\LinkColumn.cs" />
+    <Compile Include="Controls\ColumnControls\CheckedListBoxControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\ColumnControls\CheckedListBoxControl.Designer.cs">
+      <DependentUpon>CheckedListBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\DefaultSzpifControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\DefaultSzpifControl.Designer.cs">
+      <DependentUpon>DefaultSzpifControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\SzpifControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\SzpifControl.Designer.cs">
+      <DependentUpon>SzpifControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\LinkControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\LinkControl.Designer.cs">
+      <DependentUpon>LinkControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContentControls\ViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ContentControls\ViewControl.Designer.cs">
+      <DependentUpon>ViewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\ColumnFactory.cs" />
+    <Compile Include="Columns\CheckedListBoxColumn.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Factories\ControlFactory.cs" />
     <Compile Include="Factories\FormFactory.cs" />
     <Compile Include="Forms\AddEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -81,6 +111,12 @@
     </Compile>
     <Compile Include="Forms\ChangeEmployeeForm.Designer.cs">
       <DependentUpon>ChangeEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectForm.Designer.cs">
+      <DependentUpon>SelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SelectPrzelozonyForm.cs">
       <SubType>Form</SubType>
@@ -111,6 +147,15 @@
     <Compile Include="PasswordChecker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\ColumnControls\CheckedListBoxControl.resx">
+      <DependentUpon>CheckedListBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColumnControls\DefaultSzpifControl.resx">
+      <DependentUpon>DefaultSzpifControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColumnControls\LinkControl.resx">
+      <DependentUpon>LinkControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddEmployeeForm.resx">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +185,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
@@ -163,7 +209,7 @@
     <Compile Include="Pages\UserSettingsPage.Designer.cs">
       <DependentUpon>UserSettingsPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="SzpifColumn.cs" />
+    <Compile Include="Columns\SzpifColumn.cs" />
     <Compile Include="SzpifDatabase.cs" />
     <Compile Include="SzpifType.cs" />
     <Compile Include="Transactions\GetParametersTransaction.cs" />

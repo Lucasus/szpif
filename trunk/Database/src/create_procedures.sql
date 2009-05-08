@@ -35,7 +35,11 @@ AS
 	declare @typeName nvarchar(40);
 	select @typeName = (select TypeName from ColumnsToTypes where
 	  ViewName = @ViewName and ColumnName = @ColumnName)
-	select Name, TypeSchema from UserTypes where Name = @TypeName		 
+	  
+	declare @additional nvarchar(200);
+	select @additional = (select DynamicInformation from ColumnsToTypes where
+	  ViewName = @ViewName and ColumnName = @ColumnName)
+	select Name, TypeSchema, @additional as Additional from UserTypes where Name = @TypeName		 
 GO
 CREATE PROCEDURE getRolesViewForCurrentUser
 AS

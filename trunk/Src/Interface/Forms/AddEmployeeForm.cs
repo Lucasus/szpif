@@ -8,13 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using Szpif;
 
-namespace Interface
+namespace Szpif
 {
     public partial class AddEmployeeForm : Form
     {
         DataGridView gridView;
         IntegratedView view;
-        List<Control> valueBoxes;
+        List<SzpifControl> valueBoxes;
         public AddEmployeeForm()
         {
             InitializeComponent();

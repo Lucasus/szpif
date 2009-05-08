@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-namespace Interface
+namespace Szpif
 {
     partial class EmployeeAdministrationPage
     {

@@ -12,14 +12,14 @@ using System.IO;
 using System.Xml.Linq;
 using Szpif;
 
-namespace Interface
+namespace Szpif
 {
     public partial class ChangeEmployeeForm : Form
     {
         int row;
         ContentManager contentManager;
         DataGridView gridView;
-        List<Control> valueBoxes;
+        List<SzpifControl> valueBoxes;
 
         public ChangeEmployeeForm()
         {
@@ -29,8 +29,6 @@ namespace Interface
             gridView = Program.Context.ActualGridView;
             valueBoxes = contentManager.generateContent(this, gridView, Program.Context.ActualIntegratedView);
             contentManager.getDataFromGrid(valueBoxes, gridView, Program.Context.ActualIntegratedView, row);
-            Control searchButton = this.Controls["searchButton"];
-            searchButton.Click += new System.EventHandler(this.searchButton_Click);
         }
 
         protected void MainForm_Activated(object sender, System.EventArgs e)
@@ -65,7 +63,7 @@ namespace Interface
         }
         private void searchButton_Click(object sender, EventArgs e)
         {
-            Program.Context.FormManager.showForm("SelectPrzelozonyForm");
+/*            Program.Context.FormManager.showForm("SelectPrzelozonyForm");
             SelectPrzelozonyForm form = (SelectPrzelozonyForm)Program.Context.FormManager.getForm("SelectPrzelozonyForm");
             DataGridViewRow row = form.SelectedRow;
             foreach (Control c in valueBoxes)
@@ -76,7 +74,7 @@ namespace Interface
                     box.Text = row.Cells["Name"].Value.ToString();
                     box.RowId = Int32.Parse(row.Cells["Id"].Value.ToString());
                 }
-            }
+            }*/
             //            this.Close();
         }
 

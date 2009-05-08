@@ -5,7 +5,7 @@ using System.Text;
 using Szpif;
 using System.Windows.Forms;
 
-namespace Interface
+namespace Szpif
 {
     public class FormFactory
     {

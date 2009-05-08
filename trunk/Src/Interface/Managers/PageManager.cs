@@ -5,7 +5,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using Szpif;
-using Interface;
 
 namespace Szpif
 {

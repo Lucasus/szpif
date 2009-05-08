@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Szpif;
-using Interface;
 using System.IO;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Server;

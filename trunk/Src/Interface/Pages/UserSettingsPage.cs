@@ -8,13 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using Szpif;
 
-namespace Interface
+namespace Szpif
 {
     public partial class UserSettingsPage : TabPage
     {
         IntegratedView view;
         DataGridView employeesForUser;
-        List<Control> valueBoxes;
+        List<SzpifControl> valueBoxes;
         BindManager bindManager;
         ContentManager contManager;
         public UserSettingsPage(string text) : base(text)

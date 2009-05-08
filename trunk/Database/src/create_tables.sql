@@ -65,7 +65,8 @@ CREATE TABLE [ColumnsToTypes]
 		[Id] [int] IDENTITY (1,1) NOT NULL PRIMARY KEY,
 		[ViewName] [nvarchar] (40) NOT NULL,
 		[ColumnName] [nvarchar] (40) NOT NULL,
-		[TypeName] [nvarchar] (40) NOT NULL
+		[TypeName] [nvarchar] (40) NOT NULL,
+		[DynamicInformation] [nvarchar] (200)
 );
 
 GO
@@ -79,7 +80,7 @@ INSERT INTO [UserTypes] VALUES ('CheckedListBox',
   <Item Name="Opiekun handlowy" Value="0 or 1" />
 </CheckedListBox>');
 
-INSERT INTO [UserTypes] VALUES ('Link','<Link Name="ColumnName" Id="Id rekordu do ktorego sie odwolujemy"
+INSERT INTO [UserTypes] VALUES ('Link','<Link Name="ColumnName" ViewName="view name" Id="Id rekordu do ktorego sie odwolujemy"
 Text="Tekst wyswietlany na gridzie" />');
 
 

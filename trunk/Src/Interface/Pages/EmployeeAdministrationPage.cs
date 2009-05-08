@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region usings
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -11,8 +12,8 @@ using System.Data.SqlTypes;
 using System.Xml;
 using System.IO;
 using System.Xml.Linq;
-
-namespace Interface
+#endregion
+namespace Szpif
 {
     [Designer(typeof(TabPage))]
     [ToolboxBitmap(typeof(TabPage))]
@@ -52,35 +53,8 @@ namespace Interface
         private void EmployeesForAdministrationGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DataGridViewColumn column = this.EmployeesForAdministrationGridView.Columns[e.ColumnIndex];
-            if( view.VisibleColumns.Contains(column.Name) &&
-                view.VisibleColumns[column.Name].DataType.Name == "SqlXml")
-            {
-                if (e.Value != null && e.Value.ToString() != "")
-                {
-                    StringReader reader = new StringReader(e.Value.ToString());
-                    XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.Load(reader);
-                    if (xmlDoc.DocumentElement.Name == "CheckedListBox")
-                    {
-                        XElement xml = XElement.Load(new StringReader(e.Value.ToString()));
-
-                        var query = from x in xml.Elements("Item")
-                                    where (int)x.Attribute("Value") == 1
-                                    select x;
-                        string value = "";
-                        foreach (var record in query)
-                        {
-                            value += record.Attribute("Name").Value + ", ";
-                        }
-                        e.Value = value;
-                    }
-                    else if (xmlDoc.DocumentElement.Name == "Link")
-                    {
-                        e.Value = xmlDoc.DocumentElement.GetAttribute("Text");
-                    }
-                }
-            }
-
+            if(view.Columns.ContainsKey(column.Name))
+                e.Value = view.Columns[column.Name].valueToGridString(e.Value.ToString());            
         }
 
         private void EmployeesForAdministrationGridView_CellParsing(object sender, DataGridViewCellParsingEventArgs e)

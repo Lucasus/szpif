@@ -1,4 +1,4 @@
-﻿namespace Interface
+﻿namespace Szpif
 {
     partial class UserSettingsPage
     {

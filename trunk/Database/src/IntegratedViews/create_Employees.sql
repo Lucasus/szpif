@@ -98,8 +98,8 @@ AS
   DELETE FROM Employees where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
-INSERT INTO [ColumnsToTypes] VALUES ('Employees','Roles', 'CheckedListBox');
-INSERT INTO [ColumnsToTypes] VALUES ('Employees','Przelozony', 'Link');
+INSERT INTO [ColumnsToTypes] VALUES ('Employees','Roles', 'CheckedListBox', null);
+INSERT INTO [ColumnsToTypes] VALUES ('Employees','Przelozony', 'Link', 'PrzelozeniForSelect');
 
 
 

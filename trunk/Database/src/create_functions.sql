@@ -111,7 +111,7 @@ AS
 	select @credId = (select CredentialsId from Employees where Id = @PrzelozonyID)
 	select @Link = 
 		(
-			select 'Przelozony' as Name, Id, (select Name from Credentials where Id = @credId) as Text
+			select 'Przelozony' as Name, 'PrzelozeniForSelect' as ViewName  ,Id, (select Name from Credentials where Id = @credId) as Text
 			from Employees Link where Id = @PrzelozonyID
 			FOR XML AUTO, TYPE
 		) 	
