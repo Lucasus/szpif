@@ -12,13 +12,13 @@ namespace Szpif
             switch (type.Subtype)
             {
                 case "Default":
-                    return new SzpifColumn();
+                    return new DefaultSzpifColumn();
                 case "Link":
-                    return new SzpifColumn();
+                    return new LinkColumn();
                 case "CheckedListBox":
-                    return new SzpifColumn();
+                    return new CheckedListBoxColumn();
                 default:
-                    return new SzpifColumn();
+                    return new DefaultSzpifColumn();
             }
         }
 

@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Szpif;
 
-namespace Interface
+namespace Szpif
 {
     public partial class LoginForm : Form
     {

@@ -11,7 +11,6 @@ using Microsoft.SqlServer.Management.Common;
 using System.Collections;
 using System.Data;
 using Szpif;
-using Interface;
 
 namespace Szpif.Tests
 {

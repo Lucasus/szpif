@@ -9,15 +9,22 @@ namespace Szpif
     public class SzpifType
     {
         string name;
+        string type;
+        string subtype;
+        string schema;
+        string additional;
+
+        public string Additional
+        {
+            get { return additional; }
+            set { additional = value; }
+        }
 
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
-        string type;
-        string subtype;
-        string schema;
 
         public string Type
         {

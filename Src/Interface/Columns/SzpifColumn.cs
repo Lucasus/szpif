@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Szpif
 {
-    public class SzpifColumn
+    public abstract class SzpifColumn
     {
         string name;
         SzpifType type;
@@ -44,10 +44,8 @@ namespace Szpif
             set { type = value; }
         }
 
-        public virtual Control createControl()
-        {
-            return null;
-        }
-
+        public abstract SzpifControl createControl();
+        public abstract DataGridViewColumn createDataGridViewColumn();
+        public abstract string valueToGridString(string value);
     }
 }

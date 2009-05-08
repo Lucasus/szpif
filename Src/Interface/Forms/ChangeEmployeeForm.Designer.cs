@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Interface
+namespace Szpif
 {
     partial class ChangeEmployeeForm
     {

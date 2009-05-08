@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Szpif;
 
-namespace Interface
+namespace Szpif
 {
     public static class Program
     {

@@ -69,8 +69,8 @@ AS
 --nic nie robi
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
-INSERT INTO [ColumnsToTypes] VALUES ('EmployeesForUser','Roles', 'CheckedListBox');
-INSERT INTO [ColumnsToTypes] VALUES ('EmployeesForUser','Przelozony', 'Link');
+INSERT INTO [ColumnsToTypes] VALUES ('EmployeesForUser','Roles', 'CheckedListBox', null);
+INSERT INTO [ColumnsToTypes] VALUES ('EmployeesForUser','Przelozony', 'Link', 'przelozeniForSelect');
 
 
 
