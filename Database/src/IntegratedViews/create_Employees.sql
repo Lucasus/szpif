@@ -73,14 +73,20 @@ CREATE PROCEDURE insertEmployees
   @Name			nvarchar(40),
   @EMail		nvarchar(40),
   @Password		nvarchar(40),
-  @Przelozony	int,
+  @Przelozony	xml,
   @Roles		xml
 WITH EXECUTE AS  'szpifadmin'
 AS
+
+
+	declare @przelId int;
+	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @Przelozony.nodes('//Link') AS R(nref))
+
 INSERT INTO [Credentials] VALUES (@Name,@EMail);
 declare @newId int;
 SELECT @newId = SCOPE_IDENTITY() 
-INSERT INTO [Employees]  VALUES (@newId,@Login,@Password,@Przelozony);
+INSERT INTO [Employees]  VALUES (@newId,@Login,@Password,@przelId);
 SELECT @newId = SCOPE_IDENTITY() 
 
 INSERT INTO Roles

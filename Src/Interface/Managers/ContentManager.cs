@@ -46,7 +46,7 @@ namespace Szpif
             {
                 dr[c.Name] = c.getData();
             }
-            int last = (int)dt.Rows[dt.Rows.Count - 1]["Id"] + 1;
+            Int32 last = (Int32)dt.Rows[dt.Rows.Count - 1]["Id"] + 1;
             dr["Id"] = last;
             dt.Rows.Add(dr);
         }

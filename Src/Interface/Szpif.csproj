@@ -89,6 +89,24 @@
     <Compile Include="Controls\ColumnControls\LinkControl.Designer.cs">
       <DependentUpon>LinkControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ContentControls\AddControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ContentControls\AddControl.Designer.cs">
+      <DependentUpon>AddControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContentControls\SelectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ContentControls\SelectControl.Designer.cs">
+      <DependentUpon>SelectControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContentControls\UpdateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ContentControls\UpdateControl.Designer.cs">
+      <DependentUpon>UpdateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ContentControls\ViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -100,17 +118,11 @@
     <Compile Include="Context.cs" />
     <Compile Include="Factories\ControlFactory.cs" />
     <Compile Include="Factories\FormFactory.cs" />
-    <Compile Include="Forms\AddEmployeeForm.cs">
+    <Compile Include="Forms\AddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddEmployeeForm.Designer.cs">
-      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ChangeEmployeeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ChangeEmployeeForm.Designer.cs">
-      <DependentUpon>ChangeEmployeeForm.cs</DependentUpon>
+    <Compile Include="Forms\AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SelectForm.cs">
       <SubType>Form</SubType>
@@ -118,11 +130,11 @@
     <Compile Include="Forms\SelectForm.Designer.cs">
       <DependentUpon>SelectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SelectPrzelozonyForm.cs">
+    <Compile Include="Forms\UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SelectPrzelozonyForm.Designer.cs">
-      <DependentUpon>SelectPrzelozonyForm.cs</DependentUpon>
+    <Compile Include="Forms\UpdateForm.Designer.cs">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IntegratedView.cs" />
     <Compile Include="Managers\FormManager.cs" />
@@ -131,12 +143,6 @@
     <Compile Include="Managers\ContentManager.cs" />
     <Compile Include="Managers\DataManager.cs" />
     <Compile Include="Managers\PermissionManager.cs" />
-    <Compile Include="Pages\EmployeeAdministrationPage.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Pages\EmployeeAdministrationPage.Designer.cs">
-      <DependentUpon>EmployeeAdministrationPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,17 +162,20 @@
     <EmbeddedResource Include="Controls\ColumnControls\LinkControl.resx">
       <DependentUpon>LinkControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddEmployeeForm.resx">
-      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ContentControls\AddControl.resx">
+      <DependentUpon>AddControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChangeEmployeeForm.resx">
-      <DependentUpon>ChangeEmployeeForm.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ContentControls\SelectControl.resx">
+      <DependentUpon>SelectControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SelectPrzelozonyForm.resx">
-      <DependentUpon>SelectPrzelozonyForm.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ContentControls\UpdateControl.resx">
+      <DependentUpon>UpdateControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\EmployeeAdministrationPage.resx">
-      <DependentUpon>EmployeeAdministrationPage.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ContentControls\ViewControl.resx">
+      <DependentUpon>ViewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateForm.resx">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

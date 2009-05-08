@@ -26,26 +26,26 @@ namespace Szpif
             t.UseVisualStyleBackColor = true;
         }
 
-        private ICollection<string> getPageNames(ICollection<string> Permissions)
+        private Dictionary<string, string> getPageNames(ICollection<string> Permissions)
         {
-            ICollection<string> pageNames = new List<string>();
+            Dictionary<string, string> pageNames = new Dictionary<string, string>();
             foreach (string perm in Permissions)
             {
                 switch (perm)
                 {
                     case "W³aœciciel":
                         {
-                            pageNames.Add("AdministrationPage");
+                            pageNames.Add("Pracownicy","Employees");
                             break;
                         }
                     case "Ogólne":
                         {
-                            pageNames.Add("SettingsPage");
+                            pageNames.Add("Twoje ustawienia", "EmployeesForUser");
                             break;
                         }
                     case "PM":
                         {
-                            pageNames.Add("ProjectsPage");
+                            pageNames.Add("Projekty", "Projects");
                             break;
                         }
                     default:
@@ -59,16 +59,19 @@ namespace Szpif
 
         public List<TabPage> makeTabPages(TabControl tc, ICollection<string> Permissions)
         {
-            ICollection<string> pageNames = getPageNames(Permissions);
+            Dictionary<string, string> pageNames = getPageNames(Permissions);
             List<TabPage> pages = new List<TabPage>();
-            foreach (string pName in pageNames)
+            foreach(string name in pageNames.Keys)
+//            foreach (string pName in pageNames)
             {
-                TabPage newPage = null;
-                newPage = PageFactory.createTabPage(pName);
+                TabPage newPage = PageFactory.createViewPage(pageNames[name]);
+                newPage.Text = name;
+                newPage.Name = pageNames[name];
+//                newPage = PageFactory.createTabPage(pName);
                 if (newPage != null)
                 {
 //                    newPage.Width = tc.Width;
-                    setupPage(newPage, pName);
+                    setupPage(newPage, name);
                     tc.Controls.Add(newPage);
                     pages.Add(newPage);
                     newPage.Width = tc.Width - 50;
