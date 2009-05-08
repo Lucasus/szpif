@@ -6,15 +6,16 @@ using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlTypes;
 using System.Data.SqlClient;
+using Szpif;
 
-namespace Logic
+namespace Szpif
 {
 	public class BindManager
 	{
-		IDatabase database;
+        SzpifDatabase database;
 		Dictionary<string, IntegratedView> views;
 
-		public BindManager(IDatabase database)
+		public BindManager(SzpifDatabase database)
 		{
 			this.database = database;
 			views = new Dictionary<string, IntegratedView>();

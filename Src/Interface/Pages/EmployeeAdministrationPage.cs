@@ -6,12 +6,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DatabaseLibrary;
+using Szpif;
 using System.Data.SqlTypes;
 using System.Xml;
 using System.IO;
 using System.Xml.Linq;
-using Logic;
 
 namespace Interface
 {

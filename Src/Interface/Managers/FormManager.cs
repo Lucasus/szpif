@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Interface;
 
-namespace Logic
+namespace Szpif
 {
     public class FormManager
     {
         private Dictionary<string,Form> forms;
-        private IFormFactory formFactory;
+        private FormFactory formFactory;
 
-        public FormManager(IFormFactory factory)
+        public FormManager(FormFactory factory)
         {
             forms = new Dictionary<string,Form>();
             formFactory = factory;

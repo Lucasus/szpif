@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data;
+using Szpif;
 
-namespace Logic
+namespace Szpif
 {
 	/// <summary>
 	/// Klasa odpowiadająca za przechowywanie danych użytkownika.
@@ -16,7 +17,7 @@ namespace Logic
         private string userLogin;
         private string userPassword;
         private ICollection<string> roles;
-        private static IDatabase database;
+        private static SzpifDatabase database;
         private FormManager formManager;
         private ContentManager contentManager;
         private BindManager viewToGridManager;
@@ -60,7 +61,7 @@ namespace Logic
             set { formManager = value; }
         }
 
-        public IDatabase Database
+        public SzpifDatabase Database
         {
             get { return Context.database; }
             set { Context.database = value; }
@@ -69,7 +70,7 @@ namespace Logic
 		/// <summary>
 		/// Konstruktor. 
 		/// </summary>
-		public Context(IDatabase dataBase ,FormManager formManager)
+		public Context(SzpifDatabase dataBase ,FormManager formManager)
         {
 			this.Database = dataBase;
 			this.FormManager = formManager;

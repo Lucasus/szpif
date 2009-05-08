@@ -9,9 +9,24 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Interface</RootNamespace>
-    <AssemblyName>Interface</AssemblyName>
+    <AssemblyName>Szpif</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,7 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormFactory.cs" />
+    <Compile Include="Factories\ColumnFactory.cs" />
+    <Compile Include="Columns\CheckedListBoxSzpifColumn.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Controls\LinkedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Factories\FormFactory.cs" />
     <Compile Include="Forms\AddEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +88,13 @@
     <Compile Include="Forms\SelectPrzelozonyForm.Designer.cs">
       <DependentUpon>SelectPrzelozonyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IntegratedView.cs" />
+    <Compile Include="Managers\FormManager.cs" />
+    <Compile Include="Managers\PageManager.cs" />
+    <Compile Include="Managers\BindManager.cs" />
+    <Compile Include="Managers\ContentManager.cs" />
+    <Compile Include="Managers\DataManager.cs" />
+    <Compile Include="Managers\PermissionManager.cs" />
     <Compile Include="Pages\EmployeeAdministrationPage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -79,7 +107,8 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PageFactory.cs" />
+    <Compile Include="Factories\PageFactory.cs" />
+    <Compile Include="PasswordChecker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AddEmployeeForm.resx">
@@ -134,16 +163,46 @@
     <Compile Include="Pages\UserSettingsPage.Designer.cs">
       <DependentUpon>UserSettingsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="SzpifColumn.cs" />
+    <Compile Include="SzpifDatabase.cs" />
+    <Compile Include="SzpifType.cs" />
+    <Compile Include="Transactions\GetParametersTransaction.cs" />
+    <Compile Include="Transactions\GetViewTransaction.cs" />
+    <Compile Include="Transactions\NonQueryTransaction.cs" />
+    <Compile Include="Transactions\SzpifTransaction.cs" />
+    <Compile Include="Transactions\UpdateViewTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseLibrary\DatabaseLibrary.csproj">
-      <Project>{975F5F93-21ED-4C34-9F46-0365A42C26EB}</Project>
-      <Name>DatabaseLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logic\Logic.csproj">
-      <Project>{C080D83C-D784-4D3E-B473-C7B58E7F8CAA}</Project>
-      <Name>Logic</Name>
-    </ProjectReference>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

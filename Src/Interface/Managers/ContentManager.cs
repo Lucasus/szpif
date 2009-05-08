@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 
-namespace Logic
+namespace Szpif
 {
     public class ContentManager
     {

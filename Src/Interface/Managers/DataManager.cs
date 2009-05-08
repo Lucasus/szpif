@@ -8,13 +8,14 @@ using System.Data.SqlTypes;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
-namespace Logic
+using Szpif;
+namespace Szpif
 {
     public class DataManager
     {
-        IDatabase database;
+        SzpifDatabase database;
 
-		public DataManager(IDatabase database)
+		public DataManager(SzpifDatabase database)
 		{
 			this.database = database;
 		}

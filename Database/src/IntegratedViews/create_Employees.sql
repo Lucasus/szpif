@@ -97,6 +97,13 @@ AS
   INSERT INTO Help values ('dupa')
   DELETE FROM Employees where Id = @Id
 GO
+---------Przypisywanie schematów do niestandardowych typów danych-------------
+INSERT INTO [ColumnsToTypes] VALUES ('Employees','Roles', 'CheckedListBox');
+INSERT INTO [ColumnsToTypes] VALUES ('Employees','Przelozony', 'Link');
+
+
+
+GO
 ---------Nadawanie uprawnieñ-------------------------------------
 GRANT EXECUTE ON    getEmployees TO OwnerRole
 GRANT EXECUTE ON updateEmployees TO OwnerRole

@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using Logic;
+using Szpif;
+using Interface;
 
-namespace Logic
+namespace Szpif
 {
     public class PageManager
     {
-        IPageFactory PageFactory;
-        public PageManager(IPageFactory PageFactory)
+        PageFactory PageFactory;
+        public PageManager(PageFactory PageFactory)
         {
             this.PageFactory = PageFactory;
         }

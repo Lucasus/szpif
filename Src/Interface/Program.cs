@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Logic;
-using DatabaseLibrary;
+using Szpif;
 
 namespace Interface
 {

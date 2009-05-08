@@ -10,7 +10,7 @@ using System.Data.SqlTypes;
 using System.Xml;
 using System.IO;
 using System.Xml.Linq;
-using Logic;
+using Szpif;
 
 namespace Interface
 {

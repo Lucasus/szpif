@@ -53,8 +53,39 @@ CREATE TABLE [Help]
 		[Message] [nvarchar] (40) NOT NULL
 );
 
-GO
+CREATE TABLE [UserTypes]
+(
+		[Id] [int] IDENTITY (1,1) NOT NULL PRIMARY KEY,
+		[Name] [nvarchar] (40) NOT NULL,
+		[TypeSchema] [nvarchar] (1000) NOT NULL
+);
 
+CREATE TABLE [ColumnsToTypes]
+(
+		[Id] [int] IDENTITY (1,1) NOT NULL PRIMARY KEY,
+		[ViewName] [nvarchar] (40) NOT NULL,
+		[ColumnName] [nvarchar] (40) NOT NULL,
+		[TypeName] [nvarchar] (40) NOT NULL
+);
+
+GO
+--creating types
+INSERT INTO [UserTypes] VALUES ('CheckedListBox',
+ '<CheckedListBox Name="ColumnName">
+  <Item Name="W³aœciciel" Value="0 or 1" />
+  <Item Name="Project Manager" Value="0 or 1" />
+  <Item Name="Prze³o¿ony" Value="0 or 1" />
+  <Item Name="Pracownik" Value="0 or 1" />
+  <Item Name="Opiekun handlowy" Value="0 or 1" />
+</CheckedListBox>');
+
+INSERT INTO [UserTypes] VALUES ('Link','<Link Name="ColumnName" Id="Id rekordu do ktorego sie odwolujemy"
+Text="Tekst wyswietlany na gridzie" />');
+
+
+
+
+GO
 alter database szpifDatabase set trustworthy on 
 
 GO

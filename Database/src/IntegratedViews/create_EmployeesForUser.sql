@@ -68,6 +68,12 @@ CREATE PROCEDURE deleteEmployeesForUser
 AS
 --nic nie robi
 GO
+---------Przypisywanie schematów do niestandardowych typów danych-------------
+INSERT INTO [ColumnsToTypes] VALUES ('EmployeesForUser','Roles', 'CheckedListBox');
+INSERT INTO [ColumnsToTypes] VALUES ('EmployeesForUser','Przelozony', 'Link');
+
+
+
 ---------Nadawanie uprawnieñ-------------------------------------
 GRANT EXECUTE ON    getEmployeesForUser TO BasicRole
 GRANT EXECUTE ON updateEmployeesForUser TO BasicRole

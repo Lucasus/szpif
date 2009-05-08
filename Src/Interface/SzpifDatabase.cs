@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Logic;
+using Szpif;
 using System.Data.Common;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DatabaseLibrary
+namespace Szpif
 {
-    public class SzpifDatabase : IDatabase
+    public class SzpifDatabase
     {
 		private static SzpifDatabase dataBase;
         private static DbProviderFactory factory;
