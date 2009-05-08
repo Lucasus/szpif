@@ -47,6 +47,15 @@ CREATE TABLE [RoleNames]
 		[RoleName] [nvarchar] (40) NOT NULL
 );
 
+
+CREATE TABLE [Projects]
+(
+		[Id] [int] IDENTITY (1,1) NOT NULL PRIMARY KEY,
+		[Name] [nvarchar] (40) NOT NULL
+);
+
+--pomocnicze tabele techniczne zawierajace metadane-------
+
 CREATE TABLE [Help]
 (
 		[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
