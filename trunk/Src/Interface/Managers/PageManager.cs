@@ -21,7 +21,6 @@ namespace Szpif
             t.Location = new System.Drawing.Point(4, 25);
             t.Name = name;
             t.Padding = new System.Windows.Forms.Padding(3);
-           // t.Size = new System.Drawing.Size(624, 433);
             t.TabIndex = 0;
             t.UseVisualStyleBackColor = true;
         }
@@ -63,15 +62,12 @@ namespace Szpif
             Dictionary<string, string> pageNames = getPageNames(Permissions);
             List<TabPage> pages = new List<TabPage>();
             foreach(string name in pageNames.Keys)
-//            foreach (string pName in pageNames)
             {
                 TabPage newPage = PageFactory.createViewPage(pageNames[name]);
                 newPage.Text = name;
                 newPage.Name = pageNames[name];
-//                newPage = PageFactory.createTabPage(pName);
                 if (newPage != null)
                 {
-//                    newPage.Width = tc.Width;
                     setupPage(newPage, name);
                     tc.Controls.Add(newPage);
                     pages.Add(newPage);
