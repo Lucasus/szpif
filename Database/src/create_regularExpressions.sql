@@ -1,0 +1,13 @@
+sp_configure 'clr enabled', 1
+RECONFIGURE WITH OVERRIDE
+
+Use szpifDatabase
+CREATE ASSEMBLY regX
+FROM 'src\TextFunctions\TextFunctions\bin\Release\TextFunctions.dll'
+GO
+
+
+
+CREATE Function RegExMatch(@Input NVARCHAR(512),@Pattern NVARCHAR(127))
+RETURNS BIT EXTERNAL NAME regX.RegularExpressions.RegExMatch
+GO 

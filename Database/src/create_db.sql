@@ -15,6 +15,7 @@ GO
 :On Error exit
 :r src\remove_all.sql
 
+:r src\create_regularExpressions.sql
 :r src\create_tables.sql
 :r src\create_functions.sql
 :r src\create_views.sql
