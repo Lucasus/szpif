@@ -279,6 +279,11 @@ CREATE TABLE [Roles]
 		
 );
 
+CREATE TABLE [RoleNames]
+(
+		[Id] [int] IDENTITY (1,1) NOT NULL PRIMARY KEY,
+		[RoleName] [nvarchar] (40) NOT NULL
+);
 --pomocnicze tabele techniczne zawierajace metadane-------
 
 CREATE TABLE [Help]

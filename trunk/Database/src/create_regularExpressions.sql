@@ -4,7 +4,7 @@ RECONFIGURE WITH OVERRIDE
 Use szpifDatabase
 
 CREATE ASSEMBLY regX
-FROM 'C:\Users\Chieredan\Documents\Visual Studio 2008\Projects\Bazy 2\Database\src\TextFunctions\TextFunctions\bin\Release\TextFunctions.dll'
+FROM 'D:\Moje dokumenty\Baza informacji\studia - 6 - bazy danych II\Szpif\Database\src\TextFunctions\TextFunctions\bin\Release\TextFunctions.dll'
 GO
 
 
