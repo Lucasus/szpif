@@ -146,8 +146,8 @@ CREATE TABLE [Employees]
 	[HoursNr] [int] NOT NULL,
 	[RatePerHour] [money] NOT NULL, 
 
-	CONSTRAINT [CK_Empl_Login] CHECK  (dbo.RegExMatch([Login], '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
-	CONSTRAINT [CK_Empl_Password] CHECK  (dbo.RegExMatch(Password, '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
+	--CONSTRAINT [CK_Empl_Login] CHECK  (dbo.RegExMatch([Login], '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
+	--CONSTRAINT [CK_Empl_Password] CHECK  (dbo.RegExMatch(Password, '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
 	CONSTRAINT [CK_Empl_HourNr] CHECK  (HoursNr > 0 AND HoursNr < 43),
 	CONSTRAINT [CK_Empl_RatePerHour] CHECK  (RatePerHour > 0)
 );
@@ -210,13 +210,13 @@ CREATE TABLE [Projects]
 (
 	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 	[ManagerId] [int] NULL REFERENCES [Employees] ([Id]), 
-	[OrderId] [int] REFERENCES [Orders] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
+	[OrderId] [int] REFERENCES [Orders] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE ,
 	[ProjectStatusId] [int] REFERENCES [ProjectStatus] ([Id]) ON UPDATE CASCADE,
-	[ProjectName] [nvarchar] (40) NOT NULL,
-	[MaxHours] [int] NOT NULL DEFAULT 1,
-	[MaxBudget] [money] NOT NULL DEFAULT 0,
-	[StartDate] [datetime] NOT NULL,
-	[ExpectedEndDate] [datetime] NOT NULL, 
+	[ProjectName] [nvarchar] (40) ,
+	[MaxHours] [int] DEFAULT 1,
+	[MaxBudget] [money] DEFAULT 0,
+	[StartDate] [datetime] ,
+	[ExpectedEndDate] [datetime] , 
 	CONSTRAINT [CK_Project_Name] CHECK  (dbo.RegExMatch([ProjectName], '\b[A-Za-z0-9]+\b')=1),
 	CONSTRAINT [CK_Project_MaxHours] CHECK  (MaxHours > 0),
 	CONSTRAINT [CK_Project_MaxBudget] CHECK  (MaxBudget > 0),

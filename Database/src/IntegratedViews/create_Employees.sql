@@ -35,7 +35,7 @@ AS
 		creds.PostalCode,
 		creds.Country,
 		creds.Nip,
-		dbo.EmployeeToXmlLink(em.SuperiorId) AS  Przelozony,
+		dbo.EmployeeToXmlLink(em.SuperiorId, 'Przelozony', 'PrzelozeniForSelect') AS  Przelozony,
 	    dbo.xmlRoles (em.Id) AS Roles
 	FROM Employees em
 		inner join [Credentials] creds on em.CredentialsId = creds.Id
