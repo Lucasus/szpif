@@ -73,10 +73,15 @@ INSERT INTO [ProjectStatus] (EndDate, UsedHours, UsedBudget, Status) VALUES (NUL
 INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate)
 	VALUES(2, 1, 1, 'Projekt1',  7, 36, '20090810' , '20091105' );
 INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate)
-	VALUES(2, 1, 2, 'Projekt2',  8, 45, '20090927' , '20091128' );
+	VALUES(3, 1, 2, 'Projekt2',  8, 45, '20090927' , '20091128' );
 INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate)
-	VALUES(3, 2, 3, 'Projekt3',  9, 22, '20090922' , '20091201' );
+	VALUES(2, 2, 3, 'Projekt3',  9, 22, '20090922' , '20091201' );
 
+INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 1, 0, 'W toku') 
+INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 2, 1, 'Zakonczone') 
+INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 1, 0, 'W toku') 
+INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 1, 0, 'W toku') 
+INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 1, 0, 'W toku') 
 INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 1, 0, 'W toku') 
 INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 2, 1, 'Zakonczone') 
 INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 1, 0, 'W toku') 
@@ -95,6 +100,16 @@ INSERT INTO [Tasks] (EmployeeId, ProjectId, TaskStatusId, MaxHours, TaskName, St
 INSERT INTO [Tasks] (EmployeeId, ProjectId, TaskStatusId, MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus)
 	VALUES(4, 1, 5, 1, 'Zadanie5', '20091125', '20091202' , 45);
 
+INSERT INTO [Tasks] (EmployeeId, ProjectId, TaskStatusId, MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus)
+	VALUES(3, 2, 6, 9, 'Zadanie6', '20091129', '20091201' , 45);
+INSERT INTO [Tasks] (EmployeeId, ProjectId, TaskStatusId, MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus)
+	VALUES(4, 2, 7, 1, 'Zadanie7', '20091129', '20091202' , 50);
+INSERT INTO [Tasks] (EmployeeId, ProjectId, TaskStatusId, MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus)
+	VALUES(5, 2, 8, 2, 'Zadanie8', '20091118', '20091202' , 100);
+INSERT INTO [Tasks] (EmployeeId, ProjectId, TaskStatusId, MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus)
+	VALUES(4, 2, 9, 1, 'Zadanie9', '20091127', '20091201' , 45);
+INSERT INTO [Tasks] (EmployeeId, ProjectId, TaskStatusId, MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus)
+	VALUES(4, 2, 10, 1, 'Zadanie9', '20091125', '20091202' , 45);
 
 /*INSERT INTO [Credentials] VALUES ('Lukasz Wiatrak','lukasz@lukasz');
 INSERT INTO [Credentials] VALUES ('Janusz Majewski','majewski@agh.edu.pl');
