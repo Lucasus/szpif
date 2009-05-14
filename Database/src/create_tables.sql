@@ -146,8 +146,8 @@ CREATE TABLE [Employees]
 	[HoursNr] [int] NOT NULL,
 	[RatePerHour] [money] NOT NULL, 
 
-	CONSTRAINT [CK_Empl_Login] CHECK  (dbo.RegExMatch([Login], '\b[A-Za-z0-9]{6}[A-Za-z0-9]*\b')=1),
-	CONSTRAINT [CK_Empl_Password] CHECK  (dbo.RegExMatch(Password, '\b[A-Za-z0-9]{6}[A-Za-z0-9]*\b')=1),
+	CONSTRAINT [CK_Empl_Login] CHECK  (dbo.RegExMatch([Login], '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
+	CONSTRAINT [CK_Empl_Password] CHECK  (dbo.RegExMatch(Password, '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
 	CONSTRAINT [CK_Empl_HourNr] CHECK  (HoursNr > 0 AND HoursNr < 43),
 	CONSTRAINT [CK_Empl_RatePerHour] CHECK  (RatePerHour > 0)
 );
@@ -181,7 +181,7 @@ CREATE TABLE [Orders]
 	[ClientId] [int] NOT NULL REFERENCES [Clients] ([Id]) ON UPDATE CASCADE,
 	[OrderStatusId] [int] NOT NULL REFERENCES [OrderStatus] ([Id]) ON UPDATE CASCADE,
 	[OrderName] [nvarchar] (40) NOT NULL,
-	[Decription] [nvarchar] (300) NULL,
+	[Description] [nvarchar] (300) NULL,
 	[MaxHours] [int] NOT NULL,
 	[MaxBudget] [money] NOT NULL,
 	[Price] [money] NOT NULL,
