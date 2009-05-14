@@ -25,9 +25,9 @@ AS
 	SELECT 
 		em.Id, 
 		em.Login, 
-		creds.Name, 
+		creds.FirstName AS Name, 
 		creds.EMail,
-		dbo.EmployeeToXmlLink(em.Przelozony) AS  Przelozony,
+		dbo.EmployeeToXmlLink(em.SuperiorId) AS  Przelozony,
 	    dbo.xmlRoles (em.Id) AS Roles
 	FROM Employees em
 		inner join [Credentials] creds on em.CredentialsId = creds.Id
@@ -48,13 +48,13 @@ AS
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @Przelozony.nodes('//Link') AS R(nref))
 
-    update Employees set Login = @Login, Przelozony = @przelId  where Id = @Id    
+    update Employees set Login = @Login, SuperiorId = @przelId  where Id = @Id    
     IF @Password != '' and @Password is not null
     BEGIN
 		update Employees set Password = @Password  where Id = @Id    
     END
     
-    update Credentials set Name = @Name, EMail = @EMail where Id = 
+    update Credentials set FirstName = @Name, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
     
     DELETE FROM Roles
@@ -83,10 +83,10 @@ AS
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @Przelozony.nodes('//Link') AS R(nref))
 
-INSERT INTO [Credentials] VALUES (@Name,@EMail);
+INSERT INTO [Credentials] (FirstName, LastName, EMail, Street, HouseNr, City, PostalCode, Country, Nip)  VALUES (@Name, 'Master' ,@EMail, 'Sezamkowa', 1, 'Cracow', '32-080', 'Poland', '111');
 declare @newId int;
 SELECT @newId = SCOPE_IDENTITY() 
-INSERT INTO [Employees]  VALUES (@newId,@Login,@Password,@przelId);
+INSERT INTO [Employees] (CredentialsId, Login, Password, HoursNr, RatePerHour, SuperiorId)  VALUES (@newId,@Login,@Password, 10 , 10 ,@przelId);
 SELECT @newId = SCOPE_IDENTITY() 
 
 INSERT INTO Roles

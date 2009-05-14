@@ -4,11 +4,15 @@ GO
 delete from [Roles];
 delete from [Employees];
 delete from [Credentials];
-DBCC CHECKIDENT (Employees, RESEED, 0);
-DBCC CHECKIDENT (Roles, RESEED, 0);
-DBCC CHECKIDENT (Credentials, RESEED, 0);
+--DBCC CHECKIDENT (Employees, RESEED, 1);
+--DBCC CHECKIDENT (Roles, RESEED, 1);
+--DBCC CHECKIDENT (Credentials, RESEED, 1);
 
-INSERT INTO [Credentials] VALUES ('Lukasz Wiatrak','lukasz@lukasz');
+INSERT INTO [Credentials] (FirstName, SecondName, LastName, EMail, Phone, Street, HouseNr, FlatNr , City, PostalCode, Country, Pesel, Nip) VALUES ('Mooseq', 'Krzysztof','Master', 'moose@master.pl', '123', 'Slaska', '42', '3', 'Zabierzow', '32-080', 'Poland','11111111111' ,'111');
+INSERT INTO [Employees] (CredentialsId, Login, Password, HoursNr, RatePerHour) VALUES (1, 'Moose123', 'Master', 1, 1);
+INSERT INTO [Roles] (EmployeeId, Role) VALUES (1, 'W³aœciciel');
+
+/*INSERT INTO [Credentials] VALUES ('Lukasz Wiatrak','lukasz@lukasz');
 INSERT INTO [Credentials] VALUES ('Janusz Majewski','majewski@agh.edu.pl');
 INSERT INTO [Credentials] VALUES ('Krzysztof Nowak','krzychu@vp.pl');
 INSERT INTO [Credentials] VALUES ('Marcin Kuta','kuta@agh.edu.pl');
@@ -35,6 +39,6 @@ INSERT INTO [Roles] VALUES (2,'Project Manager');
 INSERT INTO [Roles] VALUES (3,'Project Manager');
 INSERT INTO [Roles] VALUES (4,'Pracownik');
 INSERT INTO [Roles] VALUES (4,'Opiekun handlowy');
-INSERT INTO [Roles] VALUES (5,'Pracownik');
+INSERT INTO [Roles] VALUES (5,'Pracownik');*/
 
 GO
