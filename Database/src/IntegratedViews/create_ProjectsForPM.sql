@@ -22,14 +22,19 @@ GO
 ----------Procedura zwracaj¹ca widok------------------------------
 CREATE PROCEDURE getProjectsForPM
 AS
-    declare @login varchar(40);
-    select @login = SYSTEM_USER
-	SELECT 
-		Id, 
+ declare @login varchar(40);
+  select @login = SYSTEM_USER
+  select	Id, 
+		dbo.EmployeeToXmlLink(pr.ManagerId) AS  'PM',
+		OrderId,
+		ProjectStatusId,
 		ProjectName,
-		dbo.EmployeeToXmlLink(pr.ManagerId) AS  'PM'
-	FROM Projects pr
-GO
+		MaxHours,
+		MaxBudget,
+		StartDate,
+		ExpectedEndDate
+  from Projects pr where ManagerId in (select Id from Employees where Login = @login)
+ GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateProjectsForPM
