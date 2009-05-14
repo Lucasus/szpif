@@ -192,9 +192,9 @@ CREATE TABLE [ProjectStatus]
 (
 	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 	[EndDate] [datetime] NULL,
-	[UsedHours] [int] NOT NULL,
-	[UsedBudget] [int] NOT NULL,
-	[Status] [nvarchar] (100) NOT NULL, 
+	[UsedHours] [int] ,
+	[UsedBudget] [int] ,
+	[Status] [nvarchar] (100) , 
 	CONSTRAINT [CK_ProjectSt_UsedHours] CHECK  (UsedHours > 0),
 	CONSTRAINT [CK_ProjectSt_UsedBudget] CHECK  (UsedBudget > 0)
 	
@@ -204,13 +204,13 @@ CREATE TABLE [Projects]
 (
 	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 	[ManagerId] [int] NULL REFERENCES [Employees] ([Id]), 
-	[OrderId] [int] NOT NULL REFERENCES [Orders] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
-	[ProjectStatusId] [int] NOT NULL REFERENCES [ProjectStatus] ([Id]) ON UPDATE CASCADE,
+	[OrderId] [int] REFERENCES [Orders] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
+	[ProjectStatusId] [int] REFERENCES [ProjectStatus] ([Id]) ON UPDATE CASCADE,
 	[ProjectName] [nvarchar] (40) NOT NULL,
-	[MaxHours] [int] NOT NULL,
-	[MaxBudget] [money] NOT NULL,
-	[StartDate] [datetime] NOT NULL,
-	[ExpectedEndDate] [datetime] NOT NULL, 
+	[MaxHours] [int] ,
+	[MaxBudget] [money] ,
+	[StartDate] [datetime] ,
+	[ExpectedEndDate] [datetime] , 
 	CONSTRAINT [CK_Project_Name] CHECK  (dbo.RegExMatch([ProjectName], '\b[A-Za-z0-9]+\b')=1),
 	CONSTRAINT [CK_Project_MaxHours] CHECK  (MaxHours > 0),
 	CONSTRAINT [CK_Project_MaxBudget] CHECK  (MaxBudget > 0),
@@ -223,9 +223,9 @@ CREATE TABLE [TaskStatus]
 (
 	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 	[EndDate] [datetime] NULL,
-	[UsedHours] [int] NOT NULL,
-	[BonusGiven] [bit] NOT NULL,
-	[Status] [nvarchar] (100) NOT NULL, 
+	[UsedHours] [int] ,
+	[BonusGiven] [bit] ,
+	[Status] [nvarchar] (100) , 
 	CONSTRAINT [CK_TaskSt_UsedHours] CHECK  (UsedHours > 0)
 );
 
@@ -234,13 +234,13 @@ CREATE TABLE [Tasks]
 (
 	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 	[EmployeeId] [int] NULL REFERENCES [Employees] ([Id]), --TODO
-	[ProjectId] [int] NOT NULL REFERENCES [Projects] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
-	[TaskStatusId] [int] NOT NULL REFERENCES [TaskStatus] ([Id]) ON UPDATE CASCADE,
-	[TaskName] [nvarchar] (40) NOT NULL,
-	[MaxHours] [int] NOT NULL,
-	[StartDate] [datetime] NOT NULL,
-	[ExpectedEndDate] [datetime] NOT NULL, 
-	[Bonus] [money] NOT NULL DEFAULT 0, 
+	[ProjectId] [int] REFERENCES [Projects] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
+	[TaskStatusId] [int] REFERENCES [TaskStatus] ([Id]) ON UPDATE CASCADE,
+	[TaskName] [nvarchar] (40) ,
+	[MaxHours] [int] ,
+	[StartDate] [datetime] ,
+	[ExpectedEndDate] [datetime] , 
+	[Bonus] [money] DEFAULT 0, 
 	CONSTRAINT [CK_Tasks_Name] CHECK  (dbo.RegExMatch([TaskName], '\b[A-Za-z0-9]+\b')=1),
 	CONSTRAINT [CK_Tasks_MaxHours] CHECK  (MaxHours > 0),
 	CONSTRAINT [CK_Tasks_Bonus] CHECK  (Bonus > 0),

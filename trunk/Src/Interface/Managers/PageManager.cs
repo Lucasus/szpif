@@ -43,9 +43,21 @@ namespace Szpif
                             pageNames.Add("Twoje ustawienia", "EmployeesForUser");
                             break;
                         }
-                    case "PM":
+                    case "Project Manager":
                         {
-                            pageNames.Add("Projekty", "Projects");
+                            pageNames.Add("Twoje Projekty", "ProjectsForPM");
+                            break;
+                        }
+                    case "Prze³o¿ony":
+                        {
+                            break;
+                        }
+                    case "Opiekun handlowy":
+                        {
+                            break;
+                        }
+                    case "Pracownik":
+                        {
                             break;
                         }
                     default:
