@@ -25,8 +25,16 @@ AS
 	SELECT 
 		em.Id, 
 		em.Login, 
-		creds.FirstName AS Name, 
+		creds.FirstName,
+		creds.SecondName,
+		creds.LastName,
 		creds.EMail,
+		creds.Street,
+		creds.HouseNr,
+		creds.City,
+		creds.PostalCode,
+		creds.Country,
+		creds.Nip,
 		dbo.EmployeeToXmlLink(em.SuperiorId) AS  Przelozony,
 	    dbo.xmlRoles (em.Id) AS Roles
 	FROM Employees em
@@ -37,8 +45,16 @@ GO
 CREATE PROCEDURE updateEmployees
   @Id			int,
   @Login		nvarchar(40),
-  @Name			nvarchar(40),
+  @FirstName	nvarchar(40),
+  @SecondName	nvarchar(40),
+  @LastName		nvarchar(40),
   @EMail		nvarchar(40),
+  @Street		nvarchar(40),
+  @HouseNr		char(7),
+  @City			nvarchar(40),
+  @PostalCode	nvarchar(6),
+  @Country		nvarchar(50),
+  @Nip			char(20),
   @Password		nvarchar(40),
   @Przelozony	xml,
   @Roles		xml
@@ -54,7 +70,7 @@ AS
 		update Employees set Password = @Password  where Id = @Id    
     END
     
-    update Credentials set FirstName = @Name, EMail = @EMail where Id = 
+    update Credentials set FirstName = @FirstName, LastName = @LastName, SecondName = @SecondName, Street = @Street, HouseNr = @HouseNr, City = @City, PostalCode = @PostalCode, Country = @Country, Nip = @Nip, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
     
     DELETE FROM Roles
@@ -70,8 +86,16 @@ GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertEmployees
   @Login		nvarchar(40),
-  @Name			nvarchar(40),
+  @FirstName	nvarchar(40),
+  @SecondName	nvarchar(40),
+  @LastName		nvarchar(40),
   @EMail		nvarchar(40),
+  @Street		nvarchar(40),
+  @HouseNr		char(7),
+  @City			nvarchar(40),
+  @PostalCode	nvarchar(6),
+  @Country		nvarchar(50),
+  @Nip			char(20),
   @Password		nvarchar(40),
   @Przelozony	xml,
   @Roles		xml
@@ -83,7 +107,7 @@ AS
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @Przelozony.nodes('//Link') AS R(nref))
 
-INSERT INTO [Credentials] (FirstName, LastName, EMail, Street, HouseNr, City, PostalCode, Country, Nip)  VALUES (@Name, 'Master' ,@EMail, 'Sezamkowa', 1, 'Cracow', '32-080', 'Poland', '111');
+INSERT INTO [Credentials] (FirstName, SecondName, LastName, EMail, Street, HouseNr, City, PostalCode, Country, Nip)  VALUES (@FirstName, @SecondName, @LastName ,@EMail, @Street, @HouseNr, @City, @PostalCode, @Country, @Nip);
 declare @newId int;
 SELECT @newId = SCOPE_IDENTITY() 
 INSERT INTO [Employees] (CredentialsId, Login, Password, HoursNr, RatePerHour, SuperiorId)  VALUES (@newId,@Login,@Password, 10 , 10 ,@przelId);
