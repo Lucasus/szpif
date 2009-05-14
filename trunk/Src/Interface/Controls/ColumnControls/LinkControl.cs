@@ -97,7 +97,7 @@ namespace Szpif
             return xmlDoc.OuterXml;
         }
 
-        public override string getData()
+        public override object getData()
         {
             string help = getDefaultData();
             XmlDocument xmlDoc = new XmlDocument();
@@ -105,7 +105,9 @@ namespace Szpif
 
             xmlDoc.DocumentElement.SetAttribute("Text", this.ColumnValue.Text);
             xmlDoc.DocumentElement.SetAttribute("Id", this.linkedRowId.ToString());
-            return xmlDoc.OuterXml;
+            if (xmlDoc.OuterXml != "")
+                return xmlDoc.OuterXml;
+            else return DBNull.Value;
 //            SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml)));
 //            gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;
         }

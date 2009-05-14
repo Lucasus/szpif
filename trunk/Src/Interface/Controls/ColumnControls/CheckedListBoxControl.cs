@@ -74,7 +74,7 @@ namespace Szpif
                         columnValue.SetItemChecked(i, true);
         }
 
-        public override string getData()
+        public override object getData()
         {
             string help = getDefaultValue();
 
@@ -93,7 +93,10 @@ namespace Szpif
             }
 //            SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml))); //  StringReader(xmlDoc.OuterXml));
  //           gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;// xmlDoc.  new SqlXml(  xmlDoc.OuterXml;*/
-            return xmlDoc.OuterXml;
+            if(xmlDoc.OuterXml != "")
+                return xmlDoc.OuterXml;
+            else 
+                return DBNull.Value;
         }
 
     }

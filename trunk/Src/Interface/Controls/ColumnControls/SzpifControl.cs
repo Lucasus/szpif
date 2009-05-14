@@ -28,7 +28,7 @@ namespace Szpif
         {
             throw new NotImplementedException();
         }
-        public virtual string getData()
+        public virtual object getData()
         {
             throw new NotImplementedException();
         }

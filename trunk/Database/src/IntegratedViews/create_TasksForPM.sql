@@ -52,6 +52,7 @@ AS
 	from @PM.nodes('//Link') AS R(nref))
 
     update Projects set ManagerId = @przelId, 
+						OrderId = @OrderId,
 						ProjectStatusId = @ProjectStatusId,
 						ProjectName = @ProjectName, 
 						MaxHours = @MaxHours,
@@ -77,7 +78,7 @@ AS
 	
 INSERT INTO [szpifDatabase].[dbo].[Projects]
            ([ManagerId]
-           ,OrderId
+           ,null
            ,[ProjectStatusId]
            ,[ProjectName]
            ,[MaxHours]
@@ -86,7 +87,7 @@ INSERT INTO [szpifDatabase].[dbo].[Projects]
            ,[ExpectedEndDate])
      VALUES
            (@przelId, 
-           null, 
+           @OrderId, 
            @ProjectStatusId, 
            @ProjectName, 
            @MaxHours, 

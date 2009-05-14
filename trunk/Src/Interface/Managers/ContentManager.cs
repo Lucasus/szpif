@@ -44,8 +44,6 @@ namespace Szpif
             DataRow dr = dt.NewRow();
             foreach (SzpifControl c in valueBoxes)
             {
-                string value = c.getData();
-                if(value != "")
                     dr[c.Name] = c.getData();
             }
 
@@ -58,7 +56,9 @@ namespace Szpif
         public void setDataInGrid(List<SzpifControl> valueBoxes, DataGridView gridView, IntegratedView view, int row)
         {
             foreach (SzpifControl c in valueBoxes)
+            {
                 gridView.Rows[row].Cells[c.Name].Value = c.getData();
+            }
         }
 
         public void getDataFromGrid(List<SzpifControl> valueBoxes, DataGridView gridView, IntegratedView view, int row)
