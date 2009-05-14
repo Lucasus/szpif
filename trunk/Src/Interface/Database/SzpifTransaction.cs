@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Szpif;
+using System.Windows.Forms;
 
 namespace Szpif
 {
@@ -29,6 +30,7 @@ namespace Szpif
             catch (Exception e)
             {
                 e.ToString();
+                MessageBox.Show(e.ToString());
                 Failed = true;
             }
             finally
