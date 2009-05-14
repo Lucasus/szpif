@@ -4,6 +4,4 @@ PRINT 'Credentials:'
 Select * from Credentials 
 PRINT 'Roles:'
 Select * from Roles
-
-exec getEmployees
 GO

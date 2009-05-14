@@ -39,7 +39,7 @@ namespace Szpif
             ICollection<string> roles = new List<string>();
             IntegratedView view = database.getView("EmployeesForUser");
             string help = view.Table.Rows[0]["Roles"].ToString();
-
+			
             //string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(new StringReader(help));
