@@ -18,7 +18,7 @@ namespace Szpif
 
 		public ICollection<string> getUserPermissions(string username, string password)
 		{
-		    if (database.CheckLogin(username, password) == true)
+		    if(database.CheckLogin(username, password) == true)
             {
 				database.setupConnectionParameters(username, password);
 				DataManager dataManager = new DataManager(database);

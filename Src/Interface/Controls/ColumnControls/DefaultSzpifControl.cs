@@ -24,9 +24,12 @@ namespace Szpif
             this.ColumnValue.Text = data;
         }
 
-        public override string getData()
+        public override object getData()
         {
-            return this.ColumnValue.Text;
+            if(this.ColumnValue.Text != "")
+                return this.ColumnValue.Text;
+            else return DBNull.Value;
+
         }
 
     }
