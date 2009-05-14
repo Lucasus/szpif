@@ -47,6 +47,7 @@ INSERT INTO [RoleNames] VALUES ('Opiekun handlowy');
 INSERT INTO [Roles] (EmployeeId, Role) VALUES (1, 'W³aœciciel');
 INSERT INTO [Roles] (EmployeeId, Role) VALUES (2, 'W³aœciciel');
 INSERT INTO [Roles] (EmployeeId, Role) VALUES (2, 'Project Manager');
+INSERT INTO [Roles] (EmployeeId, Role) VALUES (3, 'Project Manager');
 INSERT INTO [Roles] (EmployeeId, Role) VALUES (2, 'Prze³o¿ony');
 INSERT INTO [Roles] (EmployeeId, Role) VALUES (3, 'Pracownik');
 INSERT INTO [Roles] (EmployeeId, Role) VALUES (3, 'Opiekun handlowy');
@@ -74,7 +75,7 @@ INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHou
 INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate)
 	VALUES(2, 1, 2, 'Projekt2',  8, 45, '20090927' , '20091128' );
 INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate)
-	VALUES(2, 2, 3, 'Projekt3',  9, 22, '20090922' , '20091201' );
+	VALUES(3, 2, 3, 'Projekt3',  9, 22, '20090922' , '20091201' );
 
 INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 1, 0, 'W toku') 
 INSERT INTO [TaskStatus] (EndDate, UsedHours, BonusGiven, Status) VALUES (NULL, 2, 1, 'Zakonczone') 
@@ -131,5 +132,5 @@ INSERT INTO [Projects]
            ([ManagerId],OrderId,[ProjectStatusId],[ProjectName],[MaxHours],[MaxBudget],[StartDate],[ExpectedEndDate])
      VALUES(3, null, null, 'Szpif3',3,null,null,null);
 
-
+*/
 GO

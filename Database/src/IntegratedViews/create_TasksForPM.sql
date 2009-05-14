@@ -116,9 +116,9 @@ GO
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
-GRANT EXECUTE ON    getTasksForPM TO OwnerRole
-GRANT EXECUTE ON updateTasksForPM TO OwnerRole
-GRANT EXECUTE ON insertTasksForPM TO OwnerRole
-GRANT EXECUTE ON deleteTasksForPM TO OwnerRole
+GRANT EXECUTE ON    getTasksForPM TO BasicRole
+GRANT EXECUTE ON updateTasksForPM TO BasicRole
+GRANT EXECUTE ON insertTasksForPM TO BasicRole
+GRANT EXECUTE ON deleteTasksForPM TO BasicRole
 use szpifDatabase
 

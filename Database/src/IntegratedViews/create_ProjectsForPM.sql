@@ -106,9 +106,9 @@ INSERT INTO [ColumnsToTypes] VALUES ('ProjectsForPM','PM', 'Link', 'PMForSelect'
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
-GRANT EXECUTE ON    getProjectsForPM TO OwnerRole
-GRANT EXECUTE ON updateProjectsForPM TO OwnerRole
-GRANT EXECUTE ON insertProjectsForPM TO OwnerRole
-GRANT EXECUTE ON deleteProjectsForPM TO OwnerRole
+GRANT EXECUTE ON    getProjectsForPM TO BasicRole
+GRANT EXECUTE ON updateProjectsForPM TO BasicRole
+GRANT EXECUTE ON insertProjectsForPM TO BasicRole
+GRANT EXECUTE ON deleteProjectsForPM TO BasicRole
 use szpifDatabase
 
