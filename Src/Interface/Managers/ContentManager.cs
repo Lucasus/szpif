@@ -44,7 +44,9 @@ namespace Szpif
             DataRow dr = dt.NewRow();
             foreach (SzpifControl c in valueBoxes)
             {
-                dr[c.Name] = c.getData();
+                string value = c.getData();
+                if(value != "")
+                    dr[c.Name] = c.getData();
             }
 
             Int32 last = 0;

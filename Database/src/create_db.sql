@@ -33,6 +33,7 @@ PRINT 'ROLES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_Employees.sql
 PRINT 'EMPLOYEES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_Projects.sql
+:r src\IntegratedViews\create_ProjectsForPM.sql
 PRINT 'PROJECTS HAVE BEEN CREATED'
 :r src\IntegratedViews\create_EmployeesForUser.sql
 PRINT 'EMPLOYEES FOR USER HAVE BEEN CREATED'

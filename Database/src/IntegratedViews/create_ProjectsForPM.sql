@@ -38,26 +38,64 @@ AS
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateProjectsForPM
-  @Id			int,
-  @Name			nvarchar(40),
-  @PM			xml
+  @Id					int,
+  @PM					xml,
+  @OrderId				int,
+  @ProjectStatusId		int,  
+  @ProjectName			nvarchar(40),
+  @MaxHours				int,
+  @MaxBudget			int,
+  @StartDate			datetime,
+  @ExpectedEndDate		datetime
 AS
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 
-    update Projects set ProjectName = @Name, ManagerId = @przelId where Id = @Id        
+    update Projects set ManagerId = @przelId, 
+						OrderId = @OrderId,
+						ProjectStatusId = @ProjectStatusId,
+						ProjectName = @ProjectName, 
+						MaxHours = @MaxHours,
+						MaxBudget = @MaxBudget,
+						StartDate = @StartDate,
+						ExpectedEndDate = @ExpectedEndDate
+						where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertProjectsForPM
-  @Name			nvarchar(40),
-  @PM			xml
+  @Id					int,
+  @PM					xml,
+  @OrderId				int,
+  @ProjectStatusId		int,  
+  @ProjectName			nvarchar(40),
+  @MaxHours				int,
+  @MaxBudget			int,
+  @StartDate			datetime,
+  @ExpectedEndDate		datetime
 AS
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 	
-	INSERT INTO [Projects] (ManagerId, OrderId, ProjectstatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate) VALUES (@przelId, 1, 1 , @Name , 1, 1, 1, 1);
+INSERT INTO [szpifDatabase].[dbo].[Projects]
+           ([ManagerId]
+           ,[OrderId]
+           ,[ProjectStatusId]
+           ,[ProjectName]
+           ,[MaxHours]
+           ,[MaxBudget]
+           ,[StartDate]
+           ,[ExpectedEndDate])
+     VALUES
+           (@przelId, 
+           @OrderId, 
+           @ProjectStatusId, 
+           @ProjectName, 
+           @MaxHours, 
+           @MaxBudget, 
+           @StartDate, 
+           @ExpectedEndDate)
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteProjectsForPM
