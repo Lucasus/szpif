@@ -46,7 +46,7 @@ namespace Szpif
 
             foreach(SzpifColumn column in view.Columns.Values)
                 dataGrid.Columns.Add(column.createDataGridViewColumn());
-            dataGrid.Columns[dataGrid.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+//            dataGrid.Columns[dataGrid.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             foreach (SzpifColumn column in view.Columns.Values)
                 if (column.CanUpdate && view.Table.Columns.Contains(column.Name) == false)

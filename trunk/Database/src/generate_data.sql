@@ -14,6 +14,9 @@ delete from [Tasks]
 --DBCC CHECKIDENT (Roles, RESEED, 1);
 --DBCC CHECKIDENT (Credentials, RESEED, 1);
 
+
+INSERT INTO [Credentials] (FirstName, SecondName, LastName, EMail, Phone, Street, HouseNr, FlatNr , City, PostalCode, Country, Pesel, Nip) 
+  VALUES ('Lucas', 'Szymon','Wiatrak', 'lucas@lucas.pl', '666', 'Krzyzowa', '7', '0', 'Zabierzow', '32-080', 'Poland','11111111111' ,'111');
 INSERT INTO [Credentials] (FirstName, SecondName, LastName, EMail, Phone, Street, HouseNr, FlatNr , City, PostalCode, Country, Pesel, Nip) 
   VALUES ('Mooseq', 'Krzysztof','Master', 'moose@master.pl', '123', 'Slaska', '42', '3', 'Zabierzow', '32-080', 'Poland','11111111111' ,'111');
 INSERT INTO [Credentials] (FirstName, SecondName, LastName, EMail, Phone, Street, HouseNr, FlatNr , City, PostalCode, Country, Pesel, Nip) 
@@ -114,6 +117,19 @@ INSERT INTO [Roles] VALUES (2,'Project Manager');
 INSERT INTO [Roles] VALUES (3,'Project Manager');
 INSERT INTO [Roles] VALUES (4,'Pracownik');
 INSERT INTO [Roles] VALUES (4,'Opiekun handlowy');
-INSERT INTO [Roles] VALUES (5,'Pracownik');*/
+INSERT INTO [Roles] VALUES (5,'Pracownik');
+
+INSERT INTO [Projects]
+           ([ManagerId],OrderId,[ProjectStatusId],[ProjectName],[MaxHours],[MaxBudget],[StartDate],[ExpectedEndDate])
+     VALUES(0, null, null, 'Szpif',3,null,null,null);
+
+INSERT INTO [Projects]
+           ([ManagerId],OrderId,[ProjectStatusId],[ProjectName],[MaxHours],[MaxBudget],[StartDate],[ExpectedEndDate])
+     VALUES(3, null, null, 'Szpif2',3,null,null,null);
+
+INSERT INTO [Projects]
+           ([ManagerId],OrderId,[ProjectStatusId],[ProjectName],[MaxHours],[MaxBudget],[StartDate],[ExpectedEndDate])
+     VALUES(3, null, null, 'Szpif3',3,null,null,null);
+
 
 GO

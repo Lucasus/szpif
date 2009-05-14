@@ -46,6 +46,7 @@ namespace Szpif
                     case "Project Manager":
                         {
                             pageNames.Add("Twoje Projekty", "ProjectsForPM");
+                            pageNames.Add("Zadania w projektach", "TasksForPM");
                             break;
                         }
                     case "Prze³o¿ony":

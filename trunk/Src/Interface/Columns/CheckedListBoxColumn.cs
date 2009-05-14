@@ -25,7 +25,7 @@ namespace Szpif
             DataGridViewCellStyle helpStyle = new DataGridViewCellStyle();
             helpStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             column.DefaultCellStyle = helpStyle;
-            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             if (!CanView)
                 column.Visible = false;
             return column;

@@ -25,7 +25,7 @@ AS
  declare @login varchar(40);
   select @login = SYSTEM_USER
   select	Id, 
-		dbo.EmployeeToXmlLink(pr.ManagerId) AS  'PM',
+		dbo.EmployeeToXmlLink(pr.ManagerId, 'PM', 'PMForSelect') AS  'PM',
 		OrderId,
 		ProjectStatusId,
 		ProjectName,

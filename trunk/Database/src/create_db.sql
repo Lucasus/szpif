@@ -31,14 +31,11 @@ PRINT 'TRIGGERS HAVE BEEN CREATED'
 :r src\create_roles.sql
 PRINT 'ROLES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_Employees.sql
-PRINT 'EMPLOYEES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_Projects.sql
 :r src\IntegratedViews\create_ProjectsForPM.sql
-PRINT 'PROJECTS HAVE BEEN CREATED'
+:r src\IntegratedViews\create_TasksForPM.sql
 :r src\IntegratedViews\create_EmployeesForUser.sql
-PRINT 'EMPLOYEES FOR USER HAVE BEEN CREATED'
 :r src\IntegratedViews\create_PrzelozeniForSelect.sql
-PRINT 'PRZELOZENIE FOR SELECT HAVE BEEN CREATED'
 :r src\IntegratedViews\create_PMForSelect.sql
 PRINT 'DATABASE CREATE IS COMPLETE'
 :r src\generate_data.sql

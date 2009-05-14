@@ -101,18 +101,23 @@ GO
 /*------------------------------------------------------------------- */
 CREATE FUNCTION dbo.EmployeeToXmlLink
 ( 
-	@PrzelozonyID int 
+	@EmployeeID int,
+	@Name	nvarchar(40),
+	@ViewName nvarchar(100)
 ) 
 RETURNS XML
 AS
 	BEGIN
 	DECLARE @Link XML
 	declare @credId int;
-	select @credId = (select CredentialsId from Employees where Id = @PrzelozonyID)
+	select @credId = (select CredentialsId from Employees where Id = @EmployeeID)
 	select @Link = 
 		(
-			select 'Przelozony' as Name, 'PrzelozeniForSelect' as ViewName  ,Id, (select FirstName from Credentials where Id = @credId) as Text
-			from Employees Link where Id = @PrzelozonyID
+			select	@Name as Name, 
+					@ViewName as ViewName,
+					Id, 
+					(select FirstName from Credentials where Id = @credId) as Text
+			from Employees Link where Id = @EmployeeID
 			FOR XML AUTO, TYPE
 		) 	
 RETURN @Link

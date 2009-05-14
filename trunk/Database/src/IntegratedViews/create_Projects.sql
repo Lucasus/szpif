@@ -25,7 +25,7 @@ AS
 	SELECT 
 		Id, 
 		ProjectName,
-		dbo.EmployeeToXmlLink(pr.ManagerId) AS  'PM'
+		dbo.EmployeeToXmlLink(pr.ManagerId, 'PM', 'PMForSelect') AS  'PM'
 	FROM Projects pr
 GO
 
@@ -50,7 +50,8 @@ AS
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 	
-	INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate) VALUES (@przelId, 1, 1 , @Name , 1, 1, 1, 1);
+	INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate) 
+	VALUES (@przelId, 1, 1 , @Name , 1, 1, 1, 1);
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteProjects
