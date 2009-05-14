@@ -1,5 +1,5 @@
 use szpifDatabase
-PRINT 'CREATING PROJECTS VIEW...'
+PRINT 'CREATING Projects VIEW...'
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -22,36 +22,77 @@ GO
 ----------Procedura zwracaj¹ca widok------------------------------
 CREATE PROCEDURE getProjects
 AS
-	SELECT 
-		Id, 
+ declare @login varchar(40);
+  select @login = SYSTEM_USER
+  select	Id, 
+		dbo.EmployeeToXmlLink(pr.ManagerId, 'PM', 'PMForSelect') AS  'PM',
+		OrderId,
+		ProjectStatusId,
 		ProjectName,
-		dbo.EmployeeToXmlLink(pr.ManagerId, 'PM', 'PMForSelect') AS  'PM'
-	FROM Projects pr
-GO
+		MaxHours,
+		MaxBudget,
+		StartDate,
+		ExpectedEndDate
+  from Projects pr 
+ GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateProjects
-  @Id			int,
-  @Name			nvarchar(40),
-  @PM			xml
+  @Id					int,
+  @PM					xml,
+  @ProjectStatusId		int,  
+  @ProjectName			nvarchar(40),
+  @MaxHours				int,
+  @MaxBudget			int,
+  @StartDate			datetime,
+  @ExpectedEndDate		datetime
 AS
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 
-    update Projects set ProjectName = @Name, ManagerId = @przelId where Id = @Id        
+    update Projects set ManagerId = @przelId, 
+						ProjectStatusId = @ProjectStatusId,
+						ProjectName = @ProjectName, 
+						MaxHours = @MaxHours,
+						MaxBudget = @MaxBudget,
+						StartDate = @StartDate,
+						ExpectedEndDate = @ExpectedEndDate
+						where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertProjects
-  @Name			nvarchar(40),
-  @PM			xml
+  @Id					int,
+  @PM					xml,
+  @ProjectStatusId		int,  
+  @ProjectName			nvarchar(40),
+  @MaxHours				int,
+  @MaxBudget			int,
+  @StartDate			datetime,
+  @ExpectedEndDate		datetime
 AS
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 	
-	INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate) 
-	VALUES (@przelId, 1, 1 , @Name , 1, 1, 1, 1);
+INSERT INTO [szpifDatabase].[dbo].[Projects]
+           ([ManagerId]
+           ,OrderId
+           ,[ProjectStatusId]
+           ,[ProjectName]
+           ,[MaxHours]
+           ,[MaxBudget]
+           ,[StartDate]
+           ,[ExpectedEndDate])
+     VALUES
+           (@przelId, 
+           null, 
+           @ProjectStatusId, 
+           @ProjectName, 
+           @MaxHours, 
+           @MaxBudget, 
+           @StartDate, 
+           @ExpectedEndDate)
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteProjects
