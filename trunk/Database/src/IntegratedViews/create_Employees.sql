@@ -31,12 +31,15 @@ AS
 		creds.EMail,
 		creds.Street,
 		creds.HouseNr,
+		creds.FlatNr,
 		creds.City,
 		creds.PostalCode,
 		creds.Country,
+		creds.Pesel,
+		creds.Phone,
 		creds.Nip,
-		dbo.EmployeeToXmlLink(em.SuperiorId, 'Przelozony', 'PrzelozeniForSelect') AS  Przelozony,
-	    dbo.xmlRoles (em.Id) AS Roles
+	    dbo.xmlRoles (em.Id) AS Roles,
+		dbo.EmployeeToXmlLink(em.SuperiorId, em.Login, 'Employees') AS  Przelozony
 	FROM Employees em
 		inner join [Credentials] creds on em.CredentialsId = creds.Id
 GO
@@ -51,9 +54,12 @@ CREATE PROCEDURE updateEmployees
   @EMail		nvarchar(40),
   @Street		nvarchar(40),
   @HouseNr		char(7),
+  @FlatNr		char(7),
   @City			nvarchar(40),
   @PostalCode	nvarchar(6),
   @Country		nvarchar(50),
+  @Pesel		char(11),
+  @Phone		char(20),
   @Nip			char(20),
   @Password		nvarchar(40),
   @Przelozony	xml,
@@ -70,7 +76,7 @@ AS
 		update Employees set Password = @Password  where Id = @Id    
     END
     
-    update Credentials set FirstName = @FirstName, LastName = @LastName, SecondName = @SecondName, Street = @Street, HouseNr = @HouseNr, City = @City, PostalCode = @PostalCode, Country = @Country, Nip = @Nip, EMail = @EMail where Id = 
+    update Credentials set FirstName = @FirstName, LastName = @LastName, SecondName = @SecondName, Street = @Street, HouseNr = @HouseNr, FlatNr = @FlatNr, City = @City, PostalCode = @PostalCode, Country = @Country, Pesel = @Pesel, Phone = @Phone, Nip = @Nip, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
     
     DELETE FROM Roles
@@ -85,6 +91,7 @@ WHERE  nref.value('@Value[1]', 'nvarchar(50)') = 1
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertEmployees
+  @Id			int,
   @Login		nvarchar(40),
   @FirstName	nvarchar(40),
   @SecondName	nvarchar(40),
@@ -92,9 +99,12 @@ CREATE PROCEDURE insertEmployees
   @EMail		nvarchar(40),
   @Street		nvarchar(40),
   @HouseNr		char(7),
+  @FlatNr		char(7),
   @City			nvarchar(40),
   @PostalCode	nvarchar(6),
   @Country		nvarchar(50),
+  @Pesel		char(11),
+  @Phone		char(20),
   @Nip			char(20),
   @Password		nvarchar(40),
   @Przelozony	xml,
@@ -107,7 +117,7 @@ AS
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @Przelozony.nodes('//Link') AS R(nref))
 
-INSERT INTO [Credentials] (FirstName, SecondName, LastName, EMail, Street, HouseNr, City, PostalCode, Country, Nip)  VALUES (@FirstName, @SecondName, @LastName ,@EMail, @Street, @HouseNr, @City, @PostalCode, @Country, @Nip);
+INSERT INTO [Credentials] (FirstName, SecondName, LastName, EMail, Street, HouseNr, FlatNr, City, PostalCode, Country, Pesel, Phone, Nip)  VALUES (@FirstName, @SecondName, @LastName ,@EMail, @Street, @HouseNr, @FlatNr, @City, @PostalCode, @Country, @Pesel, @Phone, @Nip);
 declare @newId int;
 SELECT @newId = SCOPE_IDENTITY() 
 INSERT INTO [Employees] (CredentialsId, Login, Password, HoursNr, RatePerHour, SuperiorId)  VALUES (@newId,@Login,@Password, 10 , 10 ,@przelId);

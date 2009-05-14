@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
 			this.gridView = new System.Windows.Forms.DataGridView();
-			this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.addButton = new System.Windows.Forms.Button();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.refreshButton = new System.Windows.Forms.Button();
+			this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -52,14 +52,6 @@
 			this.gridView.TabIndex = 0;
 			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridView_CellFormatting);
 			this.gridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellContentClick);
-			// 
-			// Edit
-			// 
-			this.Edit.HeaderText = "Edycja";
-			this.Edit.Name = "Edit";
-			this.Edit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			this.Edit.Text = "Edytuj...";
-			this.Edit.Width = 60;
 			// 
 			// addButton
 			// 
@@ -91,6 +83,14 @@
 			this.refreshButton.UseVisualStyleBackColor = true;
 			this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
 			// 
+			// Edit
+			// 
+			this.Edit.HeaderText = "Edycja";
+			this.Edit.Name = "Edit";
+			this.Edit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.Edit.Text = "Edytuj...";
+			this.Edit.Width = 60;
+			// 
 			// ViewControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -111,7 +111,7 @@
         private System.Windows.Forms.DataGridView gridView;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button refreshButton;
-        private System.Windows.Forms.DataGridViewButtonColumn Edit;
+		private System.Windows.Forms.Button refreshButton;
+		private System.Windows.Forms.DataGridViewButtonColumn Edit;
     }
 }
