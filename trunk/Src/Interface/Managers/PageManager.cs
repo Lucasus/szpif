@@ -63,7 +63,11 @@ namespace Szpif
             List<TabPage> pages = new List<TabPage>();
             foreach(string name in pageNames.Keys)
             {
-                TabPage newPage = PageFactory.createViewPage(pageNames[name]);
+                TabPage newPage = null;
+                if (pageNames[name] == "EmployeesForUser")
+                    newPage = PageFactory.createTabPage("SettingsPage");  // .createUpdatePage(pageNames[name]);
+                else
+                    newPage = PageFactory.createViewPage(pageNames[name]);
                 newPage.Text = name;
                 newPage.Name = pageNames[name];
                 if (newPage != null)

@@ -32,5 +32,13 @@ namespace Szpif
             page.Controls.Add(new ViewControl(viewName));
             return page;
         }
+
+        public static TabPage createUpdatePage(string viewName)
+        { 
+            TabPage page = new TabPage();
+            page.Controls.Add(new UpdateControl(viewName, new ViewControl(viewName)));
+            return page;
+        }
+
     }
 }
