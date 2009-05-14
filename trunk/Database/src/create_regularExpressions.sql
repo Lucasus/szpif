@@ -1,9 +1,10 @@
-sp_configure 'clr enabled', 1
+EXEC sp_configure 'clr enabled', 1
 RECONFIGURE WITH OVERRIDE
 
 Use szpifDatabase
+
 CREATE ASSEMBLY regX
-FROM 'src\TextFunctions\TextFunctions\bin\Release\TextFunctions.dll'
+FROM 'C:\Users\Chieredan\Documents\Visual Studio 2008\Projects\Bazy 2\Database\src\TextFunctions\TextFunctions\bin\Release\TextFunctions.dll'
 GO
 
 

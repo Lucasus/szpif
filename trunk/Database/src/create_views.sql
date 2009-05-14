@@ -10,7 +10,7 @@ GO
 
 CREATE VIEW dbo.EmployeeAdministrationView
 AS
-SELECT DISTINCT em.Id, Login, Name, EMail,
+SELECT DISTINCT em.Id, Login, FirstName, EMail,
            dbo.aggregateRolesFunction (em.Id) AS Uprawnienia
 FROM Employees em
 		inner join [Roles] perm on em.Id = perm.EmployeeId

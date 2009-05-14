@@ -113,6 +113,11 @@
     <Compile Include="Controls\ContentControls\ViewControl.Designer.cs">
       <DependentUpon>ViewControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\GetParametersTransaction.cs" />
+    <Compile Include="Database\GetViewTransaction.cs" />
+    <Compile Include="Database\NonQueryTransaction.cs" />
+    <Compile Include="Database\SzpifTransaction.cs" />
+    <Compile Include="Database\UpdateViewTransaction.cs" />
     <Compile Include="Factories\ColumnFactory.cs" />
     <Compile Include="Columns\CheckedListBoxColumn.cs" />
     <Compile Include="Context.cs" />
@@ -221,11 +226,6 @@
     <Compile Include="Columns\SzpifColumn.cs" />
     <Compile Include="Database\SzpifDatabase.cs" />
     <Compile Include="Database\SzpifType.cs" />
-    <Compile Include="Database\Transactions\GetParametersTransaction.cs" />
-    <Compile Include="Database\Transactions\GetViewTransaction.cs" />
-    <Compile Include="Database\Transactions\NonQueryTransaction.cs" />
-    <Compile Include="Database\Transactions\SzpifTransaction.cs" />
-    <Compile Include="Database\Transactions\UpdateViewTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

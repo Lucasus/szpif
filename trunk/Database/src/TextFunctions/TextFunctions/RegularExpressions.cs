@@ -1,6 +1,6 @@
 ﻿using  Microsoft.SqlServer.Server;
 using System.Text.RegularExpressions;
-
+ 
 
 // klasa zajmujaca sie sprawdzaniem czy jakis tekst pasuje do wyrazenia regularnego 
 // wywolywana jako procedura CLR w bazie danych

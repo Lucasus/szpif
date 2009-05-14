@@ -24,8 +24,8 @@ CREATE PROCEDURE getProjects
 AS
 	SELECT 
 		Id, 
-		Name,
-		dbo.EmployeeToXmlLink(pr.PM) AS  'PM'
+		ProjectName,
+		dbo.EmployeeToXmlLink(pr.ManagerId) AS  'PM'
 	FROM Projects pr
 GO
 
@@ -39,7 +39,7 @@ AS
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 
-    update Projects set Name = @Name, PM = @przelId where Id = @Id        
+    update Projects set ProjectName = @Name, ManagerId = @przelId where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertProjects
@@ -50,7 +50,7 @@ AS
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 	
-	INSERT INTO [Projects] VALUES (@Name, @przelId);
+	INSERT INTO [Projects] (ManagerId, OrderId, ProjectStatusId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate) VALUES (@przelId, 1, 1 , @Name , 1, 1, 1, 1);
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteProjects

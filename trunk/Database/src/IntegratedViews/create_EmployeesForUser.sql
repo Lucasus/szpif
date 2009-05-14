@@ -28,9 +28,9 @@ AS
 	SELECT 
 		em.Id, 
 		em.Login, 
-		creds.Name, 
+		creds.FirstName as Name, 
 		creds.EMail,
-		em.Przelozony,
+		em.SuperiorId,
 	    dbo.xmlRoles (em.Id) AS Roles
 	FROM Employees em
 		inner join [Credentials] creds on em.CredentialsId = creds.Id
@@ -44,16 +44,16 @@ CREATE PROCEDURE updateEmployeesForUser
   @Name			nvarchar(40),
   @EMail		nvarchar(40),
   @Password		nvarchar(40),
-  @Przelozony	int
+  @SuperiorId	int
 WITH EXECUTE AS 'szpifadmin'
 AS
-    update Employees set Login = @Login, Przelozony = @Przelozony  where Id = @Id    
+    update Employees set Login = @Login, SuperiorId = @SuperiorId where Id = @Id    
     IF @Password != '' and @Password is not null
     BEGIN
 		update Employees set Password = @Password  where Id = @Id    
     END
     
-    update Credentials set Name = @Name, EMail = @EMail where Id = 
+    update Credentials set FirstName = @Name, EMail = @EMail where Id = 
     (select CredentialsId from Employees where Id = @Id)
 
     

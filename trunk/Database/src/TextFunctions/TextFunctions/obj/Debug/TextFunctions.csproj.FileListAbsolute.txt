@@ -3,3 +3,8 @@ F:\marta\nauka\bazy\Baza\TextFunctions\TextFunctions\bin\Debug\TextFunctions.pdb
 F:\marta\nauka\bazy\Baza\TextFunctions\TextFunctions\obj\Debug\ResolveAssemblyReference.cache
 F:\marta\nauka\bazy\Baza\TextFunctions\TextFunctions\obj\Debug\TextFunctions.dll
 F:\marta\nauka\bazy\Baza\TextFunctions\TextFunctions\obj\Debug\TextFunctions.pdb
+C:\Users\Chieredan\Documents\Visual Studio 2008\Projects\Bazy 2\Database\src\TextFunctions\TextFunctions\bin\Debug\TextFunctions.dll
+C:\Users\Chieredan\Documents\Visual Studio 2008\Projects\Bazy 2\Database\src\TextFunctions\TextFunctions\bin\Debug\TextFunctions.pdb
+C:\Users\Chieredan\Documents\Visual Studio 2008\Projects\Bazy 2\Database\src\TextFunctions\TextFunctions\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Chieredan\Documents\Visual Studio 2008\Projects\Bazy 2\Database\src\TextFunctions\TextFunctions\obj\Debug\TextFunctions.dll
+C:\Users\Chieredan\Documents\Visual Studio 2008\Projects\Bazy 2\Database\src\TextFunctions\TextFunctions\obj\Debug\TextFunctions.pdb

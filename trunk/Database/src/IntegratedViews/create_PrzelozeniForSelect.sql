@@ -24,7 +24,7 @@ CREATE PROCEDURE getPrzelozeniForSelect
 AS
 	SELECT 
 		em.Id, 
-		creds.Name, 
+		creds.FirstName, 
 		creds.EMail
 	FROM Employees em
 		inner join [Credentials] creds on em.CredentialsId = creds.Id
