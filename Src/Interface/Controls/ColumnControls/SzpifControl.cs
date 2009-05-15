@@ -23,7 +23,6 @@ namespace Szpif
         {
             InitializeComponent();
         }
-
         public virtual void fill(string data)
         {
             throw new NotImplementedException();

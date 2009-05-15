@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Szpif.Controls.ColumnControls;
 
 namespace Szpif
 {
@@ -18,6 +19,8 @@ namespace Szpif
                     return new LinkControl(columnName,szpifType);
                 case "CheckedListBoxControl":
                     return new CheckedListBoxControl(columnName, szpifType);
+                case "DateTimeControl":
+                    return new DateTimeControl(columnName);
                 default:
                     return new DefaultSzpifControl(columnName);
             }

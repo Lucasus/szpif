@@ -52,27 +52,11 @@ namespace Szpif
         private void SelectButton_Click(object sender, EventArgs e)
         {
             selectForm = FormFactory.createSelectForm(this);
-//            selectForm = (SelectForm)Program.Context.FormManager.getForm(searchViewName + "Form");
             selectForm.ShowDialog();
-/*            Program.Context.FormManager.showForm("SelectPrzelozonyForm");
-            SelectPrzelozonyForm form = (SelectPrzelozonyForm)Program.Context.FormManager.getForm("SelectPrzelozonyForm");
-            DataGridViewRow row = form.SelectedRow;
-            foreach (Control c in valueBoxes)
-            {
-                if (c.Name == "Przelozony")
-                {
-                    LinkedTextBox box = (LinkedTextBox)c;
-                    box.Text = row.Cells["Name"].Value.ToString();
-                    box.RowId = Int32.Parse(row.Cells["Id"].Value.ToString());
-                }
-            }
-
-            */
         }
 
         public override void fill(string data)  // zakładam, że daną jest string xml
         {
-            //string help = gridView.Rows[row].Cells[valueBox.Name].Value.ToString();
             if (data != "")
             {
                 XmlDocument xmlDoc = new XmlDocument();
@@ -82,9 +66,6 @@ namespace Szpif
                 this.ColumnValue.Text = xmlDoc.DocumentElement.GetAttribute("Text");
                 this.linkedRowId = Int32.Parse(xmlDoc.DocumentElement.GetAttribute("Id"));
             }
-    //        this.searchViewName = xmlDoc.DocumentElement.GetAttribute("ViewName");
-            // TO DO: select form musi wiedzieć, jaką wartość ma zwrócić
-
         }
 
         public string getDefaultData()
@@ -108,8 +89,6 @@ namespace Szpif
             if (xmlDoc.OuterXml != "")
                 return xmlDoc.OuterXml;
             else return DBNull.Value;
-//            SqlXml newxml = new SqlXml(new XmlTextReader(new StringReader(xmlDoc.OuterXml)));
-//            gridView.Rows[row].Cells[valueBox.Name].Value = xmlDoc.OuterXml;
         }
 
     }
