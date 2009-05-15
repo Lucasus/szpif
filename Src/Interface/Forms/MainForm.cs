@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Szpif;
+using Szpif.Controls.ContentControls;
 
 namespace Szpif
 {
@@ -18,8 +19,11 @@ namespace Szpif
         {
             InitializeComponent();
             this.PageManager = new PageManager(new PageFactory());
-            this.mainTabControl.Width = this.Width - 30;
-            PageManager.makeTabPages(this.mainTabControl,Program.Context.UserRoles);
+			List<TabPage> pages = PageManager.makeTabPages(this.Width, Program.Context.UserRoles);
+			TabbedControl tabControl = new TabbedControl(pages);
+			tabControl.tabControl.Width = this.Width - 30;
+			tabControl.tabControl.Height = this.Height - 60;
+            this.Controls.Add(tabControl);
         }
 
         private void UserPanel_FormClosed(object sender, FormClosedEventArgs e)

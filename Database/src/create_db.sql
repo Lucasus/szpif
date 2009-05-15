@@ -33,7 +33,8 @@ PRINT 'ROLES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_Employees.sql
 :r src\IntegratedViews\create_Projects.sql
 :r src\IntegratedViews\create_ProjectsForPM.sql
-:r src\IntegratedViews\create_TasksForPM.sql
+:r src\IntegratedViews\create_TasksForPMState1.sql
+:r src\IntegratedViews\create_TasksForPMState2.sql
 :r src\IntegratedViews\create_EmployeesForUser.sql
 :r src\IntegratedViews\create_PrzelozeniForSelect.sql
 :r src\IntegratedViews\create_PMForSelect.sql

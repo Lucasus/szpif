@@ -70,7 +70,7 @@ namespace Szpif
             return pageNames;
         }
 
-        public List<TabPage> makeTabPages(TabControl tc, ICollection<string> Permissions)
+        public List<TabPage> makeTabPages(int tabWidth, ICollection<string> Permissions)
         {
             Dictionary<string, string> pageNames = getPageNames(Permissions);
             List<TabPage> pages = new List<TabPage>();
@@ -79,6 +79,8 @@ namespace Szpif
                 TabPage newPage = null;
                 if (pageNames[name] == "EmployeesForUser")
                     newPage = PageFactory.createTabPage("SettingsPage");  // .createUpdatePage(pageNames[name]);
+                else if (pageNames[name] == "TasksForPM")
+					newPage = PageFactory.createTabPage("TasksPage");
                 else
                     newPage = PageFactory.createViewPage(pageNames[name]);
                 newPage.Text = name;
@@ -86,9 +88,9 @@ namespace Szpif
                 if (newPage != null)
                 {
                     setupPage(newPage, name);
-                    tc.Controls.Add(newPage);
+                    //tc.Controls.Add(newPage);
                     pages.Add(newPage);
-                    newPage.Width = tc.Width - 50;
+                    newPage.Width = tabWidth - 50;
                 }
             }
             return pages;

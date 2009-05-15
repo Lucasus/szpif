@@ -28,23 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.SuspendLayout();
-			// 
-			// mainTabControl
-			// 
-			this.mainTabControl.Location = new System.Drawing.Point(12, 12);
-			this.mainTabControl.Name = "mainTabControl";
-			this.mainTabControl.SelectedIndex = 0;
-			this.mainTabControl.Size = new System.Drawing.Size(720, 462);
-			this.mainTabControl.TabIndex = 0;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(739, 485);
-			this.Controls.Add(this.mainTabControl);
+			this.ClientSize = new System.Drawing.Size(752, 515);
 			this.Name = "MainForm";
 			this.Text = "Panel użytkownika";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserPanel_FormClosed);
@@ -54,7 +44,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl mainTabControl;
 
-    }
+
+	}
 }

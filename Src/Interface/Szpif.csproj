@@ -101,6 +101,12 @@
     <Compile Include="Controls\ContentControls\SelectControl.Designer.cs">
       <DependentUpon>SelectControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ContentControls\TabbedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ContentControls\TabbedControl.Designer.cs">
+      <DependentUpon>TabbedControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ContentControls\UpdateControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ContentControls\SelectControl.resx">
       <DependentUpon>SelectControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ContentControls\TabbedControl.resx">
+      <DependentUpon>TabbedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ContentControls\UpdateControl.resx">
       <DependentUpon>UpdateControl.cs</DependentUpon>
