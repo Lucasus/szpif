@@ -14,6 +14,7 @@ namespace Szpif.Controls.ColumnControls
     {
         CalendarForm calendarForm;
         string date;
+        DateTime dateTime;
         public DateTimeControl(string columnName) : base(columnName)
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace Szpif.Controls.ColumnControls
         public override void fill(string data)
         {
             DateTime d = DateTime.ParseExact(data, "yyyy-MM-dd HH:mm:ss", null);
-
+            this.dateTime = d;
             this.date = d.ToLongDateString();
             this.ColumnValue.Text = d.ToLongDateString();
         }
@@ -43,9 +44,10 @@ namespace Szpif.Controls.ColumnControls
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            calendarForm = FormFactory.createCalendarForm(this);
+            calendarForm = FormFactory.createCalendarForm(this,dateTime);
             calendarForm.ShowDialog();
             this.date = calendarForm.Date;
+            this.dateTime = calendarForm.Current;
             this.ColumnValue.Text = this.date;
         }
     }

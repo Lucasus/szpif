@@ -12,16 +12,25 @@ namespace Szpif.Forms.ContentForms
     public partial class CalendarForm : Form
     {
         string date;
+        DateTime current;
+
+        public DateTime Current
+        {
+            get { return current; }
+            set { current = value; }
+        }
 
         public string Date
         {
             get { return date; }
             set { date = value; }
         }
-        public CalendarForm()
+        public CalendarForm(DateTime currentDate)
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None; // =  FormsBorderStyle.None;        }
+            current = currentDate;
+            this.monthCalendar.BoldedDates = new DateTime[] { current };
+//            this.FormBorderStyle = FormBorderStyle.None; // =  FormsBorderStyle.None;        }
         }
 
         private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
@@ -33,6 +42,13 @@ namespace Szpif.Forms.ContentForms
         private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
             this.date = e.End.ToLongDateString();
+            this.current = e.End;
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.date = current.ToLongDateString();
             this.Close();
         }
     }

@@ -50,9 +50,9 @@ namespace Szpif
             return new SelectForm(linkedControl);
         }
 
-        public static CalendarForm createCalendarForm(DateTimeControl dateTimeControl)
+        public static CalendarForm createCalendarForm(DateTimeControl dateTimeControl, DateTime current)
         {
-            return new CalendarForm();
+            return new CalendarForm(current);
         }
     }
 }
