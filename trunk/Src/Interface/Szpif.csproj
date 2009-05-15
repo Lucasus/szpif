@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Columns\DateTimeColumn.cs" />
     <Compile Include="Columns\DefaultSzpifColumn.cs" />
     <Compile Include="Columns\LinkColumn.cs" />
     <Compile Include="Controls\ColumnControls\CheckedListBoxControl.cs">
@@ -70,6 +71,12 @@
     </Compile>
     <Compile Include="Controls\ColumnControls\CheckedListBoxControl.Designer.cs">
       <DependentUpon>CheckedListBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\DateTimeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\DateTimeControl.Designer.cs">
+      <DependentUpon>DateTimeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ColumnControls\DefaultSzpifControl.cs">
       <SubType>UserControl</SubType>
@@ -135,6 +142,12 @@
     <Compile Include="Forms\ContentForms\AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ContentForms\CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ContentForms\CalendarForm.Designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ContentForms\SelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +180,9 @@
     <EmbeddedResource Include="Controls\ColumnControls\CheckedListBoxControl.resx">
       <DependentUpon>CheckedListBoxControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColumnControls\DateTimeControl.resx">
+      <DependentUpon>DateTimeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ColumnControls\DefaultSzpifControl.resx">
       <DependentUpon>DefaultSzpifControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ContentControls\ViewControl.resx">
       <DependentUpon>ViewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ContentForms\CalendarForm.resx">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ContentForms\UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>

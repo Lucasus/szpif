@@ -6,6 +6,8 @@ using Szpif;
 using System.Windows.Forms;
 using Szpif.Controls.ContentControls;
 using Szpif.Forms;
+using Szpif.Controls.ColumnControls;
+using Szpif.Forms.ContentForms;
 
 namespace Szpif
 {
@@ -46,6 +48,11 @@ namespace Szpif
         public static SelectForm createSelectForm(LinkControl linkedControl)
         {
             return new SelectForm(linkedControl);
+        }
+
+        public static CalendarForm createCalendarForm(DateTimeControl dateTimeControl)
+        {
+            return new CalendarForm();
         }
     }
 }
