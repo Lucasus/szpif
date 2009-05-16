@@ -62,7 +62,6 @@
     <Compile Include="BusinessLogic\DataManager.Tests.cs" />
     <Compile Include="BusinessLogic\PasswordChecker.Tests.cs" />
     <Compile Include="BusinessLogic\PermissionManager.Tests.cs" />
-    <Compile Include="InterfaceLogic\PageManager.Tests.cs" />
     <Compile Include="DatabaseLibrary\SzpifDatabase.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BusinessLogic\App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="InterfaceLogic\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

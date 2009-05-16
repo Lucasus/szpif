@@ -29,7 +29,7 @@ namespace Szpif.Controls.ContentControls
         }
 
 
-        public ViewControl(string viewName)
+        public ViewControl(string viewName, int maxHeight)
         {
             InitializeComponent();
             this.gridView.Name = this.viewName = viewName;
@@ -38,6 +38,8 @@ namespace Szpif.Controls.ContentControls
             view = Program.Context.ViewToGridManager.bindToView(gridView);
             addForm = FormFactory.createAddForm(viewName, this);
             updateForm = FormFactory.createUpdateForm(viewName, this);
+            this.gridView.Height = maxHeight - 50;
+//            this.
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -72,6 +74,14 @@ namespace Szpif.Controls.ContentControls
             DataGridViewColumn column = this.gridView.Columns[e.ColumnIndex];
             if (view.Columns.ContainsKey(column.Name) && column.Name != "Edit")
                 e.Value = view.Columns[column.Name].valueToGridString(e.Value.ToString());            
+        }
+
+        private void ViewControl_SizeChanged(object sender, EventArgs e)
+        {
+            this.gridView.Height = this.Height - 52;
+            this.addButton.Location = new Point(this.addButton.Location.X, this.gridView.Height + 5);
+            this.saveButton.Location = new Point(this.saveButton.Location.X, this.gridView.Height + 5);
+            this.refreshButton.Location = new Point(this.refreshButton.Location.X, this.gridView.Height + 5);
         }
     }
 }

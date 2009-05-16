@@ -162,7 +162,7 @@
     </Compile>
     <Compile Include="Database\IntegratedView.cs" />
     <Compile Include="Managers\FormManager.cs" />
-    <Compile Include="Managers\PageManager.cs" />
+    <Compile Include="Managers\InterfaceManager.cs" />
     <Compile Include="Managers\BindManager.cs" />
     <Compile Include="Managers\ContentManager.cs" />
     <Compile Include="Managers\DataManager.cs" />
@@ -173,7 +173,6 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Factories\PageFactory.cs" />
     <Compile Include="PasswordChecker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -286,6 +285,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="interface.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

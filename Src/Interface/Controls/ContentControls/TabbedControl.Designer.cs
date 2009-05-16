@@ -46,6 +46,7 @@
             this.Controls.Add(this.tabControl);
             this.Name = "TabbedControl";
             this.Size = new System.Drawing.Size(779, 458);
+            this.SizeChanged += new System.EventHandler(this.TabbedControl_SizeChanged);
             this.ResumeLayout(false);
 
         }
