@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <interfaceConfiguration name="root">
   <View name="Projekty">
-    <View name="Projekty" viewname="Projects" roles="Właściciel" />
+    <View name="Wszystkie projekty" viewname="Projects" roles="Właściciel" />
     <View name="Twoje projekty" viewname="ProjectsForPM" roles="Project Manager" />
   </View>
   <View name="Zadania">
-    <View name="Zadania w projektach">
+    <View name="Zadania w twoich projektach">
       <View name="W toku" viewname="TasksForPMState1" roles="Project Manager"/>
       <View name="Zakończone" viewname="TasksForPMState2" roles="Project Manager"/>
     </View> 

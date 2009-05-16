@@ -11,9 +11,6 @@ namespace Szpif
     public class InterfaceManager
     {
         ICollection<string> roles;
-        public InterfaceManager()
-        {
-        }
 
         public Control buildFromNode(XmlNode node)
         {
@@ -28,7 +25,8 @@ namespace Szpif
             // przetwarzamy aktualny wezel
             if (controls.Count == 0)
             {
-                if(roles.Contains(node.Attributes["roles"].Value.ToString()))
+                if(node.Attributes["roles"] != null 
+                    && roles.Contains(node.Attributes["roles"].Value.ToString()))
                 {
                     string viewName = node.Attributes["viewname"].Value.ToString();
                     string name = node.Attributes["name"].Value.ToString();
