@@ -14,7 +14,7 @@ namespace Szpif
     public class FormFactory
     {
 
-        public Form createNewForm(string kind)
+        public static Form createNewForm(string kind)
         {
             switch (kind)
             {
@@ -29,9 +29,8 @@ namespace Szpif
         public static Form createViewForm(string viewName, ViewControl viewControl)
         {
             Form viewForm = new Form();
-            ViewControl control = new ViewControl(viewName);
-            viewForm.Controls.Add(control);
-            viewForm.Size = control.Size;
+            viewForm.Controls.Add(viewControl);
+            viewForm.Size = viewControl.Size;
             return viewForm;
         }
 

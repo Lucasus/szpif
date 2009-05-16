@@ -23,7 +23,7 @@ namespace Szpif
                 return forms[formName];
             else
             {
-                forms.Add(formName, formFactory.createNewForm(formName));
+                forms.Add(formName, FormFactory.createNewForm(formName));
                 return forms[formName];
             }
         }

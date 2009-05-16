@@ -28,7 +28,7 @@ namespace Szpif
 				Program.Context.UserLogin = username;
 				Program.Context.UserPassword = password;
 				Program.Context.UserRoles = permissions;
-				Program.Context.FormManager.switchForm("LoginForm", "MainForm");
+                Program.Context.InterfaceManager.buildInterface();
             }
             else
             {

@@ -11,13 +11,28 @@ namespace Szpif.Controls.ContentControls
 {
     public partial class TabbedControl : UserControl
     {
-        public TabbedControl(List<TabPage> pages) : base()
+        List<Control> controls;
+        public TabbedControl(List<Control> controls)
+            : base()
         {
             InitializeComponent();
-            foreach (TabPage page in pages)
+            this.controls = controls;
+            foreach (Control c in controls)
             {
-                tabControl.TabPages.Add(page);
-//                this.tabControl
+                TabPage tabPage = new TabPage(c.Name);
+                tabPage.Padding = new System.Windows.Forms.Padding(3);
+                tabPage.UseVisualStyleBackColor = true;
+                tabPage.Controls.Add(c);
+                tabControl.TabPages.Add(tabPage);
+            }
+        }
+
+        private void TabbedControl_SizeChanged(object sender, EventArgs e)
+        {
+            this.tabControl.Height = this.Height;
+            foreach (Control c in controls)
+            {
+                c.Height = this.Height - 28;
             }
         }
     }
