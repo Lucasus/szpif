@@ -26,13 +26,12 @@ AS
   select @login = SYSTEM_USER
   select	Id, 
 		dbo.EmployeeToXmlLink(pr.ManagerId, 'PM', 'PMForSelect') AS  'PM',
-		OrderId,
-		ProjectStatusId,
 		ProjectName,
 		MaxHours,
 		MaxBudget,
 		StartDate,
-		ExpectedEndDate
+		ExpectedEndDate,
+		Status
   from Projects pr where ManagerId in (select Id from Employees where Login = @login)
  GO
 
@@ -40,19 +39,19 @@ AS
 CREATE PROCEDURE updateProjectsForPM
   @Id					int,
   @PM					xml,
-  @ProjectStatusId		int,  
   @ProjectName			nvarchar(40),
   @MaxHours				int,
   @MaxBudget			int,
   @StartDate			datetime,
-  @ExpectedEndDate		datetime
+  @ExpectedEndDate		datetime,
+  @Status				nvarchar(100)
 AS
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 
     update Projects set ManagerId = @przelId, 
-						ProjectStatusId = @ProjectStatusId,
+						Status = @Status,
 						ProjectName = @ProjectName, 
 						MaxHours = @MaxHours,
 						MaxBudget = @MaxBudget,
@@ -62,44 +61,11 @@ AS
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertProjectsForPM
-  @Id					int,
-  @PM					xml,
-  @ProjectStatusId		int,  
-  @ProjectName			nvarchar(40),
-  @MaxHours				int,
-  @MaxBudget			int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime
 AS
-	declare @przelId int;
-	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
-	from @PM.nodes('//Link') AS R(nref))
-	
-INSERT INTO [szpifDatabase].[dbo].[Projects]
-           ([ManagerId]
-           ,OrderId
-           ,[ProjectStatusId]
-           ,[ProjectName]
-           ,[MaxHours]
-           ,[MaxBudget]
-           ,[StartDate]
-           ,[ExpectedEndDate])
-     VALUES
-           (@przelId, 
-           null, 
-           @ProjectStatusId, 
-           @ProjectName, 
-           @MaxHours, 
-           @MaxBudget, 
-           @StartDate, 
-           @ExpectedEndDate)
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteProjectsForPM
-	@Id	int
-WITH EXECUTE AS  'szpifadmin'
 AS
-  DELETE FROM Projects where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
 INSERT INTO [ColumnsToTypes] VALUES ('ProjectsForPM','PM', 'Link', 'PMForSelect');

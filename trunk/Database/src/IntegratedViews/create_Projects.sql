@@ -26,13 +26,12 @@ AS
   select @login = SYSTEM_USER
   select	Id, 
 		dbo.EmployeeToXmlLink(pr.ManagerId, 'PM', 'PMForSelect') AS  'PM',
-		OrderId,
-		ProjectStatusId,
 		ProjectName,
 		MaxHours,
 		MaxBudget,
 		StartDate,
-		ExpectedEndDate
+		ExpectedEndDate,
+		Status
   from Projects pr 
  GO
 
@@ -40,19 +39,19 @@ AS
 CREATE PROCEDURE updateProjects
   @Id					int,
   @PM					xml,
-  @ProjectStatusId		int,  
   @ProjectName			nvarchar(40),
   @MaxHours				int,
   @MaxBudget			int,
   @StartDate			datetime,
-  @ExpectedEndDate		datetime
+  @ExpectedEndDate		datetime,
+  @Status				nvarchar(100)
 AS
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
 
     update Projects set ManagerId = @przelId, 
-						ProjectStatusId = @ProjectStatusId,
+						Status = @Status,
 						ProjectName = @ProjectName, 
 						MaxHours = @MaxHours,
 						MaxBudget = @MaxBudget,
@@ -64,12 +63,12 @@ GO
 CREATE PROCEDURE insertProjects
   @Id					int,
   @PM					xml,
-  @ProjectStatusId		int,  
   @ProjectName			nvarchar(40),
   @MaxHours				int,
   @MaxBudget			int,
   @StartDate			datetime,
-  @ExpectedEndDate		datetime
+  @ExpectedEndDate		datetime,
+  @Status				nvarchar(100)
 AS
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
@@ -77,8 +76,7 @@ AS
 	
 INSERT INTO [szpifDatabase].[dbo].[Projects]
            ([ManagerId]
-           ,OrderId
-           ,[ProjectStatusId]
+           ,[Status]
            ,[ProjectName]
            ,[MaxHours]
            ,[MaxBudget]
@@ -86,8 +84,7 @@ INSERT INTO [szpifDatabase].[dbo].[Projects]
            ,[ExpectedEndDate])
      VALUES
            (@przelId, 
-           null, 
-           @ProjectStatusId, 
+           @Status, 
            @ProjectName, 
            @MaxHours, 
            @MaxBudget, 

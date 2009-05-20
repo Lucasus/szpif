@@ -6,5 +6,6 @@ PRINT 'Roles:'
 Select * from Roles
 
 Select * from Tasks 
-Select * from TaskStatus
+
+Select * from Projects
 GO

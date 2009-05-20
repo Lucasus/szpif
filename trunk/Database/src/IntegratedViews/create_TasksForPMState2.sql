@@ -24,20 +24,18 @@ CREATE PROCEDURE getTasksForPMState2
 AS
  declare @login varchar(40);
   select @login = SYSTEM_USER
-  SELECT task.Id
+  SELECT Id
       ,[EmployeeId]
       ,[ProjectId]
-      ,[TaskStatusId]
       ,[TaskName]
       ,[MaxHours]
       ,[StartDate]
       ,[ExpectedEndDate]
       ,[Bonus]
-  FROM Tasks task
-  INNER JOIN TaskStatus stat ON task.TaskStatusId = stat.Id
+      ,[Status]
+  FROM Tasks
   where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and stat.Status like('Zakonczone')
-
+  and Status like('W Toku')
 
 --  from Projects pr 
  GO
@@ -47,12 +45,12 @@ CREATE PROCEDURE updateTasksForPMState2
   @Id					int,
   @EmployeeId			int,
   @ProjectId			int,
-  @TaskStatusId			int,
   @TaskName				nvarchar(100),
   @MaxHours				int,
   @StartDate			datetime,
   @ExpectedEndDate		datetime,
-  @Bonus				int
+  @Bonus				int,
+  @Status				nvarchar(100)
 AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
@@ -61,12 +59,12 @@ AS
 UPDATE Tasks   
 	SET EmployeeId = @EmployeeId, 
       ProjectId = @ProjectId, 
-      [TaskStatusId] = @TaskStatusId, 
       [TaskName] = @TaskName, 
       [MaxHours] = @MaxHours, 
       [StartDate] = @StartDate, 
       [ExpectedEndDate] = @ExpectedEndDate, 
-      [Bonus] = @Bonus
+      [Bonus] = @Bonus,
+      [Status] = @Status 
 	where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
@@ -74,12 +72,12 @@ CREATE PROCEDURE insertTasksForPMState2
   @Id					int,
   @EmployeeId			int,
   @ProjectId			int,
-  @TaskStatusId			int,
   @TaskName				nvarchar(100),
   @MaxHours				int,
   @StartDate			datetime,
   @ExpectedEndDate		datetime,
-  @Bonus				int
+  @Bonus				int,
+  @Status				nvarchar(100)
 AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
@@ -87,7 +85,7 @@ AS
 	INSERT INTO [Tasks]
            ([EmployeeId]
            ,[ProjectId]
-           ,[TaskStatusId]
+           ,[Status]
            ,[TaskName]
            ,[MaxHours]
            ,[StartDate]
@@ -96,7 +94,7 @@ AS
      VALUES
            (@EmployeeId, 
            @ProjectId, 
-           @TaskStatusId, 
+           @Status, 
            @TaskName,
            @MaxHours, 
            @StartDate, 
