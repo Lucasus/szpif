@@ -15,6 +15,8 @@ namespace Szpif
             {
                 case "Default":
                     return new DefaultSzpifControl(columnName);
+                case "State":
+                    return new StateControl(columnName, szpifType);
                 case "LinkControl":
                     return new LinkControl(columnName,szpifType);
                 case "CheckedListBoxControl":

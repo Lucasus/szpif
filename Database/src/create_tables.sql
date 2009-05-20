@@ -332,5 +332,13 @@ INSERT INTO [UserTypes] VALUES ('Link','<Link Name="ColumnName" ViewName="view n
 Text="Tekst wyswietlany na gridzie" />');
 
 
+--bêdzie trzeba zrobiæ nastêpuj¹ce widoki:
+--getOwner: zwraca wszystkich w³aœcicieli w firmie
+--
+
+INSERT INTO [UserTypes] VALUES ('Project State',
+'<State><State name="Nowy"><Next name="W toku" user="W³aœciciel"/></State><State name="W toku"><Next name="Zatrzymany"
+ user="W³aœciciel" /><Next name="Zakoñczony" user="Project Manager" /></State><State name="Zatrzymany"
+ ><Next name="W toku" user="W³aœciciel" /><Next name="Zakoñczony" user="W³aœciciel"/></State><State name="Zakoñczony"></State></State>');
 
 GO
