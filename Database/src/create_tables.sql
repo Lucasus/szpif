@@ -119,19 +119,20 @@ CREATE TABLE [dbo].[Credentials](
 	[Pesel] [char](11) NULL,
 	[Nip] [char](20) NOT NULL,
 
-	CONSTRAINT [CK_Cred_City] CHECK  (dbo.RegExMatch(City, '\b[A-Z][a-z]+\b')=1),
-	CONSTRAINT [CK_Cred_Country] CHECK  (dbo.RegExMatch(Country, '\b[A-Z][a-z]+( [A-Z][a-z-]+)*\b')=1),
-	CONSTRAINT [CK_Cred_Email] CHECK  (Email IS NULL OR dbo.RegExMatch(Email, '\b[a-zA-Z_.]+@[a-z.]+[a-z]\b')=1),
-	CONSTRAINT [CK_Cred_FirstName] CHECK  (dbo.RegExMatch(FirstName, '\b[A-Z][a-z]+\b')=1),
-	CONSTRAINT [CK_Cred_FlatNr] CHECK  (FlatNr IS NULL OR dbo.RegExMatch (FlatNr, '\b[0-9]+[A-Z]*\b')=1),
-	CONSTRAINT [CK_Cred_HouseNr] CHECK  (dbo.RegExMatch(HouseNr, '\b[1-9][0-9]*[A-Z]*\b')=1),
-	CONSTRAINT [CK_Cred_LastName] CHECK  (dbo.RegExMatch(LastName, '\b[A-Z][a-z]+\b')=1),
-	CONSTRAINT [CK_Cred_Nip] CHECK  (dbo.RegExMatch(Nip, '\b[0-9]+\b')=1),
-	CONSTRAINT [CK_Cred_Pesel] CHECK  (Pesel IS NULL OR dbo.RegExMatch(Pesel, '\b[0-9]{11}\b')=1),
-	CONSTRAINT [CK_Cred_Phone] CHECK  (Phone IS NULL OR dbo.RegExMatch(Phone, '\b[0-9]+\b')=1),
-	CONSTRAINT [CK_Cred_PostalCode] CHECK  (dbo.RegExMatch(PostalCode, '\b[0-9][0-9]-[0-9][0-9][0-9]\b')=1),
-	CONSTRAINT [CK_Cred_SecondName] CHECK  (SecondName IS NULL OR dbo.RegExMatch(SecondName,  '\b[A-Z][a-z]+\b')=1),
-	CONSTRAINT [CK_Cred_Street] CHECK  (dbo.RegExMatch(Street, '\b[A-Z][a-zA-Z -]*[a-z]\b')=1),
+	--Na samym koñcu to odkomentujemy
+	--CONSTRAINT [CK_Cred_City] CHECK  (dbo.RegExMatch(City, '\b[A-Z][a-z]+\b')=1),
+	--CONSTRAINT [CK_Cred_Country] CHECK  (dbo.RegExMatch(Country, '\b[A-Z][a-z]+( [A-Z][a-z-]+)*\b')=1),
+	--CONSTRAINT [CK_Cred_Email] CHECK  (Email IS NULL OR dbo.RegExMatch(Email, '\b[a-zA-Z_.]+@[a-z.]+[a-z]\b')=1),
+	--CONSTRAINT [CK_Cred_FirstName] CHECK  (dbo.RegExMatch(FirstName, '\b[A-Z][a-z]+\b')=1),
+	--CONSTRAINT [CK_Cred_FlatNr] CHECK  (FlatNr IS NULL OR dbo.RegExMatch (FlatNr, '\b[0-9]+[A-Z]*\b')=1),
+	--CONSTRAINT [CK_Cred_HouseNr] CHECK  (dbo.RegExMatch(HouseNr, '\b[1-9][0-9]*[A-Z]*\b')=1),
+	--CONSTRAINT [CK_Cred_LastName] CHECK  (dbo.RegExMatch(LastName, '\b[A-Z][a-z]+\b')=1),
+	--CONSTRAINT [CK_Cred_Nip] CHECK  (dbo.RegExMatch(Nip, '\b[0-9]+\b')=1),
+	--CONSTRAINT [CK_Cred_Pesel] CHECK  (Pesel IS NULL OR dbo.RegExMatch(Pesel, '\b[0-9]{11}\b')=1),
+	--CONSTRAINT [CK_Cred_Phone] CHECK  (Phone IS NULL OR dbo.RegExMatch(Phone, '\b[0-9]+\b')=1),
+	--CONSTRAINT [CK_Cred_PostalCode] CHECK  (dbo.RegExMatch(PostalCode, '\b[0-9][0-9]-[0-9][0-9][0-9]\b')=1),
+	--CONSTRAINT [CK_Cred_SecondName] CHECK  (SecondName IS NULL OR dbo.RegExMatch(SecondName,  '\b[A-Z][a-z]+\b')=1),
+	--CONSTRAINT [CK_Cred_Street] CHECK  (dbo.RegExMatch(Street, '\b[A-Z][a-zA-Z -]*[a-z]\b')=1),
 );
 
 
@@ -148,8 +149,8 @@ CREATE TABLE [Employees]
 
 	--CONSTRAINT [CK_Empl_Login] CHECK  (dbo.RegExMatch([Login], '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
 	--CONSTRAINT [CK_Empl_Password] CHECK  (dbo.RegExMatch(Password, '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
-	CONSTRAINT [CK_Empl_HourNr] CHECK  (HoursNr > 0 AND HoursNr < 43),
-	CONSTRAINT [CK_Empl_RatePerHour] CHECK  (RatePerHour > 0)
+	--CONSTRAINT [CK_Empl_HourNr] CHECK  (HoursNr > 0 AND HoursNr < 43),
+	--CONSTRAINT [CK_Empl_RatePerHour] CHECK  (RatePerHour > 0)
 );
 
 
@@ -159,81 +160,82 @@ CREATE TABLE [Clients]
 	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[CredentialsId] [int] NOT NULL REFERENCES [Credentials] ([Id]) ON UPDATE CASCADE,
 	[CompanyName] [nvarchar] (100) NULL,
-	CONSTRAINT [CK_Clients_CompanyName] CHECK  (CompanyName IS NULL OR dbo.RegExMatch([CompanyName], '\b[A-Z][a-z]+( [A-Z][a-z-]+)*\b')=1)
+	--CONSTRAINT [CK_Clients_CompanyName] CHECK  (CompanyName IS NULL OR dbo.RegExMatch([CompanyName], '\b[A-Z][a-z]+( [A-Z][a-z-]+)*\b')=1)
 );
 
 
 -- ZLECENIA ---------------------------------------------------------------------
-CREATE TABLE [OrderStatus] 
-(
-	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
-	[EndDate] [datetime] NULL,
-	[UsedHours] [int] NOT NULL,
-	[UsedBudget] [int] NOT NULL,
-	[Status] [nvarchar] (100) NOT NULL, 
-	CONSTRAINT [CK_OrderSt_UsedHours] CHECK  (UsedHours > 0),
-	CONSTRAINT [CK_OrderSt_UsedBudget] CHECK  (UsedBudget > 0)
-);
-
-CREATE TABLE [Orders] 
-(
-	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
-	[ClientId] [int] NOT NULL REFERENCES [Clients] ([Id]) ON UPDATE CASCADE,
-	[OrderStatusId] [int] NOT NULL REFERENCES [OrderStatus] ([Id]) ON UPDATE CASCADE,
-	[OrderName] [nvarchar] (40) NOT NULL,
-	[Description] [nvarchar] (300) NULL,
-	[MaxHours] [int] NOT NULL,
-	[MaxBudget] [money] NOT NULL,
-	[Price] [money] NOT NULL,
-	[StartDate] [datetime] NOT NULL,
-	[ExpectedEndDate] [datetime] NOT NULL, 
-	CONSTRAINT [CK_Order_Name] CHECK  (dbo.RegExMatch([OrderName], '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
-	CONSTRAINT [CK_Task_MaxHours] CHECK  (MaxHours > 0),
-	CONSTRAINT [CK_Task_Price] CHECK  (Price > 0),
-	CONSTRAINT [CK_Order_Dates] CHECK  (ExpectedEndDate >= StartDate)
-);
+--CREATE TABLE [OrderStatus] 
+--(
+--	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+--	[EndDate] [datetime] NULL,
+--	[UsedHours] [int] NOT NULL,
+--	[UsedBudget] [int] NOT NULL,
+--	[Status] [nvarchar] (100) NOT NULL, 
+--	CONSTRAINT [CK_OrderSt_UsedHours] CHECK  (UsedHours > 0),
+--	CONSTRAINT [CK_OrderSt_UsedBudget] CHECK  (UsedBudget > 0)
+--);
+--
+--CREATE TABLE [Orders] 
+--(
+--	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+--	[ClientId] [int] NOT NULL REFERENCES [Clients] ([Id]) ON UPDATE CASCADE,
+--	[OrderStatusId] [int] NOT NULL REFERENCES [OrderStatus] ([Id]) ON UPDATE CASCADE,
+--	[OrderName] [nvarchar] (40) NOT NULL,
+--	[Description] [nvarchar] (300) NULL,
+--	[MaxHours] [int] NOT NULL,
+--	[MaxBudget] [money] NOT NULL,
+--	[Price] [money] NOT NULL,
+--	[StartDate] [datetime] NOT NULL,
+--	[ExpectedEndDate] [datetime] NOT NULL, 
+	--CONSTRAINT [CK_Order_Name] CHECK  (dbo.RegExMatch([OrderName], '\b[A-Za-z0-9]{3}[A-Za-z0-9]*\b')=1),
+	--CONSTRAINT [CK_Task_MaxHours] CHECK  (MaxHours > 0),
+	--CONSTRAINT [CK_Task_Price] CHECK  (Price > 0),
+	--CONSTRAINT [CK_Order_Dates] CHECK  (ExpectedEndDate >= StartDate)
+--);
 
 -- PROJEKTY ---------------------------------------------------------------------
-CREATE TABLE [ProjectStatus] 
-(
-	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
-	[EndDate] [datetime] NULL,
-	[UsedHours] [int] NOT NULL DEFAULT 0,
-	[UsedBudget] [int] NOT NULL DEFAULT 0,
-	[Status] [nvarchar] (100) , 
-	CONSTRAINT [CK_ProjectSt_UsedHours] CHECK  (UsedHours > 0),
-	CONSTRAINT [CK_ProjectSt_UsedBudget] CHECK  (UsedBudget > 0)
+--CREATE TABLE [ProjectStatus] 
+--(
+--	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+--	[EndDate] [datetime] NULL,
+--	[UsedHours] [int] NOT NULL DEFAULT 0,
+--	[UsedBudget] [int] NOT NULL DEFAULT 0,
+--	[Status] [nvarchar] (100) , 
+	--CONSTRAINT [CK_ProjectSt_UsedHours] CHECK  (UsedHours > 0),
+	--CONSTRAINT [CK_ProjectSt_UsedBudget] CHECK  (UsedBudget > 0)
 	
-);
+--);
 
 CREATE TABLE [Projects] 
 (
 	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 	[ManagerId] [int] NULL REFERENCES [Employees] ([Id]), 
-	[OrderId] [int] REFERENCES [Orders] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE ,
-	[ProjectStatusId] [int] REFERENCES [ProjectStatus] ([Id]) ON UPDATE CASCADE,
+--	[OrderId] [int] REFERENCES [Orders] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE ,
+	--[ProjectStatusId] [int] REFERENCES [ProjectStatus] ([Id]) ON UPDATE CASCADE,
 	[ProjectName] [nvarchar] (40) ,
 	[MaxHours] [int] DEFAULT 1,
 	[MaxBudget] [money] DEFAULT 0,
 	[StartDate] [datetime] ,
-	[ExpectedEndDate] [datetime] , 
-	CONSTRAINT [CK_Project_Name] CHECK  (dbo.RegExMatch([ProjectName], '\b[A-Za-z0-9]+\b')=1),
-	CONSTRAINT [CK_Project_MaxHours] CHECK  (MaxHours > 0),
-	CONSTRAINT [CK_Project_MaxBudget] CHECK  (MaxBudget > 0),
-	CONSTRAINT [CK_Project_Dates] CHECK  (ExpectedEndDate >= StartDate)
+	[ExpectedEndDate] [datetime] ,
+	[Status] [nvarchar] (100) 
+	--CONSTRAINT [CK_Project_Name] CHECK  (dbo.RegExMatch([ProjectName], '\b[A-Za-z0-9]+\b')=1),
+	--CONSTRAINT [CK_Project_MaxHours] CHECK  (MaxHours > 0),
+	--CONSTRAINT [CK_Project_MaxBudget] CHECK  (MaxBudget > 0),
+	--CONSTRAINT [CK_Project_Dates] CHECK  (ExpectedEndDate >= StartDate)
 );
 
 
 -- ZADANIA ---------------------------------------------------------------------
-CREATE TABLE [TaskStatus] 
-(
-	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
-	[EndDate] [datetime] NULL,
-	[UsedHours] [int] NOT NULL DEFAULT 0,
-	[BonusGiven] [bit] NOT NULL,
-	[Status] [nvarchar] (100) NOT NULL, 
-	CONSTRAINT [CK_TaskSt_UsedHours] CHECK  (UsedHours > 0)
-);
+--CREATE TABLE [TaskStatus] 
+--(
+--	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+--	[EndDate] [datetime] NULL,
+--	[UsedHours] [int] NOT NULL DEFAULT 0,
+--	[BonusGiven] [bit] NOT NULL,
+--	[Status] [nvarchar] (100) NOT NULL, 
+--	CONSTRAINT [CK_TaskSt_UsedHours] CHECK  (UsedHours > 0)
+--);
 
 
 CREATE TABLE [Tasks] 
@@ -241,40 +243,41 @@ CREATE TABLE [Tasks]
 	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 	[EmployeeId] [int] NULL REFERENCES [Employees] ([Id]), --TODO
 	[ProjectId] [int] REFERENCES [Projects] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
-	[TaskStatusId] [int] REFERENCES [TaskStatus] ([Id]) ON UPDATE CASCADE,
+--	[TaskStatusId] [int] REFERENCES [TaskStatus] ([Id]) ON UPDATE CASCADE,
 	[TaskName] [nvarchar] (40) NOT NULL,
 	[MaxHours] [int] NOT NULL DEFAULT 1,
 	[StartDate] [datetime] NOT NULL,
 	[ExpectedEndDate] [datetime] NOT NULL, 
 	[Bonus] [money] NOT NULL DEFAULT 0, 
-	CONSTRAINT [CK_Tasks_Name] CHECK  (dbo.RegExMatch([TaskName], '\b[A-Za-z0-9]+\b')=1),
-	CONSTRAINT [CK_Tasks_MaxHours] CHECK  (MaxHours > 0),
-	CONSTRAINT [CK_Tasks_Bonus] CHECK  (Bonus > 0),
-	CONSTRAINT [CK_Tasks_Dates] CHECK  (ExpectedEndDate >= StartDate)
+	[Status] [nvarchar] (100)
+--	CONSTRAINT [CK_Tasks_Name] CHECK  (dbo.RegExMatch([TaskName], '\b[A-Za-z0-9]+\b')=1),
+--	CONSTRAINT [CK_Tasks_MaxHours] CHECK  (MaxHours > 0),
+--	CONSTRAINT [CK_Tasks_Bonus] CHECK  (Bonus > 0),
+--	CONSTRAINT [CK_Tasks_Dates] CHECK  (ExpectedEndDate >= StartDate)
 );
 
 -- ROZLICZENIA TYGODNIOWE ---------------------------------------------------------------------
-CREATE TABLE [WeeklyAccounts]
-(
-	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
-	[EmployeeId] [int] NOT NULL REFERENCES [Employees] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
-	[StartDate] [datetime] NOT NULL,
-	[ReportedHours] [int] NOT NULL,
-	[Status] [int] NOT NULL,
-	CONSTRAINT [CK_WeeklyAccounts_ReportedHours] CHECK  (ReportedHours > 0)
+--CREATE TABLE [WeeklyAccounts]
+--(
+--	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+--	[EmployeeId] [int] NOT NULL REFERENCES [Employees] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
+--	[StartDate] [datetime] NOT NULL,
+--	[ReportedHours] [int] NOT NULL,
+--	[Status] [int] NOT NULL,
+--	CONSTRAINT [CK_WeeklyAccounts_ReportedHours] CHECK  (ReportedHours > 0)
+--
+--);
 
-);
-
-CREATE TABLE [WeeklyAccountTasks]
-(
-	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
-	[WeeklyAccountId] [int] NOT NULL REFERENCES [WeeklyAccounts] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
-	[TaskId] [int] NOT NULL REFERENCES [Tasks] ([Id]),
-	[WorkedHours] [int] NOT NULL,
-	[Comment] [varchar] (1000) NULL, 
-	CONSTRAINT [CK_WeeklyAccountsTasks_ReportedHours] CHECK  (WorkedHours > 0)
-
-);
+--CREATE TABLE [WeeklyAccountTasks]
+--(
+--	[Id] [int] IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+--	[WeeklyAccountId] [int] NOT NULL REFERENCES [WeeklyAccounts] ([Id]) ON DELETE CASCADE ON UPDATE CASCADE,
+--	[TaskId] [int] NOT NULL REFERENCES [Tasks] ([Id]),
+--	[WorkedHours] [int] NOT NULL,
+--	[Comment] [varchar] (1000) NULL, 
+--	CONSTRAINT [CK_WeeklyAccountsTasks_ReportedHours] CHECK  (WorkedHours > 0)
+--
+--);
 
 -- UPRAWNIENIA ---------------------------------------------------------------------
 CREATE TABLE [Roles]
