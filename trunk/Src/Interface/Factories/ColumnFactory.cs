@@ -19,6 +19,8 @@ namespace Szpif
                     return new CheckedListBoxColumn();
                 case "SqlDateTime":
                     return new DateTimeColumn();
+                case "Project State":
+                    return new StateColumn();
                 default:
                     return new DefaultSzpifColumn();
             }

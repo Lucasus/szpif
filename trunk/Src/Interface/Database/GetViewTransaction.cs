@@ -51,9 +51,17 @@ namespace Szpif
             SqlDataAdapter adapter = new SqlDataAdapter(com);
             DataTable table = new DataTable();
             adapter.Fill(table);
-            column.Subtype = table.Rows[0]["Name"].ToString();
-            column.Schema = table.Rows[0]["TypeSchema"].ToString();
-            column.Additional = table.Rows[0]["Additional"].ToString();
+            if(table.Rows.Count > 0)
+            {
+                column.Subtype = table.Rows[0]["Name"].ToString();
+                column.Schema = table.Rows[0]["TypeSchema"].ToString();
+                column.Additional = table.Rows[0]["Additional"].ToString();
+            }
+            else
+            {
+                column.Subtype = column.Type;
+                column.Schema = "";
+            }
         }
 
         protected override void execute()
@@ -73,12 +81,7 @@ namespace Szpif
                 SzpifType c = new SzpifType();
                 c.Type = column.DataType.Name;
                 c.Name = column.ColumnName;
-                if (c.Type == "SqlXml") getTypeInformation(c);
-                else
-                {
-                    c.Subtype = c.Type;
-                    c.Schema = "";
-                }
+                getTypeInformation(c);
                 SzpifColumn szpifColumn = ColumnFactory.createSzpifColumn(c);
                 szpifColumn.CanView = true;
                 szpifColumn.Name = c.Name;

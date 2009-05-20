@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Columns\StateColumn.cs" />
     <Compile Include="Columns\DateTimeColumn.cs" />
     <Compile Include="Columns\DefaultSzpifColumn.cs" />
     <Compile Include="Columns\LinkColumn.cs" />
@@ -83,6 +84,12 @@
     </Compile>
     <Compile Include="Controls\ColumnControls\DefaultSzpifControl.Designer.cs">
       <DependentUpon>DefaultSzpifControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\StateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColumnControls\StateControl.Designer.cs">
+      <DependentUpon>StateControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ColumnControls\SzpifControl.cs">
       <SubType>UserControl</SubType>
@@ -184,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ColumnControls\DefaultSzpifControl.resx">
       <DependentUpon>DefaultSzpifControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColumnControls\StateControl.resx">
+      <DependentUpon>StateControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ColumnControls\LinkControl.resx">
       <DependentUpon>LinkControl.cs</DependentUpon>
