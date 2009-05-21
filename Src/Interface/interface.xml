@@ -11,19 +11,26 @@
 			<View name="Zakończone" viewname="ProjectsForPMZakonczony" roles="Project Manager"/>
 		</View>
   </View>
-  <View name="Zadania">
-    <View name="Wszystkie zadania" roles=""/> 
-    <View name="Zadania w twoich projektach">
+	<View name="Zadania">
+		<View name="Wszystkie zadania" roles=""/>
+		<View name="Zadania w twoich projektach">
 			<View name="Nowe" viewname="TasksForPMNowe" roles="Project Manager"/>
 			<View name="Oczekujące na akceptacje" viewname="TasksForPMOczekujace" roles="Project Manager"/>
 			<View name="Odrzucone" viewname="TasksForPMOdrzucone" roles="Project Manager"/>
-      <View name="W toku" viewname="TasksForPMWToku" roles="Project Manager"/>
+			<View name="W toku" viewname="TasksForPMWToku" roles="Project Manager"/>
 			<View name="Oczekujące na decyzję" viewname="TasksForPMOczekujaceDecyzje" roles="Project Manager"/>
 			<View name="Niewykonane" viewname="TasksForPMNiewykonane" roles="Project Manager"/>
-      <View name="Zakończone" viewname="TasksForPMZakonczone" roles="Project Manager"/>
-    </View> 
-	<View name="Twoje zadania" roles=""/>
-  </View>
+			<View name="Zakończone" viewname="TasksForPMZakonczone" roles="Project Manager"/>
+		</View>
+		<View name="Zadania dla Twoich podwładnych" roles="">
+		</View>
+		<View name="Twoje zadania">
+			<View name="W toku" viewname="TasksForWorkerWToku" roles="Pracownik"/>
+			<View name="Oczekujące na Decyzje" viewname="TasksForWorkerOczekujaceDecyzje" roles="Pracownik"/>
+			<View name="Niewykonane" viewname="TasksForWorkerNiewykonane" roles="Pracownik"/>
+			<View name="Zakończone" viewname="TasksForWorkerZakonczone" roles="Pracownik"/>
+		</View>
+	</View>
   <View name="Pracownicy">
     <View name="Pracownicy" viewname="Employees" roles="Właściciel"/>
 	<View name="Twoi podwładni" roles=""/>
