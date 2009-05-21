@@ -3,11 +3,11 @@
   <View name="Projekty">
 		<View name="Wszystkie projekty">
 			<View name="Nowe" viewname="ProjectsNowy" roles="Właściciel"/>
-			<View name="W Toku" viewname="ProjectsWToku" roles="Właściciel"/>
+			<View name="W toku" viewname="ProjectsWToku" roles="Właściciel"/>
 			<View name="Zakończone" viewname="ProjectsZakonczony" roles="Właściciel"/>
 		</View>
 		<View name="Twoje projekty">
-			<View name="W Toku" viewname="ProjectsForPMWToku" roles="Project Manager"/>
+			<View name="W toku" viewname="ProjectsForPMWToku" roles="Project Manager"/>
 			<View name="Zakończone" viewname="ProjectsForPMZakonczony" roles="Project Manager"/>
 		</View>
   </View>
@@ -15,7 +15,11 @@
     <View name="Wszystkie zadania" roles=""/> 
     <View name="Zadania w twoich projektach">
 			<View name="Nowe" viewname="TasksForPMNowe" roles="Project Manager"/>
-      <View name="W Toku" viewname="TasksForPMWToku" roles="Project Manager"/>
+			<View name="Oczekujące na akceptacje" viewname="TasksForPMOczekujace" roles="Project Manager"/>
+			<View name="Odrzucone" viewname="TasksForPMOdrzucone" roles="Project Manager"/>
+      <View name="W toku" viewname="TasksForPMWToku" roles="Project Manager"/>
+			<View name="Oczekujące na decyzję" viewname="TasksForPMOczekujaceDecyzje" roles="Project Manager"/>
+			<View name="Niewykonane" viewname="TasksForPMNiewykonane" roles="Project Manager"/>
       <View name="Zakończone" viewname="TasksForPMZakonczone" roles="Project Manager"/>
     </View> 
 	<View name="Twoje zadania" roles=""/>

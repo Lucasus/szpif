@@ -6,21 +6,21 @@ GO
 SET ANSI_NULLS ON
 GO
 -----------------Usuwamy poprzednie wersje---------------------
-IF OBJECT_ID('getTasksForPMWToku') IS NOT NULL
-	DROP PROCEDURE getTasksForPMWToku
+IF OBJECT_ID('getTasksForPMOczekujaceDecyzje') IS NOT NULL
+	DROP PROCEDURE getTasksForPMOczekujaceDecyzje
 GO
-IF OBJECT_ID('updateTasksForPMWToku') IS NOT NULL
-	DROP PROCEDURE updateTasksForPMWToku
+IF OBJECT_ID('updateTasksForPMOczekujaceDecyzje') IS NOT NULL
+	DROP PROCEDURE updateTasksForPMOczekujaceDecyzje
 GO
-IF OBJECT_ID('insertTasksForPMWToku') IS NOT NULL
-	DROP PROCEDURE insertTasksForPMWToku
+IF OBJECT_ID('insertTasksForPMOczekujaceDecyzje') IS NOT NULL
+	DROP PROCEDURE insertTasksForPMOczekujaceDecyzje
 GO
-IF OBJECT_ID('deleteTasksForPMWToku') IS NOT NULL
-	DROP PROCEDURE deleteTasksForPMWToku
+IF OBJECT_ID('deleteTasksForPMOczekujaceDecyzje') IS NOT NULL
+	DROP PROCEDURE deleteTasksForPMOczekujaceDecyzje
 GO
 
 ----------Procedura zwracaj¹ca widok------------------------------
-CREATE PROCEDURE getTasksForPMWToku
+CREATE PROCEDURE getTasksForPMOczekujaceDecyzje
 AS
  declare @login varchar(40);
   select @login = SYSTEM_USER
@@ -35,13 +35,13 @@ AS
       ,[Status]
   FROM Tasks
   where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and Status like('W Toku')
+  and Status like('Oczekuj¹ce na decyzjê')
 
 --  from Projects pr 
  GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
-CREATE PROCEDURE updateTasksForPMWToku
+CREATE PROCEDURE updateTasksForPMOczekujaceDecyzje
   @Id					int,
   @EmployeeId			int,
   @ProjectId			int,
@@ -68,7 +68,7 @@ UPDATE Tasks
 	where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
-CREATE PROCEDURE insertTasksForPMWToku
+CREATE PROCEDURE insertTasksForPMOczekujaceDecyzje
   @Id					int,
   @EmployeeId			int,
   @ProjectId			int,
@@ -105,7 +105,7 @@ GO
 
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
-CREATE PROCEDURE deleteTasksForPMWToku
+CREATE PROCEDURE deleteTasksForPMOczekujaceDecyzje
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
@@ -116,9 +116,9 @@ GO
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
-GRANT EXECUTE ON    getTasksForPMWToku TO BasicRole
-GRANT EXECUTE ON updateTasksForPMWToku TO BasicRole
-GRANT EXECUTE ON insertTasksForPMWToku TO BasicRole
-GRANT EXECUTE ON deleteTasksForPMWToku TO BasicRole
+GRANT EXECUTE ON    getTasksForPMOczekujaceDecyzje TO BasicRole
+GRANT EXECUTE ON updateTasksForPMOczekujaceDecyzje TO BasicRole
+GRANT EXECUTE ON insertTasksForPMOczekujaceDecyzje TO BasicRole
+GRANT EXECUTE ON deleteTasksForPMOczekujaceDecyzje TO BasicRole
 use szpifDatabase
 
