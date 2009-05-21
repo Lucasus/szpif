@@ -14,8 +14,9 @@
   <View name="Zadania">
     <View name="Wszystkie zadania" roles=""/> 
     <View name="Zadania w twoich projektach">
-      <View name="W toku" viewname="TasksForPMState1" roles="Project Manager"/>
-      <View name="Zakończone" viewname="TasksForPMState2" roles="Project Manager"/>
+			<View name="Nowe" viewname="TasksForPMNowe" roles="Project Manager"/>
+      <View name="W Toku" viewname="TasksForPMWToku" roles="Project Manager"/>
+      <View name="Zakończone" viewname="TasksForPMZakonczone" roles="Project Manager"/>
     </View> 
 	<View name="Twoje zadania" roles=""/>
   </View>

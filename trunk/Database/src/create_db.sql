@@ -36,8 +36,9 @@ PRINT 'ROLES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_ProjectsZakonczony.sql
 :r src\IntegratedViews\create_ProjectsForPMWToku.sql
 :r src\IntegratedViews\create_ProjectsForPMZakonczony.sql
-:r src\IntegratedViews\create_TasksForPMState1.sql
-:r src\IntegratedViews\create_TasksForPMState2.sql
+:r src\IntegratedViews\create_TasksForPMNowe.sql
+:r src\IntegratedViews\create_TasksForPMWToku.sql
+:r src\IntegratedViews\create_TasksForPMZakonczone.sql
 :r src\IntegratedViews\create_EmployeesForUser.sql
 :r src\IntegratedViews\create_PrzelozeniForSelect.sql
 :r src\IntegratedViews\create_PMForSelect.sql
