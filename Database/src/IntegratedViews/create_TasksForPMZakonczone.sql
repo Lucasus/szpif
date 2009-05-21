@@ -6,16 +6,16 @@ GO
 SET ANSI_NULLS ON
 GO
 -----------------Usuwamy poprzednie wersje---------------------
-IF OBJECT_ID('getTasksForPM') IS NOT NULL
+IF OBJECT_ID('getTasksForPMZakonczone') IS NOT NULL
 	DROP PROCEDURE getTasksForPMZakonczone
 GO
-IF OBJECT_ID('updateTasksForPM') IS NOT NULL
+IF OBJECT_ID('updateTasksForPMZakonczone') IS NOT NULL
 	DROP PROCEDURE updateTasksForPMZakonczone
 GO
-IF OBJECT_ID('insertTasksForPM') IS NOT NULL
+IF OBJECT_ID('insertTasksForPMZakonczone') IS NOT NULL
 	DROP PROCEDURE insertTasksForPMZakonczone
 GO
-IF OBJECT_ID('deleteTasksForPM') IS NOT NULL
+IF OBJECT_ID('deleteTasksForPMZakonczone') IS NOT NULL
 	DROP PROCEDURE deleteTasksForPMZakonczone
 GO
 
