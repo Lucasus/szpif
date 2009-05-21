@@ -7,20 +7,20 @@ SET ANSI_NULLS ON
 GO
 -----------------Usuwamy poprzednie wersje---------------------
 IF OBJECT_ID('getProjects') IS NOT NULL
-	DROP PROCEDURE getProjects
+	DROP PROCEDURE getProjectsNowy
 GO
 IF OBJECT_ID('updateProjects') IS NOT NULL
-	DROP PROCEDURE updateProjects
+	DROP PROCEDURE updateProjectsNowy
 GO
 IF OBJECT_ID('insertProjects') IS NOT NULL
-	DROP PROCEDURE insertProjects
+	DROP PROCEDURE insertProjectsNowy
 GO
 IF OBJECT_ID('deleteProjects') IS NOT NULL
-	DROP PROCEDURE deleteProjects
+	DROP PROCEDURE deleteProjectsNowy
 GO
 
 ----------Procedura zwracaj¹ca widok------------------------------
-CREATE PROCEDURE getProjects
+CREATE PROCEDURE getProjectsNowy
 AS
  declare @login varchar(40);
   select @login = SYSTEM_USER
@@ -33,10 +33,11 @@ AS
 		ExpectedEndDate,
 		Status
   from Projects pr 
+  where Status like ('Nowy')
  GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
-CREATE PROCEDURE updateProjects
+CREATE PROCEDURE updateProjectsNowy
   @Id					int,
   @PM					xml,
   @ProjectName			nvarchar(40),
@@ -57,10 +58,10 @@ AS
 						MaxBudget = @MaxBudget,
 						StartDate = @StartDate,
 						ExpectedEndDate = @ExpectedEndDate
-						where Id = @Id        
+						where Id = @Id and Status like ('Nowy')
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
-CREATE PROCEDURE insertProjects
+CREATE PROCEDURE insertProjectsNowy
   @Id					int,
   @PM					xml,
   @ProjectName			nvarchar(40),
@@ -92,21 +93,21 @@ INSERT INTO [szpifDatabase].[dbo].[Projects]
            @ExpectedEndDate)
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
-CREATE PROCEDURE deleteProjects
+CREATE PROCEDURE deleteProjectsNowy
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
-  DELETE FROM Projects where Id = @Id
+  DELETE FROM Projects where Id = @Id and Status like ('Nowy')
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
-INSERT INTO [ColumnsToTypes] VALUES ('Projects','PM', 'Link', 'PMForSelect');
-INSERT INTO [ColumnsToTypes] VALUES ('Projects','Status','Project State', null);
+INSERT INTO [ColumnsToTypes] VALUES ('ProjectsNowy','PM', 'Link', 'PMForSelect');
+INSERT INTO [ColumnsToTypes] VALUES ('ProjectsNowy','Status','Project State', null);
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
-GRANT EXECUTE ON    getProjects TO OwnerRole
-GRANT EXECUTE ON updateProjects TO OwnerRole
-GRANT EXECUTE ON insertProjects TO OwnerRole
-GRANT EXECUTE ON deleteProjects TO OwnerRole
+GRANT EXECUTE ON    getProjectsNowy TO OwnerRole
+GRANT EXECUTE ON updateProjectsNowy TO OwnerRole
+GRANT EXECUTE ON insertProjectsNowy TO OwnerRole
+GRANT EXECUTE ON deleteProjectsNowy TO OwnerRole
 use szpifDatabase
 

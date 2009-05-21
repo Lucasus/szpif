@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <interfaceConfiguration name="root">
   <View name="Projekty">
-    <View name="Wszystkie projekty" viewname="Projects" roles="Właściciel" />
-    <View name="Twoje projekty" viewname="ProjectsForPM" roles="Project Manager" />
+		<View name="Wszystkie projekty">
+			<View name="Nowe" viewname="ProjectsNowy" roles="Właściciel"/>
+			<View name="W Toku" viewname="ProjectsWToku" roles="Właściciel"/>
+			<View name="Zakończone" viewname="ProjectsZakonczony" roles="Właściciel"/>
+		</View>
+		<View name="Twoje projekty">
+			<View name="W Toku" viewname="ProjectsForPMWToku" roles="Project Manager"/>
+			<View name="Zakończone" viewname="ProjectsForPMZakonczony" roles="Project Manager"/>
+		</View>
   </View>
   <View name="Zadania">
     <View name="Wszystkie zadania" roles=""/> 

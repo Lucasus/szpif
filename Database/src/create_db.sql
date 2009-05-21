@@ -31,8 +31,11 @@ PRINT 'TRIGGERS HAVE BEEN CREATED'
 :r src\create_roles.sql
 PRINT 'ROLES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_Employees.sql
-:r src\IntegratedViews\create_Projects.sql
-:r src\IntegratedViews\create_ProjectsForPM.sql
+:r src\IntegratedViews\create_ProjectsNowy.sql
+:r src\IntegratedViews\create_ProjectsWToku.sql
+:r src\IntegratedViews\create_ProjectsZakonczony.sql
+:r src\IntegratedViews\create_ProjectsForPMWToku.sql
+:r src\IntegratedViews\create_ProjectsForPMZakonczony.sql
 :r src\IntegratedViews\create_TasksForPMState1.sql
 :r src\IntegratedViews\create_TasksForPMState2.sql
 :r src\IntegratedViews\create_EmployeesForUser.sql

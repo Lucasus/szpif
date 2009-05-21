@@ -53,11 +53,11 @@ INSERT INTO [Roles] (EmployeeId, Role) VALUES (5, 'Pracownik');
 INSERT INTO [Clients] (CredentialsId, CompanyName) VALUES (6, 'Firemka');
 
 INSERT INTO [Projects] (ManagerId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate, Status)
-	VALUES(2, 'Projekt1',  7, 36, '20090810' , '20091105', 'Nowy' );
+	VALUES(3, 'Projekt1',  7, 36, '20090810' , '20091105', 'Nowy' );
 INSERT INTO [Projects] (ManagerId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate, Status)
 	VALUES(3, 'Projekt2',  8, 45, '20090927' , '20091128', 'W toku');
 INSERT INTO [Projects] (ManagerId, ProjectName, MaxHours, MaxBudget, StartDate, ExpectedEndDate, Status)
-	VALUES(2, 'Projekt3',  9, 22, '20090922' , '20091201', 'Zakoñczony' );
+	VALUES(3, 'Projekt3',  9, 22, '20090922' , '20091201', 'Zakoñczony' );
 
 INSERT INTO [Tasks] (EmployeeId, ProjectId,  MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus, Status)
 	VALUES(3, 1,  9, 'Zadanie1', '20091129', '20091201' , 45, 'Nowe');
