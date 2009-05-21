@@ -7,20 +7,20 @@ SET ANSI_NULLS ON
 GO
 -----------------Usuwamy poprzednie wersje---------------------
 IF OBJECT_ID('getTasksForPM') IS NOT NULL
-	DROP PROCEDURE getTasksForPMState2
+	DROP PROCEDURE getTasksForPMZakonczone
 GO
 IF OBJECT_ID('updateTasksForPM') IS NOT NULL
-	DROP PROCEDURE updateTasksForPMState2
+	DROP PROCEDURE updateTasksForPMZakonczone
 GO
 IF OBJECT_ID('insertTasksForPM') IS NOT NULL
-	DROP PROCEDURE insertTasksForPMState2
+	DROP PROCEDURE insertTasksForPMZakonczone
 GO
 IF OBJECT_ID('deleteTasksForPM') IS NOT NULL
-	DROP PROCEDURE deleteTasksForPMState2
+	DROP PROCEDURE deleteTasksForPMZakonczone
 GO
 
 ----------Procedura zwracaj¹ca widok------------------------------
-CREATE PROCEDURE getTasksForPMState2
+CREATE PROCEDURE getTasksForPMZakonczone
 AS
  declare @login varchar(40);
   select @login = SYSTEM_USER
@@ -35,13 +35,13 @@ AS
       ,[Status]
   FROM Tasks
   where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and Status like('W Toku')
+  and Status like('Zakoñczone')
 
 --  from Projects pr 
  GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
-CREATE PROCEDURE updateTasksForPMState2
+CREATE PROCEDURE updateTasksForPMZakonczone
   @Id					int,
   @EmployeeId			int,
   @ProjectId			int,
@@ -68,7 +68,7 @@ UPDATE Tasks
 	where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
-CREATE PROCEDURE insertTasksForPMState2
+CREATE PROCEDURE insertTasksForPMZakonczone
   @Id					int,
   @EmployeeId			int,
   @ProjectId			int,
@@ -105,7 +105,7 @@ GO
 
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
-CREATE PROCEDURE deleteTasksForPMState2
+CREATE PROCEDURE deleteTasksForPMZakonczone
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
@@ -116,9 +116,9 @@ GO
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
-GRANT EXECUTE ON    getTasksForPMState2 TO BasicRole
-GRANT EXECUTE ON updateTasksForPMState2 TO BasicRole
-GRANT EXECUTE ON insertTasksForPMState2 TO BasicRole
-GRANT EXECUTE ON deleteTasksForPMState2 TO BasicRole
+GRANT EXECUTE ON    getTasksForPMZakonczone TO BasicRole
+GRANT EXECUTE ON updateTasksForPMZakonczone TO BasicRole
+GRANT EXECUTE ON insertTasksForPMZakonczone TO BasicRole
+GRANT EXECUTE ON deleteTasksForPMZakonczone TO BasicRole
 use szpifDatabase
 

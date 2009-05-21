@@ -7,20 +7,20 @@ SET ANSI_NULLS ON
 GO
 -----------------Usuwamy poprzednie wersje---------------------
 IF OBJECT_ID('getTasksForPM') IS NOT NULL
-	DROP PROCEDURE getTasksForPMState1
+	DROP PROCEDURE getTasksForPMNowe
 GO
 IF OBJECT_ID('updateTasksForPM') IS NOT NULL
-	DROP PROCEDURE updateTasksForPMState1
+	DROP PROCEDURE updateTasksForPMNowe
 GO
 IF OBJECT_ID('insertTasksForPM') IS NOT NULL
-	DROP PROCEDURE insertTasksForPMState1
+	DROP PROCEDURE insertTasksForPMNowe
 GO
 IF OBJECT_ID('deleteTasksForPM') IS NOT NULL
-	DROP PROCEDURE deleteTasksForPMState1
+	DROP PROCEDURE deleteTasksForPMNowe
 GO
 
 ----------Procedura zwracaj¹ca widok------------------------------
-CREATE PROCEDURE getTasksForPMState1
+CREATE PROCEDURE getTasksForPMNowe
 AS
  declare @login varchar(40);
   select @login = SYSTEM_USER
@@ -41,7 +41,7 @@ AS
  GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------
-CREATE PROCEDURE updateTasksForPMState1
+CREATE PROCEDURE updateTasksForPMNowe
   @Id					int,
   @EmployeeId			int,
   @ProjectId			int,
@@ -68,7 +68,7 @@ UPDATE Tasks
 	where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
-CREATE PROCEDURE insertTasksForPMState1
+CREATE PROCEDURE insertTasksForPMNowe
   @Id					int,
   @EmployeeId			int,
   @ProjectId			int,
@@ -105,7 +105,7 @@ GO
 
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
-CREATE PROCEDURE deleteTasksForPMState1
+CREATE PROCEDURE deleteTasksForPMNowe
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
@@ -116,9 +116,9 @@ GO
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
-GRANT EXECUTE ON    getTasksForPMState1 TO BasicRole
-GRANT EXECUTE ON updateTasksForPMState1 TO BasicRole
-GRANT EXECUTE ON insertTasksForPMState1 TO BasicRole
-GRANT EXECUTE ON deleteTasksForPMState1 TO BasicRole
+GRANT EXECUTE ON    getTasksForPMNowe TO BasicRole
+GRANT EXECUTE ON updateTasksForPMNowe TO BasicRole
+GRANT EXECUTE ON insertTasksForPMNowe TO BasicRole
+GRANT EXECUTE ON deleteTasksForPMNowe TO BasicRole
 use szpifDatabase
 
