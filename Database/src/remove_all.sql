@@ -6,7 +6,7 @@ SET NOCOUNT ON
 Declare @login varchar(100)
 DECLARE @ICURSOR CURSOR;  
 SET @ICURSOR = CURSOR FOR select name from sys.server_principals where type IN ('S') and is_disabled = 0
-				and name != 'szpifadmin';   
+				and name != 'szpifadmin' and name !='sa' ;   
      OPEN @ICURSOR  
      FETCH NEXT FROM @ICURSOR INTO @login
      WHILE (@@FETCH_STATUS = 0)  
