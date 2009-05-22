@@ -22,6 +22,8 @@ namespace Szpif
             InitializeComponent();
             this.Name = columnName;
             this.ColumnNameLabel.Text = columnName;
+            this.columnValue.Items.Add(getDefaultValue());
+            this.columnValue.SelectedItem = this.columnValue.Items[0];
         }
 
         public string getDefaultValue()

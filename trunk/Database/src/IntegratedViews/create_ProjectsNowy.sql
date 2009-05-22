@@ -68,8 +68,7 @@ CREATE PROCEDURE insertProjectsNowy
   @MaxHours				int,
   @MaxBudget			int,
   @StartDate			datetime,
-  @ExpectedEndDate		datetime,
-  @Status				nvarchar(100)
+  @ExpectedEndDate		datetime
 AS
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
@@ -85,7 +84,7 @@ INSERT INTO [szpifDatabase].[dbo].[Projects]
            ,[ExpectedEndDate])
      VALUES
            (@przelId, 
-           @Status, 
+           'Nowy',--@Status, 
            @ProjectName, 
            @MaxHours, 
            @MaxBudget, 

@@ -31,6 +31,7 @@ PRINT 'TRIGGERS HAVE BEEN CREATED'
 :r src\create_roles.sql
 PRINT 'ROLES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_Employees.sql
+:r src\IntegratedViews\create_EmployeesForPrzelozony.sql
 :r src\IntegratedViews\create_ProjectsNowy.sql
 :r src\IntegratedViews\create_ProjectsWToku.sql
 :r src\IntegratedViews\create_ProjectsZakonczony.sql
@@ -43,6 +44,8 @@ PRINT 'ROLES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_TasksForPMOczekujaceDecyzje.sql
 :r src\IntegratedViews\create_TasksForPMNiewykonane.sql
 :r src\IntegratedViews\create_TasksForPMZakonczone.sql
+:r src\IntegratedViews\create_TasksForPrzelozonyOczekujace.sql
+:r src\IntegratedViews\create_TasksForPrzelozonyOdrzucone.sql
 :r src\IntegratedViews\create_TasksForWorkerWToku.sql
 :r src\IntegratedViews\create_TasksForWorkerOczekujaceDecyzje.sql
 :r src\IntegratedViews\create_TasksForWorkerNiewykonane.sql
