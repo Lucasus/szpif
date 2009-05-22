@@ -29,11 +29,11 @@ INSERT INTO [Credentials] (FirstName, SecondName, LastName, EMail, Phone, Street
 
 INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (1, NULL, 'lukasz', 'Master', 1, 1);
 INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (2, NULL, 'Moose123', 'Master', 1, 1);
-INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (3, 2, 'janek', 'Master', 15, 12);
-INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (4, 2, 'jan', 'Master', 1, 1);
-INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (5, 2, 'ania', 'Master', 11, 1);
-INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (6, 2, 'piotr', 'Master', 1, 1);
-INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (7, 2, 'kamil', 'Master', 1, 1);
+INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (3, 1, 'janek', 'Master', 15, 12);
+INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (4, 1, 'jan', 'Master', 1, 1);
+INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (5, 1, 'ania', 'Master', 11, 1);
+INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (6, 1, 'piotr', 'Master', 1, 1);
+INSERT INTO [Employees] (CredentialsId, SuperiorId, Login, Password, HoursNr, RatePerHour) VALUES (7, 1, 'kamil', 'Master', 1, 1);
 
 INSERT INTO [RoleNames] VALUES ('W³aœciciel');
 INSERT INTO [RoleNames] VALUES ('Project Manager');

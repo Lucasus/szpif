@@ -23,6 +23,8 @@
 			<View name="Zakończone" viewname="TasksForPMZakonczone" roles="Project Manager"/>
 		</View>
 		<View name="Zadania dla Twoich podwładnych" roles="">
+			<View name="Oczekujące na akceptacje" viewname="TasksForPrzelozonyOczekujace" roles="Przełożony"/>
+			<View name="Odrzucone" viewname="TasksForPrzelozonyOdrzucone" roles="Przełożony"/>
 		</View>
 		<View name="Twoje zadania">
 			<View name="W toku" viewname="TasksForWorkerWToku" roles="Pracownik"/>
@@ -33,7 +35,7 @@
 	</View>
   <View name="Pracownicy">
     <View name="Pracownicy" viewname="Employees" roles="Właściciel"/>
-	<View name="Twoi podwładni" roles=""/>
+		<View name="Twoi podwładni" viewname="EmployeesForPrzelozony" roles="Przełożony"/>
   </View>
   <EditView name="Twoje ustawienia" viewname="EmployeesForUser" roles="all" />
 </interfaceConfiguration>

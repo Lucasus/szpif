@@ -83,5 +83,10 @@ namespace Szpif.Controls.ContentControls
             this.saveButton.Location = new Point(this.saveButton.Location.X, this.gridView.Height + 5);
             this.refreshButton.Location = new Point(this.refreshButton.Location.X, this.gridView.Height + 5);
         }
+
+		private void ViewControl_VisibleChanged(object sender, EventArgs e)
+		{
+			view = Program.Context.ViewToGridManager.reconnect(gridView);
+		}
     }
 }
