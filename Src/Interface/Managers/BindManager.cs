@@ -23,7 +23,7 @@ namespace Szpif
 
         public IntegratedView reconnect(DataGridView dataGrid)
         {           
-            DataManager dm = new DataManager(database);
+          //  DataManager dm = new DataManager(database);
             string viewName = dataGrid.Name;
             IntegratedView view = database.getView(viewName);
             dataGrid.AutoGenerateColumns = false;

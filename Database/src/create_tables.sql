@@ -305,7 +305,7 @@ CREATE TABLE [UserTypes]
 (
 		[Id] [int] IDENTITY (1,1) NOT NULL PRIMARY KEY,
 		[Name] [nvarchar] (40) NOT NULL,
-		[TypeSchema] [nvarchar] (1000) NOT NULL
+		[TypeSchema] [nvarchar] (1500) NOT NULL
 );
 
 CREATE TABLE [ColumnsToTypes]
@@ -337,8 +337,47 @@ Text="Tekst wyswietlany na gridzie" />');
 --
 
 INSERT INTO [UserTypes] VALUES ('Project State',
-'<State><State name="Nowy"><Next name="W toku" user="W³aœciciel"/></State><State name="W toku"><Next name="Zatrzymany"
- user="W³aœciciel" /><Next name="Zakoñczony" user="Project Manager" /></State><State name="Zatrzymany"
- ><Next name="W toku" user="W³aœciciel" /><Next name="Zakoñczony" user="W³aœciciel"/></State><State name="Zakoñczony"></State></State>');
+'<State>
+	<State name="Nowy">
+		<Next name="W toku" text="Wyœlij do akceptacji" user="W³aœciciel"/>
+	</State>
+	<State name="W toku">
+		<Next name="Zatrzymany" text="Zatrzymaj" user="W³aœciciel" />
+		<Next name="Zakoñczony" text="Zakoñcz" user="Project Manager" />
+	</State>
+	<State name="Zatrzymany">
+		<Next name="W toku" text="Wznów" user="W³aœciciel" />
+		<Next name="Zakoñczony" text="Zakoñcz" user="W³aœciciel"/>
+	</State>
+	<State name="Zakoñczony">
+	</State>
+</State>');
+
+INSERT INTO [UserTypes] VALUES ('Task State',
+'<State>
+  <State name="Nowe">
+		<Next name="Oczekuj¹ce na akceptacjê" text="Wyœlij do akceptacji" user="Project Manager"/>
+  </State>
+  <State name="Oczekuj¹ce na akceptacjê">
+		<Next name="Odrzucone" text="Odrzuæ" user="Prze³o¿ony"/>
+		<Next name="W toku" text="Zaakceptuj" user="Prze³o¿ony"/>
+  </State>
+  <State name="Odrzucone">
+  </State>
+  <State name="W toku">
+		<Next name="Oczekuj¹ce na decyzjê PM" text="Uznaj za zakoñczone" user="Pracownik"/>  
+		<Next name="Zakoñczone" text="Zakoñcz" user="Project Manager"/>  
+		<Next name="Niewykonane" text="Uznaj za niewykonane" user="Project Manager"/>  
+  </State>
+  <State name="Oczekuj¹ce na decyzjê PM">
+		<Next name="Zakoñczone" text="Zakoñcz" user="Project Manager"/>  
+		<Next name="Niewykonane" text="Uznaj za niewykonane" user="Project Manager"/>  
+		<Next name="W toku" text="Przed³u¿ czas wykonania" user="Project Manager"/>  
+  </State>
+  <State name="Zakoñczone">
+  </State>  
+  <State name="Niewykonane">
+  </State>    
+</State>');
 
 GO
