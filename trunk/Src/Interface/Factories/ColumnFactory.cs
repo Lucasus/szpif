@@ -21,6 +21,8 @@ namespace Szpif
                     return new DateTimeColumn();
                 case "Project State":
                     return new StateColumn();
+                case "Task State":
+                    return new StateColumn();
                 default:
                     return new DefaultSzpifColumn();
             }

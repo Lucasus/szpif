@@ -112,7 +112,7 @@ AS
   DELETE FROM Tasks where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
---INSERT INTO [ColumnsToTypes] VALUES ('TasksForPM','PM', 'Link', 'PMForSelect');
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNiewykonane','Status','Task State', null);
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------
