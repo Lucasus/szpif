@@ -41,7 +41,9 @@
             this.autorzyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableLabel = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +59,7 @@
             this.button2.Text = "Pracownicy";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button5
             // 
@@ -69,6 +72,7 @@
             this.button5.Text = "Projekty";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -81,6 +85,7 @@
             this.button4.Text = "Zadania";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button1
             // 
@@ -106,6 +111,10 @@
             this.splitContainer1.Panel1.Controls.Add(this.button5);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.disableLabel);
             this.splitContainer1.Size = new System.Drawing.Size(899, 377);
             this.splitContainer1.SplitterDistance = 154;
             this.splitContainer1.TabIndex = 3;
@@ -163,6 +172,16 @@
             this.pomocToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.pomocToolStripMenuItem.Text = "Pomoc";
             // 
+            // disableLabel
+            // 
+            this.disableLabel.AutoSize = true;
+            this.disableLabel.Location = new System.Drawing.Point(186, 80);
+            this.disableLabel.Name = "disableLabel";
+            this.disableLabel.Size = new System.Drawing.Size(183, 13);
+            this.disableLabel.TabIndex = 0;
+            this.disableLabel.Text = "Ten panel jest dla Ciebie niedostępny";
+            this.disableLabel.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +195,8 @@
             this.Text = "Panel użytkownika";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserPanel_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -198,6 +219,7 @@
         private System.Windows.Forms.ToolStripMenuItem autorzyToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem pomocToolStripMenuItem;
+        private System.Windows.Forms.Label disableLabel;
 
 
 
