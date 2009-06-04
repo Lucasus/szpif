@@ -18,6 +18,7 @@ namespace Szpif
             DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
             column.Name = this.Name;
             column.DataPropertyName = this.Name;
+            if (this.Name == "Id") column.Visible = false;
             if (!CanUpdate || this.Name == "Id")
             {
                 column.ReadOnly = true;
