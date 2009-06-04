@@ -16,6 +16,7 @@ namespace Szpif
         DbCommand selectCommand;
         SqlCommand updateCommand;
         SqlCommand insertCommand;
+        SqlCommand deleteCommand;
         IntegratedView view;
 
         public IntegratedView View
@@ -43,6 +44,11 @@ namespace Szpif
             insertCommand.Connection = (SqlConnection)SzpifDatabase.Connection;
             insertCommand.CommandType = CommandType.StoredProcedure;
             insertCommand.CommandText = "insert" + viewName;
+
+            deleteCommand = new SqlCommand();
+            deleteCommand.Connection = (SqlConnection)SzpifDatabase.Connection;
+            deleteCommand.CommandType = CommandType.StoredProcedure;
+            deleteCommand.CommandText = "delete" + viewName;//"delete from Employees where Id = @original_id";//"delete" + viewName;
         }
         private void getTypeInformation(SzpifType column)
         {
@@ -73,7 +79,7 @@ namespace Szpif
 
             SqlCommandBuilder.DeriveParameters(updateCommand);
             SqlCommandBuilder.DeriveParameters(insertCommand);
-
+            SqlCommandBuilder.DeriveParameters(deleteCommand);
 
             oDA.ReturnProviderSpecificTypes = false;
             foreach (DataColumn column in help.Columns)
@@ -136,7 +142,17 @@ namespace Szpif
                 }
                 view.Columns[name].CanInsert = true;
             }
-            view.Columns.Remove("RETURN_VALUE");           
+            view.Columns.Remove("RETURN_VALUE");
+            view.Updateable = false;
+            view.Insertable = false;
+            view.Deletable = false;
+            foreach (SzpifColumn column in view.Columns.Values)
+            {
+                if (column.CanInsert) view.Insertable = true;
+                if (column.CanUpdate) view.Updateable = true;
+            }
+            if (deleteCommand.Parameters.Count > 1) view.Deletable = true;
+
             oDA.Fill(view.Table); 
         }
     }

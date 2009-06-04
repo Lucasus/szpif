@@ -53,6 +53,7 @@ namespace Szpif.Controls.ContentControls
             this.cancelButton.Location = new Point(cancelButton.Location.X, last.Location.Y + last.Size.Height);
             this.Height = OKButton.Location.Y + OKButton.Height + 40;
             this.Width = cancelButton.Location.X + cancelButton.Width + 20;
+            if (view.Deletable == false) deleteButton.Visible = false;
         }
 
         private void OKButton_Click(object sender, EventArgs e)
