@@ -26,18 +26,17 @@ AS
   select @login = SYSTEM_USER
   SELECT tr.Id
 	  ,dbo.EmployeeToXmlLink(tr.EmployeeId, 'Imiê Podw³adnego', 'EmployeeForSelect') AS  'EmployeeId'
-	  --,emp.Login AS 'Imiê Podw³adnego'
-      ,pr.ProjectName AS 'Nazwa Projektu'
-      ,tr.[TaskName] AS 'Nazwa Zadania'
-      ,tr.[MaxHours] AS 'Maksymalna iloœæ godzin'
-      ,tr.[StartDate] AS 'Data Rozpoczêcia'
-      ,tr.[ExpectedEndDate] As 'Oczekiwana Data Zakoñczenia'
+	  ,dbo.ProjectToXmlLink(tr.ProjectId, 'Nazwa Projektu', 'ProjectForSelect') AS  'Nazwa Projektu'
+      ,tr.[TaskName]-- AS 'Nazwa Zadania'
+      ,tr.[MaxHours]-- AS 'Maksymalna iloœæ godzin'
+      ,tr.[StartDate]-- AS 'Data Rozpoczêcia'
+      ,tr.[ExpectedEndDate]-- As 'Oczekiwana Data Zakoñczenia'
       ,tr.[Bonus] AS 'Bonus'
       ,tr.[Status] AS 'Status'
   FROM Tasks AS tr
-  inner join Projects AS pr on tr.ProjectId = pr.Id
-  inner join Employees AS emp on tr.EmployeeId = emp.Id
-  where EmployeeId in (select Id from Employees where SuperiorId in (select Id from Employees where Login = @login)) 
+  --inner join Projects AS pr on tr.ProjectId = pr.Id
+  --inner join Employees AS emp on tr.EmployeeId = emp.Id
+  where tr.ProjectId in (select ProjectId from Projects where ManagerId in (select Id from Employees where Login = @login)) 
  and tr.Status like('Nowe')
 
 --  from Projects pr 
@@ -46,8 +45,8 @@ AS
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateTasksForPMNowe
   @Id					int,
-  @EmployeeId			int,
-  @ProjectId			int,
+  @EmployeeId			xml,
+  @ProjectId			xml,
   @TaskName				nvarchar(100),
   @MaxHours				int,
   @StartDate			datetime,
@@ -58,10 +57,17 @@ AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 --	from @PM.nodes('//Link') AS R(nref))
+	declare @emplId int;
+	select @emplId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @EmployeeId.nodes('//Link') AS R(nref))
+
+	declare @projId int;
+	select @projId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @ProjectId.nodes('//Link') AS R(nref))
 
 UPDATE Tasks   
-	SET EmployeeId = @EmployeeId, 
-      ProjectId = @ProjectId, 
+	SET EmployeeId = @emplId, 
+      ProjectId = @projId, 
       [TaskName] = @TaskName, 
       [MaxHours] = @MaxHours, 
       [StartDate] = @StartDate, 
@@ -73,8 +79,8 @@ GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertTasksForPMNowe
   @Id					int,
-  @EmployeeId			int,
-  @ProjectId			int,
+  @EmployeeId			xml,
+  @ProjectId			xml,
   @TaskName				nvarchar(100),
   @MaxHours				int,
   @StartDate			datetime,
@@ -82,6 +88,16 @@ CREATE PROCEDURE insertTasksForPMNowe
   @Bonus				int,
   @Status				nvarchar(100)
 AS
+
+	declare @emplId int;
+	select @emplId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @EmployeeId.nodes('//Link') AS R(nref))
+
+	declare @projId int;
+	select @projId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @ProjectId.nodes('//Link') AS R(nref))
+
+
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 --	from @PM.nodes('//Link') AS R(nref))
@@ -95,8 +111,8 @@ AS
            ,[ExpectedEndDate]
            ,[Bonus])
      VALUES
-           (@EmployeeId, 
-           @ProjectId, 
+           (@emplId, 
+           @projId, 
            @Status, 
            @TaskName,
            @MaxHours, 
@@ -115,6 +131,7 @@ AS
   DELETE FROM Tasks where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNowe','ProjectId', 'Link', 'ProjectForSelect');
 INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNowe','EmployeeId', 'Link', 'EmployeeForSelect');
 INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNowe','Status','Task State', null);
 
