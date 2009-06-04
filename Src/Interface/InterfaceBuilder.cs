@@ -37,10 +37,10 @@ namespace Szpif
                 else
                     return null;
             }
-            else if (controls.Count == 1)
-            {
-                return controls[0];
-            }
+           // else if (controls.Count == 1)
+           // {
+           //     return controls[0];
+           // }
             else
             {
                 TabbedControl tabbedControl = new TabbedControl(controls);
@@ -58,8 +58,12 @@ namespace Szpif
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(reader);
             Control mainControl = buildFromNode(xmlDoc.DocumentElement);
-            mainControl.Height = mainForm.splitContainer1.Panel2.Height - 7;
-            mainForm.splitContainer1.Panel2.Controls.Add(mainControl);
+            mainControl.Height = mainForm.splitContainer1.Panel2.Height+20;
+            foreach (Control c in mainControl.Controls[0].Controls)
+            {
+                mainForm.splitContainer1.Panel2.Controls.Add(c.Controls[0]);
+            }
+//            mainForm.splitContainer1.Panel2.Controls.Add(mainControl);
             Program.Context.FormManager.switchForm("LoginForm", "MainForm");
         }
     }
