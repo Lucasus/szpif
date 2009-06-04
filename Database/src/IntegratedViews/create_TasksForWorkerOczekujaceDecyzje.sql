@@ -36,7 +36,7 @@ AS
   inner join Projects AS pr on tr.ProjectId = pr.Id
   where EmployeeId in (select Id from Employees where Login = @login)
   --where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and tr.Status like('Oczekuj¹ce na decyzjê')
+  and tr.Status like('Oczekuj¹ce na decyzjê PM')
 
 --  from Projects pr 
  GO
