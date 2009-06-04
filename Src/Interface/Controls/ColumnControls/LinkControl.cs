@@ -52,6 +52,7 @@ namespace Szpif
         private void SelectButton_Click(object sender, EventArgs e)
         {
             selectForm = FormFactory.createSelectForm(this);
+            selectForm.StartPosition = FormStartPosition.CenterParent;
             selectForm.ShowDialog();
         }
 

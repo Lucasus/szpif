@@ -38,7 +38,9 @@ namespace Szpif.Controls.ContentControls
             this.Edit.UseColumnTextForButtonValue = true;
             view = Program.Context.ViewToGridManager.bindToView(gridView);
             addForm = FormFactory.createAddForm(viewName, this);
+            addForm.StartPosition = FormStartPosition.CenterParent;
             updateForm = FormFactory.createUpdateForm(viewName, this);
+            updateForm.StartPosition = FormStartPosition.CenterParent;
             this.gridView.Height = maxHeight - 50;
             if (view.Insertable == false) this.Add.Visible = false;
             if (view.Updateable == false) this.Edit.Visible = false;
