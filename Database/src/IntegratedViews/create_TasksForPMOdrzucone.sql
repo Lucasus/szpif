@@ -53,8 +53,6 @@ AS
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertTasksForPMOdrzucone
-  @Id					int,
-  @Status				nvarchar(100)
 AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id

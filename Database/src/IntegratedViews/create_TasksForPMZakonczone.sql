@@ -53,8 +53,6 @@ AS
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertTasksForPMZakonczone
-  @Id					int,
-  @Status				nvarchar(100)
 AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
@@ -68,7 +66,7 @@ CREATE PROCEDURE deleteTasksForPMZakonczone
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
-  --DELETE FROM Tasks where Id = @Id
+  DELETE FROM Tasks where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
 INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMZakonczone','ProjectId', 'Link', 'ProjectForSelect');
