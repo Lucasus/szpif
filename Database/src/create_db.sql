@@ -52,6 +52,8 @@ PRINT 'ROLES HAVE BEEN CREATED'
 :r src\IntegratedViews\create_TasksForWorkerZakonczone.sql
 :r src\IntegratedViews\create_EmployeesForUser.sql
 :r src\IntegratedViews\create_PrzelozeniForSelect.sql
+--:r src\IntegratedViews\create_EmployeeForSelect.sql
+--:r src\IntegratedViews\create_ProjectForSelect.sql
 :r src\IntegratedViews\create_PMForSelect.sql
 PRINT 'DATABASE CREATE IS COMPLETE'
 :r src\generate_data.sql
