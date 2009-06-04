@@ -18,13 +18,10 @@ namespace Szpif
             DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
             column.Name = this.Name;
             column.DataPropertyName = this.Name;
-            if (!CanUpdate || this.Name == "Id")
-            {
-                column.ReadOnly = true;
-                DataGridViewCellStyle helpStyle = new DataGridViewCellStyle();
-                helpStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-                column.DefaultCellStyle = helpStyle;
-            }
+            column.ReadOnly = true;
+            DataGridViewCellStyle helpStyle = new DataGridViewCellStyle();
+            helpStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            column.DefaultCellStyle = helpStyle;
             if (this.Name != "Id")
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             else
