@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 		{0E654E65-84C5-43E6-8642-C10692D5B498} = {0E654E65-84C5-43E6-8642-C10692D5B498}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "szpifGUI", "szpifGUI\szpifGUI\szpifGUI.csproj", "{2F460B54-68C3-45C5-934E-345788309C1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{57E9ACD7-A09E-4B11-8C6A-E69937AE75C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57E9ACD7-A09E-4B11-8C6A-E69937AE75C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57E9ACD7-A09E-4B11-8C6A-E69937AE75C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F460B54-68C3-45C5-934E-345788309C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F460B54-68C3-45C5-934E-345788309C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F460B54-68C3-45C5-934E-345788309C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F460B54-68C3-45C5-934E-345788309C1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

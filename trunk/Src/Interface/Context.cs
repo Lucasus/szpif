@@ -21,9 +21,9 @@ namespace Szpif
         private FormManager formManager;
         private ContentManager contentManager;
         private BindManager viewToGridManager;
-        private InterfaceManager interfaceManager;
+        private InterfaceBuilder interfaceManager;
 
-        public InterfaceManager InterfaceManager
+        public InterfaceBuilder InterfaceManager
         {
             get { return interfaceManager; }
             set { interfaceManager = value; }
@@ -62,7 +62,7 @@ namespace Szpif
 			this.FormManager = formManager;
             this.contentManager = new ContentManager();
 			this.ViewToGridManager = new BindManager(dataBase);
-            this.interfaceManager = new InterfaceManager();
+            this.interfaceManager = new InterfaceBuilder();
             this.userLogin = null;
             this.userPassword = null;
             this.roles = null;
