@@ -47,19 +47,18 @@ CREATE PROCEDURE updateProjectsNowy
   @ExpectedEndDate		datetime,
   @Status				nvarchar(100)
 AS
-	INSERT INTO Help values ('dupa')
---	declare @przelId int;
---	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
---	from @PM.nodes('//Link') AS R(nref))
-
---    update Projects set ManagerId = @przelId, 
---						Status = @Status,
---						ProjectName = @ProjectName, 
---						MaxHours = @MaxHours,
---						MaxBudget = @MaxBudget,
---						StartDate = @StartDate,
---						ExpectedEndDate = @ExpectedEndDate
---						where Id = @Id and Status like ('Nowy')
+	declare @przelId int;
+	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
+	from @PM.nodes('//Link') AS R(nref))
+	
+    update Projects set ManagerId = @przelId, 
+						Status = @Status,
+						ProjectName = @ProjectName, 
+						MaxHours = @MaxHours,
+						MaxBudget = @MaxBudget,
+						StartDate = @StartDate,
+						ExpectedEndDate = @ExpectedEndDate
+						where Id = @Id and Status like ('Nowy')
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertProjectsNowy

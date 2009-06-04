@@ -93,6 +93,7 @@ namespace Szpif.Controls.ContentControls
 
         private void Save_Click(object sender, EventArgs e)
         {
+            this.Validate();
             Program.Context.ViewToGridManager.updateView(gridView);
         }
 
