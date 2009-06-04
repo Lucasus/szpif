@@ -22,19 +22,21 @@ GO
 ----------Procedura zwracaj¹ca widok------------------------------
 CREATE PROCEDURE getTasksForPMNiewykonane
 AS
- declare @login varchar(40);
+  declare @login varchar(40);
   select @login = SYSTEM_USER
-  SELECT Id
-      ,[EmployeeId]
-      ,[ProjectId]
-      ,[TaskName]
-      ,[MaxHours]
-      ,[StartDate]
-      ,[ExpectedEndDate]
-      ,[Bonus]
-      ,[Status]
-  FROM Tasks
-  where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
+  SELECT tr.Id
+	  ,dbo.EmployeeToXmlLink(tr.EmployeeId, 'Imiê Podw³adnego', 'EmployeeForSelect') AS  'EmployeeId'
+	  ,dbo.ProjectToXmlLink(tr.ProjectId, 'Nazwa Projektu', 'ProjectForSelect') AS  'ProjectId'
+      ,tr.[TaskName]-- AS 'Nazwa Zadania'
+      ,tr.[MaxHours]-- AS 'Maksymalna iloœæ godzin'
+      ,tr.[StartDate]-- AS 'Data Rozpoczêcia'
+      ,tr.[ExpectedEndDate]-- As 'Oczekiwana Data Zakoñczenia'
+      ,tr.[Bonus] AS 'Bonus'
+      ,tr.[Status] AS 'Status'
+  FROM Tasks AS tr
+  --inner join Projects AS pr on tr.ProjectId = pr.Id
+  --inner join Employees AS emp on tr.EmployeeId = emp.Id
+  where tr.ProjectId in (select ProjectId from Projects where ManagerId in (select Id from Employees where Login = @login)) 
   and Status like('Niewykonane')
 
 --  from Projects pr 
@@ -113,6 +115,8 @@ AS
   DELETE FROM Tasks where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNiewykonane','ProjectId', 'Link', 'ProjectForSelect');
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNiewykonane','EmployeeId', 'Link', 'EmployeeForSelect');
 INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNiewykonane','Status','Task State', null);
 
 GO

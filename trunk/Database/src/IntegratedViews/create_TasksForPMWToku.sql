@@ -22,20 +22,22 @@ GO
 ----------Procedura zwracaj¹ca widok------------------------------
 CREATE PROCEDURE getTasksForPMWToku
 AS
- declare @login varchar(40);
+  declare @login varchar(40);
   select @login = SYSTEM_USER
-  SELECT Id
-      ,[EmployeeId]
-      ,[ProjectId]
-      ,[TaskName]
-      ,[MaxHours]
-      ,[StartDate]
-      ,[ExpectedEndDate]
-      ,[Bonus]
-      ,[Status]
-  FROM Tasks
-  where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and Status like('W Toku')
+  SELECT tr.Id
+	  ,dbo.EmployeeToXmlLink(tr.EmployeeId, 'Imiê Podw³adnego', 'EmployeeForSelect') AS  'EmployeeId'
+	  ,dbo.ProjectToXmlLink(tr.ProjectId, 'Nazwa Projektu', 'ProjectForSelect') AS  'ProjectId'
+      ,tr.[TaskName]-- AS 'Nazwa Zadania'
+      ,tr.[MaxHours]-- AS 'Maksymalna iloœæ godzin'
+      ,tr.[StartDate]-- AS 'Data Rozpoczêcia'
+      ,tr.[ExpectedEndDate]-- As 'Oczekiwana Data Zakoñczenia'
+      ,tr.[Bonus] AS 'Bonus'
+      ,tr.[Status] AS 'Status'
+  FROM Tasks AS tr
+  --inner join Projects AS pr on tr.ProjectId = pr.Id
+  --inner join Employees AS emp on tr.EmployeeId = emp.Id
+  where tr.ProjectId in (select ProjectId from Projects where ManagerId in (select Id from Employees where Login = @login)) 
+   and Status like('W Toku')
 
 --  from Projects pr 
  GO
@@ -43,11 +45,8 @@ AS
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateTasksForPMWToku
   @Id					int,
-  @EmployeeId			int,
-  @ProjectId			int,
   @TaskName				nvarchar(100),
   @MaxHours				int,
-  @StartDate			datetime,
   @ExpectedEndDate		datetime,
   @Bonus				int,
   @Status				nvarchar(100)
@@ -57,11 +56,9 @@ AS
 --	from @PM.nodes('//Link') AS R(nref))
 
 UPDATE Tasks   
-	SET EmployeeId = @EmployeeId, 
-      ProjectId = @ProjectId, 
+	SET
       [TaskName] = @TaskName, 
       [MaxHours] = @MaxHours, 
-      [StartDate] = @StartDate, 
       [ExpectedEndDate] = @ExpectedEndDate, 
       [Bonus] = @Bonus,
       [Status] = @Status 
@@ -70,36 +67,11 @@ GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertTasksForPMWToku
   @Id					int,
-  @EmployeeId			int,
-  @ProjectId			int,
-  @TaskName				nvarchar(100),
-  @MaxHours				int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime,
-  @Bonus				int,
   @Status				nvarchar(100)
 AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 --	from @PM.nodes('//Link') AS R(nref))
-	INSERT INTO [Tasks]
-           ([EmployeeId]
-           ,[ProjectId]
-           ,[Status]
-           ,[TaskName]
-           ,[MaxHours]
-           ,[StartDate]
-           ,[ExpectedEndDate]
-           ,[Bonus])
-     VALUES
-           (@EmployeeId, 
-           @ProjectId, 
-           @Status, 
-           @TaskName,
-           @MaxHours, 
-           @StartDate, 
-           @ExpectedEndDate, 
-           @Bonus)
 GO
 
 
@@ -109,10 +81,11 @@ CREATE PROCEDURE deleteTasksForPMWToku
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
-  DELETE FROM Tasks where Id = @Id
+  --DELETE FROM Tasks where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
---INSERT INTO [ColumnsToTypes] VALUES ('TasksForPM','PM', 'Link', 'PMForSelect');
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMWToku','ProjectId', 'Link', 'ProjectForSelect');
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMWToku','EmployeeId', 'Link', 'EmployeeForSelect');
 INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMWToku','Status','Task State', null);
 
 GO
