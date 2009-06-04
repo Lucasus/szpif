@@ -45,19 +45,14 @@ namespace Szpif.Controls.ContentControls
         private void addButton_Click(object sender, EventArgs e)
         {
             
-            ((AddControl)addForm.Controls[0]).View = view;
-            ((AddControl)addForm.Controls[0]).GridView = gridView;
-            addForm.ShowDialog();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            Program.Context.ViewToGridManager.updateView(gridView);
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            view = Program.Context.ViewToGridManager.reconnect(gridView);
         }
 
         private void gridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -78,15 +73,32 @@ namespace Szpif.Controls.ContentControls
 
         private void ViewControl_SizeChanged(object sender, EventArgs e)
         {
-            this.gridView.Height = this.Height - 52;
-            this.addButton.Location = new Point(this.addButton.Location.X, this.gridView.Height + 5);
-            this.saveButton.Location = new Point(this.saveButton.Location.X, this.gridView.Height + 5);
-            this.refreshButton.Location = new Point(this.refreshButton.Location.X, this.gridView.Height + 5);
+            this.gridView.Height = this.Height - 30;
+//            this.addButton.Location = new Point(this.addButton.Location.X, this.gridView.Height + 5);
+//            this.saveButton.Location = new Point(this.saveButton.Location.X, this.gridView.Height + 5);
+//            this.refreshButton.Location = new Point(this.refreshButton.Location.X, this.gridView.Height + 5);
         }
 
 		private void ViewControl_VisibleChanged(object sender, EventArgs e)
 		{
 			view = Program.Context.ViewToGridManager.reconnect(gridView);
 		}
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            ((AddControl)addForm.Controls[0]).View = view;
+            ((AddControl)addForm.Controls[0]).GridView = gridView;
+            addForm.ShowDialog();
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            Program.Context.ViewToGridManager.updateView(gridView);
+        }
+
+        private void Reload_Click(object sender, EventArgs e)
+        {
+            view = Program.Context.ViewToGridManager.reconnect(gridView);
+        }
     }
 }

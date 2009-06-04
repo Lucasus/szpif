@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace Szpif
 {
-    public class InterfaceManager
+    public class InterfaceBuilder
     {
         ICollection<string> roles;
 
@@ -30,7 +30,7 @@ namespace Szpif
                 {
                     string viewName = node.Attributes["viewname"].Value.ToString();
                     string name = node.Attributes["name"].Value.ToString();
-                    ViewControl viewControl = new ViewControl(viewName, 450);
+                    ViewControl viewControl = new ViewControl(viewName, 400);
                     viewControl.Name = name;
                     return viewControl;
                 }
@@ -52,14 +52,14 @@ namespace Szpif
         public void buildInterface()
         {
             roles = Program.Context.UserRoles;
-            Form mainForm = Program.Context.FormManager.getForm("MainForm");
+            MainForm mainForm = (MainForm)Program.Context.FormManager.getForm("MainForm");
 
             XmlTextReader reader = new XmlTextReader("..//..//interface.xml");
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(reader);
             Control mainControl = buildFromNode(xmlDoc.DocumentElement);
-            mainControl.Height = mainForm.Height - 15;
-            mainForm.Controls.Add(mainControl);
+            mainControl.Height = mainForm.splitContainer1.Panel2.Height - 30;
+            mainForm.splitContainer1.Panel2.Controls.Add(mainControl);
             Program.Context.FormManager.switchForm("LoginForm", "MainForm");
         }
     }

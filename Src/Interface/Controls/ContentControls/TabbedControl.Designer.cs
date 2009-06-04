@@ -33,10 +33,12 @@
             // 
             // tabControl
             // 
-            this.tabControl.Location = new System.Drawing.Point(6, 3);
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl.Name = "tabControl";
+            this.tabControl.Padding = new System.Drawing.Point(0, 0);
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(770, 452);
+            this.tabControl.Size = new System.Drawing.Size(743, 452);
             this.tabControl.TabIndex = 0;
             // 
             // TabbedControl
@@ -45,7 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl);
             this.Name = "TabbedControl";
-            this.Size = new System.Drawing.Size(779, 458);
+            this.Size = new System.Drawing.Size(743, 453);
             this.SizeChanged += new System.EventHandler(this.TabbedControl_SizeChanged);
             this.ResumeLayout(false);
 
@@ -53,7 +55,8 @@
 
         #endregion
 
-        public  System.Windows.Forms.TabControl tabControl;
+        public System.Windows.Forms.TabControl tabControl;
+
 
     }
 }

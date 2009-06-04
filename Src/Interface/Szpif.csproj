@@ -169,7 +169,7 @@
     </Compile>
     <Compile Include="Database\IntegratedView.cs" />
     <Compile Include="Managers\FormManager.cs" />
-    <Compile Include="Managers\InterfaceManager.cs" />
+    <Compile Include="InterfaceBuilder.cs" />
     <Compile Include="Managers\BindManager.cs" />
     <Compile Include="Managers\ContentManager.cs" />
     <Compile Include="Managers\DataManager.cs" />
