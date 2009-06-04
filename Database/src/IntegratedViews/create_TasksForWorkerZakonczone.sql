@@ -114,6 +114,7 @@ AS
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
 --INSERT INTO [ColumnsToTypes] VALUES ('TasksForPM','PM', 'Link', 'PMForSelect');
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForWorkerZakonczone','Status','Task State', null);
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------

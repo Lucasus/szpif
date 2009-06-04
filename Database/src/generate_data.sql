@@ -73,7 +73,7 @@ INSERT INTO [Tasks] (EmployeeId, ProjectId,  MaxHours, TaskName, StartDate, Expe
 INSERT INTO [Tasks] (EmployeeId, ProjectId,  MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus, Status)
 	VALUES(3, 2,  9, 'Zadanie6', '20091129', '20091201' , 45, 'Zakoñczone');
 INSERT INTO [Tasks] (EmployeeId, ProjectId,  MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus, Status)
-	VALUES(4, 2,  1, 'Zadanie7', '20091129', '20091202' , 50, 'Oczekuj¹ce na decyzjê');
+	VALUES(4, 2,  1, 'Zadanie7', '20091129', '20091202' , 50, 'Oczekuj¹ce na decyzjê PM');
 INSERT INTO [Tasks] (EmployeeId, ProjectId,  MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus, Status)
 	VALUES(5, 2,  2, 'Zadanie8', '20091118', '20091202' , 100, 'W toku');
 INSERT INTO [Tasks] (EmployeeId, ProjectId,  MaxHours, TaskName, StartDate, ExpectedEndDate, Bonus, Status)
