@@ -6,9 +6,9 @@ using NUnit.Framework;
 using Szpif;
 using System.IO;
 using System.Data.SqlClient;
-using Microsoft.SqlServer.Server;
-using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlServer.Management.Common;
+//using Microsoft.SqlServer.Server;
+//using Microsoft.SqlServer.Management.Smo;
+//using Microsoft.SqlServer.Management.Common;
 using System.Collections;
 using System.Data;
 
@@ -28,8 +28,8 @@ namespace Szpif.Tests
                 new FileInfo("..\\..\\..\\..\\Database\\Tests\\szpifDatabaseTests.sql");
             string script = file.OpenText().ReadToEnd();
             SqlConnection conn = new SqlConnection(sqlConnectionString);
-            Server  server =  new Server(new ServerConnection(conn));
-            server.ConnectionContext.ExecuteNonQuery(script);
+           // Server  server =  new Server(new ServerConnection(conn));
+           // server.ConnectionContext.ExecuteNonQuery(script);
             
         }
         [TestFixtureSetUp]

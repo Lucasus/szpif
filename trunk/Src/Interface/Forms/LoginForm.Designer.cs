@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.UserNameTextBox = new System.Windows.Forms.TextBox();
             this.PassWordTextBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.UserNameLabel = new System.Windows.Forms.Label();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // UserNameTextBox
             // 
-            this.UserNameTextBox.Location = new System.Drawing.Point(81, 12);
+            this.UserNameTextBox.Location = new System.Drawing.Point(108, 238);
             this.UserNameTextBox.Name = "UserNameTextBox";
             this.UserNameTextBox.Size = new System.Drawing.Size(178, 20);
             this.UserNameTextBox.TabIndex = 0;
@@ -46,7 +49,7 @@
             // PassWordTextBox
             // 
             this.PassWordTextBox.AccessibleName = "";
-            this.PassWordTextBox.Location = new System.Drawing.Point(81, 38);
+            this.PassWordTextBox.Location = new System.Drawing.Point(108, 261);
             this.PassWordTextBox.Name = "PassWordTextBox";
             this.PassWordTextBox.Size = new System.Drawing.Size(178, 20);
             this.PassWordTextBox.TabIndex = 1;
@@ -54,7 +57,7 @@
             // loginButton
             // 
             this.loginButton.AccessibleName = "AcceptButton";
-            this.loginButton.Location = new System.Drawing.Point(81, 76);
+            this.loginButton.Location = new System.Drawing.Point(12, 293);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(81, 22);
             this.loginButton.TabIndex = 3;
@@ -65,7 +68,7 @@
             // UserNameLabel
             // 
             this.UserNameLabel.AutoSize = true;
-            this.UserNameLabel.Location = new System.Drawing.Point(12, 15);
+            this.UserNameLabel.Location = new System.Drawing.Point(9, 238);
             this.UserNameLabel.Name = "UserNameLabel";
             this.UserNameLabel.Size = new System.Drawing.Size(63, 13);
             this.UserNameLabel.TabIndex = 4;
@@ -74,7 +77,7 @@
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(19, 41);
+            this.PasswordLabel.Location = new System.Drawing.Point(9, 264);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(56, 13);
             this.PasswordLabel.TabIndex = 5;
@@ -82,7 +85,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(184, 75);
+            this.button1.Location = new System.Drawing.Point(108, 292);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 6;
@@ -90,11 +93,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.anulujButton_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(274, 211);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 114);
+            this.ClientSize = new System.Drawing.Size(301, 327);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.UserNameLabel);
@@ -104,6 +117,7 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logowanie do systemu";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,6 +131,7 @@
 		private System.Windows.Forms.Label UserNameLabel;
         private System.Windows.Forms.Label PasswordLabel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
