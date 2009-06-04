@@ -24,19 +24,19 @@ CREATE PROCEDURE getTasksForWorkerWToku
 AS
  declare @login varchar(40);
   select @login = SYSTEM_USER
-  SELECT Id
-      ,[EmployeeId]
-      ,[ProjectId]
-      ,[TaskName]
-      ,[MaxHours]
-      ,[StartDate]
-      ,[ExpectedEndDate]
-      ,[Bonus]
-      ,[Status]
-  FROM Tasks
+  SELECT tr.Id
+      ,pr.ProjectName AS 'Nazwa Projektu'
+      ,tr.[TaskName] AS 'Nazwa Zadania'
+      ,tr.[MaxHours] AS 'Maksymalna iloœæ godzin'
+      ,tr.[StartDate] AS 'Data Rozpoczêcia'
+      ,tr.[ExpectedEndDate] As 'Oczekiwana Data Zakoñczenia'
+      ,tr.[Bonus] AS 'Bonus'
+      ,tr.[Status] AS 'Status'
+  FROM Tasks AS tr
+  inner join Projects AS pr on tr.ProjectId = pr.Id
   where EmployeeId in (select Id from Employees where Login = @login)
   --where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and Status like('W Toku')
+  and tr.Status like('W Toku')
 
 --  from Projects pr 
  GO
@@ -44,63 +44,16 @@ AS
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateTasksForWorkerWToku
   @Id					int,
-  @EmployeeId			int,
-  @ProjectId			int,
-  @TaskName				nvarchar(100),
-  @MaxHours				int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime,
-  @Bonus				int,
   @Status				nvarchar(100)
 AS
---	declare @przelId int;
---	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
---	from @PM.nodes('//Link') AS R(nref))
-
 UPDATE Tasks   
-	SET EmployeeId = @EmployeeId, 
-      ProjectId = @ProjectId, 
-      [TaskName] = @TaskName, 
-      [MaxHours] = @MaxHours, 
-      [StartDate] = @StartDate, 
-      [ExpectedEndDate] = @ExpectedEndDate, 
-      [Bonus] = @Bonus,
+	SET 
       [Status] = @Status 
 	where Id = @Id        
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertTasksForWorkerWToku
-  @Id					int,
-  @EmployeeId			int,
-  @ProjectId			int,
-  @TaskName				nvarchar(100),
-  @MaxHours				int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime,
-  @Bonus				int,
-  @Status				nvarchar(100)
 AS
---	declare @przelId int;
---	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
---	from @PM.nodes('//Link') AS R(nref))
-	INSERT INTO [Tasks]
-           ([EmployeeId]
-           ,[ProjectId]
-           ,[Status]
-           ,[TaskName]
-           ,[MaxHours]
-           ,[StartDate]
-           ,[ExpectedEndDate]
-           ,[Bonus])
-     VALUES
-           (@EmployeeId, 
-           @ProjectId, 
-           @Status, 
-           @TaskName,
-           @MaxHours, 
-           @StartDate, 
-           @ExpectedEndDate, 
-           @Bonus)
 GO
 
 
@@ -110,10 +63,10 @@ CREATE PROCEDURE deleteTasksForWorkerWToku
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
-  DELETE FROM Tasks where Id = @Id
+  --DELETE FROM Tasks where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
---INSERT INTO [ColumnsToTypes] VALUES ('TasksForPM','PM', 'Link', 'PMForSelect');
+--INSERT INTO [ColumnsToTypes] VALUES ('TasksForWorkerWToku','ProjectId', 'Link', 'ProjectForSelect');
 INSERT INTO [ColumnsToTypes] VALUES ('TasksForWorkerWToku','Status','Task State', null);
 
 GO

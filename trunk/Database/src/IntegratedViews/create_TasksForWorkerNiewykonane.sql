@@ -24,19 +24,19 @@ CREATE PROCEDURE getTasksForWorkerNiewykonane
 AS
  declare @login varchar(40);
   select @login = SYSTEM_USER
-  SELECT Id
-      ,[EmployeeId]
-      ,[ProjectId]
-      ,[TaskName]
-      ,[MaxHours]
-      ,[StartDate]
-      ,[ExpectedEndDate]
-      ,[Bonus]
-      ,[Status]
-  FROM Tasks
+  SELECT tr.Id
+      ,pr.ProjectName AS 'Nazwa Projektu'
+      ,tr.[TaskName] AS 'Nazwa Zadania'
+      ,tr.[MaxHours] AS 'Maksymalna iloœæ godzin'
+      ,tr.[StartDate] AS 'Data Rozpoczêcia'
+      ,tr.[ExpectedEndDate] As 'Oczekiwana Data Zakoñczenia'
+      ,tr.[Bonus] AS 'Bonus'
+      ,tr.[Status] AS 'Status'
+  FROM Tasks AS tr
+  inner join Projects AS pr on tr.ProjectId = pr.Id
   where EmployeeId in (select Id from Employees where Login = @login)
-  --where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and Status like('Niewykonane')
+   --where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
+  and tr.Status like('Niewykonane')
 
 --  from Projects pr 
  GO
