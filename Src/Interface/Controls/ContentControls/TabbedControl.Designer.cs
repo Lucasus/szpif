@@ -38,7 +38,7 @@
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Drawing.Point(0, 0);
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(743, 452);
+            this.tabControl.Size = new System.Drawing.Size(741, 476);
             this.tabControl.TabIndex = 0;
             // 
             // TabbedControl
@@ -47,7 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl);
             this.Name = "TabbedControl";
-            this.Size = new System.Drawing.Size(743, 453);
+            this.Size = new System.Drawing.Size(741, 476);
             this.SizeChanged += new System.EventHandler(this.TabbedControl_SizeChanged);
             this.ResumeLayout(false);
 

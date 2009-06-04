@@ -58,7 +58,7 @@ namespace Szpif
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(reader);
             Control mainControl = buildFromNode(xmlDoc.DocumentElement);
-            mainControl.Height = mainForm.splitContainer1.Panel2.Height - 30;
+            mainControl.Height = mainForm.splitContainer1.Panel2.Height - 7;
             mainForm.splitContainer1.Panel2.Controls.Add(mainControl);
             Program.Context.FormManager.switchForm("LoginForm", "MainForm");
         }
