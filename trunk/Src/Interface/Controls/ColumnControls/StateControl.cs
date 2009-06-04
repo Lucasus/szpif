@@ -68,7 +68,7 @@ namespace Szpif
                 return this.data;
             else
 //                return ((SzpifItem)columnValue.SelectedItem).Name;
-                return columnValue.SelectedItem;
+                return columnValue.SelectedItem.ToString();
         }
     }
 }
