@@ -26,7 +26,7 @@ AS
   select @login = SYSTEM_USER
   SELECT tr.Id
 	  ,dbo.EmployeeToXmlLink(tr.EmployeeId, 'Imiê Podw³adnego', 'EmployeeForSelect') AS  'EmployeeId'
-	  ,dbo.ProjectToXmlLink(tr.ProjectId, 'Nazwa Projektu', 'ProjectForSelect') AS  'Nazwa Projektu'
+	  ,dbo.ProjectToXmlLink(tr.ProjectId, 'Nazwa Projektu', 'ProjectForSelect') AS  'ProjectId'
       ,tr.[TaskName]-- AS 'Nazwa Zadania'
       ,tr.[MaxHours]-- AS 'Maksymalna iloœæ godzin'
       ,tr.[StartDate]-- AS 'Data Rozpoczêcia'
