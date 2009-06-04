@@ -12,29 +12,7 @@ using System.Xml.Linq;
 
 namespace Szpif
 {
-    public class SzpifItem
-    {
-        string name;
-        string text;
-
-        public SzpifItem(string name, string text)
-        {
-            this.name = name;
-            this.text = text;
-        }
-
-        
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-        public override string ToString()
-        {
-            return text;
-        }
-    }
-
+    
     public partial class StateControl : SzpifControl
     {
        SzpifType type;
