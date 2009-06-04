@@ -57,28 +57,28 @@ AS
 
 	-- sprawdzanie, ze maksymalna pula godzin nie przekracza maksymalnej sumy godzin wszystkich zadan nalezacych do projektu)
 	IF (@MaxHours < (Select SUM(T.MaxHours) from Tasks as T Where T.ProjectId = Id))
-		RAISERROR('Blad: Niepoprawna pula godzin', 1, 1)
+		RAISERROR('Blad: Niepoprawna pula godzin', 11, 1)
 
 	-- sprawdzanie budzetu projektu - nie moze byc mniejszy od kosztow
 	IF (@MaxBudget < (Select SUM(T.MaxHours * E.RatePerHour + T.Bonus) from Tasks as T
 		inner join Employees as E
 		on E.id = T.EmployeeId) + @MaxHours * (Select E.RatePerHour from Employees as E where E.id = @przelId))
-		RAISERROR('Blad: Niepoprawny budzet', 1, 1)
+		RAISERROR('Blad: Niepoprawny budzet', 11, 1)
 	-- sprawdzanie dat - data poczatkowa nie moze byc pozniejsza od dat poczatkowych zadan nalezacych do projektu
 	IF EXISTS (Select T.StartDate from Tasks as T where T.ProjectId = Id and T.StartDate < @StartDate)  
-		RAISERROR('Blad: Niepoprawna data poczatkowa', 1, 1)
+		RAISERROR('Blad: Niepoprawna data poczatkowa', 11, 1)
 	
 	-- sprawdzanie dat - daty nie moga byc mniejsze od biezacej
 	IF (@StartDate < getDate())
-		RAISERROR('Blad: Niepoprawna data poczatkowa', 1, 1)
+		RAISERROR('Blad: Niepoprawna data poczatkowa', 11, 1)
 
 	IF (@ExpectedEndDate < getDate())
-		RAISERROR('Blad: Niepoprawna data poczatkowa', 1, 1)	
+		RAISERROR('Blad: Niepoprawna data poczatkowa', 11, 1)	
 
 
 	-- sprawdzanie dat - data koncowa nie moze byc wczesniejsza niz najdalsza z dat zadan
 	IF EXISTS (Select T.StartDate from Tasks as T where T.ProjectId = Id and T.ExpectedEndDate > @ExpectedEndDate)
-		RAISERROR('Blad: Niepoprawna data koncowa', 1, 1)
+		RAISERROR('Blad: Niepoprawna data koncowa', 11, 1)
 
     update Projects set ManagerId = @przelId, 
 						Status = @Status,
@@ -131,28 +131,28 @@ AS
 
 	-- sprawdzanie, ze maksymalna pula godzin nie przekracza maksymalnej sumy godzin wszystkich zadan nalezacych do projektu)
 	IF (@MaxHours < (Select SUM(T.MaxHours) from Tasks as T Where T.ProjectId = Id))
-		RAISERROR('Blad: Niepoprawna pula godzin', 1, 1)
+		RAISERROR('Blad: Niepoprawna pula godzin', 11, 1)
 
 	-- sprawdzanie budzetu projektu - nie moze byc mniejszy od kosztow
 	IF (@MaxBudget < (Select SUM(T.MaxHours * E.RatePerHour + T.Bonus) from Tasks as T
 		inner join Employees as E
 		on E.id = T.EmployeeId) + @MaxHours * (Select E.RatePerHour from Employees as E where E.id = @przelId))
-		RAISERROR('Blad: Niepoprawny budzet', 1, 1)
+		RAISERROR('Blad: Niepoprawny budzet', 11, 1)
 	-- sprawdzanie dat - data poczatkowa nie moze byc pozniejsza od dat poczatkowych zadan nalezacych do projektu
 	IF EXISTS (Select T.StartDate from Tasks as T where T.ProjectId = Id and T.StartDate < @StartDate)  
-		RAISERROR('Blad: Niepoprawna data poczatkowa', 1, 1)
+		RAISERROR('Blad: Niepoprawna data poczatkowa', 11, 1)
 	
 	-- sprawdzanie dat - daty nie moga byc mniejsze od biezacej
 	IF (@StartDate < getDate())
-		RAISERROR('Blad: Niepoprawna data poczatkowa', 1, 1)
+		RAISERROR('Blad: Niepoprawna data poczatkowa', 11, 1)
 
 	IF (@ExpectedEndDate < getDate())
-		RAISERROR('Blad: Niepoprawna data poczatkowa', 1, 1)	
+		RAISERROR('Blad: Niepoprawna data poczatkowa', 11, 1)	
 
 
 	-- sprawdzanie dat - data koncowa nie moze byc wczesniejsza niz najdalsza z dat zadan
 	IF EXISTS (Select T.StartDate from Tasks as T where T.ProjectId = Id and T.ExpectedEndDate > @ExpectedEndDate)
-		RAISERROR('Blad: Niepoprawna data koncowa', 1, 1)
+		RAISERROR('Blad: Niepoprawna data koncowa', 11, 1)
 
 	
 INSERT INTO [szpifDatabase].[dbo].[Projects]
