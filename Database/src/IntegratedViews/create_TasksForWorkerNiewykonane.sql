@@ -6,8 +6,8 @@ GO
 SET ANSI_NULLS ON
 GO
 -----------------Usuwamy poprzednie wersje---------------------
-IF OBJECT_ID('getTasksForWorkerOdrzucone') IS NOT NULL
-	DROP PROCEDURE getTasksForWorkerOdrzucone
+IF OBJECT_ID('getTasksForWorkerNiewykonane') IS NOT NULL
+	DROP PROCEDURE getTasksForWorkerNiewykonane
 GO
 IF OBJECT_ID('updateTasksForWorkerNiewykonane') IS NOT NULL
 	DROP PROCEDURE updateTasksForWorkerNiewykonane
@@ -44,63 +44,21 @@ AS
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateTasksForWorkerNiewykonane
   @Id					int,
-  @EmployeeId			int,
-  @ProjectId			int,
-  @TaskName				nvarchar(100),
-  @MaxHours				int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime,
-  @Bonus				int,
   @Status				nvarchar(100)
 AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 --	from @PM.nodes('//Link') AS R(nref))
-
-UPDATE Tasks   
-	SET EmployeeId = @EmployeeId, 
-      ProjectId = @ProjectId, 
-      [TaskName] = @TaskName, 
-      [MaxHours] = @MaxHours, 
-      [StartDate] = @StartDate, 
-      [ExpectedEndDate] = @ExpectedEndDate, 
-      [Bonus] = @Bonus,
-      [Status] = @Status 
-	where Id = @Id        
+  
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertTasksForWorkerNiewykonane
   @Id					int,
-  @EmployeeId			int,
-  @ProjectId			int,
-  @TaskName				nvarchar(100),
-  @MaxHours				int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime,
-  @Bonus				int,
   @Status				nvarchar(100)
 AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 --	from @PM.nodes('//Link') AS R(nref))
-	INSERT INTO [Tasks]
-           ([EmployeeId]
-           ,[ProjectId]
-           ,[Status]
-           ,[TaskName]
-           ,[MaxHours]
-           ,[StartDate]
-           ,[ExpectedEndDate]
-           ,[Bonus])
-     VALUES
-           (@EmployeeId, 
-           @ProjectId, 
-           @Status, 
-           @TaskName,
-           @MaxHours, 
-           @StartDate, 
-           @ExpectedEndDate, 
-           @Bonus)
 GO
 
 
@@ -110,7 +68,7 @@ CREATE PROCEDURE deleteTasksForWorkerNiewykonane
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
-  DELETE FROM Tasks where Id = @Id
+  --DELETE FROM Tasks where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
 --INSERT INTO [ColumnsToTypes] VALUES ('TasksForPM','PM', 'Link', 'PMForSelect');
