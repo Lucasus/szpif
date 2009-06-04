@@ -15,27 +15,30 @@ GO
 IF OBJECT_ID('insertTasksForPMNowe') IS NOT NULL
 	DROP PROCEDURE insertTasksForPMNowe
 GO
-IF OBJECT_ID('deleteTasksForPM') IS NOT NULL
+IF OBJECT_ID('deleteTasksForPMNowe') IS NOT NULL
 	DROP PROCEDURE deleteTasksForPMNowe
 GO
 
 ----------Procedura zwracaj¹ca widok------------------------------
 CREATE PROCEDURE getTasksForPMNowe
 AS
- declare @login varchar(40);
+  declare @login varchar(40);
   select @login = SYSTEM_USER
-  SELECT Id
-      ,[EmployeeId]
-      ,[ProjectId]
-      ,[TaskName]
-      ,[MaxHours]
-      ,[StartDate]
-      ,[ExpectedEndDate]
-      ,[Bonus]
-      ,[Status]
-  FROM Tasks
-  where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and Status like('Nowe')
+  SELECT tr.Id
+	  ,dbo.EmployeeToXmlLink(tr.EmployeeId, 'Imiê Podw³adnego', 'EmployeeForSelect') AS  'EmployeeId'
+	  --,emp.Login AS 'Imiê Podw³adnego'
+      ,pr.ProjectName AS 'Nazwa Projektu'
+      ,tr.[TaskName] AS 'Nazwa Zadania'
+      ,tr.[MaxHours] AS 'Maksymalna iloœæ godzin'
+      ,tr.[StartDate] AS 'Data Rozpoczêcia'
+      ,tr.[ExpectedEndDate] As 'Oczekiwana Data Zakoñczenia'
+      ,tr.[Bonus] AS 'Bonus'
+      ,tr.[Status] AS 'Status'
+  FROM Tasks AS tr
+  inner join Projects AS pr on tr.ProjectId = pr.Id
+  inner join Employees AS emp on tr.EmployeeId = emp.Id
+  where EmployeeId in (select Id from Employees where SuperiorId in (select Id from Employees where Login = @login)) 
+ and tr.Status like('Nowe')
 
 --  from Projects pr 
  GO
@@ -112,7 +115,7 @@ AS
   DELETE FROM Tasks where Id = @Id
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
---INSERT INTO [ColumnsToTypes] VALUES ('TasksForPM','PM', 'Link', 'PMForSelect');
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNowe','EmployeeId', 'Link', 'EmployeeForSelect');
 INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMNowe','Status','Task State', null);
 
 GO
