@@ -47,6 +47,7 @@ CREATE PROCEDURE updateProjectsNowy
   @ExpectedEndDate		datetime,
   @Status				nvarchar(100)
 AS
+	INSERT INTO Help values ('dupa')
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
 	from @PM.nodes('//Link') AS R(nref))
