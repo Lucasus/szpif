@@ -52,8 +52,6 @@ AS
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertTasksForWorkerOczekujaceDecyzje
-  @Id					int,
-  @Status				nvarchar(100)
 AS
 --	declare @przelId int;
 --	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
@@ -64,7 +62,6 @@ GO
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteTasksForWorkerOczekujaceDecyzje
-	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
   --DELETE FROM Tasks where Id = @Id

@@ -60,7 +60,6 @@ GO
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteTasksForWorkerWToku
-	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
   --DELETE FROM Tasks where Id = @Id
