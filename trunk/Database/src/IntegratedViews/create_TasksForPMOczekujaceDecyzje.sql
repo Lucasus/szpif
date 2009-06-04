@@ -35,7 +35,7 @@ AS
       ,[Status]
   FROM Tasks
   where ProjectId in (select Id from Projects where ManagerId in (select Id from Employees where Login = @login)) 
-  and Status like('Oczekuj¹ce na decyzjê')
+  and Status like('Oczekuj¹ce na decyzjê PM')
 
 --  from Projects pr 
  GO
@@ -113,6 +113,7 @@ AS
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
 --INSERT INTO [ColumnsToTypes] VALUES ('TasksForPM','PM', 'Link', 'PMForSelect');
+INSERT INTO [ColumnsToTypes] VALUES ('TasksForPMOczekujaceDecyzje','Status','Task State', null);
 
 GO
 ---------Nadawanie uprawnieñ-------------------------------------

@@ -12,6 +12,29 @@ using System.Xml.Linq;
 
 namespace Szpif
 {
+    public class SzpifItem
+    {
+        string name;
+        string text;
+
+        public SzpifItem(string name, string text)
+        {
+            this.name = name;
+            this.text = text;
+        }
+
+        
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public override string ToString()
+        {
+            return text;
+        }
+    }
+
     public partial class StateControl : SzpifControl
     {
        SzpifType type;
@@ -55,7 +78,8 @@ namespace Szpif
 
             foreach (XmlNode node in akt.ChildNodes)
             {
-                this.columnValue.Items.Add(node.Attributes["name"].Value);
+                SzpifItem item = new SzpifItem(node.Attributes["name"].Value,node.Attributes["text"].Value);
+                this.columnValue.Items.Add(item);
             }
         }
 
@@ -64,7 +88,7 @@ namespace Szpif
             if (columnValue.SelectedItem == null) 
                 return this.data;
             else
-                return columnValue.SelectedItem.ToString();
+                return ((SzpifItem)columnValue.SelectedItem).Name;
         }
     }
 }
