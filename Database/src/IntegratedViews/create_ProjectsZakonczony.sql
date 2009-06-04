@@ -6,16 +6,16 @@ GO
 SET ANSI_NULLS ON
 GO
 -----------------Usuwamy poprzednie wersje---------------------
-IF OBJECT_ID('getProjects') IS NOT NULL
+IF OBJECT_ID('getProjectsZakonczony') IS NOT NULL
 	DROP PROCEDURE getProjectsZakonczony
 GO
-IF OBJECT_ID('updateProjects') IS NOT NULL
+IF OBJECT_ID('updateProjectsZakonczony') IS NOT NULL
 	DROP PROCEDURE updateProjectsZakonczony
 GO
-IF OBJECT_ID('insertProjects') IS NOT NULL
+IF OBJECT_ID('insertProjectsZakonczony') IS NOT NULL
 	DROP PROCEDURE insertProjectsZakonczony
 GO
-IF OBJECT_ID('deleteProjects') IS NOT NULL
+IF OBJECT_ID('deleteProjectsZakonczony') IS NOT NULL
 	DROP PROCEDURE deleteProjectsZakonczony
 GO
 
@@ -39,65 +39,117 @@ AS
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateProjectsZakonczony
   @Id					int,
-  @PM					xml,
-  @ProjectName			nvarchar(40),
-  @MaxHours				int,
-  @MaxBudget			int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime,
+--  @PM					xml,
+--  @ProjectName			nvarchar(40),
+--  @MaxHours				int,
+--  @MaxBudget			int,
+--  @StartDate			datetime,
+--  @ExpectedEndDate		datetime,
   @Status				nvarchar(100)
 AS
-	declare @przelId int;
-	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
-	from @PM.nodes('//Link') AS R(nref))
+	BEGIN TRY 
+	BEGIN TRAN
+	
+--	declare @przelId int;
+--	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
+--	from @PM.nodes('//Link') AS R(nref))
 
-    update Projects set ManagerId = @przelId, 
-						Status = @Status,
-						ProjectName = @ProjectName, 
-						MaxHours = @MaxHours,
-						MaxBudget = @MaxBudget,
-						StartDate = @StartDate,
-						ExpectedEndDate = @ExpectedEndDate
-						where Id = @Id and Status like ('Zakoñczony')
+    update Projects set 
+						--ManagerId = @przelId, 
+						
+						--ProjectName = @ProjectName, 
+						--MaxHours = @MaxHours,
+						--MaxBudget = @MaxBudget,
+						--StartDate = @StartDate,
+						--ExpectedEndDate = @ExpectedEndDate,
+						Status = @Status
+						where Id = @Id --and Status like ('Zakoñczony')
+
+	COMMIT TRAN
+	END TRY
+	
+	BEGIN CATCH
+		ROLLBACK TRAN
+	
+		-- ponowne rzucenie wyjatku - do aplikacji
+		DECLARE
+			@ErrMsg NVARCHAR(4000),
+			@ErrSeverity INT,
+			@ErrState INT;
+
+		SELECT	
+			@ErrMsg = ERROR_MESSAGE(),
+			@ErrSeverity = ERROR_SEVERITY(),
+			@ErrState = ERROR_STATE();
+		RAISERROR (@ErrMsg,@ErrSeverity,@ErrState)
+		
+	END CATCH
+
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertProjectsZakonczony
-  @Id					int,
-  @PM					xml,
-  @ProjectName			nvarchar(40),
-  @MaxHours				int,
-  @MaxBudget			int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime,
-  @Status				nvarchar(100)
+ -- @Id					int,
+ -- @PM					xml,
+ -- @ProjectName			nvarchar(40),
+ -- @MaxHours				int,
+ -- @MaxBudget			int,
+ -- @StartDate			datetime,
+ -- @ExpectedEndDate		datetime,
+ -- @Status				nvarchar(100)
 AS
-	declare @przelId int;
-	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
-	from @PM.nodes('//Link') AS R(nref))
+--	declare @przelId int;
+--	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
+--	from @PM.nodes('//Link') AS R(nref))
 	
-INSERT INTO [szpifDatabase].[dbo].[Projects]
-           ([ManagerId]
-           ,[Status]
-           ,[ProjectName]
-           ,[MaxHours]
-           ,[MaxBudget]
-           ,[StartDate]
-           ,[ExpectedEndDate])
-     VALUES
-           (@przelId, 
-           @Status, 
-           @ProjectName, 
-           @MaxHours, 
-           @MaxBudget, 
-           @StartDate, 
-           @ExpectedEndDate)
+--INSERT INTO [szpifDatabase].[dbo].[Projects]
+  --         ([ManagerId]
+  --       ,[Status]
+  --       ,[ProjectName]
+  --       ,[MaxHours]
+--           ,[MaxBudget]
+--           ,[StartDate]
+--           ,[ExpectedEndDate])
+--     VALUES
+--           (@przelId, 
+--           @Status, 
+--           @ProjectName, 
+--           @MaxHours, 
+--           @MaxBudget, 
+--           @StartDate, 
+--           @ExpectedEndDate)
 GO
 ---------Procedura usuwaj¹ca rekord z widoku--------------------- 
 CREATE PROCEDURE deleteProjectsZakonczony
+
+
 	@Id	int
 WITH EXECUTE AS  'szpifadmin'
 AS
-  DELETE FROM Projects where Id = @Id and Status like ('Zakoñczony')
+	BEGIN TRY
+	BEGIN TRAN
+	DELETE FROM Projects where Id = @Id and Status like ('Zakoñczony')
+
+	COMMIT TRAN
+	END TRY
+	
+	BEGIN CATCH
+		ROLLBACK TRAN
+	
+		-- ponowne rzucenie wyjatku - do aplikacji
+		DECLARE
+			@ErrMsg NVARCHAR(4000),
+			@ErrSeverity INT,
+			@ErrState INT;
+
+		SELECT	
+			@ErrMsg = ERROR_MESSAGE(),
+			@ErrSeverity = ERROR_SEVERITY(),
+			@ErrState = ERROR_STATE();
+		RAISERROR (@ErrMsg,@ErrSeverity,@ErrState)
+		
+	END CATCH
+
+
 GO
 ---------Przypisywanie schematów do niestandardowych typów danych-------------
 INSERT INTO [ColumnsToTypes] VALUES ('ProjectsZakonczony','PM', 'Link', 'PMForSelect');

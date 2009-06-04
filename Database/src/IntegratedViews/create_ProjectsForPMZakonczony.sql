@@ -6,16 +6,16 @@ GO
 SET ANSI_NULLS ON
 GO
 -----------------Usuwamy poprzednie wersje---------------------
-IF OBJECT_ID('getProjectsForPM') IS NOT NULL
+IF OBJECT_ID('getProjectsForPMZakonczony') IS NOT NULL
 	DROP PROCEDURE getProjectsForPMZakonczony
 GO
-IF OBJECT_ID('updateProjectsForPM') IS NOT NULL
+IF OBJECT_ID('updateProjectsForPMZakonczony') IS NOT NULL
 	DROP PROCEDURE updateProjectsForPMZakonczony
 GO
-IF OBJECT_ID('insertProjectsForPM') IS NOT NULL
+IF OBJECT_ID('insertProjectsForPMZakonczony') IS NOT NULL
 	DROP PROCEDURE insertProjectsForPMZakonczony
 GO
-IF OBJECT_ID('deleteProjectsForPM') IS NOT NULL
+IF OBJECT_ID('deleteProjectsForPMZakonczony') IS NOT NULL
 	DROP PROCEDURE deleteProjectsForPMZakonczony
 GO
 
@@ -40,26 +40,53 @@ AS
 ---------Procedura update'uj¹ca rekordy z widoku------------------
 CREATE PROCEDURE updateProjectsForPMZakonczony
   @Id					int,
-  @PM					xml,
-  @ProjectName			nvarchar(40),
-  @MaxHours				int,
-  @MaxBudget			int,
-  @StartDate			datetime,
-  @ExpectedEndDate		datetime,
+--  @PM					xml,
+--  @ProjectName			nvarchar(40),
+--  @MaxHours				int,
+--  @MaxBudget			int,
+--  @StartDate			datetime,
+--  @ExpectedEndDate		datetime,
   @Status				nvarchar(100)
 AS
-	declare @przelId int;
-	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
-	from @PM.nodes('//Link') AS R(nref))
 
-    update Projects set ManagerId = @przelId, 
-						Status = @Status,
-						ProjectName = @ProjectName, 
-						MaxHours = @MaxHours,
-						MaxBudget = @MaxBudget,
-						StartDate = @StartDate,
-						ExpectedEndDate = @ExpectedEndDate
-						where Id = @Id and Status like ('Zakoñczony')
+	BEGIN TRY 
+	BEGIN TRAN
+
+	--declare @przelId int;
+	--select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
+	--from @PM.nodes('//Link') AS R(nref))
+
+    update Projects set 
+						--ManagerId = @przelId, 
+						
+--						ProjectName = @ProjectName, 
+--						MaxHours = @MaxHours,
+--						MaxBudget = @MaxBudget,
+--						StartDate = @StartDate,
+--						ExpectedEndDate = @ExpectedEndDate,
+						Status = @Status
+						where Id = @Id --and Status like ('Zakoñczony')
+
+	COMMIT TRAN
+	END TRY
+	
+	BEGIN CATCH
+		ROLLBACK TRAN
+	
+		-- ponowne rzucenie wyjatku - do aplikacji
+		DECLARE
+			@ErrMsg NVARCHAR(4000),
+			@ErrSeverity INT,
+			@ErrState INT;
+
+		SELECT	
+			@ErrMsg = ERROR_MESSAGE(),
+			@ErrSeverity = ERROR_SEVERITY(),
+			@ErrState = ERROR_STATE();
+		RAISERROR (@ErrMsg,@ErrSeverity,@ErrState)
+		
+	END CATCH
+
 GO
 ---------Procedura dodaj¹ca rekord do widoku---------------------
 CREATE PROCEDURE insertProjectsForPMZakonczony
