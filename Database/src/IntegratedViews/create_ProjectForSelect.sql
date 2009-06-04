@@ -22,10 +22,14 @@ GO
 ----------Procedura zwracaj¹ca widok------------------------------
 CREATE PROCEDURE getProjectForSelect
 AS
+    declare @login varchar(40);
+    select @login = SYSTEM_USER
 	SELECT 
 		pr.Id, 
 		pr.ProjectName
 	FROM Projects pr
+	inner join Employees emp on emp.Id = pr.ManagerId
+	WHERE emp.Login = @login
 GO
 
 ---------Procedura update'uj¹ca rekordy z widoku------------------

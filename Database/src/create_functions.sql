@@ -124,6 +124,37 @@ RETURN @Link
 END
 -------------------------------------------------------------------
 GO
+
+
+CREATE FUNCTION dbo.ProjectToXmlLink
+( 
+	@ProjectID int,
+	@Name	nvarchar(40),
+	@ViewName nvarchar(100)
+) 
+RETURNS XML
+AS
+	BEGIN
+	DECLARE @Link XML
+	--declare @credId int;
+	--select @credId = (select CredentialsId from Employees where Id = @EmployeeID)
+	select @Link = 
+		(
+			select	@Name as Name, 
+					@ViewName as ViewName,
+					Id, 
+					ProjectName as Text
+					--(select ProjectName from Proje where Id = @credId) as Text
+			from Projects Link where Id = @ProjectID
+			FOR XML AUTO, TYPE
+		) 	
+RETURN @Link
+END
+-------------------------------------------------------------------
+GO
+
+
+
 CREATE FUNCTION dbo.getEmployeeByLoginAndPassword
 		(
 		@Login nvarchar(40),
