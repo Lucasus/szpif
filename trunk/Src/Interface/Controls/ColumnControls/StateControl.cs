@@ -78,8 +78,9 @@ namespace Szpif
 
             foreach (XmlNode node in akt.ChildNodes)
             {
-                SzpifItem item = new SzpifItem(node.Attributes["name"].Value,node.Attributes["text"].Value);
-                this.columnValue.Items.Add(item);
+//                SzpifItem item = new SzpifItem(node.Attributes["name"].Value,node.Attributes["text"].Value);
+//                this.columnValue.Items.Add(item);
+                this.columnValue.Items.Add(node.Attributes["name"].Value);
             }
         }
 
@@ -88,7 +89,8 @@ namespace Szpif
             if (columnValue.SelectedItem == null) 
                 return this.data;
             else
-                return ((SzpifItem)columnValue.SelectedItem).Name;
+//                return ((SzpifItem)columnValue.SelectedItem).Name;
+                return columnValue.SelectedItem;
         }
     }
 }
