@@ -41,6 +41,7 @@ namespace Szpif.Controls.ContentControls
             updateForm = FormFactory.createUpdateForm(viewName, this);
             this.gridView.Height = maxHeight - 50;
             if (view.Insertable == false) this.Add.Visible = false;
+            if (view.Updateable == false) this.Edit.Visible = false;
 //            this.
         }
 
