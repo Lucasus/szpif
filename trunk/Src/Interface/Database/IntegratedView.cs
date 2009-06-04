@@ -12,6 +12,27 @@ namespace Szpif
     {
         DataTable table;
         Dictionary<string, SzpifColumn> columns;
+        bool updateable;
+        bool insertable;
+        bool deletable;
+
+        public bool Updateable
+        {
+            get { return updateable; }
+            set { updateable = value; }
+        }
+
+        public bool Insertable
+        {
+            get { return insertable; }
+            set { insertable = value; }
+        }
+
+        public bool Deletable
+        {
+            get { return deletable; }
+            set { deletable = value; }
+        }
 
         public Dictionary<string, SzpifColumn> Columns
         {

@@ -34,6 +34,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.disableLabel = new System.Windows.Forms.Label();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wylogujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zakończToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +42,6 @@
             this.autorzyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disableLabel = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -102,7 +102,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -115,9 +115,19 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.disableLabel);
-            this.splitContainer1.Size = new System.Drawing.Size(899, 377);
-            this.splitContainer1.SplitterDistance = 154;
+            this.splitContainer1.Size = new System.Drawing.Size(897, 400);
+            this.splitContainer1.SplitterDistance = 153;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // disableLabel
+            // 
+            this.disableLabel.AutoSize = true;
+            this.disableLabel.Location = new System.Drawing.Point(186, 80);
+            this.disableLabel.Name = "disableLabel";
+            this.disableLabel.Size = new System.Drawing.Size(183, 13);
+            this.disableLabel.TabIndex = 0;
+            this.disableLabel.Text = "Ten panel jest dla Ciebie niedostępny";
+            this.disableLabel.Visible = false;
             // 
             // menuToolStripMenuItem
             // 
@@ -159,9 +169,10 @@
             this.pomocToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(899, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(897, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Visible = false;
             // 
             // pomocToolStripMenuItem
             // 
@@ -172,21 +183,11 @@
             this.pomocToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.pomocToolStripMenuItem.Text = "Pomoc";
             // 
-            // disableLabel
-            // 
-            this.disableLabel.AutoSize = true;
-            this.disableLabel.Location = new System.Drawing.Point(186, 80);
-            this.disableLabel.Name = "disableLabel";
-            this.disableLabel.Size = new System.Drawing.Size(183, 13);
-            this.disableLabel.TabIndex = 0;
-            this.disableLabel.Text = "Ten panel jest dla Ciebie niedostępny";
-            this.disableLabel.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(899, 401);
+            this.ClientSize = new System.Drawing.Size(897, 400);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;

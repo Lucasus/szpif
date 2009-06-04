@@ -33,12 +33,14 @@ namespace Szpif.Controls.ContentControls
         {
             InitializeComponent();
             this.gridView.Name = this.viewName = viewName;
-            this.Edit.Text = "Edytuj...";
+            this.Edit.Text = "...";
+            this.Edit.Width = 30;
             this.Edit.UseColumnTextForButtonValue = true;
             view = Program.Context.ViewToGridManager.bindToView(gridView);
             addForm = FormFactory.createAddForm(viewName, this);
             updateForm = FormFactory.createUpdateForm(viewName, this);
             this.gridView.Height = maxHeight - 50;
+            if (view.Insertable == false) this.Add.Visible = false;
 //            this.
         }
 
