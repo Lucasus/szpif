@@ -58,7 +58,8 @@ namespace Szpif
             {
 //                SzpifItem item = new SzpifItem(node.Attributes["name"].Value,node.Attributes["text"].Value);
 //                this.columnValue.Items.Add(item);
-                this.columnValue.Items.Add(node.Attributes["name"].Value);
+                if(Program.Context.UserRoles.Contains(node.Attributes["user"].Value))
+                    this.columnValue.Items.Add(node.Attributes["name"].Value);
             }
         }
 
