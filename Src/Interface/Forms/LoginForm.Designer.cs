@@ -70,18 +70,18 @@
             this.UserNameLabel.AutoSize = true;
             this.UserNameLabel.Location = new System.Drawing.Point(9, 238);
             this.UserNameLabel.Name = "UserNameLabel";
-            this.UserNameLabel.Size = new System.Drawing.Size(63, 13);
+            this.UserNameLabel.Size = new System.Drawing.Size(36, 13);
             this.UserNameLabel.TabIndex = 4;
-            this.UserNameLabel.Text = "User Name:";
+            this.UserNameLabel.Text = "Login:";
             // 
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
             this.PasswordLabel.Location = new System.Drawing.Point(9, 264);
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(56, 13);
+            this.PasswordLabel.Size = new System.Drawing.Size(39, 13);
             this.PasswordLabel.TabIndex = 5;
-            this.PasswordLabel.Text = "Password:";
+            this.PasswordLabel.Text = "Hasło:";
             // 
             // button1
             // 
@@ -114,6 +114,7 @@
             this.Controls.Add(this.PassWordTextBox);
             this.Controls.Add(this.UserNameTextBox);
             this.Controls.Add(this.loginButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logowanie do systemu";
