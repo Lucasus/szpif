@@ -48,8 +48,8 @@ CREATE PROCEDURE updateProjectsForPMWToku
   @ExpectedEndDate		datetime,
   @Status				nvarchar(100)
 AS
-	BEGIN TRY 
-	BEGIN TRAN
+		BEGIN TRY 
+		BEGIN TRAN
 
 	declare @przelId int;
 	select @przelId = (SELECT nref.value('@Id[1]', 'int') Id
